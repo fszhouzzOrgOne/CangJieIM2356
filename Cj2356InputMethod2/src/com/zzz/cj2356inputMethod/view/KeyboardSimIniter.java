@@ -1,0 +1,377 @@
+package com.zzz.cj2356inputMethod.view;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import android.content.Context;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
+import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
+import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
+import com.zzz.cj2356inputMethod.listener.OnEnterNumClickListener;
+import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
+import com.zzz.cj2356inputMethod.utils.StringUtils;
+
+public class KeyboardSimIniter {
+    private static Integer SIM_ROW_SIZE = 7;
+    private static Integer SIM_PAGE_ROW = 3;
+
+    private static String currentSimMapKey = null;
+    private static Context context;
+    private static View keyboardView;
+
+    private static TabHost simTabhost; // 符號類別
+
+    private static GridView keyboardBodySimGrid; // 符號鍵盤
+
+    private static Button prePageButton;
+    private static Button nextPageButton;
+
+    private static Map<String, String> simMap = new HashMap<String, String>();
+    private static Map<String, String> typeNameKeyMap = new LinkedHashMap<String, String>();
+
+    private static String PAGE_CN_KEY = "keyboardBodySimCn"; // 中文
+    private static String PAGE_CNPART_KEY = "keyboardBodySimCnPart"; // 中文部首
+    private static String PAGE_EN_KEY = "keyboardBodySimEn"; // 英文
+    private static String PAGE_WH_KEY = "keyboardBodySimWenh"; // 文化
+    private static String PAGE_JP_KEY = "keyboardBodySimJp"; // 日文
+    private static String PAGE_KR_KEY = "keyboardBodySimKr"; // 韓文
+    private static String PAGE_SP_KEY = "keyboardBodySimSp"; // 特殊
+    private static String PAGE_MATH_KEY = "keyboardBodySimMath"; // 數學
+    private static String PAGE_ORDER_KEY = "keyboardBodySimOrder"; // 序號
+    private static String PAGE_PINYIN_KEY = "keyboardBodySimPy"; // 注音
+    private static String PAGE_TAB_KEY = "keyboardBodySimTab"; // 製表
+    private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
+    private static String PAGE_GREERUSSIA_KEY = "keyboardBodySimGr"; // 希臘、俄文
+
+    static {
+        // 中文
+        simMap.put(
+                PAGE_CN_KEY,
+                "，、。？！：∶；…‘’“”＇＂〃（）〔〕〈〉《》［］｛｝「」『』〖〗【】～—＋－×÷＝＊＜＞｀Ұ¥￥＄ˇ︿ˉ＿¨．·•｜‖々／＆＼＃％⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻");
+        simMap.put(PAGE_CNPART_KEY, 
+                "丨亅丿乛一乙乚丶八勹匕冫刂儿二匚阝丷卩冂冖凵亻厶亠匸讠廴又艹屮彳巛辶廾彐彑口宀犭彡饣扌氵纟囗忄幺弋尢夂灬歹卝旡耂肀牜爿攴攵礻殳尣爻曰爫癶歺钅疒罒衤疋业艸虍覀糸糹镸辵豸釒靣飠髟鬲黽黹夊禸舛襾釆〇α乁乀巜乂丄丆丅龴丩刄亇丌丬乇卂孒乊卄夨乆龶丰冄兂冘龷丯円龵毌卬卅罓朩匁予戋龸甴氺冎丗仺氶叏丱戉両乑龹朿帇亙丣囪乕幷戼丳栆単眔埀宻豙睂臦");
+        // 英文
+        simMap.put(
+                PAGE_EN_KEY,
+                ",.!?:\"';+-*=/|\\^$&@%‰#~`_<>()[]{}¿tᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵");
+        // 文化
+        simMap.put(PAGE_WH_KEY, "☯⚋⚊☰☷☳☶☲☵☱☴卍卐❂☭☠☤☥☦☧☨☩☪☫☬☮☸☽☾♕♚♛✙✚✛✜✝✞✟✠✡✢");
+        // 特殊
+        simMap.put(
+                PAGE_SP_KEY,
+                "/\\╳︵︶︹︺︿﹀︴﹌﹉﹊﹍﹎╭╮╰╯︽︾﹁﹂﹃﹄﹏ˇ‥︷︸«»︻︼℡™ŠÕ©®‡†♂♀§№☆★♡♥●Θ○◎⊙◆◇▲▼△▽□■※▪〓¤°Ψ∮⊕卍卐囍㈱＿￣―￡↖↑↗←↹→↙↓↘҉̶⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨♈♉♊♋♌♍♎♏♐♑♒♓");
+        // 數學
+        simMap.put(
+                PAGE_MATH_KEY,
+                "＋－×÷≈≡≠＝±✘✔√≤≥＜＞≮≯∷╱╲∫∮∝∞∧∨∑∏∪∩∈∵∴⊥∥∠⌒⊙≌∽≒≦≧⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％‰‱Ｆ′″º℃Å￠￡＄Ұ¥￥¤℉ℓ㏄㎜㎝㎞㎡㎎㎏Ω⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₔ");
+        // 序號
+        simMap.put(
+                PAGE_ORDER_KEY,
+                "⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴１２３４５６７８９０⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇〡〢〣〤〥〦〧〨〩十㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㊣〇一二三四五六七八九十零壹贰貳叁叄肆伍陆陸柒捌玖拾佰仟万萬亿億吉太拍艾ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ");
+        // 注音
+        simMap.put(
+                PAGE_PINYIN_KEY,
+                "āáǎàōóǒòêēéěèīíǐìūúǔùǖǘǚǜüˉˊˇˋ˙˪˫◌〪〭〫〬ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㆠㆡㆢㆣㆤㆥㆦㆧㆨㆩㆪㆫㆬㆭㆮㆯㆰㆱㆲㆳㆴㆵㆶㆷㆸㆹㆺ");
+        // 製表
+        simMap.put(PAGE_TAB_KEY,
+                "┌┍┎┏┐┑┒┓─┄┈├┝┞┟┠┡┢┣│┆┊┬┭┮┯┰┱┲┳┼┽┾┿╀╁╂└┕┖┗┘┙┚┛━┅┉┤┥┦┧┨┩┪┫┴┵┶┷┸┹┺┻╄╅╆╇╈╉╊╋");
+        // 拉丁
+        simMap.put(PAGE_LATIN_KEY,
+                "ÄÆÅÀÁÂÃÇĒĚÈÉÊËÐÌÍÎÏÖØÒÓÔÕÑÙÚÛÜÝÞäæåàáâãçēěèéêëðìíîïöøòóôõñùúûüýþ");
+        // 希俄
+        simMap.put(
+                PAGE_GREERUSSIA_KEY,
+                "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
+        // 日文
+        simMap.put(
+                PAGE_JP_KEY,
+                "あいうゔえおアイウヴエオぁぃぅぇぉァィゥェォかゕきくけゖこカヵキクケヶコがぎぐげごガギグゲゴさしすせそサシスセソざじずぜぞザジズゼゾたちつってとタチツッテトだぢづでどダヂヅデドなにぬねのナニヌネノはひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポまみむめもマミムメモやゆよヤユヨゃゅょャュョらりるれろラリルレロわゎゐゑをワヮヷヰヸヱヹヲヺんンー゠々ゝゞヽヾ〆乄ゟ゚゛゜ヿ・");
+        // 韓文
+        simMap.put(PAGE_KR_KEY,
+                "ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ");
+
+        typeNameKeyMap.put("中文", PAGE_CN_KEY);
+        typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
+        typeNameKeyMap.put("英文", PAGE_EN_KEY);
+        typeNameKeyMap.put("文化", PAGE_WH_KEY);
+        typeNameKeyMap.put("特殊", PAGE_SP_KEY);
+        typeNameKeyMap.put("數學", PAGE_MATH_KEY);
+        typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
+        typeNameKeyMap.put("注音", PAGE_PINYIN_KEY);
+        typeNameKeyMap.put("製表", PAGE_TAB_KEY);
+        typeNameKeyMap.put("日文", PAGE_JP_KEY);
+        typeNameKeyMap.put("韓文", PAGE_KR_KEY);
+        typeNameKeyMap.put("拉丁", PAGE_LATIN_KEY);
+        typeNameKeyMap.put("希俄", PAGE_GREERUSSIA_KEY);
+    }
+
+    /**
+     * 初始化符號鍵盤
+     */
+    public static void initKeyboardSim(Context con, View kbView) {
+        currentSimMapKey = null;
+        context = con;
+        keyboardView = kbView;
+
+        keyboardBodySimGrid = (GridView) keyboardView
+                .findViewById(R.id.keyboardBodySimGrid);
+
+        simTabhost = (TabHost) keyboardView
+                .findViewById(R.id.keyboardBodySimTabhost);
+        simTabhost.setup();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        inflater.inflate(R.layout.keyboardsim_tab_content,
+                simTabhost.getTabContentView());
+
+        Iterator<String> itr = typeNameKeyMap.keySet().iterator();
+        while (itr.hasNext()) {
+            String keyName = itr.next();
+            simTabhost.addTab(simTabhost
+                    .newTabSpec(typeNameKeyMap.get(keyName))
+                    .setIndicator(" " + keyName + " ")
+                    .setContent(R.id.linearLayoutSimTab));
+        }
+
+        int tabCnt = simTabhost.getTabWidget().getChildCount();
+        for (int i = 0; i < tabCnt; i++) {
+            TextView textView = (TextView) simTabhost.getTabWidget()
+                    .getChildAt(i).findViewById(android.R.id.title);
+            textView.setTextSize(16);
+            textView.setGravity(Gravity.CENTER_VERTICAL);
+            textView.setPadding(0, 0, 0, 0);
+            textView.setSingleLine();
+            textView.getLayoutParams().height = LayoutParams.MATCH_PARENT;
+            textView.getLayoutParams().width = LayoutParams.WRAP_CONTENT;
+        }
+
+        simTabhost
+                .setOnTabChangedListener(new OnTabSimChangedListener(context));
+
+        prePageButton = (Button) keyboardView
+                .findViewById(R.id.keybtnSimPreviousPage);
+        prePageButton.setOnClickListener(new OnPrePageButtonClickListener(
+                context));
+        nextPageButton = (Button) keyboardView
+                .findViewById(R.id.keybtnSimNextPage);
+        nextPageButton.setOnClickListener(new OnNextPageButtonClickListener(
+                context));
+
+        // 刪除鍵
+        keyboardView.findViewById(R.id.keybtnSimDelete).setOnClickListener(
+                new OnDeleteNumClickListener(context));
+        keyboardView.findViewById(R.id.keybtnSimDelete).setOnLongClickListener(
+                new OnDeleteNumLongClickListener(context));
+        // 回車鍵
+        keyboardView.findViewById(R.id.keybtnSimEnter).setOnClickListener(
+                new OnEnterNumClickListener(context));
+        // 空格鍵
+        keyboardView.findViewById(R.id.keybtnSimSpace).setOnClickListener(
+                new OnSpaceNumClickListener(context));
+        // 符號鍵盤返回
+        keyboardView.findViewById(R.id.keybtnSimBack).setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // 界面切換
+                        ViewFlipper viewFlipper = (ViewFlipper) keyboardView
+                                .findViewById(R.id.keyboardBodyFlipper);
+                        viewFlipper.showPrevious();
+                        viewFlipper.showPrevious();
+                    }
+                });
+        // 符號鍵盤的數字鍵
+        keyboardView.findViewById(R.id.keybtnSimNum).setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // 界面切換
+                        ViewFlipper viewFlipper = (ViewFlipper) keyboardView
+                                .findViewById(R.id.keyboardBodyFlipper);
+                        viewFlipper.showPrevious();
+                    }
+                });
+
+        // 中文第一頁
+        resetKeyboardSimPage();
+    }
+
+    /**
+     * 回到中文第一頁
+     */
+    public static void resetKeyboardSimPage() {
+        if (null != context) {
+            setkeyboardBodySimGridKeys(context, PAGE_CN_KEY + "_" + 1);
+        }
+        if (null != simTabhost) {
+            simTabhost.setCurrentTab(0);
+        }
+        if (null != keyboardView) {
+            // 左移焦點
+            HorizontalScrollView sv = (HorizontalScrollView) keyboardView
+                    .findViewById(R.id.keyboardBodySimScroll);
+            sv.scrollTo(0, 0);
+        }
+    }
+
+    /**
+     * 一共有幾頁
+     * 
+     * @return
+     */
+    public static Integer getKeyboardSimLastPage() {
+        String simMapKey = currentSimMapKey;
+        String simMapKeyPrefix = simMapKey.split("_")[0];
+        String content = simMap.get(simMapKeyPrefix);
+        if (null != content && content.length() > 0) {
+            int rows = content.length() / KeyboardSimIniter.SIM_ROW_SIZE;
+            if (content.length() % KeyboardSimIniter.SIM_ROW_SIZE != 0) {
+                rows++;
+            }
+            int pages = rows / KeyboardSimIniter.SIM_PAGE_ROW;
+            if (rows % KeyboardSimIniter.SIM_PAGE_ROW != 0) {
+                pages++;
+            }
+            return pages;
+        }
+        return 0;
+    }
+
+    /**
+     * 獲取第幾頁符號
+     * 
+     * @param page
+     * @return
+     */
+    public static String getKeyboardSimByPage(int page) {
+        String simMapKey = currentSimMapKey;
+        String simMapKeyPrefix = simMapKey.split("_")[0];
+        String content = simMap.get(simMapKeyPrefix);
+        int start = (page - 1) * KeyboardSimIniter.SIM_PAGE_ROW
+                * KeyboardSimIniter.SIM_ROW_SIZE;
+        int end = page * KeyboardSimIniter.SIM_PAGE_ROW
+                * KeyboardSimIniter.SIM_ROW_SIZE - 1;
+        if (end >= content.length() - 1) {
+            // 結束位置，等於或超過了一行個數
+            if (page > 1
+                    && ((end - (content.length() - 1)) >= KeyboardSimIniter.SIM_ROW_SIZE)) {
+                int emptyRow = (end - (content.length() - 1))
+                        / KeyboardSimIniter.SIM_ROW_SIZE;
+                for (int emp = emptyRow; emp > 0; emp--) {
+                    start -= KeyboardSimIniter.SIM_ROW_SIZE;
+                }
+            }
+            end = content.length() - 1;
+        }
+        return content.substring(start, end + 1);
+    }
+
+    private static void setkeyboardBodySimGridKeys(Context context,
+            String simMapKey) {
+        try {
+            currentSimMapKey = simMapKey;
+
+            int page = Integer
+                    .parseInt(simMapKey.split("_")[1]);
+            String keys = getKeyboardSimByPage(page);
+            ArrayList<Map<String, String>> valueList = new ArrayList<Map<String, String>>();
+            for (int i = 0; i < keys.length(); i++) {
+                Map<String, String> map = new HashMap<String, String>();
+                Character cha = keys.charAt(i);
+                map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha.toString());
+                valueList.add(map);
+            }
+            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(
+                    context, valueList);
+            keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+            if (null != e.getCause()) {
+                Toast.makeText(context, e.getCause().getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private static class OnPrePageButtonClickListener implements
+            OnClickListener {
+
+        private Context context;
+
+        public OnPrePageButtonClickListener(Context con) {
+            super();
+            this.context = con;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (StringUtils.hasText(currentSimMapKey)) {
+                int page = Integer.parseInt(currentSimMapKey.split("_")[1]);
+                if (page == 1) {
+                    return;
+                } else {
+                    int topage = page - 1;
+                    String simMapKey = currentSimMapKey.split("_")[0] + "_" + topage;
+                    setkeyboardBodySimGridKeys(context, simMapKey);
+                }
+            }
+        }
+    }
+
+    private static class OnNextPageButtonClickListener implements
+            OnClickListener {
+
+        private Context context;
+
+        public OnNextPageButtonClickListener(Context con) {
+            super();
+            this.context = con;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (StringUtils.hasText(currentSimMapKey)) {
+                int page = Integer.parseInt(currentSimMapKey.split("_")[1]);
+                if (page == getKeyboardSimLastPage().intValue()) {
+                    return;
+                } else {
+                    int topage = page + 1;
+                    String simMapKey = currentSimMapKey.split("_")[0] + "_" + topage;
+                    setkeyboardBodySimGridKeys(context, simMapKey);
+                }
+            }
+        }
+    }
+
+    private static class OnTabSimChangedListener implements OnTabChangeListener {
+
+        private Context context;
+
+        public OnTabSimChangedListener(Context con) {
+            super();
+            this.context = con;
+        }
+
+        @Override
+        public void onTabChanged(String tabId) {
+            setkeyboardBodySimGridKeys(context, tabId + "_" + 1);
+        }
+    }
+
+}
