@@ -37,7 +37,7 @@ public class KeyboardSimIniter {
     private static Context context;
     private static View keyboardView;
 
-    private static TabHost simTabhost; // 符號類別
+    private static TabHost simTabhost; // 符號類別 
 
     private static GridView keyboardBodySimGrid; // 符號鍵盤
 
