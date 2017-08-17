@@ -1,4 +1,7 @@
 換行鍵和回車鍵，用1畵圖，再用80畵陰影。
+/Cj2356InputMethod2/assets/database/cjmbdb.db，需要用myweb工程中的類生成。
+/Cj2356InputMethod2/androidzzz.keystore是签名文件，密碼是hello1234。
+
 純六代：
 InputMethodStatusCnCj6切換狀態只能是蒼六
 
