@@ -30,16 +30,83 @@
             android:textColor="#333333"
             android:textSize="20dp" />
         
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            >
+            <HorizontalScrollView
+                android:id="@+id/settingLayoutScroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                >
+                <TabHost  
+                    android:id="@+id/settingLayoutTabhost"           
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    >  
+        						  
+                    <LinearLayout  
+                        android:layout_width="match_parent"  
+                        android:layout_height="match_parent"  
+                        android:orientation="vertical" 
+                        android:background="@color/whiteddd"
+                        >  
+        						  
+                        <TabWidget  
+                            android:id="@android:id/tabs"  
+                            android:layout_width="match_parent"  
+                            android:layout_height="fill_parent" 
+                            >  
+                        </TabWidget>  
+        						  
+                        <FrameLayout  
+                            android:id="@android:id/tabcontent"  
+                            android:layout_width="match_parent"  
+                            android:layout_height="match_parent" >  
+                        </FrameLayout>  
+                    </LinearLayout>  
+                </TabHost> 
+			</HorizontalScrollView>
+        </LinearLayout>
+
         <TextView
             android:id="@+id/setsuMyouTextview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:textColor="#333333"
             android:textSize="18dp" 
             android:background="@color/whiteddd"
             />
-
+        
+        <LinearLayout
+            android:id="@+id/setTabDictSearchLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            >
+	        <SearchView
+	            android:id="@+id/setTabDictSearchView"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:iconifiedByDefault="false" >
+	        </SearchView>
+	
+	        <ExpandableListView
+	            android:id="@+id/setTabDictExpandableListView"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:childDivider="#999999"
+	            />
+	    </LinearLayout>
+            
     </LinearLayout>
 
 </ScrollView>
