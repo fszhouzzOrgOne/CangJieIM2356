@@ -2,9 +2,6 @@ package com.zzz.cj2356inputMethod;
 
 import java.util.List;
 
-import android.inputmethodservice.InputMethodService;
-import android.view.View;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
@@ -17,6 +14,9 @@ import com.zzz.cj2356inputMethod.view.ComposingTextView;
 import com.zzz.cj2356inputMethod.view.KeyboardBodyIniter;
 import com.zzz.cj2356inputMethod.view.KeyboardNumIniter;
 import com.zzz.cj2356inputMethod.view.KeyboardSimIniter;
+
+import android.inputmethodservice.InputMethodService;
+import android.view.View;
 
 public class Cj2356InputMethodService extends InputMethodService {
     // 提交正在編輯的內容

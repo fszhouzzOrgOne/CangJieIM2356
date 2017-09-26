@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:fadingEdge="vertical"
     android:scrollbars="vertical"
-    android:background="@color/whiteccc" >
+    android:background="@color/whitebbb" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -16,7 +16,7 @@
             android:id="@+id/setsuMyouSimbBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#333333"
+            android:textColor="@color/dark333"
             android:textSize="15dp" 
             android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我："
             />
@@ -24,11 +24,13 @@
         <Button
             android:id="@+id/setInputMethodBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+            android:paddingLeft="10dp" 
+            android:paddingRight="10dp" 
             android:layout_marginBottom="10dp"
+            android:background="@drawable/keyboard_button_selector"
             android:text="變更輸入法"
-            android:textColor="#333333"
-            android:textSize="20dp" />
+            />
         
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,7 +82,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:textColor="#333333"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/dark444"
             android:textSize="18dp" 
             android:background="@color/whiteddd"
             />
@@ -91,6 +94,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/whiteddd"
             >
 	        <SearchView
 	            android:id="@+id/setTabDictSearchView"

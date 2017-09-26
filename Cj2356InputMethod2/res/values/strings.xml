@@ -7,6 +7,11 @@
     <drawable name="num_clr_normal">#dddddd</drawable>
     <drawable name="num_clr_pressed">#ffffff</drawable>
     
+    <color name="dark222">#222222</color>
+    <color name="dark333">#333333</color>
+    <color name="dark444">#444444</color>
+    <color name="gray999">#999999</color>
+    <color name="whitebbb">#bbbbbb</color>
     <color name="whiteccc">#cccccc</color>
     <color name="whiteddd">#dddddd</color>
     <color name="whiteeee">#eeeeee</color>

@@ -21,7 +21,7 @@ public class SettingVLogIniter {
     /**
      * 版本變更展示
      * 
-     * @author zhouzizhao
+     * @author fsz
      * @time 2017年9月26日下午5:39:37
      * @param con
      */
@@ -89,7 +89,7 @@ public class SettingVLogIniter {
     /** 隱藏版本變更 */
     public static void hideSettingVLog() {
         if (null != setTextview) {
-            setTextview.setVisibility(View.INVISIBLE);
+            setTextview.setVisibility(View.GONE);
         }
     }
 

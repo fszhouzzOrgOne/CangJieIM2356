@@ -13,6 +13,7 @@ public class Item {
     private Integer id; // 主键
     private String genCode; // 第幾代
     private String encode; // 編碼
+    private String encodeName; // 編碼中文名
     private String character; // 内容
 
     public Item(Integer id, String gen, String code, String cha) {
@@ -21,7 +22,7 @@ public class Item {
         this.encode = code;
         this.character = cha;
     }
-    
+
     /**
      * 是否空對象
      * 
@@ -62,6 +63,20 @@ public class Item {
 
     public void setCharacter(String character) {
         this.character = character;
+    }
+
+    public String getEncodeName() {
+        return encodeName;
+    }
+
+    public void setEncodeName(String encodeName) {
+        this.encodeName = encodeName;
+    }
+
+    @Override
+    public String toString() {
+        return "Item [id=" + id + ", genCode=" + genCode + ", encode=" + encode + ", encodeName=" + encodeName
+                + ", character=" + character + "]";
     }
 
 }

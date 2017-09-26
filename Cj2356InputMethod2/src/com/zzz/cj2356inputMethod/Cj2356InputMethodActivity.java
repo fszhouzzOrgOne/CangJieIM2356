@@ -4,12 +4,12 @@ import com.zzz.cj2356inputMethod.view.SettingLoayoutTabIniter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -26,6 +26,8 @@ public class Cj2356InputMethodActivity extends Activity {
         mContext = Cj2356InputMethodActivity.this;
 
         Button setInputMethodBtn = (Button) findViewById(R.id.setInputMethodBtn);
+        setInputMethodBtn.setTextColor(Color.DKGRAY);
+        setInputMethodBtn.setTextSize(16);
         setInputMethodBtn
                 .setOnClickListener(new OnClickSetInputMethodBtnListener(this));
         
