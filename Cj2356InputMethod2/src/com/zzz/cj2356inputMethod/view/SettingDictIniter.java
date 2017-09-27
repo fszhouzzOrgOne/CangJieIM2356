@@ -32,7 +32,10 @@ public class SettingDictIniter {
     private static Context context;
 
     private static LinearLayout setDictLayout;
+    private static SearchView searView;
     private static ExpandableListView expandableListView;
+    
+    private static List<Group> gData;
 
     /**
      * 倉頡字典初始化
@@ -49,7 +52,7 @@ public class SettingDictIniter {
         SettingDictMbUtils.init(context);
 
         setDictLayout = (LinearLayout) ((Activity) context).findViewById(R.id.setTabDictSearchLayout);
-        SearchView searView = (SearchView) ((Activity) context).findViewById(R.id.setTabDictSearchView);
+        searView = (SearchView) ((Activity) context).findViewById(R.id.setTabDictSearchView);
         expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
 
         searView.setIconifiedByDefault(false);
@@ -89,9 +92,28 @@ public class SettingDictIniter {
         if (null == gData || gData.isEmpty()) {
             gData = SettingDictMbUtils.initGroupDatas();
         }
+        SettingDictIniter.gData = gData;
         MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
         expandableListView.setAdapter(myAdapter);
         setListViewHeightBasedOnChildren(expandableListView);
+        // 隱藏輸入法
+        expandableListView.requestFocus();
+        // 默認展開
+        for (int i = 0; i < myAdapter.getGroupCount(); i++) {
+            if (gData.get(i).getItems().get(0).isEmpty() == false) {
+                expandableListView.expandGroup(i);
+            }
+        }
+    }
+    
+    public static List<Group> getgData() {
+        return gData;
+    }
+    
+    public static void searchSth(String cont) {
+        if (null != searView) {
+            searView.setQuery(cont, true);
+        }
     }
 
     /**
@@ -185,7 +207,8 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-        final Item item = Item.emptyItem; // TODO
+        final Item item = SettingDictIniter.getgData()
+                .get(groupPosition).getItems().get(childPosition);
         if (item.isEmpty()) {
             return false;
         }
@@ -196,7 +219,9 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
         builder.setItems(new String[] { item1, item2, item3 }, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int index) {
                 if (index == 0) {
+                    SettingDictIniter.searchSth(item.getCharacter());
                 } else if (index == 1) {
+                    SettingDictIniter.searchSth(item.getEncode());
                 } else {
 
                 }
