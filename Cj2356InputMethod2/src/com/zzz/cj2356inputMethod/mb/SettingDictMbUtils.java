@@ -72,6 +72,10 @@ public class SettingDictMbUtils {
         for (int i = 0; i < dictIms.size(); i++) {
             Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
             List<Item> items = dictIms.get(i).getCandidatesInfo(query, false);
+//            List<Item> items = null;
+//            if (MbUtils.TYPE_CODE_CJGEN6.equals(dictIms.get(i).getSubType())) {
+//                items = dictIms.get(i).getCandidatesInfo(query, false);
+//            }
             if (null != items && !items.isEmpty()) {
                 for (Item it : items) {
                     if (StringUtils.hasText(it.getEncode())) {
@@ -98,6 +102,10 @@ public class SettingDictMbUtils {
         for (int i = 0; i < dictIms.size(); i++) {
             Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
             List<Item> items = dictIms.get(i).getCandidatesInfoByChar(query);
+//            List<Item> items = null;
+//            if (MbUtils.TYPE_CODE_CJGEN6.equals(dictIms.get(i).getSubType())) {
+//                items = dictIms.get(i).getCandidatesInfoByChar(query);
+//            }
             if (null != items && !items.isEmpty()) {
                 for (Item it : items) {
                     if (StringUtils.hasText(it.getEncode())) {
