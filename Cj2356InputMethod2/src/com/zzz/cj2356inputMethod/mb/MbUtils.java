@@ -101,6 +101,13 @@ public class MbUtils {
     /**
      * 按字符查詢
      */
+    public static ArrayList<Item> selectDbByChar(String typeCode, String cha) {
+        return selectDbByChar(new String[] { typeCode }, cha);
+    }
+    
+    /**
+     * 按字符查詢2
+     */
     public static ArrayList<Item> selectDbByChar(String[] typeCode, String cha) {
         if (null == getMbdb() || null == cha || cha.trim().length() == 0) {
             return null;
@@ -145,7 +152,9 @@ public class MbUtils {
                 promptCode, extraResolve);
     }
 
-    // 2
+    /**
+     * 按編碼查詢2
+     */
     public static ArrayList<Item> selectDbByCode(String[] typeCode, String code, 
             boolean isPrompt, String promptCode, boolean extraResolve) {
         if (null == getMbdb() || null == code || code.trim().length() == 0) {

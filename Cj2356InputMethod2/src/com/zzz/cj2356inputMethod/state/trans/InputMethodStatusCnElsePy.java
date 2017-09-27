@@ -26,6 +26,11 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     public String getInputMethodName() {
         return MbUtils.getInputMethodName(MbUtils.TYPE_CODE_PINYIN);
     }
+    
+    @Override
+    public List<Item> getCandidatesInfoByChar(String cha) {
+        return MbUtils.selectDbByChar(this.getSubType(), cha);
+    }
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {

@@ -114,7 +114,6 @@ public class SettingDictIniter {
         // 所有子項的總高
         int totalHeight = 0;
         // listAdapter.getCount()返回數據項的數目
-        Toast.makeText(context, "數據項的數目" + listAdapter.getCount(), Toast.LENGTH_SHORT).show();
         for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
             View listItem = listAdapter.getView(i, null, expandableListView);
             listItem.measure(0, 0); // 計算子項的寬高

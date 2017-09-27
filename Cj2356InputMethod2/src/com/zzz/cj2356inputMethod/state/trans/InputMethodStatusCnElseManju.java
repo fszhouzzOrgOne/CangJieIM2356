@@ -28,6 +28,11 @@ public class InputMethodStatusCnElseManju extends
         return MbUtils.selectDbByCode(this.getSubType(), code,
                 (null != code), code, false);
     }
+    
+    @Override
+    public List<Item> getCandidatesInfoByChar(String cha) {
+        return MbUtils.selectDbByChar(this.getSubType(), cha);
+    }
 
     @Override
     public boolean couldContinueInputing(String code) {

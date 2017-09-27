@@ -36,6 +36,11 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
         this.setSubType(MbUtils.TYPE_CODE_KARINA);
         this.setSubTypeName("日");
     }
+    
+    @Override
+    public List<Item> getCandidatesInfoByChar(String cha) {
+        return MbUtils.selectDbByChar(MbUtils.TYPE_CODE_KARINA, cha);
+    }
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {

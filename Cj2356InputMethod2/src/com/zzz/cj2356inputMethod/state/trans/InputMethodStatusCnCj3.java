@@ -27,6 +27,12 @@ public class InputMethodStatusCnCj3 extends InputMethodStatusCnCj {
                 MbUtils.TYPE_CODE_CJINTERSECT, MbUtils.TYPE_CODE_CJGEN3 },
                 code, false, null, extraResolve);
     }
+    
+    @Override
+    public List<Item> getCandidatesInfoByChar(String cha) {
+        return MbUtils.selectDbByChar(new String[] {
+                MbUtils.TYPE_CODE_CJINTERSECT, MbUtils.TYPE_CODE_CJGEN3 }, cha);
+    }
 
     @Override
     public boolean couldContinueInputing(String code) {

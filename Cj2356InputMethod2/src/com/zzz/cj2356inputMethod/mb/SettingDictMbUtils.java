@@ -94,7 +94,21 @@ public class SettingDictMbUtils {
      * @return
      */
     public static List<Group> selectDbByChar(String query) {
-        return null;
+        List<Group> gData = new ArrayList<Group>();
+        for (int i = 0; i < dictIms.size(); i++) {
+            Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
+            List<Item> items = dictIms.get(i).getCandidatesInfoByChar(query);
+            if (null != items && !items.isEmpty()) {
+                for (Item it : items) {
+                    if (StringUtils.hasText(it.getEncode())) {
+                        it.setEncodeName(dictIms.get(i).translateCode2Name(it.getEncode()));
+                    }
+                }
+                g.setItems(items);
+            }
+            gData.add(g);
+        }
+        return gData;
     }
 
 }

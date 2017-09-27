@@ -38,6 +38,17 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      *            是否解析結果，如加入時間等
      */
     public abstract List<Item> getCandidatesInfo(String code, boolean extraResolve);
+    
+    /**
+     * 按字查詣輸入法的编码
+     * 
+     * @param cha
+     *            文字
+     * @author fsz
+     * @time 2017年9月27日下午5:01:18
+     * @return
+     */
+    public abstract List<Item> getCandidatesInfoByChar(String cha);
 
     /**
      * 是否還可以繼續鍵入
