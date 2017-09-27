@@ -5,6 +5,7 @@ import java.util.List;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Group;
 import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.font.FontManager;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -89,6 +90,8 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
         } else {
             itemHolder = (ViewHolderItem) convertView.getTag();
         }
+        // 字體自定義
+        itemHolder.tv_character.setTypeface(FontManager.getTypeface(mContext));
         itemHolder.tv_character.setText(gData.get(groupPosition).getItems().get(childPosition).getCharacter());
         itemHolder.tv_encode.setText(generateCodeText(gData.get(groupPosition).getItems().get(childPosition)));
         return convertView;
