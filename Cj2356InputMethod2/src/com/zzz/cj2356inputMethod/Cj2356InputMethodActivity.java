@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,6 +24,10 @@ public class Cj2356InputMethodActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 爲了隱藏輸入法之一
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        
         setContentView(R.layout.setting);
         mContext = Cj2356InputMethodActivity.this;
 
@@ -33,9 +39,28 @@ public class Cj2356InputMethodActivity extends Activity {
         
         try {
             SettingLoayoutTabIniter.initSettingLoayoutTab(mContext);
+            
+            // 爲了隱藏輸入法之二
+            // 之三還要在xml中設置focusable和focusableInTouchMode為真
+            InputMethodManager imm1 = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm1.hideSoftInputFromWindow(getContentView().getWindowToken(), 0);
         } catch (Exception e) {
             Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
+    }
+    
+    /**
+     * 上面有setContentView，模擬get
+     * 
+     * @author fsz
+     * @time 2017年9月27日上午9:29:43
+     * @return
+     */
+    private View getContentView(){
+        ViewGroup view = (ViewGroup) getWindow().getDecorView();
+        ViewGroup content = (ViewGroup) view.getChildAt(0);
+        return content.getChildAt(0);
     }
 
 }

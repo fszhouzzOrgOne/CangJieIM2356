@@ -4,8 +4,11 @@
     android:layout_height="fill_parent"
     android:fadingEdge="vertical"
     android:scrollbars="vertical"
-    android:background="@color/whitebbb" >
-
+    android:background="@color/whitebbb" 
+    android:focusable="true"
+    android:focusableInTouchMode="true" 
+    >
+	
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -91,7 +94,7 @@
         <LinearLayout
             android:id="@+id/setTabDictSearchLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
