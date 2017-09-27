@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.dto.Group;
+import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj2;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj3;
@@ -11,6 +12,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj5;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj6;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjMs;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjYhqm;
+import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
 
@@ -55,6 +57,44 @@ public class SettingDictMbUtils {
             gData.add(new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName()));
         }
         return gData;
+    }
+
+    /**
+     * 按編碼查詢
+     * 
+     * @author fsz
+     * @time 2017年9月27日上午9:42:40
+     * @param query
+     * @return
+     */
+    public static List<Group> selectDbByCode(String query) {
+        List<Group> gData = new ArrayList<Group>();
+        for (int i = 0; i < dictIms.size(); i++) {
+            Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
+            List<Item> items = dictIms.get(i).getCandidatesInfo(query);
+            if (null != items && !items.isEmpty()) {
+                for (Item it : items) {
+                    if (StringUtils.hasText(it.getEncode())) {
+                        it.setEncodeName(dictIms.get(i).translateCode2Name(it.getEncode()));
+                    }
+                }
+                g.setItems(items);
+            }
+            gData.add(g);
+        }
+        return gData;
+    }
+
+    /**
+     * 按字查詢
+     * 
+     * @author fsz
+     * @time 2017年9月27日上午9:42:40
+     * @param query
+     * @return
+     */
+    public static List<Group> selectDbByChar(String query) {
+        return null;
     }
 
 }

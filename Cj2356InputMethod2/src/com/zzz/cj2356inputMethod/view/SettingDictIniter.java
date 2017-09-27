@@ -1,6 +1,5 @@
 package com.zzz.cj2356inputMethod.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.R;
@@ -31,6 +30,7 @@ public class SettingDictIniter {
     private static Context context;
 
     private static LinearLayout setDictLayout;
+    private static ExpandableListView expandableListView;
 
     /**
      * 倉頡字典初始化
@@ -48,8 +48,7 @@ public class SettingDictIniter {
 
         setDictLayout = (LinearLayout) ((Activity) context).findViewById(R.id.setTabDictSearchLayout);
         SearchView searView = (SearchView) ((Activity) context).findViewById(R.id.setTabDictSearchView);
-        ExpandableListView expandableListView = (ExpandableListView) ((Activity) context)
-                .findViewById(R.id.setTabDictExpandableListView);
+        expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
 
         searView.setIconifiedByDefault(false);
         searView.setSubmitButtonEnabled(false);
@@ -78,6 +77,21 @@ public class SettingDictIniter {
             setDictLayout.setVisibility(View.VISIBLE);
         }
     }
+
+    /**
+     * 設置查詢結果數據
+     * 
+     * @author fsz
+     * @time 2017年9月27日上午9:44:04
+     * @param gData
+     */
+    public static void setgData(List<Group> gData) {
+        if (null == gData || gData.isEmpty()) {
+            gData = SettingDictMbUtils.initGroupDatas();
+        }
+        MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
+        expandableListView.setAdapter(myAdapter);
+    }
 }
 
 /**
@@ -101,14 +115,21 @@ class MySearchViewOnQueryTextListener implements SearchView.OnQueryTextListener 
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        ArrayList<Group> gData = null;
+        List<Group> gData = null;
 
         String pattern = "[a-z]{1,}";
         if (null != query && query.trim().length() > 0) {
-            Toast.makeText(mContext, "輸入查詢：" + query, Toast.LENGTH_SHORT).show();
+            query = query.trim();
+            Toast.makeText(mContext, "查詢“" + query + "”", Toast.LENGTH_SHORT).show();
+            if (query.matches(pattern)) {
+                gData = SettingDictMbUtils.selectDbByCode(query);
+            } else {
+                gData = SettingDictMbUtils.selectDbByChar(query);
+            }
         } else {
             Toast.makeText(mContext, "請輸入查詢", Toast.LENGTH_SHORT).show();
         }
+        SettingDictIniter.setgData(gData);
         return false;
     }
 
