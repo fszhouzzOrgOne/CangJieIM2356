@@ -3,8 +3,13 @@
 /Cj2356InputMethod2/assets/database/cjmbdb.db，需要用myweb工程中的類生成。
 /Cj2356InputMethod2/androidzzz.keystore是签名文件，密碼是hello1234。
 
+x.1版本，默认字體：
+刪除字體文件，
+刪除類FontManager。
+
 純六代：
-InputMethodStatusCnCj6#getNextStatus()切換狀態只能是蒼六
+InputMethodStatusCnCj6#getNextStatus()切換狀態只能是蒼六。
+字典SettingDictMbUtils.selectDbByChar和selectDbByCode兩個查詢，只查蒼六的。
 
 鬼島人的三代要求：
 順序鍵盤不要

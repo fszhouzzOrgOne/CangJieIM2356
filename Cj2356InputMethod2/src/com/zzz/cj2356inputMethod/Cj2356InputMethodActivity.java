@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * 倉頡輸入法
@@ -29,6 +30,9 @@ public class Cj2356InputMethodActivity extends Activity {
         setContentView(R.layout.setting);
         mContext = Cj2356InputMethodActivity.this;
 
+        TextView tvBtn = (TextView) findViewById(R.id.setsuMyouSimbBtn);
+        tvBtn.setTextColor(Color.LTGRAY);
+        
         Button setInputMethodBtn = (Button) findViewById(R.id.setInputMethodBtn);
         setInputMethodBtn.setTextColor(Color.DKGRAY);
         setInputMethodBtn.setTextSize(16);
@@ -67,6 +71,9 @@ class OnClickSetInputMethodBtnListener implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+        // 隱藏輸入法
+        v.requestFocus();
+        
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showInputMethodPicker();
     }

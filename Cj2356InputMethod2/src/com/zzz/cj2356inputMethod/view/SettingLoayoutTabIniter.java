@@ -89,7 +89,7 @@ public class SettingLoayoutTabIniter {
                     .findViewById(android.R.id.title);
             if (curIndex == i) {
                 textView.setTextSize(17);
-                textView.setTextColor(Color.DKGRAY);
+                textView.setTextColor(Color.LTGRAY);
             } else {
                 textView.setTextSize(16);
                 textView.setTextColor(Color.GRAY);

@@ -17,6 +17,10 @@ public class IOUtils {
 
     public static List<String> readLines(String fileName) throws IOException {
         InputStream in = IOUtils.class.getResourceAsStream(fileName);
+        return readLines(in);
+    }
+
+    public static List<String> readLines(InputStream in) {
         List<String> result = new ArrayList<String>();
         InputStreamReader isr = null;
         BufferedReader br = null;

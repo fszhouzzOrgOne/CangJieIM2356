@@ -55,6 +55,12 @@ public class SettingDictIniter {
         searView = (SearchView) ((Activity) context).findViewById(R.id.setTabDictSearchView);
         expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
 
+        // 查詢框底字體只能這樣設置
+//        int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
+//        TextView textView = (TextView) searView.findViewById(id);  
+//        textView.setTextColor(Color.GRAY);
+//        textView.setHintTextColor(Color.LTGRAY);  
+        
         searView.setIconifiedByDefault(false);
         searView.setSubmitButtonEnabled(false);
         searView.setQueryHint("請輸入漢字或編碼...");
@@ -145,7 +151,7 @@ public class SettingDictIniter {
         ViewGroup.LayoutParams params = expandableListView.getLayoutParams();
         // listView.getDividerHeight()獲取子項間分隔符佔的高度
         // expandableListView完整顯示需求的高度
-        params.height = totalHeight + (expandableListView.getDividerHeight() * (listAdapter.getCount() - 1));
+        params.height = totalHeight + (expandableListView.getDividerHeight() * listAdapter.getCount());
         expandableListView.setLayoutParams(params);
     }
 }

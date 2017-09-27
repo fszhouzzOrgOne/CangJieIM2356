@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:fadingEdge="vertical"
     android:scrollbars="vertical"
-    android:background="@color/whitebbb" 
+    android:background="@color/dark444" 
     android:focusable="true"
     android:focusableInTouchMode="true" 
     >
@@ -19,7 +19,8 @@
             android:id="@+id/setsuMyouSimbBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/dark333"
+            android:paddingLeft="10dp" 
+            android:paddingRight="10dp" 
             android:textSize="15dp" 
             android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我："
             />
@@ -59,7 +60,7 @@
                         android:layout_width="match_parent"  
                         android:layout_height="match_parent"  
                         android:orientation="vertical" 
-                        android:background="@color/whiteddd"
+                        android:background="@color/dark3b3" 
                         >  
         						  
                         <TabWidget  
@@ -86,9 +87,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/dark444"
+            android:background="@color/dark3b3"
             android:textSize="18dp" 
-            android:background="@color/whiteddd"
             />
         
         <LinearLayout
@@ -98,21 +98,22 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@color/whiteddd"
             android:orientation="vertical" 
+            android:background="@color/dark3b3"
             >
 	        <SearchView
 	            android:id="@+id/setTabDictSearchView"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
-	            android:iconifiedByDefault="false" >
+	            android:iconifiedByDefault="false" 
+	            >
 	        </SearchView>
 	        
             <ExpandableListView
                 android:id="@+id/setTabDictExpandableListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:childDivider="#999999"
+                android:childDivider="@color/gray999" 
                 />
 	    </LinearLayout>
             

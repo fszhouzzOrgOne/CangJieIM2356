@@ -99,7 +99,7 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
 
     private String generateCodeText(Item item) {
         if (item.isEmpty()) {
-            return "碼表太小，沒有找到。";
+            return "碼表闕字。";
         }
         return item.getEncodeName() + "（" + item.getEncode() + "）";
     }
