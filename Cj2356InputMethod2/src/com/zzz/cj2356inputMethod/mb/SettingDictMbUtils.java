@@ -71,7 +71,7 @@ public class SettingDictMbUtils {
         List<Group> gData = new ArrayList<Group>();
         for (int i = 0; i < dictIms.size(); i++) {
             Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
-            List<Item> items = dictIms.get(i).getCandidatesInfo(query);
+            List<Item> items = dictIms.get(i).getCandidatesInfo(query, false);
             if (null != items && !items.isEmpty()) {
                 for (Item it : items) {
                     if (StringUtils.hasText(it.getEncode())) {

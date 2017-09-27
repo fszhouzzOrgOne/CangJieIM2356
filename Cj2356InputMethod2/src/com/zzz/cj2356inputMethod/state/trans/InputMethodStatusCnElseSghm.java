@@ -43,9 +43,9 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code,
-                (null != code && code.length() > 3), code);
+                (null != code && code.length() > 3), code, extraResolve);
         // 排序
         if (null != items && !items.isEmpty()) {
             try {

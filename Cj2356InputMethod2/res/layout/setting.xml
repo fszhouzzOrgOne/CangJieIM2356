@@ -94,11 +94,12 @@
         <LinearLayout
             android:id="@+id/setTabDictSearchLayout"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp"
             android:background="@color/whiteddd"
+            android:orientation="vertical" 
             >
 	        <SearchView
 	            android:id="@+id/setTabDictSearchView"
@@ -110,7 +111,7 @@
 	        <ExpandableListView
 	            android:id="@+id/setTabDictExpandableListView"
 	            android:layout_width="match_parent"
-	            android:layout_height="match_parent"
+	            android:layout_height="500dp"
 	            android:childDivider="#999999"
 	            />
 	    </LinearLayout>

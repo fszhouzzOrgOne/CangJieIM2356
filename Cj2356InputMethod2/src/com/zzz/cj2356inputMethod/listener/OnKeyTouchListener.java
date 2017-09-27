@@ -43,7 +43,7 @@ public class OnKeyTouchListener implements OnTouchListener {
                 // 取當前輸入編碼
                 String code = ((InputMethodStatusCn) stat).getInputingCnCode();
                 List<Item> items = ((InputMethodStatusCn) stat)
-                        .getCandidatesInfo(code + key);
+                        .getCandidatesInfo(code + key, true);
                 // 輸入的編碼帶上新鍵，沒有字對應，直接返回
                 if (null == items || items.isEmpty()) {
                     // 如果再打字也沒有了

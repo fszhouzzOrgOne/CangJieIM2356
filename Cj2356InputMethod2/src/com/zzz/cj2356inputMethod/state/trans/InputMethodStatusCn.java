@@ -31,8 +31,13 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
 
     /**
      * 得到候選信息
+     * 
+     * @param code
+     *            當前輸入
+     * @param extraResolve
+     *            是否解析結果，如加入時間等
      */
-    public abstract List<Item> getCandidatesInfo(String code);
+    public abstract List<Item> getCandidatesInfo(String code, boolean extraResolve);
 
     /**
      * 是否還可以繼續鍵入

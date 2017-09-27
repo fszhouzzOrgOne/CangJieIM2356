@@ -38,9 +38,9 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA,
-                code, false, null);
+                code, false, null, false);
         // 排序
         if (null != items && !items.isEmpty()) {
             try {

@@ -24,9 +24,9 @@ public class InputMethodStatusCnElseKorea extends
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         return MbUtils.selectDbByCode(this.getSubType(), code,
-                (null != code && code.length() > 1), code);
+                (null != code && code.length() > 1), code, false);
     }
 
     @Override

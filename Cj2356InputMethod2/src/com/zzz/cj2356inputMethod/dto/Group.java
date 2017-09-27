@@ -60,7 +60,8 @@ public class Group {
 
     @Override
     public String toString() {
-        return "Group [gId=" + gId + ", gCode=" + gCode + ", gName=" + gName + "]";
+        String itemStr = ", items.size=" + ((null == items) ? "0" : items.size());
+        return "Group [gId=" + gId + ", gCode=" + gCode + ", gName=" + gName + itemStr + "]";
     }
 
 }

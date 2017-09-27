@@ -28,8 +28,8 @@ public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
-        return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_ZYFH, code, true, code);
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
+        return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_ZYFH, code, true, code, false);
     }
 
     @Override

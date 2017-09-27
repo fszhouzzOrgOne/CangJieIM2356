@@ -22,8 +22,8 @@ public class InputMethodStatusCnCj2 extends InputMethodStatusCnCj {
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
-        return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_CJGEN2, code, false, null);
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
+        return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_CJGEN2, code, false, null, extraResolve);
     }
 
     @Override

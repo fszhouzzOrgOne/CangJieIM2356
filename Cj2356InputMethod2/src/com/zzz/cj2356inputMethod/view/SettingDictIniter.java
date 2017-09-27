@@ -58,6 +58,7 @@ public class SettingDictIniter {
 
         // 數據準備
         List<Group> gData = SettingDictMbUtils.initGroupDatas();
+        
         MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
         expandableListView.setAdapter(myAdapter);
         // 为列表设置点击事件

@@ -24,9 +24,9 @@ public class InputMethodStatusCnElseManju extends
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         return MbUtils.selectDbByCode(this.getSubType(), code,
-                (null != code), code);
+                (null != code), code, false);
     }
 
     @Override

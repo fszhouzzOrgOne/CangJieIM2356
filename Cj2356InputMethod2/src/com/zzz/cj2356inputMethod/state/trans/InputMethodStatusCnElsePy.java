@@ -28,14 +28,14 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         List<Item> items = MbUtils.selectDbByCode(
                 MbUtils.TYPE_CODE_PINYIN,
                 code,
                 (null != code && (code.length() > 1
                         || "a".equalsIgnoreCase(code)
                         || "e".equalsIgnoreCase(code) || "o"
-                        .equalsIgnoreCase(code))), code + "m");
+                        .equalsIgnoreCase(code))), code + "m", extraResolve);
 
         // 排序
         if (null != items && !items.isEmpty()) {

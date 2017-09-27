@@ -118,7 +118,7 @@ public class MbUtils {
                 mbClNameGen + " in " + getInTempParams(typeCode.length)
                         + " and " + mbClNameVal + " = ?", param, null, null,
                 null);
-        ArrayList<Item> items = handleSelectResultCursor(cursor);
+        ArrayList<Item> items = handleSelectResultCursor(cursor, false);
 
         return items;
     }
@@ -134,19 +134,20 @@ public class MbUtils {
      *            是否模糊提示
      * @param promptCode
      *            模糊提示底查詢參數
-     * 
+     * @param extraResolve
+     *            是否解析結果，如加入時間等
      * @author t
      * @time 2016-12-18下午1:03:35
      */
     public static ArrayList<Item> selectDbByCode(String typeCode, String code,
-            boolean isPrompt, String promptCode) {
+            boolean isPrompt, String promptCode, boolean extraResolve) {
         return selectDbByCode(new String[] { typeCode }, code, isPrompt,
-                promptCode);
+                promptCode, extraResolve);
     }
 
     // 2
-    public static ArrayList<Item> selectDbByCode(String[] typeCode,
-            String code, boolean isPrompt, String promptCode) {
+    public static ArrayList<Item> selectDbByCode(String[] typeCode, String code, 
+            boolean isPrompt, String promptCode, boolean extraResolve) {
         if (null == getMbdb() || null == code || code.trim().length() == 0) {
             return null;
         }
@@ -165,7 +166,7 @@ public class MbUtils {
                 mbClNameGen + " in " + getInTempParams(typeCode.length)
                         + " and " + mbClNameCod + " = ? ", param, null, null,
                 mbClNameCod + " asc, " + mbClNameOrder + " desc ");
-        ArrayList<Item> items = handleSelectResultCursor(cursor);
+        ArrayList<Item> items = handleSelectResultCursor(cursor, extraResolve);
 
         // 如果沒有找到，按模糊查詢，再來一次
         if (isPrompt && (null == items || items.isEmpty())) {
@@ -178,15 +179,25 @@ public class MbUtils {
                     mbClNameGen + " in " + getInTempParams(typeCode.length)
                             + " and " + mbClNameCod + " like ? ", param, null,
                     null, mbClNameCod + " asc, " + mbClNameOrder + " desc ");
-            items = handleSelectResultCursor(cursor);
+            items = handleSelectResultCursor(cursor, extraResolve);
         }
 
         getMbdb().endTransaction();
         return items;
     }
 
-    /** 游標的動作 */
-    private static ArrayList<Item> handleSelectResultCursor(Cursor cursor) {
+    /** 
+     * 游標的動作
+     * 
+     * @author fsz
+     * @time 2017年9月27日上午11:17:49
+     * @param cursor
+     *            游標
+     * @param extraResolve
+     *            是否解析結果，如加入時間等
+     * @return
+     */
+    private static ArrayList<Item> handleSelectResultCursor(Cursor cursor, boolean extraResolve) {
         ArrayList<Item> items = null;
         if (cursor.moveToFirst()) {
             items = new ArrayList<Item>();
@@ -203,7 +214,10 @@ public class MbUtils {
                 items.add(item);
 
                 // 加些時間的提示
-                ArrayList<Item> dateItems1 = DateUtils.resolveTime(item);
+                ArrayList<Item> dateItems1 = null; 
+                if (extraResolve) {
+                    dateItems1 = DateUtils.resolveTime(item);
+                }
                 if (null != dateItems1 && !dateItems1.isEmpty()) {
                     dateItems.addAll(dateItems1);
                 }

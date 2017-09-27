@@ -36,10 +36,10 @@ public class InputMethodStatusCnCjMs extends InputMethodStatusCnCj {
     }
 
     @Override
-    public List<Item> getCandidatesInfo(String code) {
+    public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         return MbUtils.selectDbByCode(new String[] {
                 MbUtils.TYPE_CODE_CJINTERSECT, MbUtils.TYPE_CODE_CJGENMS },
-                code, false, null);
+                code, false, null, extraResolve);
     }
 
     @Override

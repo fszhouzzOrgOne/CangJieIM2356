@@ -66,7 +66,7 @@ public class OnDeleteClickListener implements OnClickListener {
 
                             // 取當前輸入編碼的候選項
                             List<Item> items = ((InputMethodStatusCn) stat)
-                                    .getCandidatesInfo(code);
+                                    .getCandidatesInfo(code, true);
                             if (items == null) {
                                 // 還可以繼續鍵入，所以生成一個空的，防止以後報錯
                                 items = new ArrayList<Item>();
