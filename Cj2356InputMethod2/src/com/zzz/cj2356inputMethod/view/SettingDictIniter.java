@@ -6,6 +6,7 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.adapter.MyBaseExpandableListAdapter;
 import com.zzz.cj2356inputMethod.dto.Group;
 import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.font.FontManager;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.mb.SettingDictMbUtils;
 
@@ -20,6 +21,7 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -56,10 +58,9 @@ public class SettingDictIniter {
         expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
 
         // 查詢框底字體只能這樣設置
-//        int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
-//        TextView textView = (TextView) searView.findViewById(id);  
-//        textView.setTextColor(Color.GRAY);
-//        textView.setHintTextColor(Color.LTGRAY);  
+        int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
+        TextView textView = (TextView) searView.findViewById(id);  
+        textView.setTypeface(FontManager.getTypeface(context));
         
         searView.setIconifiedByDefault(false);
         searView.setSubmitButtonEnabled(false);
@@ -218,8 +219,8 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
         if (item.isEmpty()) {
             return false;
         }
-        final String item1 = "查詢“" + item.getCharacter() + "”";
-        final String item2 = "查詢“" + item.getEncode() + "”";
+        final String item1 = "查詢文字“" + item.getCharacter() + "”";
+        final String item2 = "查詢編碼“" + item.getEncode() + "”";
         String item3 = "取消";
         AlertDialog.Builder builder = new Builder(mContext).setTitle("繼續查詢？");
         builder.setItems(new String[] { item1, item2, item3 }, new DialogInterface.OnClickListener() {
