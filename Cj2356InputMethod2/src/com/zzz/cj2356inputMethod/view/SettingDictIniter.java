@@ -15,8 +15,10 @@ import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -56,11 +58,8 @@ public class SettingDictIniter {
         // 查詢框事件
         searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
 
-        // 數據準備
-        List<Group> gData = SettingDictMbUtils.initGroupDatas();
-        
-        MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
-        expandableListView.setAdapter(myAdapter);
+        // 字典結果數據準備
+        setgData(null);
         // 为列表设置点击事件
         expandableListView.setOnChildClickListener(new MyExpandableListViewOnChildClickListener(context));
     }
@@ -92,6 +91,41 @@ public class SettingDictIniter {
         }
         MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
         expandableListView.setAdapter(myAdapter);
+        setListViewHeightBasedOnChildren(expandableListView);
+    }
+
+    /**
+     * 查詢結果的展示問題：<br/>
+     * ExpandableListView在ScrollView等可以上下滑動的組件中，就只會展示一行<br/>
+     * 因爲是只按ExpandableListView最初指定的高度作的展示，不是按實際高度<br/>
+     * 這裡在setAdapter(myAdapter)之後，都重新計算下，再展示就正常了。<br />
+     * 
+     * @see http://blog.csdn.net/yaya_soft/article/details/25796453
+     * @author fsz
+     * @time 2017年9月27日下午4:39:04
+     * @param expandableListView
+     */
+    public static void setListViewHeightBasedOnChildren(ExpandableListView expandableListView) {
+        ListAdapter listAdapter = expandableListView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+
+        // 所有子項的總高
+        int totalHeight = 0;
+        // listAdapter.getCount()返回數據項的數目
+        Toast.makeText(context, "數據項的數目" + listAdapter.getCount(), Toast.LENGTH_SHORT).show();
+        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
+            View listItem = listAdapter.getView(i, null, expandableListView);
+            listItem.measure(0, 0); // 計算子項的寬高
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = expandableListView.getLayoutParams();
+        // listView.getDividerHeight()獲取子項間分隔符佔的高度
+        // expandableListView完整顯示需求的高度
+        params.height = totalHeight + (expandableListView.getDividerHeight() * (listAdapter.getCount() - 1));
+        expandableListView.setLayoutParams(params);
     }
 }
 

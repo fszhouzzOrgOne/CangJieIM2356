@@ -107,13 +107,13 @@
 	            android:layout_height="wrap_content"
 	            android:iconifiedByDefault="false" >
 	        </SearchView>
-	
-	        <ExpandableListView
-	            android:id="@+id/setTabDictExpandableListView"
-	            android:layout_width="match_parent"
-	            android:layout_height="500dp"
-	            android:childDivider="#999999"
-	            />
+	        
+            <ExpandableListView
+                android:id="@+id/setTabDictExpandableListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:childDivider="#999999"
+                />
 	    </LinearLayout>
             
     </LinearLayout>
