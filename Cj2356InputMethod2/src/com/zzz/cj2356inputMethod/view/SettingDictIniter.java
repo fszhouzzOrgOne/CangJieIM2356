@@ -17,9 +17,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupCollapseListener;
+import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +74,19 @@ public class SettingDictIniter {
         setgData(null);
         // 为列表设置点击事件
         expandableListView.setOnChildClickListener(new MyExpandableListViewOnChildClickListener(context));
+        // 展開、關閉都重新算高度
+        expandableListView.setOnGroupCollapseListener(new OnGroupCollapseListener(){
+            @Override
+            public void onGroupCollapse(int paramInt) {
+                setListViewHeightBasedOnChildren(expandableListView);
+            }
+        });
+        expandableListView.setOnGroupExpandListener(new OnGroupExpandListener() {
+            @Override
+            public void onGroupExpand(int paramInt) {
+                setListViewHeightBasedOnChildren(expandableListView);
+            }
+        });
     }
 
     /** 隱藏倉頡字典 */
@@ -135,24 +150,36 @@ public class SettingDictIniter {
      * @param expandableListView
      */
     public static void setListViewHeightBasedOnChildren(ExpandableListView expandableListView) {
-        ListAdapter listAdapter = expandableListView.getAdapter();
-        if (listAdapter == null) {
+        BaseExpandableListAdapter adapter = (BaseExpandableListAdapter) expandableListView.getExpandableListAdapter();
+        if (adapter == null) {
             return;
         }
 
+        int listCount = 0; // 分組和子項底總和
         // 所有子項的總高
         int totalHeight = 0;
-        // listAdapter.getCount()返回數據項的數目
-        for (int i = 0, len = listAdapter.getCount(); i < len; i++) {
-            View listItem = listAdapter.getView(i, null, expandableListView);
+        int groupCnt = adapter.getGroupCount(); //返回分組底數目
+        listCount += groupCnt;
+        for (int i = 0, len = groupCnt; i < len; i++) {
+            View listItem = adapter.getGroupView(i, false, null, expandableListView);
             listItem.measure(0, 0); // 計算子項的寬高
             totalHeight += listItem.getMeasuredHeight();
+            
+            if (expandableListView.isGroupExpanded(i)) {
+                int childCount = adapter.getChildrenCount(i);
+                listCount += childCount;
+                for (int j = 0; j < childCount; j++) {
+                    View childView = adapter.getChildView(i, j, false, null, expandableListView);
+                    childView.measure(0, 0); // 計算子項的寬高
+                    totalHeight += childView.getMeasuredHeight(); 
+                }
+            }
         }
 
         ViewGroup.LayoutParams params = expandableListView.getLayoutParams();
         // listView.getDividerHeight()獲取子項間分隔符佔的高度
         // expandableListView完整顯示需求的高度
-        params.height = totalHeight + (expandableListView.getDividerHeight() * listAdapter.getCount());
+        params.height = totalHeight + (expandableListView.getDividerHeight() * (listCount - 1));
         expandableListView.setLayoutParams(params);
     }
 }

@@ -8,6 +8,7 @@ import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
         } else {
             groupHolder = (ViewHolderGroup) convertView.getTag();
         }
+        groupHolder.tv_group_name.setTextColor(Color.LTGRAY);
         groupHolder.tv_group_name.setText(gData.get(groupPosition).getgName());
         return convertView;
     }
