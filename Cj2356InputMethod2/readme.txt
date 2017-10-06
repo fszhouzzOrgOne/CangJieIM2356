@@ -22,6 +22,7 @@ InputMethodStatusCnCj6#getNextStatus()切換狀態只能是蒼六。
 
 倉頡三五：
 三五代的碼表混合
+其他輸入法不要
 符號鍵盤只要中文、部首、英文
 順序鍵盤不要
 時間提示也不要
