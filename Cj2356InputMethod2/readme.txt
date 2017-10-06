@@ -25,5 +25,6 @@ InputMethodStatusCnCj6#getNextStatus()切換狀態只能是蒼六。
 符號鍵盤只要中文、部首、英文
 順序鍵盤不要
 時間提示也不要
+出個ANSI字集的，用默認字體
 
 
