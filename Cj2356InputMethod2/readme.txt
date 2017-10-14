@@ -11,21 +11,16 @@ x.1版本，默认字體：
 InputMethodStatusCnCj6#getNextStatus()切換狀態只能是蒼六。
 字典SettingDictMbUtils.selectDbByChar和selectDbByCode兩個查詢，只查蒼六的。
 
-鬼島人的三代要求：
-順序鍵盤不要
-12鍵不要
-符號鍵盤的12鍵隱藏
-只留下三代
-三代Z鍵去符號鍵盤
-符號鍵盤只要中文、英文、特殊、製表
-時間提示也不要
-
 倉頡三五：
 三五代的碼表混合
-其他輸入法不要
-符號鍵盤只要中文、部首、英文
-順序鍵盤不要
-時間提示也不要
-出個ANSI字集的，用默認字體
+只用InputMethodStatusCnCj35輸入法
+字典也只用上面的查詢
+
+給鬼島人：
+純五代，
+其牠輸入法都不要
+碼表用這個：https://github.com/Jackchows/Cangjie5
+字的話只要基本區跟A區，安卓4.4.2
+符號界面中只要中文、英文符號
 
 
