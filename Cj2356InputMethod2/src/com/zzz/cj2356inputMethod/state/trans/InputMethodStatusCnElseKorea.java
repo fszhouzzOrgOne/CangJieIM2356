@@ -2,11 +2,10 @@ package com.zzz.cj2356inputMethod.state.trans;
 
 import java.util.List;
 
-import android.content.Context;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
+import android.content.Context;
 
 /**
  * 朝鮮諺文
@@ -37,11 +36,6 @@ public class InputMethodStatusCnElseKorea extends
     @Override
     public boolean couldContinueInputing(String code) {
         return MbUtils.countDBLikeCode(this.getSubType(), code) > 0;
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusCnElseSghm(this.getContext());
     }
 
     @Override

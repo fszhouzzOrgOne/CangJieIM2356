@@ -6,11 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import android.content.Context;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
+import android.content.Context;
 
 /**
  * 日本假名
@@ -94,11 +93,6 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
     @Override
     public boolean couldContinueInputing(String code) {
         return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_KARINA, code) > 0;
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusCnElseManju(this.getContext());
     }
 
     @Override

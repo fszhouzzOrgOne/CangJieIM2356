@@ -6,12 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
+import android.content.Context;
+import android.widget.Toast;
 
 // 四角號碼
 public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
@@ -120,11 +119,6 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
     @Override
     public boolean couldContinueInputing(String code) {
         return MbUtils.countDBLikeCode(this.getSubType(), code) > 0;
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusCnElsePy(this.getContext());
     }
 
     @Override

@@ -3,8 +3,6 @@ package com.zzz.cj2356inputMethod.state.trans;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-
 import android.content.Context;
 
 /**
@@ -15,10 +13,6 @@ public abstract class InputMethodStatusCnCj extends InputMethodStatusCn {
     InputMethodStatusCnCj(Context con) {
         super(con);
         this.setTypeName("倉");
-    }
-
-    public final InputMethodStatus getNextStatusType() {
-        return new InputMethodStatusCnElseSghm(this.getContext());
     }
 
     @Override

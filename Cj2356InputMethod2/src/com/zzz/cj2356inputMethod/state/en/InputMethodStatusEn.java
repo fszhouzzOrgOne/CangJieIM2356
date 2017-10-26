@@ -1,9 +1,8 @@
 package com.zzz.cj2356inputMethod.state.en;
 
-import android.content.Context;
-
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj6;
+
+import android.content.Context;
 
 /**
  * 英文輸入狀態
@@ -22,7 +21,4 @@ public abstract class InputMethodStatusEn extends InputMethodStatus {
         this.setTypeName(TYPE_NAME);
     }
 
-    public final InputMethodStatus getNextStatusType() {
-        return new InputMethodStatusCnCj6(this.getContext());
-    }
 }

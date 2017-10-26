@@ -129,13 +129,13 @@ public class Cangjie2356IMsUtils {
         allIMsMap.put(ORDER_TYPE_CJ, allCjIMsMap);
         allIMsMap.put(ORDER_TYPE_ELSE, allElseIMsMap);
         
-        // 下一個狀態
+        // 設置各個輸入法的，下一個狀態
         String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
-        String[] conTypes = conTypeOrder.split(",");
-        String[] conTypeIms = new String[conTypes.length];
+        String[] conTypes = conTypeOrder.split(","); // 種類數組
+        String[] conTypeIms = new String[conTypes.length]; // 輸入法數組
         for (int i = 0; i < conTypes.length; i++) {
-            String firstImConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(conTypes[i]).get(ORDER_KEY_KEY));
-            conTypeIms[i] = firstImConfig;
+            String imConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(conTypes[i]).get(ORDER_KEY_KEY));
+            conTypeIms[i] = imConfig;
         }
     }
 }

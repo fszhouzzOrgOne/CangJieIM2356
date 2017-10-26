@@ -13,6 +13,9 @@ import android.content.Context;
  */
 public abstract class InputMethodStatus {
 
+    private InputMethodStatus nextStatus;
+    private InputMethodStatus nextStatusType;
+
     private Context context;
 
     private String type;
@@ -23,7 +26,7 @@ public abstract class InputMethodStatus {
     protected InputMethodStatus(Context con) {
         this.context = con;
     }
-    
+
     /**
      * 得到輸入法名字
      */
@@ -32,12 +35,16 @@ public abstract class InputMethodStatus {
     /**
      * 得到下一個狀態
      */
-    public abstract InputMethodStatus getNextStatus();
+    public final InputMethodStatus getNextStatus() {
+        return this.nextStatus;
+    }
 
     /**
      * 得到下一個輸入類別的默認輸入狀態
      */
-    public abstract InputMethodStatus getNextStatusType();
+    public final InputMethodStatus getNextStatusType() {
+        return this.nextStatusType;
+    }
 
     public Map<String, Object> getKeysNameMap() {
         Map<String, Object> mbTransMap = new HashMap<String, Object>();
@@ -126,7 +133,15 @@ public abstract class InputMethodStatus {
 
     @Override
     public String toString() {
-        return "InputMethodStatus [type=" + type + ", typeName=" + typeName
-                + ", subType=" + subType + ", subTypeName=" + subTypeName + "]";
+        return "InputMethodStatus [type=" + type + ", typeName=" + typeName + ", subType=" + subType + ", subTypeName="
+                + subTypeName + "]";
+    }
+
+    public void setNextStatus(InputMethodStatus nextStatus) {
+        this.nextStatus = nextStatus;
+    }
+
+    public void setNextStatusType(InputMethodStatus nextStatusType) {
+        this.nextStatusType = nextStatusType;
     }
 }

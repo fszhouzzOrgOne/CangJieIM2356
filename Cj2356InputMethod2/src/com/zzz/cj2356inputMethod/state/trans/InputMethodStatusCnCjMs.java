@@ -3,11 +3,10 @@ package com.zzz.cj2356inputMethod.state.trans;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
+import android.content.Context;
 
 /**
  * 微軟倉頡
@@ -28,11 +27,6 @@ public class InputMethodStatusCnCjMs extends InputMethodStatusCnCj {
         Map<String, Object> mbTransMap = super.getKeysNameMap();
         mbTransMap.put("z", "重");
         return mbTransMap;
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusCnCj2(this.getContext());
     }
 
     @Override

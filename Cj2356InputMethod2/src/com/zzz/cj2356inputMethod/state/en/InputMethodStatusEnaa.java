@@ -2,8 +2,6 @@ package com.zzz.cj2356inputMethod.state.en;
 
 import java.util.Map;
 
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-
 import android.content.Context;
 
 public class InputMethodStatusEnaa extends InputMethodStatusEn {
@@ -12,11 +10,6 @@ public class InputMethodStatusEnaa extends InputMethodStatusEn {
         super(con);
         this.setSubType("aa");
         this.setSubTypeName("小寫");
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusEnAb(this.getContext());
     }
 
     @Override

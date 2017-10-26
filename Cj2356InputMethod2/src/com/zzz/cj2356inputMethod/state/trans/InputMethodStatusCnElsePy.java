@@ -4,12 +4,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
+import android.content.Context;
+import android.widget.Toast;
 
 /**
  * 普通話拼音
@@ -75,11 +74,6 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     @Override
     public boolean couldContinueInputing(String code) {
         return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_PINYIN, code) > 0;
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusCnElseZyfh(this.getContext());
     }
 
     @Override

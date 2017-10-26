@@ -2,11 +2,10 @@ package com.zzz.cj2356inputMethod.state.trans;
 
 import java.util.List;
 
-import android.content.Context;
-
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
+import android.content.Context;
 
 public class InputMethodStatusCnCj5 extends InputMethodStatusCnCj {
 
@@ -14,11 +13,6 @@ public class InputMethodStatusCnCj5 extends InputMethodStatusCnCj {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_CJGEN5);
         this.setSubTypeName("倉5");
-    }
-
-    @Override
-    public InputMethodStatus getNextStatus() {
-        return new InputMethodStatusCnCj3(this.getContext());
     }
 
     @Override
