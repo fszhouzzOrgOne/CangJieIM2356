@@ -137,5 +137,15 @@ public class Cangjie2356IMsUtils {
             String imConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(conTypes[i]).get(ORDER_KEY_KEY));
             conTypeIms[i] = imConfig;
         }
+        
+        // 種類數組，設置種類下一狀態
+        for (int i = 0; i < conTypes.length; i++) {
+            if (i == conTypes.length - 1) {
+                
+            } else {
+                
+            }
+        }
+        // 輸入法數組，設置輸入法下一狀態
     }
 }
