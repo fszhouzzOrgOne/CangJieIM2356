@@ -69,6 +69,13 @@ public class Cangjie2356IMsUtils {
     }
 
     /**
+     * 得到輸入法類型的配置
+     */
+    public static String getImOrderType() {
+        return Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+    }
+
+    /**
      * 第一個輸入法
      * 
      * @return
@@ -78,7 +85,7 @@ public class Cangjie2356IMsUtils {
         try {
             currentIMsMap = new HashMap<String, InputMethodStatus>();
 
-            String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+            String conTypeOrder = getImOrderType();
             String[] conTypeArr = conTypeOrder.split(",");
             // 第一個方法
             String firstType = conTypeArr[0];
@@ -98,7 +105,7 @@ public class Cangjie2356IMsUtils {
         try {
             currentIMsMap = new HashMap<String, InputMethodStatus>();
 
-            String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+            String conTypeOrder = getImOrderType();
             String[] conTypeArr = conTypeOrder.split(",");
             // 初始化爲各自第一個方法
             for (String conType : conTypeArr) {
@@ -168,7 +175,7 @@ public class Cangjie2356IMsUtils {
      */
     private static void initNextIMStatuses() {
         // 設置各個輸入法的，下一個狀態
-        String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+        String conTypeOrder = getImOrderType();
         String[] conTypes = conTypeOrder.split(","); // 種類數組
         List<String> conTypeList = new ArrayList<String>(); // 有效種類列表
         for (String con : conTypes) {

@@ -38,6 +38,8 @@ public class ChooseKeyboardLayoutTabIniter {
     public static void initChooseKeyboardLayoutTab(Context con, View kbView) {
         context = con;
         keyboardView = kbView;
+        
+        String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderType();
 
         chooseKeyboardTabScroll = keyboardView.findViewById(R.id.chooseKeyboardLayoutScroll);
         chooseKeyboardTabhost = (TabHost) keyboardView.findViewById(R.id.chooseKeyboardLayoutTabhost);
