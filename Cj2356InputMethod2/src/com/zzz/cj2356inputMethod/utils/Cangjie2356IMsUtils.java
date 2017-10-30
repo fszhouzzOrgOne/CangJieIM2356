@@ -35,11 +35,11 @@ public class Cangjie2356IMsUtils {
     /**
      * 當前輸入法
      */
-    private static InputMethodStatus firstIMStatus = null;
+    private static Map<String, InputMethodStatus> currentIMsMap = null;
 
-    private static final String ORDER_TYPE_EN = "en";
-    private static final String ORDER_TYPE_CJ = "cj";
-    private static final String ORDER_TYPE_ELSE = "else";
+    public static final String ORDER_TYPE_EN = "en";
+    public static final String ORDER_TYPE_CJ = "cj";
+    public static final String ORDER_TYPE_ELSE = "else";
     private static final String ORDER_TYPE_KEY = "im.order.type";
     private static final String ORDER_EN_KEY = "im.order.en";
     private static final String ORDER_CJ_KEY = "im.order.cj";
@@ -63,31 +63,54 @@ public class Cangjie2356IMsUtils {
         try {
             initAllIms(context);
 
-            firstIMStatus = getFirstIm();
+            initAllCurrentIms();
         } catch (Exception e) {
         }
     }
 
     /**
-     * 初始輸入法
+     * 第一個輸入法
      * 
      * @return
      */
     public static InputMethodStatus getFirstIm() {
-        if (null != firstIMStatus) {
-            return firstIMStatus;
-        }
+        InputMethodStatus firstIMStatus = null;
         try {
-            String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
-            String firstType = conTypeOrder.split(",")[0];
-            String firstImConfig = Cangjie2356ConfigUtils
-                    .getConfig((String) allIMsMap.get(firstType).get(ORDER_KEY_KEY));
-            String firstImCode = firstImConfig.split(",")[0];
+            currentIMsMap = new HashMap<String, InputMethodStatus>();
 
-            return (InputMethodStatus) allIMsMap.get(firstType).get(firstImCode);
+            String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+            String[] conTypeArr = conTypeOrder.split(",");
+            // 第一個方法
+            String firstType = conTypeArr[0];
+            return currentIMsMap.get(firstType);
         } catch (Exception e) {
         }
-        return null;
+        return firstIMStatus;
+    }
+
+    /**
+     * 初始所有當前輸入法
+     * 
+     * @return
+     */
+    public static void initAllCurrentIms() {
+        InputMethodStatus firstIMStatus = null;
+        try {
+            currentIMsMap = new HashMap<String, InputMethodStatus>();
+
+            String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+            String[] conTypeArr = conTypeOrder.split(",");
+            // 初始化爲各自第一個方法
+            for (String conType : conTypeArr) {
+                String firstImConfig = Cangjie2356ConfigUtils
+                        .getConfig((String) allIMsMap.get(conType).get(ORDER_KEY_KEY));
+                String firstImCode = firstImConfig.split(",")[0];
+                firstIMStatus = (InputMethodStatus) allIMsMap.get(conType).get(firstImCode);
+
+                currentIMsMap.put(conType, firstIMStatus);
+            }
+        } catch (Exception e) {
+        }
     }
 
     private static void initAllIms(Context context) {
@@ -186,7 +209,7 @@ public class Cangjie2356IMsUtils {
             Map<String, Object> msMap = allIMsMap.get(conTypeList.get(i));
             String theImConfig = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString());
             String[] theImConfigArr = theImConfig.split(",");
-            
+
             for (int j = 0; j < theImConfigArr.length; j++) {
                 InputMethodStatus ims = null;
                 if (j == theImConfigArr.length - 1) {
@@ -196,7 +219,7 @@ public class Cangjie2356IMsUtils {
                 }
                 InputMethodStatus imOne = (InputMethodStatus) msMap.get(theImConfigArr[j]);
                 imOne.setNextStatus(ims);
-                
+
             }
         }
     }
