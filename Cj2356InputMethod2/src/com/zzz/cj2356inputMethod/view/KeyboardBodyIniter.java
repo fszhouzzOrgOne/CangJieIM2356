@@ -4,17 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.inputmethodservice.InputMethodService;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
-
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
@@ -25,10 +14,21 @@ import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
+import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.inputmethodservice.InputMethodService;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 public class KeyboardBodyIniter {
 
@@ -240,7 +240,7 @@ public class KeyboardBodyIniter {
 
         InputMethodStatus oldStat = inputStat;
         if (oldStat == null) {
-            oldStat = new InputMethodStatusEnaa(context);
+            oldStat = Cangjie2356IMsUtils.getFirstIm();
         }
         inputStat = stat; // 新狀態
 

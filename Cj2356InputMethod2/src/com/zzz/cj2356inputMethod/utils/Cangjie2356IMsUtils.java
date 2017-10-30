@@ -1,6 +1,8 @@
 package com.zzz.cj2356inputMethod.utils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
@@ -22,6 +24,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseZyfh;
 
 import android.content.Context;
+import android.widget.Toast;
 
 /**
  * 輸入法配置
@@ -33,7 +36,7 @@ public class Cangjie2356IMsUtils {
     /**
      * 當前輸入法
      */
-    private static InputMethodStatus currentIMStatus = null;
+    private static InputMethodStatus firstIMStatus = null;
 
     private static final String ORDER_TYPE_EN = "en";
     private static final String ORDER_TYPE_CJ = "cj";
@@ -58,18 +61,13 @@ public class Cangjie2356IMsUtils {
         inited = true;
         context = con;
 
-        initAllIms(context);
+        try {
+            initAllIms(context);
 
-        currentIMStatus = getFirstIm();
-    }
-
-    /**
-     * 當前輸入法
-     * 
-     * @return
-     */
-    public static InputMethodStatus currentIMStatus() {
-        return currentIMStatus;
+            firstIMStatus = getFirstIm();
+        } catch (Exception e) {
+            Toast.makeText(context, "initAllIms: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
@@ -78,11 +76,21 @@ public class Cangjie2356IMsUtils {
      * @return
      */
     public static InputMethodStatus getFirstIm() {
-        String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
-        String firstType = conTypeOrder.split(",")[0];
-        String firstImConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(firstType).get(ORDER_KEY_KEY));
-        String firstImCode = firstImConfig.split(",")[0];
-        return (InputMethodStatus) allIMsMap.get(firstType).get(firstImCode);
+        if (null != firstIMStatus) {
+            return firstIMStatus;
+        }
+        try {
+            String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+            String firstType = conTypeOrder.split(",")[0];
+            String firstImConfig = Cangjie2356ConfigUtils
+                    .getConfig((String) allIMsMap.get(firstType).get(ORDER_KEY_KEY));
+            String firstImCode = firstImConfig.split(",")[0];
+
+            return (InputMethodStatus) allIMsMap.get(firstType).get(firstImCode);
+        } catch (Exception e) {
+            Toast.makeText(context, "getFirstIm: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        return null;
     }
 
     private static void initAllIms(Context context) {
@@ -128,24 +136,77 @@ public class Cangjie2356IMsUtils {
         allIMsMap.put(ORDER_TYPE_EN, allEnIMsMap);
         allIMsMap.put(ORDER_TYPE_CJ, allCjIMsMap);
         allIMsMap.put(ORDER_TYPE_ELSE, allElseIMsMap);
-        
+
+        initNextIMStatuses();
+
+        Toast.makeText(context, "initAllNextIms ok.", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 下一個輸入狀態
+     * 
+     * @author fszhouzz
+     * @time 2017年10月30日上午9:38:35
+     */
+    private static void initNextIMStatuses() {
         // 設置各個輸入法的，下一個狀態
         String conTypeOrder = Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
         String[] conTypes = conTypeOrder.split(","); // 種類數組
-        String[] conTypeIms = new String[conTypes.length]; // 輸入法數組
-        for (int i = 0; i < conTypes.length; i++) {
-            String imConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(conTypes[i]).get(ORDER_KEY_KEY));
-            conTypeIms[i] = imConfig;
-        }
-        
-        // 種類數組，設置種類下一狀態
-        for (int i = 0; i < conTypes.length; i++) {
-            if (i == conTypes.length - 1) {
-                
-            } else {
-                
+        List<String> conTypeList = new ArrayList<String>(); // 有效種類列表
+        for (String con : conTypes) {
+            if (null != con && con.length() > 0) {
+                conTypeList.add(con);
             }
         }
+
+        // 種類數組，設置種類下一狀態
+        for (int i = 0; i < conTypeList.size(); i++) {
+            InputMethodStatus ims = null;
+            if (i == conTypeList.size() - 1) {
+                String firstImConfig = conTypeList.get(0);
+                Map<String, Object> msMap = allIMsMap.get(firstImConfig);
+                String firstImCode = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString())
+                        .split(",")[0];
+                ims = (InputMethodStatus) msMap.get(firstImCode);
+            } else {
+                String firstImConfig = conTypeList.get(i + 1);
+                Map<String, Object> msMap = allIMsMap.get(firstImConfig);
+                String firstImCode = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString())
+                        .split(",")[0];
+                ims = (InputMethodStatus) msMap.get(firstImCode);
+            }
+            if (null != ims) {
+                Map<String, Object> msMap = allIMsMap.get(conTypeList.get(i));
+                for (String key : msMap.keySet()) {
+                    if (msMap.get(key) instanceof InputMethodStatus) {
+                        InputMethodStatus imOne = (InputMethodStatus) msMap.get(key);
+                        imOne.setNextStatusType(ims);
+                    }
+                }
+            }
+        }
+
         // 輸入法數組，設置輸入法下一狀態
+        for (int i = 0; i < conTypeList.size(); i++) {
+            Map<String, Object> msMap = allIMsMap.get(conTypeList.get(i));
+            String theImConfig = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString());
+            String[] theImConfigArr = theImConfig.split(",");
+            
+            Toast.makeText(context, "設置輸入法下一狀態theImConfigArr：" + theImConfigArr.length, 
+                    Toast.LENGTH_SHORT).show();
+            
+            for (int j = 0; j < theImConfigArr.length; j++) {
+                InputMethodStatus ims = null;
+                if (j == theImConfigArr.length - 1) {
+                    ims = (InputMethodStatus) msMap.get(theImConfigArr[0]);
+                } else {
+                    ims = (InputMethodStatus) msMap.get(theImConfigArr[j + 1]);
+                }
+                InputMethodStatus imOne = (InputMethodStatus) msMap.get(theImConfigArr[j]);
+                imOne.setNextStatus(ims);
+                
+                Toast.makeText(context, "設置輸入法下一狀態：" + ims, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ import java.util.Map;
 import com.zzz.cj2356inputMethod.mb.IOUtils;
 
 import android.content.Context;
+import android.widget.Toast;
 
 /**
  * 配置文件操作工具
@@ -32,7 +33,7 @@ public class Cangjie2356ConfigUtils {
     /**
      * 外部配置文件名
      */
-    private static String configOuterName = context.getFilesDir().toString() + File.separator + configName;
+    private static String configOuterName = null;
 
     /**
      * 所有配置項
@@ -45,6 +46,7 @@ public class Cangjie2356ConfigUtils {
         }
         inited = true;
         context = con;
+        configOuterName = context.getFilesDir().toString() + File.separator + configName;
 
         // 配置文件複製出去，只操作外部配置文件
         // 原始文件用於重置配置
@@ -59,6 +61,7 @@ public class Cangjie2356ConfigUtils {
                         new FileOutputStream(destFile));
             }
         } catch (Exception e) {
+            Toast.makeText(context, "shouldCopy 1: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         // 讀配置：先讀外部，出現錯誤再讀原始
@@ -66,9 +69,11 @@ public class Cangjie2356ConfigUtils {
             File destFile = new File(configOuterName);
             readConfigs(new FileInputStream(destFile));
         } catch (Exception e) {
+            Toast.makeText(context, "readConfigs 1: " + e.getMessage(), Toast.LENGTH_LONG).show();
             try {
                 readConfigs(context.getResources().getAssets().open(configFullName));
             } catch (Exception e1) {
+                Toast.makeText(context, "readConfigs 2: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }

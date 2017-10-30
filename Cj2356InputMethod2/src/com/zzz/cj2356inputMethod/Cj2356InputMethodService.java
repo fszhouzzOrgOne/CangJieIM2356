@@ -5,8 +5,9 @@ import java.util.List;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
+import com.zzz.cj2356inputMethod.utils.Cangjie2356ConfigUtils;
+import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 import com.zzz.cj2356inputMethod.view.CandidateViewIniter;
 import com.zzz.cj2356inputMethod.view.ChooseKeyboardLayoutTabIniter;
@@ -30,6 +31,10 @@ public class Cj2356InputMethodService extends InputMethodService {
     public void onInitializeInterface() {
         // 初始化詞典數據
         MbUtils.init(this);
+        
+        Cangjie2356ConfigUtils.init(this);
+        
+        Cangjie2356IMsUtils.init(this);
     }
 
     /**
@@ -39,12 +44,9 @@ public class Cj2356InputMethodService extends InputMethodService {
     public void onWindowHidden() {
         if (null != getInputMethodStatus()) {
             // 停止中文輸入狀態
-            if (InputMethodStatusCn.TYPE_CODE.equals(getInputMethodStatus()
-                    .getType())) {
-                if (((InputMethodStatusCn) getInputMethodStatus())
-                        .isInputingCn()) {
-                    ((InputMethodStatusCn) getInputMethodStatus())
-                            .setInputingCn(false);
+            if (InputMethodStatusCn.TYPE_CODE.equals(getInputMethodStatus().getType())) {
+                if (((InputMethodStatusCn) getInputMethodStatus()).isInputingCn()) {
+                    ((InputMethodStatusCn) getInputMethodStatus()).setInputingCn(false);
                 }
             }
         }
@@ -97,16 +99,14 @@ public class Cj2356InputMethodService extends InputMethodService {
 
         CandidateViewIniter.initCandidateView(this, keyboardView);
 
-        KeyboardBodyIniter.initKeyboardBody(this, keyboardView,
-                R.layout.keyboard_qwerty1);
-        setInputMethodStatus(new InputMethodStatusEnaa(this));
+        KeyboardBodyIniter.initKeyboardBody(this, keyboardView, R.layout.keyboard_qwerty1);
+        setInputMethodStatus(Cangjie2356IMsUtils.getFirstIm());
 
         KeyboardNumIniter.initKeyboardSim(this, keyboardView);
         KeyboardSimIniter.initKeyboardSim(this, keyboardView);
 
         // 選擇鍵盤
-        ChooseKeyboardLayoutTabIniter.initChooseKeyboardLayoutTab(this,
-                keyboardView);
+        ChooseKeyboardLayoutTabIniter.initChooseKeyboardLayoutTab(this, keyboardView);
 
         // 返回View对象
         return keyboardView;
