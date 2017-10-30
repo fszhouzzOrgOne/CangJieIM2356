@@ -13,7 +13,6 @@ import java.util.Map;
 import com.zzz.cj2356inputMethod.mb.IOUtils;
 
 import android.content.Context;
-import android.widget.Toast;
 
 /**
  * 配置文件操作工具
@@ -61,7 +60,6 @@ public class Cangjie2356ConfigUtils {
                         new FileOutputStream(destFile));
             }
         } catch (Exception e) {
-            Toast.makeText(context, "shouldCopy 1: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         // 讀配置：先讀外部，出現錯誤再讀原始
@@ -69,11 +67,9 @@ public class Cangjie2356ConfigUtils {
             File destFile = new File(configOuterName);
             readConfigs(new FileInputStream(destFile));
         } catch (Exception e) {
-            Toast.makeText(context, "readConfigs 1: " + e.getMessage(), Toast.LENGTH_LONG).show();
             try {
                 readConfigs(context.getResources().getAssets().open(configFullName));
             } catch (Exception e1) {
-                Toast.makeText(context, "readConfigs 2: " + e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }

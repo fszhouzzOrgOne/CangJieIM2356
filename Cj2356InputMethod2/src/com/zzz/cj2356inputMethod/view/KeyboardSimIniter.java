@@ -6,6 +6,14 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
+import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
+import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
+import com.zzz.cj2356inputMethod.listener.OnEnterNumClickListener;
+import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
+import com.zzz.cj2356inputMethod.utils.StringUtils;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,16 +26,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ViewFlipper;
-
-import com.zzz.cj2356inputMethod.R;
-import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
-import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
-import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
-import com.zzz.cj2356inputMethod.listener.OnEnterNumClickListener;
-import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
-import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 public class KeyboardSimIniter {
     private static Integer SIM_ROW_SIZE = 7;
@@ -302,10 +301,6 @@ public class KeyboardSimIniter {
                     context, valueList);
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
         } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-            if (null != e.getCause()) {
-                Toast.makeText(context, e.getCause().getMessage(), Toast.LENGTH_LONG).show();
-            }
         }
     }
 

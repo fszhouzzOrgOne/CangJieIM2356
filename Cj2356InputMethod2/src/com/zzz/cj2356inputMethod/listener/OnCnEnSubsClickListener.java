@@ -1,16 +1,15 @@
 package com.zzz.cj2356inputMethod.listener;
 
-import android.content.Context;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputConnection;
-import android.widget.Toast;
-
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
+
+import android.content.Context;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.InputConnection;
 
 public class OnCnEnSubsClickListener implements OnClickListener {
 
@@ -47,7 +46,7 @@ public class OnCnEnSubsClickListener implements OnClickListener {
                 ser.setInputMethodStatus(ser.getInputMethodStatus().getNextStatus());
             }
         } catch (Exception e) {
-            Toast.makeText(context, "OnCnEnSubs: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            
         }
     }
 
