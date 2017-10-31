@@ -75,6 +75,7 @@ public class OnKeyTouchListener implements OnTouchListener {
                 // 如果是大小寫狀態，馬上回到小寫
                 if (InputMethodStatusEnAb.SUBTYPE_CODE
                         .equals(stat.getSubType())) {
+                    String aa = "bb";
                     ser.setInputMethodStatus(new InputMethodStatusEnaa(context));
                 }
             }

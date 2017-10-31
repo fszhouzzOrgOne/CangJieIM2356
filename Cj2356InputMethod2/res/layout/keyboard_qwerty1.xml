@@ -197,13 +197,12 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal" >
-		        
-                <Button android:textAllCaps="false" android:textSize="14dp" 
-		            android:id="@+id/keybtnNum"
+		        <Button android:textAllCaps="false" android:textSize="12dp" 
+		            android:id="@+id/keybtnShift"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.2"
-		            android:text="12" 
+		            android:layout_weight="1"
+		            android:text="↑" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
                 
@@ -285,12 +284,22 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal" >
-                <Button android:textAllCaps="false" android:textSize="12dp" 
-		            android:id="@+id/keybtnShift"
+                
+                <Button android:textAllCaps="false" android:textSize="14dp" 
+		            android:id="@+id/keybtnNum"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.2"
-		            android:text="↑" 
+		            android:layout_weight="1"
+		            android:text="12" 
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		
+		        <Button android:textAllCaps="false"
+		            android:id="@+id/keybtnSim"
+		            android:layout_width="0dp"
+		            android:layout_height="@dimen/keyboard_key_height"
+		            android:layout_weight="1"
+		            android:text="符" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		
@@ -307,17 +316,17 @@
 		            android:id="@+id/keybtnSpace"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="4.5"
+		            android:layout_weight="3.7"
 		            android:text="空格" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
-		
-		        <Button android:textAllCaps="false"
-		            android:id="@+id/keybtnSim"
+		        
+		        <Button android:textAllCaps="false" android:textSize="14dp" 
+		            android:id="@+id/keybtnSimPeriod"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.2"
-		            android:text="符" 
+		            android:text="。" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		

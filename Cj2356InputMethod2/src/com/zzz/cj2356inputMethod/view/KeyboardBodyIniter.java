@@ -143,6 +143,9 @@ public class KeyboardBodyIniter {
         // 逗號
         keyboardView.findViewById(R.id.keybtnSimComma).setOnTouchListener(new OnKeyNumTouchListener(context));
 
+        // 句號
+        keyboardView.findViewById(R.id.keybtnSimPeriod).setOnTouchListener(new OnKeyNumTouchListener(context));
+        
         currentKeyboardId = keyboardId;
     }
 
