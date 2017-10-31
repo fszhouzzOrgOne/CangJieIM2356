@@ -65,9 +65,6 @@ public class KeyboardBodyIniter {
         keyboardBody.addView(keyboard);
 
         init26LetterViews();
-//        if (keyboardId == R.layout.keyboard_qwerty1) {
-//            init10NumViews();
-//        }
 
         keybtnShift = (Button) keyboardView.findViewById(R.id.keybtnShift);
         keybtnShift.setOnClickListener(new OnCnEnSubsClickListener(context));
@@ -209,10 +206,15 @@ public class KeyboardBodyIniter {
             btn.setText(keysNameMap.get(key).toString());
         }
 
+        // 輸入法切換和逗號句號要特殊處理
         if (inputStat.isShouldTranslate()) {
             keybtnShift.setText(inputStat.getSubTypeName());
+            ((Button) keyboardView.findViewById(R.id.keybtnSimComma)).setText("，");
+            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod)).setText("。");
         } else {
             keybtnShift.setText(inputStat.getSubType());
+            ((Button) keyboardView.findViewById(R.id.keybtnSimComma)).setText(",");
+            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod)).setText(".");
         }
 
         // 空格上顯示輸入法名字

@@ -3,6 +3,7 @@ package com.zzz.cj2356inputMethod.view;
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
@@ -128,8 +130,17 @@ public class ChooseKeyboardLayoutTabIniter {
         public void onTabChanged(String tabId) {
             changeTabShow();
 
-            InputMethodStatus stat = Cangjie2356IMsUtils.getCurrentIm(tabId);
+            InputMethodStatus statOld = ((Cj2356InputMethodService) context).getInputMethodStatus();
+            // 停止中文輸入狀態
+            if (statOld.isShouldTranslate()) {
+                if (((InputMethodStatusCn) statOld).isInputingCn()) {
+                    // 先模擬點擊一下打字鍵盤上的回車
+                    ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
+                    keyboardEnter.performClick();
+                }
+            }
 
+            InputMethodStatus stat = Cangjie2356IMsUtils.getCurrentIm(tabId);
             ((Cj2356InputMethodService) context).setInputMethodStatus(stat);
         }
 

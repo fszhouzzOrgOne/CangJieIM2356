@@ -88,7 +88,7 @@ public final class R {
         public static final int keybtnL=0x7f090036;
         public static final int keybtnM=0x7f09003e;
         public static final int keybtnN=0x7f09003d;
-        public static final int keybtnNum=0x7f090040;
+        public static final int keybtnNum=0x7f090037;
         public static final int keybtnNumBack=0x7f090013;
         public static final int keybtnNumDelete=0x7f090015;
         public static final int keybtnNumEnter=0x7f090016;
@@ -101,7 +101,7 @@ public final class R {
         public static final int keybtnQ=0x7f090024;
         public static final int keybtnR=0x7f090027;
         public static final int keybtnS=0x7f09002f;
-        public static final int keybtnShift=0x7f090037;
+        public static final int keybtnShift=0x7f090040;
         public static final int keybtnSim=0x7f090041;
         public static final int keybtnSimBack=0x7f090020;
         public static final int keybtnSimComma=0x7f090042;
