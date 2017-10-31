@@ -100,33 +100,12 @@
 				                android:orientation="horizontal"
 				                android:scrollbars="none"
 				                >
-				                    <TabHost  
-						                android:id="@+id/chooseKeyboardLayoutTabhost"           
-						                android:layout_width="fill_parent"
-				                        android:layout_height="match_parent"
-						                >  
-        						  
-						                <LinearLayout  
-						                    android:layout_width="match_parent"  
-						                    android:layout_height="match_parent"  
-						                    android:orientation="vertical" 
-						                    android:background="@color/whiteddd"
-						                    >  
-        						  
-						                    <TabWidget  
-						                        android:id="@android:id/tabs"  
-						                        android:layout_width="match_parent"  
-						                        android:layout_height="fill_parent" 
-						                        >  
-						                    </TabWidget>  
-        						  
-						                    <FrameLayout  
-						                        android:id="@android:id/tabcontent"  
-						                        android:layout_width="match_parent"  
-						                        android:layout_height="match_parent" >  
-						                    </FrameLayout>  
-						                </LinearLayout>  
-						            </TabHost> 
+				                <LinearLayout
+		                            android:id="@+id/chooseKeyboardLayoutScrollContent"
+		                            android:layout_width="fill_parent"
+		                            android:layout_height="match_parent"
+		                            android:orientation="horizontal" >
+		                        </LinearLayout>
 			    	        </HorizontalScrollView>
 			        </LinearLayout>
         			
@@ -318,7 +297,7 @@
 						  
 						            <TabWidget  
 						                android:id="@android:id/tabs"  
-						                android:layout_width="match_parent"  
+						                android:layout_width="wrap_content"  
 						                android:layout_height="fill_parent" 
 						                >  
 						            </TabWidget>  

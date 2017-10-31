@@ -155,7 +155,7 @@ public class KeyboardSimIniter {
             TextView textView = (TextView) simTabhost.getTabWidget()
                     .getChildAt(i).findViewById(android.R.id.title);
             textView.setTextSize(16);
-            textView.setGravity(Gravity.CENTER_VERTICAL);
+            textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
             textView.setPadding(0, 0, 0, 0);
             textView.setSingleLine();
             textView.getLayoutParams().height = LayoutParams.MATCH_PARENT;

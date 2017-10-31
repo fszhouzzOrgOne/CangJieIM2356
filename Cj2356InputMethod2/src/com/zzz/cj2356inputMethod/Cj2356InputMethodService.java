@@ -18,6 +18,7 @@ import com.zzz.cj2356inputMethod.view.KeyboardSimIniter;
 
 import android.inputmethodservice.InputMethodService;
 import android.view.View;
+import android.widget.Toast;
 
 public class Cj2356InputMethodService extends InputMethodService {
     // 提交正在編輯的內容
@@ -106,8 +107,12 @@ public class Cj2356InputMethodService extends InputMethodService {
         KeyboardNumIniter.initKeyboardSim(this, keyboardView);
         // 符號鍵盤
         KeyboardSimIniter.initKeyboardSim(this, keyboardView);
-        // 選擇鍵盤
-        ChooseKeyboardLayoutTabIniter.initChooseKeyboardLayoutTab(this, keyboardView);
+        try {
+            // 選擇鍵盤
+            ChooseKeyboardLayoutTabIniter.initChooseKeyboardLayoutTab(this, keyboardView);
+        } catch (Exception e) {
+            Toast.makeText(this, "選擇鍵盤控件初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         // 返回View对象
         return keyboardView;
     }
