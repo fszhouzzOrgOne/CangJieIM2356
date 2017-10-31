@@ -70,18 +70,26 @@ public class SettingDictIniter {
         editTextBtn.setOnClickListener(new EditTextBtnOnClickListener(context));
         
         try {
-            // 查詢框底字體只能這樣設置
-            int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
-            TextView textView = (TextView) searView.findViewById(id);  
-            textView.setTypeface(FontManager.getTypeface(context));
-            
-            searView.setIconifiedByDefault(false);
-            searView.setSubmitButtonEnabled(false);
-            searView.setQueryHint("請輸入漢字或編碼...");
-            // 查詢框事件
-            searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
-            
-            setDictLayout.setVisibility(View.GONE);
+            // android.os.Build.MODEL=C106
+            // android.os.Build.VERSION.SDK=23
+            // android.os.Build.VERSION.SDK_INT=23
+            // android.os.Build.VERSION.RELEASE=6.0.1
+            if (!android.os.Build.VERSION.RELEASE.startsWith("7.")) {
+             // 查詢框底字體只能這樣設置
+                int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
+                TextView textView = (TextView) searView.findViewById(id);  
+                textView.setTypeface(FontManager.getTypeface(context));
+                
+                searView.setIconifiedByDefault(false);
+                searView.setSubmitButtonEnabled(false);
+                searView.setQueryHint("請輸入漢字或編碼...");
+                // 查詢框事件
+                searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
+                
+                setDictLayout.setVisibility(View.GONE);
+            } else {
+                throw new Exception();
+            }
         } catch (Exception e) {
             // 安卓7可能兼容searView
             searView.setVisibility(View.GONE);
