@@ -1,5 +1,10 @@
 package com.zzz.cj2356inputMethod.view;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
+import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -8,11 +13,6 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TextView;
-
-import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.R;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 
 /**
  * 選擇鍵盤佈局的選項卡的初始化<br/>
@@ -30,16 +30,14 @@ public class ChooseKeyboardLayoutTabIniter {
     private static TabHost chooseKeyboardTabhost;
 
     // 三種類別輸入法的當前輸入法主鍵
-    // TODO 以此爲主鍵，生成選項卡
-    public static final String ORDER_TYPE_EN = Cangjie2356IMsUtils.ORDER_TYPE_EN;
-    public static final String ORDER_TYPE_CJ = Cangjie2356IMsUtils.ORDER_TYPE_CJ;
-    public static final String ORDER_TYPE_ELSE = Cangjie2356IMsUtils.ORDER_TYPE_ELSE;
+    private static final String ORDER_TYPE_EN = Cangjie2356IMsUtils.ORDER_TYPE_EN;
+    private static final String ORDER_TYPE_CJ = Cangjie2356IMsUtils.ORDER_TYPE_CJ;
+    @SuppressWarnings("unused")
+    private static final String ORDER_TYPE_ELSE = Cangjie2356IMsUtils.ORDER_TYPE_ELSE;
 
     public static void initChooseKeyboardLayoutTab(Context con, View kbView) {
         context = con;
         keyboardView = kbView;
-        
-        String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderTypeCfg();
 
         chooseKeyboardTabScroll = keyboardView.findViewById(R.id.chooseKeyboardLayoutScroll);
         chooseKeyboardTabhost = (TabHost) keyboardView.findViewById(R.id.chooseKeyboardLayoutTabhost);
@@ -47,11 +45,14 @@ public class ChooseKeyboardLayoutTabIniter {
         LayoutInflater inflater = LayoutInflater.from(context);
         inflater.inflate(R.layout.keyboardsim_tab_content, chooseKeyboardTabhost.getTabContentView());
 
-        chooseKeyboardTabhost.addTab(chooseKeyboardTabhost.newTabSpec(R.layout.keyboard_qwerty1 + "")
-                .setIndicator("常規鍵盤").setContent(R.id.linearLayoutSimTab));
-
-        chooseKeyboardTabhost.addTab(chooseKeyboardTabhost.newTabSpec(R.layout.keyboard_abcxyz1 + "")
-                .setIndicator("順序鍵盤").setContent(R.id.linearLayoutSimTab));
+        // 按類型配置，生成選項卡
+        String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderTypeCfg();
+        String orderTypes[] = imOrderTypeCfg.split(",");
+        for (String type : orderTypes) {
+            String tabIndi = (ORDER_TYPE_CJ.equals(type)) ? "倉頡" : ((ORDER_TYPE_EN.equals(type)) ? "En" : "其它");
+            chooseKeyboardTabhost.addTab(
+                    chooseKeyboardTabhost.newTabSpec(type).setIndicator(tabIndi).setContent(R.id.linearLayoutSimTab));
+        }
 
         int tabCnt = chooseKeyboardTabhost.getTabWidget().getChildCount();
         for (int i = 0; i < tabCnt; i++) {
@@ -64,8 +65,40 @@ public class ChooseKeyboardLayoutTabIniter {
             textView.getLayoutParams().height = LayoutParams.MATCH_PARENT;
             textView.getLayoutParams().width = LayoutParams.WRAP_CONTENT;
         }
+        setTabBiggerTextSiz(0);
 
         chooseKeyboardTabhost.setOnTabChangedListener(new OnTabChooseKeyboardChangedListener(context));
+    }
+
+    /**
+     * 调整選項卡的顯示
+     * 
+     * @author zhaozizhao
+     * @time 2017年9月26日 下午9:08:22
+     */
+    private static void changeTabShow() {
+        int curIndex = chooseKeyboardTabhost.getCurrentTab();
+        setTabBiggerTextSiz(curIndex);
+    }
+
+    /**
+     * 字體调大些
+     * 
+     * @author fsz
+     * @time 2017年9月26日 下午9:30:02
+     * @param curIndex
+     */
+    private static void setTabBiggerTextSiz(int curIndex) {
+        int tabCnt = chooseKeyboardTabhost.getTabWidget().getChildCount();
+        for (int i = 0; i < tabCnt; i++) {
+            TextView textView = (TextView) chooseKeyboardTabhost.getTabWidget().getChildAt(i)
+                    .findViewById(android.R.id.title);
+            if (curIndex == i) {
+                textView.setTextSize(17);
+            } else {
+                textView.setTextSize(16);
+            }
+        }
     }
 
     /** 隱藏換鍵盤控件 */
@@ -93,9 +126,10 @@ public class ChooseKeyboardLayoutTabIniter {
 
         @Override
         public void onTabChanged(String tabId) {
-            InputMethodStatus stat = ((Cj2356InputMethodService) context).getInputMethodStatus();
+            changeTabShow();
 
-            KeyboardBodyIniter.initKeyboardBody(context, keyboardView, Integer.parseInt(tabId));
+            InputMethodStatus stat = Cangjie2356IMsUtils.getCurrentIm(tabId);
+
             ((Cj2356InputMethodService) context).setInputMethodStatus(stat);
         }
 

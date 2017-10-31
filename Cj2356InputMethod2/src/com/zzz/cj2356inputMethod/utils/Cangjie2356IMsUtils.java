@@ -121,7 +121,26 @@ public class Cangjie2356IMsUtils {
         } catch (Exception e) {
         }
     }
+    
+    /**
+     * 得到種類的當前輸入法
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年10月31日上午9:46:19
+     * @param orderType
+     * @return
+     */
+    public static InputMethodStatus getCurrentIm(String orderType) {
+        return currentIMsMap.get(orderType);
+    }
 
+    /**
+     * 初始化所有輸入法
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年10月31日上午9:47:12
+     * @param context
+     */
     private static void initAllIms(Context context) {
         InputMethodStatus im = new InputMethodStatusEnaa(context);
         allEnIMsMap.put(im.getSubType(), im);

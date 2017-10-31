@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
-import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
-import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
@@ -32,7 +29,6 @@ import android.widget.ViewFlipper;
 
 public class KeyboardBodyIniter {
 
-    private static Integer currentKeyboardId_back = null;
     private static Integer currentKeyboardId = null;
 
     private static Context context;
@@ -151,29 +147,6 @@ public class KeyboardBodyIniter {
     }
 
     /**
-     * 常規鍵盤0有10個數字，鍵盤1中刪除了
-     * @deprecated
-     */
-    @SuppressWarnings("unused")
-    private static void init10NumViews() {
-        List<View> numViews = new ArrayList<View>();
-        numViews.add(keyboardView.findViewById(R.id.keybtn_1));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_2));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_3));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_4));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_5));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_6));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_7));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_8));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_9));
-        numViews.add(keyboardView.findViewById(R.id.keybtn_0));
-        for (View v : numViews) {
-            ((Button) v).setTextColor(Color.BLACK);
-            v.setOnTouchListener(new OnKeyNumTouchListener(context));
-        }
-    }
-
-    /**
      * 初始化26個字母鍵
      */
     private static void init26LetterViews() {
@@ -221,23 +194,6 @@ public class KeyboardBodyIniter {
      * @time 2017-1-7下午10:33:25
      */
     public static void setInputMethodStatus(InputMethodStatus stat) {
-        // 如果是四角號碼輸入法，換成常規鍵盤
-        if (stat.getSubType().equals(
-                new InputMethodStatusCnElseSghm(context).getSubType())) {
-            if (currentKeyboardId == R.layout.keyboard_abcxyz1) {
-                currentKeyboardId_back = currentKeyboardId;
-                initKeyboardBody(context, keyboardView,
-                        R.layout.keyboard_qwerty1);
-            }
-            ((Cj2356InputMethodService) context).hideKeyboardChooser();
-        } else {
-            if (null != currentKeyboardId_back) {
-                initKeyboardBody(context, keyboardView, currentKeyboardId_back);
-                currentKeyboardId_back = null;
-            }
-            ((Cj2356InputMethodService) context).showKeyboardChooser();
-        }
-
         InputMethodStatus oldStat = inputStat;
         if (oldStat == null) {
             oldStat = Cangjie2356IMsUtils.getFirstIm();
