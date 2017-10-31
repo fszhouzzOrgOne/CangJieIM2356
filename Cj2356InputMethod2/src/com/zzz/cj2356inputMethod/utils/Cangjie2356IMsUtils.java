@@ -72,7 +72,11 @@ public class Cangjie2356IMsUtils {
      * 得到輸入法類型的配置
      */
     public static String getImOrderTypeCfg() {
-        return Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+        try {
+            return Cangjie2356ConfigUtils.getConfig(ORDER_TYPE_KEY);
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     /**
@@ -83,8 +87,6 @@ public class Cangjie2356IMsUtils {
     public static InputMethodStatus getFirstIm() {
         InputMethodStatus firstIMStatus = null;
         try {
-            currentIMsMap = new HashMap<String, InputMethodStatus>();
-
             String conTypeOrder = getImOrderTypeCfg();
             String[] conTypeArr = conTypeOrder.split(",");
             // 第一個方法
