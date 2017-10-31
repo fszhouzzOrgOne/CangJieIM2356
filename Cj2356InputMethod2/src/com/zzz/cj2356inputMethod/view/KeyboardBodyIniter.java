@@ -6,10 +6,10 @@ import java.util.Map;
 
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
+import com.zzz.cj2356inputMethod.listener.OnCommaPeriodTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
-import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
@@ -139,11 +139,11 @@ public class KeyboardBodyIniter {
                 });
 
         // 逗號
-        keyboardView.findViewById(R.id.keybtnSimComma).setOnTouchListener(new OnKeyNumTouchListener(context));
+        keyboardView.findViewById(R.id.keybtnSimComma).setOnTouchListener(new OnCommaPeriodTouchListener(context));
 
         // 句號
-        keyboardView.findViewById(R.id.keybtnSimPeriod).setOnTouchListener(new OnKeyNumTouchListener(context));
-        
+        keyboardView.findViewById(R.id.keybtnSimPeriod).setOnTouchListener(new OnCommaPeriodTouchListener(context));
+
         currentKeyboardId = keyboardId;
     }
 
