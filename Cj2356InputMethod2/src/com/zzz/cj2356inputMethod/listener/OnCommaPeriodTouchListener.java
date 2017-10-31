@@ -41,7 +41,7 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
             // 如果是中文輸入
             if (stat.isShouldTranslate()) {
                 if (((InputMethodStatusCn) stat).isInputingCn()) {
-                    String value = " ";
+                    String value = "";
                     List<Item> sugs = ser.getSuggestions();
                     if (null != sugs && !sugs.isEmpty()) {
                         value = sugs.get(0).getCharacter();
