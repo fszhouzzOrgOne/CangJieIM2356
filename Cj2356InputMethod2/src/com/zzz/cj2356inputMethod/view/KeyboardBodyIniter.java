@@ -1,6 +1,7 @@
 package com.zzz.cj2356inputMethod.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -200,10 +201,11 @@ public class KeyboardBodyIniter {
 
         // 按鍵顯示的轉換
         Map<String, Object> keysNameMap = inputStat.getKeysNameMap();
-        for (View v : letterViews) {
-            Button btn = (Button) v;
-            String key = oldStat.getKeyByValue(btn.getText().toString());
-            btn.setText(keysNameMap.get(key).toString());
+        List<String> keysList = new ArrayList<String>(keysNameMap.keySet());
+        Collections.sort(keysList);
+        for (int i = 0; i < keysList.size(); i++) {
+            Button btn = (Button) letterViews.get(i);
+            btn.setText(keysNameMap.get(keysList.get(i)).toString());
         }
 
         // 輸入法切換和逗號句號要特殊處理

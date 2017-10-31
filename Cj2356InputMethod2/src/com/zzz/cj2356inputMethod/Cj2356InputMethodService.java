@@ -96,18 +96,18 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public View onCreateInputView() {
         keyboardView = getLayoutInflater().inflate(R.layout.keyboard, null);
-
+        // 候選欄
         CandidateViewIniter.initCandidateView(this, keyboardView);
-
+        // 鍵盤
         KeyboardBodyIniter.initKeyboardBody(this, keyboardView, R.layout.keyboard_qwerty1);
+        // 第一個輸入法
         setInputMethodStatus(Cangjie2356IMsUtils.getFirstIm());
-
+        // 數字鍵盤
         KeyboardNumIniter.initKeyboardSim(this, keyboardView);
+        // 符號鍵盤
         KeyboardSimIniter.initKeyboardSim(this, keyboardView);
-
         // 選擇鍵盤
         ChooseKeyboardLayoutTabIniter.initChooseKeyboardLayoutTab(this, keyboardView);
-
         // 返回View对象
         return keyboardView;
     }
