@@ -133,6 +133,20 @@ public class Cangjie2356IMsUtils {
     public static InputMethodStatus getCurrentIm(String orderType) {
         return currentIMsMap.get(orderType);
     }
+    
+    /**
+     * 設置種類的當前輸入法
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年10月31日上午9:46:19
+     * @param orderType
+     * @return
+     */
+    public static void setCurrentIm(String orderType, InputMethodStatus stat) {
+        if (currentIMsMap.keySet().contains(orderType)) {
+            currentIMsMap.put(orderType, stat);
+        }
+    }
 
     /**
      * 初始化所有輸入法

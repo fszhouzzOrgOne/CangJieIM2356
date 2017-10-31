@@ -90,8 +90,7 @@ public class KeyboardBodyIniter {
                     public void onClick(View v) {
                         if (null != inputStat) {
                             // 停止中文輸入狀態
-                            if (InputMethodStatusCn.TYPE_CODE.equals(inputStat
-                                    .getType())) {
+                            if (inputStat.isShouldTranslate()) {
                                 if (((InputMethodStatusCn) inputStat)
                                         .isInputingCn()) {
                                     // 先模擬點擊一下打字鍵盤上的回車
@@ -117,8 +116,7 @@ public class KeyboardBodyIniter {
                         try {
                             if (null != inputStat) {
                                 // 停止中文輸入狀態
-                                if (InputMethodStatusCn.TYPE_CODE.equals(inputStat
-                                        .getType())) {
+                                if (inputStat.isShouldTranslate()) {
                                     if (((InputMethodStatusCn) inputStat)
                                             .isInputingCn()) {
                                         // 先模擬點擊一下打字鍵盤上的回車
@@ -211,7 +209,7 @@ public class KeyboardBodyIniter {
             btn.setText(keysNameMap.get(key).toString());
         }
 
-        if (InputMethodStatusCn.TYPE_CODE.equals(inputStat.getType())) {
+        if (inputStat.isShouldTranslate()) {
             keybtnShift.setText(inputStat.getSubTypeName());
         } else {
             keybtnShift.setText(inputStat.getSubType());

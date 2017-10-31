@@ -12,6 +12,7 @@ public abstract class InputMethodStatusCnCj extends InputMethodStatusCn {
 
     InputMethodStatusCnCj(Context con) {
         super(con);
+        this.setType("cj");
         this.setTypeName("倉");
     }
 

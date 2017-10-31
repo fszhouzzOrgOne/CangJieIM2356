@@ -12,6 +12,7 @@ public abstract class InputMethodStatusCnElse extends InputMethodStatusCn {
 
     InputMethodStatusCnElse(Context con) {
         super(con);
+        this.setType("else");
         this.setTypeName("牠");
     }
 

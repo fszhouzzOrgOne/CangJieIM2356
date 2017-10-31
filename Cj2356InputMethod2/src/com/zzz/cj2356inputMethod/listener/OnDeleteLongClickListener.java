@@ -33,7 +33,7 @@ public class OnDeleteLongClickListener implements OnLongClickListener {
         Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
         InputMethodStatus stat = ser.getInputMethodStatus();
         // 如果是中文輸入
-        if (InputMethodStatusCn.TYPE_CODE.equals(stat.getType())) {
+        if (stat.isShouldTranslate()) {
             if (((InputMethodStatusCn) stat).isInputingCn()) {
                 String value = ((InputMethodStatusCn) stat)
                         .getInputingCnValue();

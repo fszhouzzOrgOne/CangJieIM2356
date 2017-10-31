@@ -34,7 +34,7 @@ public class OnDeleteClickListener implements OnClickListener {
             InputConnection inputConnection = ser.getCurrentInputConnection();
             InputMethodStatus stat = ser.getInputMethodStatus();
             // 如果是中文輸入
-            if (InputMethodStatusCn.TYPE_CODE.equals(stat.getType())) {
+            if (stat.isShouldTranslate()) {
                 if (((InputMethodStatusCn) stat).isInputingCn()) {
                     String getInputingCnCode = ((InputMethodStatusCn) stat)
                             .getInputingCnCode();

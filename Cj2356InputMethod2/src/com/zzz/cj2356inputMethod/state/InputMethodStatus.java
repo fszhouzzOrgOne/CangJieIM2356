@@ -26,6 +26,15 @@ public abstract class InputMethodStatus {
     protected InputMethodStatus(Context con) {
         this.context = con;
     }
+    
+    /**
+     * 輸入法是否要翻譯
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年10月31日下午12:58:12
+     * @return
+     */
+    public abstract boolean isShouldTranslate();
 
     /**
      * 得到輸入法名字

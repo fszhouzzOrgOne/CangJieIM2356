@@ -201,7 +201,7 @@
 		            android:id="@+id/keybtnShift"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1"
+		            android:layout_weight="1.1"
 		            android:text="↑" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -273,7 +273,7 @@
 		            android:id="@+id/keybtnDelete"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.6"
+		            android:layout_weight="1.5"
 		            android:src="@drawable/icon_delete"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -289,7 +289,7 @@
 		            android:id="@+id/keybtnNum"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1"
+		            android:layout_weight="1.1"
 		            android:text="12" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -298,7 +298,7 @@
 		            android:id="@+id/keybtnSim"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1"
+		            android:layout_weight="1.1"
 		            android:text="符" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -307,7 +307,7 @@
 		            android:id="@+id/keybtnSimComma"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.2"
+		            android:layout_weight="1.1"
 		            android:text="，" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -316,7 +316,7 @@
 		            android:id="@+id/keybtnSpace"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="3.7"
+		            android:layout_weight="3.8"
 		            android:text="空格" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -325,7 +325,7 @@
 		            android:id="@+id/keybtnSimPeriod"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.2"
+		            android:layout_weight="1.1"
 		            android:text="。" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -334,7 +334,7 @@
 		            android:id="@+id/keybtnEnter"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.6"
+		            android:layout_weight="1.5"
 		            android:src="@drawable/icon_enter"
 		            android:background="@drawable/keyboard_button_selector"
 		            />

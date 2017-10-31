@@ -54,7 +54,7 @@ public class CandidateItemTextView extends TextView {
         if (StringUtils.hasText(str)) {
             InputMethodStatus stat = ((Cj2356InputMethodService) this
                     .getContext()).getInputMethodStatus();
-            if (InputMethodStatusCn.TYPE_CODE.equals(stat.getType())) {
+            if (stat.isShouldTranslate()) {
                 InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
                 str = cnstat.translateCode2Name(str);
             }

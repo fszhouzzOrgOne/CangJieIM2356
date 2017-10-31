@@ -6,10 +6,13 @@ import android.content.Context;
 
 public class InputMethodStatusEnaa extends InputMethodStatusEn {
 
+    public static final String SUBTYPE_CODE = "aa";
+    public static final String SUBTYPE_NAME = "小寫";
+    
     public InputMethodStatusEnaa(Context con) {
         super(con);
-        this.setSubType("aa");
-        this.setSubTypeName("小寫");
+        this.setSubType(SUBTYPE_CODE);
+        this.setSubTypeName(SUBTYPE_NAME);
     }
 
     @Override
@@ -23,6 +26,6 @@ public class InputMethodStatusEnaa extends InputMethodStatusEn {
 
     @Override
     public String getInputMethodName() {
-        return "英文小寫";
+        return "英文" + SUBTYPE_NAME;
     }
 }

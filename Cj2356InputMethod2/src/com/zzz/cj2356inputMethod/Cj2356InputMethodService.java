@@ -44,7 +44,7 @@ public class Cj2356InputMethodService extends InputMethodService {
     public void onWindowHidden() {
         if (null != getInputMethodStatus()) {
             // 停止中文輸入狀態
-            if (InputMethodStatusCn.TYPE_CODE.equals(getInputMethodStatus().getType())) {
+            if (getInputMethodStatus().isShouldTranslate()) {
                 if (((InputMethodStatusCn) getInputMethodStatus()).isInputingCn()) {
                     ((InputMethodStatusCn) getInputMethodStatus()).setInputingCn(false);
                 }
@@ -117,6 +117,7 @@ public class Cj2356InputMethodService extends InputMethodService {
      */
     public void setInputMethodStatus(InputMethodStatus stat) {
         KeyboardBodyIniter.setInputMethodStatus(stat);
+        Cangjie2356IMsUtils.setCurrentIm(stat.getType(), stat);
     }
 
     /**

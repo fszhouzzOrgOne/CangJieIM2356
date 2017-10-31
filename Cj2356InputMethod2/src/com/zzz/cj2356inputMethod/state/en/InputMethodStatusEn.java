@@ -21,4 +21,8 @@ public abstract class InputMethodStatusEn extends InputMethodStatus {
         this.setTypeName(TYPE_NAME);
     }
 
+    @Override
+    public boolean isShouldTranslate() {
+        return false;
+    }
 }

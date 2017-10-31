@@ -16,17 +16,17 @@ import com.zzz.cj2356inputMethod.utils.StringUtils;
  */
 public abstract class InputMethodStatusCn extends InputMethodStatus {
 
-    public static final String TYPE_CODE = "cn";
-    public static final String TYPE_NAME = "中";
-
     private boolean isInputingCn = false; // 用户是否正在打中文中
     // 中文臨時輸入的內容
     private Map<String, String> inputTempCn = new HashMap<String, String>();
 
     InputMethodStatusCn(Context con) {
         super(con);
-        this.setType(TYPE_CODE);
-        this.setTypeName(TYPE_NAME);
+    }
+    
+    @Override
+    public boolean isShouldTranslate() {
+        return true;
     }
 
     /**
