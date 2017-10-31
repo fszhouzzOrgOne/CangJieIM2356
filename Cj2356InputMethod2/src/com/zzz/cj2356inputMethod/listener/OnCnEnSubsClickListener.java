@@ -40,9 +40,7 @@ public class OnCnEnSubsClickListener implements OnClickListener {
                 }
             }
 
-            if (v.getId() == R.id.keybtnCnEn) {
-                ser.setInputMethodStatus(ser.getInputMethodStatus().getNextStatusType());
-            } else if (v.getId() == R.id.keybtnShift) {
+            if (v.getId() == R.id.keybtnShift) {
                 ser.setInputMethodStatus(ser.getInputMethodStatus().getNextStatus());
             }
         } catch (Exception e) {

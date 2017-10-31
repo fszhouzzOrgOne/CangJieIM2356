@@ -9,6 +9,7 @@ import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
+import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
@@ -35,7 +36,6 @@ public class KeyboardBodyIniter {
     private static View keyboardView;
 
     private static List<View> letterViews = new ArrayList<View>(); // 26個英文字母鍵列表
-    private static Button keybtnCnEn; // 中英轉換鍵
     private static Button keybtnShift; // 中文換代鍵，英文大小寫轉換鍵
     private static InputMethodStatus inputStat; // 當前輸入法狀態
 
@@ -71,9 +71,6 @@ public class KeyboardBodyIniter {
 
         keybtnShift = (Button) keyboardView.findViewById(R.id.keybtnShift);
         keybtnShift.setOnClickListener(new OnCnEnSubsClickListener(context));
-
-        keybtnCnEn = (Button) keyboardView.findViewById(R.id.keybtnCnEn);
-        keybtnCnEn.setOnClickListener(new OnCnEnSubsClickListener(context));
 
         keyboardView.findViewById(R.id.keybtnSpace).setOnClickListener(
                 new OnSpaceClickListener(context));
@@ -143,6 +140,9 @@ public class KeyboardBodyIniter {
                     }
                 });
 
+        // 逗號
+        keyboardView.findViewById(R.id.keybtnSimComma).setOnTouchListener(new OnKeyNumTouchListener(context));
+
         currentKeyboardId = keyboardId;
     }
 
@@ -208,7 +208,6 @@ public class KeyboardBodyIniter {
             btn.setText(keysNameMap.get(key).toString());
         }
 
-        keybtnCnEn.setText(inputStat.getTypeName());
         if (InputMethodStatusCn.TYPE_CODE.equals(inputStat.getType())) {
             keybtnShift.setText(inputStat.getSubTypeName());
         } else {

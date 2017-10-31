@@ -197,14 +197,16 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal" >
-		        <Button android:textAllCaps="false" android:textSize="12dp" 
-		            android:id="@+id/keybtnShift"
+		        
+                <Button android:textAllCaps="false" android:textSize="14dp" 
+		            android:id="@+id/keybtnNum"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.2"
-		            android:text="↑" 
+		            android:text="12" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
+                
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnZ"
 		            android:layout_width="0dp"
@@ -283,22 +285,21 @@
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
 		        android:orientation="horizontal" >
-		
-		        <Button android:textAllCaps="false"
-		            android:id="@+id/keybtnCnEn"
+                <Button android:textAllCaps="false" android:textSize="12dp" 
+		            android:id="@+id/keybtnShift"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.2"
-		            android:text="En" 
+		            android:text="↑" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		
 		        <Button android:textAllCaps="false" android:textSize="14dp" 
-		            android:id="@+id/keybtnNum"
+		            android:id="@+id/keybtnSimComma"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.2"
-		            android:text="12" 
+		            android:text="，" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		
