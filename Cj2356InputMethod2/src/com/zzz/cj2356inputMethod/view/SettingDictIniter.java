@@ -42,7 +42,7 @@ public class SettingDictIniter {
     private static SearchView searView;
     private static EditText editText;
     private static Button editTextBtn;
-    
+
     private static List<Group> gData;
 
     /**
@@ -68,24 +68,24 @@ public class SettingDictIniter {
         editText.setTypeface(FontManager.getTypeface(context));
         editTextBtn = (Button) ((Activity) context).findViewById(R.id.setTabDictEditTextBtn);
         editTextBtn.setOnClickListener(new EditTextBtnOnClickListener(context));
-        
+
         try {
             // android.os.Build.MODEL=C106
             // android.os.Build.VERSION.SDK=23
             // android.os.Build.VERSION.SDK_INT=23
             // android.os.Build.VERSION.RELEASE=6.0.1
             if (!android.os.Build.VERSION.RELEASE.startsWith("7.")) {
-             // 查詢框底字體只能這樣設置
-                int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
-                TextView textView = (TextView) searView.findViewById(id);  
+                // 查詢框底字體只能這樣設置
+                int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+                TextView textView = (TextView) searView.findViewById(id);
                 textView.setTypeface(FontManager.getTypeface(context));
-                
+
                 searView.setIconifiedByDefault(false);
                 searView.setSubmitButtonEnabled(false);
                 searView.setQueryHint("請輸入漢字或編碼...");
                 // 查詢框事件
                 searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
-                
+
                 setDictLayout.setVisibility(View.GONE);
             } else {
                 throw new Exception();
@@ -101,7 +101,7 @@ public class SettingDictIniter {
         // 为列表设置点击事件
         expandableListView.setOnChildClickListener(new MyExpandableListViewOnChildClickListener(context));
         // 展開、關閉都重新算高度
-        expandableListView.setOnGroupCollapseListener(new OnGroupCollapseListener(){
+        expandableListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
             @Override
             public void onGroupCollapse(int paramInt) {
                 setListViewHeightBasedOnChildren(expandableListView);
@@ -153,11 +153,11 @@ public class SettingDictIniter {
             }
         }
     }
-    
+
     public static List<Group> getgData() {
         return gData;
     }
-    
+
     public static void searchSth(String cont) {
         if (null != searView) {
             searView.setQuery(cont, true);
@@ -187,20 +187,20 @@ public class SettingDictIniter {
         int listCount = 0; // 分組和子項底總和
         // 所有子項的總高
         int totalHeight = 0;
-        int groupCnt = adapter.getGroupCount(); //返回分組底數目
+        int groupCnt = adapter.getGroupCount(); // 返回分組底數目
         listCount += groupCnt;
         for (int i = 0, len = groupCnt; i < len; i++) {
             View listItem = adapter.getGroupView(i, false, null, expandableListView);
             listItem.measure(0, 0); // 計算子項的寬高
             totalHeight += listItem.getMeasuredHeight();
-            
+
             if (expandableListView.isGroupExpanded(i)) {
                 int childCount = adapter.getChildrenCount(i);
                 listCount += childCount;
                 for (int j = 0; j < childCount; j++) {
                     View childView = adapter.getChildView(i, j, false, null, expandableListView);
                     childView.measure(0, 0); // 計算子項的寬高
-                    totalHeight += childView.getMeasuredHeight(); 
+                    totalHeight += childView.getMeasuredHeight();
                 }
             }
         }
@@ -211,7 +211,7 @@ public class SettingDictIniter {
         params.height = totalHeight + (expandableListView.getDividerHeight() * (listCount - 1));
         expandableListView.setLayoutParams(params);
     }
-    
+
     /**
      * 查詢文本框中輸入值
      * 
@@ -311,8 +311,7 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-        final Item item = SettingDictIniter.getgData()
-                .get(groupPosition).getItems().get(childPosition);
+        final Item item = SettingDictIniter.getgData().get(groupPosition).getItems().get(childPosition);
         if (item.isEmpty()) {
             return false;
         }
