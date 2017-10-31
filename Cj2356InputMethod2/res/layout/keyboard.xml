@@ -184,7 +184,7 @@
 		            android:layout_width="match_parent"
 			        android:layout_height="@dimen/keyboard_num_grid_height"
 			        android:horizontalSpacing="1dp"
-			        android:numColumns="7"
+			        android:numColumns="6"
 			        android:verticalSpacing="1dp" 
 		            />
 	            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -338,7 +338,7 @@
 			        android:layout_width="match_parent"
 			        android:layout_height="@dimen/keyboard_sim_grid_height"
 			        android:horizontalSpacing="1dp"
-			        android:numColumns="7"
+			        android:numColumns="6"
 			        android:verticalSpacing="1dp" 
 			        >
 			    </GridView>
