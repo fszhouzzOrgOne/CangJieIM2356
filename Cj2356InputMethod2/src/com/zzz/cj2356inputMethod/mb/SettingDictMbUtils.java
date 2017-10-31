@@ -1,17 +1,23 @@
 package com.zzz.cj2356inputMethod.mb;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.zzz.cj2356inputMethod.dto.Group;
 import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj2;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj3;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj35;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj5;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj6;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjMs;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjYhqm;
+import com.zzz.cj2356inputMethod.utils.Cangjie2356ConfigUtils;
+import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
@@ -35,12 +41,38 @@ public class SettingDictMbUtils {
     public static void init(Context con) {
         context = con;
         if (dictIms.isEmpty()) {
-            dictIms.add(new InputMethodStatusCnCj6(context));
-            dictIms.add(new InputMethodStatusCnCj5(context));
-            dictIms.add(new InputMethodStatusCnCj3(context));
-            dictIms.add(new InputMethodStatusCnCjYhqm(context));
-            dictIms.add(new InputMethodStatusCnCjMs(context));
-            dictIms.add(new InputMethodStatusCnCj2(context));
+            try {
+                Cangjie2356ConfigUtils.init(context);
+                String cjConfig = Cangjie2356ConfigUtils.getConfig(Cangjie2356IMsUtils.ORDER_CJ_KEY);
+                String[] cjConfigArr = cjConfig.split(",");
+                List<String> cjConfigList = new ArrayList<String>();
+                for (String conf : cjConfigArr) {
+                    cjConfigList.add(conf);
+                }
+
+                Map<String, Object> allCjIMsMap = new LinkedHashMap<String, Object>();
+                InputMethodStatus im = new InputMethodStatusCnCj6(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCj5(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCj35(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCj3(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCjMs(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCjYhqm(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCj2(context);
+                allCjIMsMap.put(im.getSubType(), im);
+
+                for (String key : allCjIMsMap.keySet()) {
+                    if (cjConfigList.contains(key)) {
+                        dictIms.add((InputMethodStatusCn) allCjIMsMap.get(key));
+                    }
+                }
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -72,10 +104,11 @@ public class SettingDictMbUtils {
         for (int i = 0; i < dictIms.size(); i++) {
             Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
             List<Item> items = dictIms.get(i).getCandidatesInfo(query, false);
-//            List<Item> items = null;
-//            if (MbUtils.TYPE_CODE_CJGEN6.equals(dictIms.get(i).getSubType())) {
-//                items = dictIms.get(i).getCandidatesInfo(query, false);
-//            }
+            // List<Item> items = null;
+            // if (MbUtils.TYPE_CODE_CJGEN6.equals(dictIms.get(i).getSubType()))
+            // {
+            // items = dictIms.get(i).getCandidatesInfo(query, false);
+            // }
             if (null != items && !items.isEmpty()) {
                 for (Item it : items) {
                     if (StringUtils.hasText(it.getEncode())) {
@@ -102,10 +135,11 @@ public class SettingDictMbUtils {
         for (int i = 0; i < dictIms.size(); i++) {
             Group g = new Group(i, dictIms.get(i).getSubType(), dictIms.get(i).getInputMethodName());
             List<Item> items = dictIms.get(i).getCandidatesInfoByChar(query);
-//            List<Item> items = null;
-//            if (MbUtils.TYPE_CODE_CJGEN6.equals(dictIms.get(i).getSubType())) {
-//                items = dictIms.get(i).getCandidatesInfoByChar(query);
-//            }
+            // List<Item> items = null;
+            // if (MbUtils.TYPE_CODE_CJGEN6.equals(dictIms.get(i).getSubType()))
+            // {
+            // items = dictIms.get(i).getCandidatesInfoByChar(query);
+            // }
             if (null != items && !items.isEmpty()) {
                 for (Item it : items) {
                     if (StringUtils.hasText(it.getEncode())) {
