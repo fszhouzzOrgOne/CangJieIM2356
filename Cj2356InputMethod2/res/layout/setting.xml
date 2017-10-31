@@ -101,6 +101,33 @@
             android:orientation="vertical" 
             android:background="@color/dark3b3"
             >
+            <LinearLayout
+                android:id="@+id/setTabDictEditTextLayout" 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" 
+                >
+                <EditText
+	                android:id="@+id/setTabDictEditText"  
+	                android:layout_width="0dp" 
+	                android:layout_weight="6"
+                    android:layout_height="@dimen/keyboard_numsim_griditem_height"
+	                android:maxLength="10"
+	                android:singleLine="true"
+	                android:maxLines="1"
+	                android:hint="請輸入漢字或編碼..."
+	            />
+                
+                <Button
+                    android:id="@+id/setTabDictEditTextBtn"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="@dimen/keyboard_numsim_griditem_height"
+                    android:background="@drawable/keyboard_button_selector"
+                    android:text="查詢" 
+                />
+	        
+            </LinearLayout>
 	        <SearchView
 	            android:id="@+id/setTabDictSearchView"
 	            android:layout_width="match_parent"

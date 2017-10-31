@@ -18,6 +18,8 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
@@ -36,8 +38,10 @@ public class SettingDictIniter {
     private static Context context;
 
     private static LinearLayout setDictLayout;
-    private static SearchView searView;
     private static ExpandableListView expandableListView;
+    private static SearchView searView;
+    private static EditText editText;
+    private static Button editTextBtn;
     
     private static List<Group> gData;
 
@@ -59,16 +63,30 @@ public class SettingDictIniter {
         searView = (SearchView) ((Activity) context).findViewById(R.id.setTabDictSearchView);
         expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
 
-        // 查詢框底字體只能這樣設置
-        int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
-        TextView textView = (TextView) searView.findViewById(id);  
-        textView.setTypeface(FontManager.getTypeface(context));
+        LinearLayout setDictLayout = (LinearLayout) ((Activity) context).findViewById(R.id.setTabDictEditTextLayout);
+        editText = (EditText) ((Activity) context).findViewById(R.id.setTabDictEditText);
+        editText.setTypeface(FontManager.getTypeface(context));
+        editTextBtn = (Button) ((Activity) context).findViewById(R.id.setTabDictEditTextBtn);
+        editTextBtn.setOnClickListener(new EditTextBtnOnClickListener(context));
         
-        searView.setIconifiedByDefault(false);
-        searView.setSubmitButtonEnabled(false);
-        searView.setQueryHint("請輸入漢字或編碼...");
-        // 查詢框事件
-        searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
+        try {
+            // 查詢框底字體只能這樣設置
+            int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);  
+            TextView textView = (TextView) searView.findViewById(id);  
+            textView.setTypeface(FontManager.getTypeface(context));
+            
+            searView.setIconifiedByDefault(false);
+            searView.setSubmitButtonEnabled(false);
+            searView.setQueryHint("請輸入漢字或編碼...");
+            // 查詢框事件
+            searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
+            
+            setDictLayout.setVisibility(View.GONE);
+        } catch (Exception e) {
+            // 安卓7可能兼容searView
+            searView.setVisibility(View.GONE);
+            searView = null;
+        }
 
         // 字典結果數據準備
         setgData(null);
@@ -135,6 +153,9 @@ public class SettingDictIniter {
     public static void searchSth(String cont) {
         if (null != searView) {
             searView.setQuery(cont, true);
+        } else {
+            editText.setText(cont);
+            editTextBtn.performClick();
         }
     }
 
@@ -182,6 +203,46 @@ public class SettingDictIniter {
         params.height = totalHeight + (expandableListView.getDividerHeight() * (listCount - 1));
         expandableListView.setLayoutParams(params);
     }
+    
+    /**
+     * 查詢文本框中輸入值
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年10月31日下午5:01:15
+     */
+    static class EditTextBtnOnClickListener implements View.OnClickListener {
+        private Context context;
+
+        public EditTextBtnOnClickListener(Context con) {
+            this.context = con;
+        }
+
+        @Override
+        public void onClick(View v) {
+            List<Group> gData = null;
+            if (null != editText && null != editText.getText()) {
+                String query = editText.getText().toString().trim();
+                if (query.length() > 0) {
+                    String pattern = "[a-zA-Z]{1,}";
+                    Toast.makeText(context, "查詢“" + query + "”", Toast.LENGTH_SHORT).show();
+                    if (query.matches(pattern)) {
+                        query = query.toLowerCase();
+                        gData = SettingDictMbUtils.selectDbByCode(query);
+                    } else {
+                        gData = SettingDictMbUtils.selectDbByChar(query);
+                    }
+                    editText.clearFocus();
+                } else {
+                    editText.setText("");
+                    editText.requestFocus();
+                    Toast.makeText(context, "請輸入查詢", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(context, "請輸入查詢", Toast.LENGTH_SHORT).show();
+            }
+            SettingDictIniter.setgData(gData);
+        }
+    }
 }
 
 /**
@@ -207,11 +268,12 @@ class MySearchViewOnQueryTextListener implements SearchView.OnQueryTextListener 
     public boolean onQueryTextSubmit(String query) {
         List<Group> gData = null;
 
-        String pattern = "[a-z]{1,}";
+        String pattern = "[a-zA-Z]{1,}";
         if (null != query && query.trim().length() > 0) {
             query = query.trim();
             Toast.makeText(mContext, "查詢“" + query + "”", Toast.LENGTH_SHORT).show();
             if (query.matches(pattern)) {
+                query = query.toLowerCase();
                 gData = SettingDictMbUtils.selectDbByCode(query);
             } else {
                 gData = SettingDictMbUtils.selectDbByChar(query);
