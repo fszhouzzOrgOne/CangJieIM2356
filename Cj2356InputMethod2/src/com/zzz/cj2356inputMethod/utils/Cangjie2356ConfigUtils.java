@@ -21,7 +21,7 @@ import android.content.Context;
 public class Cangjie2356ConfigUtils {
 
     private static boolean inited = false;
-    
+
     private static Context context;
 
     /**
@@ -53,7 +53,14 @@ public class Cangjie2356ConfigUtils {
             boolean shouldCopy = true;
             File destFile = new File(configOuterName);
             if (destFile.exists()) {
-                shouldCopy = false;
+                // 是一样的文件
+                if (IOUtils.isSameFile(context.getResources().getAssets().open(configFullName),
+                        new FileInputStream(destFile))) {
+                    shouldCopy = false;
+                }
+                if (shouldCopy) {
+                    destFile.delete();
+                }
             }
             if (shouldCopy) {
                 IOUtils.copyFile(context.getResources().getAssets().open(configFullName),
@@ -73,7 +80,7 @@ public class Cangjie2356ConfigUtils {
             }
         }
     }
-    
+
     public static String getConfig(String key) {
         if (null == configMap) {
             return null;
