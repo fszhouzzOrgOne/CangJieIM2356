@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 選擇鍵盤佈局的選項卡的初始化<br/>
@@ -32,7 +33,7 @@ public class ChooseKeyboardLayoutTabIniter {
 
     private static View chooseKeyboardTabScroll;
     private static LinearLayout chooseKeyboardLayoutScrollContent;
-    private static List<TextView> textViews = new ArrayList<TextView>();
+    private static List<TextView> textViews = null;
 
     // 三種類別輸入法的當前輸入法主鍵
     private static final String ORDER_TYPE_EN = Cangjie2356IMsUtils.ORDER_TYPE_EN;
@@ -48,6 +49,7 @@ public class ChooseKeyboardLayoutTabIniter {
         chooseKeyboardLayoutScrollContent = (LinearLayout) keyboardView
                 .findViewById(R.id.chooseKeyboardLayoutScrollContent);
 
+        textViews = new ArrayList<TextView>();
         // 按類型配置，生成選項卡
         String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderTypeCfg();
         String orderTypes[] = imOrderTypeCfg.split(",");
@@ -119,25 +121,29 @@ public class ChooseKeyboardLayoutTabIniter {
 
         @Override
         public void onClick(View v) {
-            int index = textViews.indexOf(v);
-            setTabBiggerTextSiz(index);
+            try {
+                int index = textViews.indexOf(v);
+                setTabBiggerTextSiz(index);
 
-            String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderTypeCfg();
-            String orderTypes[] = imOrderTypeCfg.split(",");
-            String theType = orderTypes[index];
+                String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderTypeCfg();
+                String orderTypes[] = imOrderTypeCfg.split(",");
+                String theType = orderTypes[index];
 
-            InputMethodStatus statOld = ((Cj2356InputMethodService) context).getInputMethodStatus();
-            // 停止中文輸入狀態
-            if (statOld.isShouldTranslate()) {
-                if (((InputMethodStatusCn) statOld).isInputingCn()) {
-                    // 先模擬點擊一下打字鍵盤上的回車
-                    ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
-                    keyboardEnter.performClick();
+                InputMethodStatus statOld = ((Cj2356InputMethodService) context).getInputMethodStatus();
+                // 停止中文輸入狀態
+                if (statOld.isShouldTranslate()) {
+                    if (((InputMethodStatusCn) statOld).isInputingCn()) {
+                        // 先模擬點擊一下打字鍵盤上的回車
+                        ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
+                        keyboardEnter.performClick();
+                    }
                 }
-            }
 
-            InputMethodStatus stat = Cangjie2356IMsUtils.getCurrentIm(theType);
-            ((Cj2356InputMethodService) context).setInputMethodStatus(stat);
+                InputMethodStatus stat = Cangjie2356IMsUtils.getCurrentIm(theType);
+                ((Cj2356InputMethodService) context).setInputMethodStatus(stat);
+            } catch (Exception e) {
+                Toast.makeText(context, "切換輸入法種類失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
 
     }

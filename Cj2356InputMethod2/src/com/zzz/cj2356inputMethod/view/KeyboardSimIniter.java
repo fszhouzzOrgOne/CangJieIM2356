@@ -38,7 +38,7 @@ public class KeyboardSimIniter {
     private static View keyboardView;
 
     private static LinearLayout keyboardBodySimScrollContent;
-    private static List<TextView> keyboardBodySimScrollViews = new ArrayList<TextView>();
+    private static List<TextView> keyboardBodySimScrollViews = null;
 
     private static GridView keyboardBodySimGrid; // 符號鍵盤
 
@@ -126,6 +126,7 @@ public class KeyboardSimIniter {
         // keyboardView.findViewById(R.id.keyboardBodySimScroll);
         keyboardBodySimScrollContent = (LinearLayout) keyboardView.findViewById(R.id.keyboardBodySimScrollContent);
 
+        keyboardBodySimScrollViews = new ArrayList<TextView>();
         Iterator<String> itr = typeNameKeyMap.keySet().iterator();
         while (itr.hasNext()) {
             String keyName = itr.next();
