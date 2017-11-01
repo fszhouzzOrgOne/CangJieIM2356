@@ -120,32 +120,30 @@ public final class R {
         public static final int keybtnX=0x7f090039;
         public static final int keybtnY=0x7f090029;
         public static final int keybtnZ=0x7f090038;
-        public static final int linearLayoutSetTab=0x7f090056;
-        public static final int linearLayoutSimTab=0x7f090047;
-        public static final int setInputMethodBtn=0x7f090049;
-        public static final int setTabDictEditText=0x7f09004f;
-        public static final int setTabDictEditTextBtn=0x7f090050;
-        public static final int setTabDictEditTextLayout=0x7f09004e;
-        public static final int setTabDictExpandableListView=0x7f090052;
-        public static final int setTabDictSearchLayout=0x7f09004d;
-        public static final int setTabDictSearchView=0x7f090051;
-        public static final int setsuMyouSimbBtn=0x7f090048;
-        public static final int setsuMyouTextview=0x7f09004c;
-        public static final int settingLayoutScroll=0x7f09004a;
-        public static final int settingLayoutTabhost=0x7f09004b;
-        public static final int tv_character=0x7f090054;
-        public static final int tv_encode=0x7f090055;
-        public static final int tv_group_name=0x7f090053;
+        public static final int linearLayoutSetTab=0x7f090055;
+        public static final int setInputMethodBtn=0x7f090048;
+        public static final int setTabDictEditText=0x7f09004e;
+        public static final int setTabDictEditTextBtn=0x7f09004f;
+        public static final int setTabDictEditTextLayout=0x7f09004d;
+        public static final int setTabDictExpandableListView=0x7f090051;
+        public static final int setTabDictSearchLayout=0x7f09004c;
+        public static final int setTabDictSearchView=0x7f090050;
+        public static final int setsuMyouSimbBtn=0x7f090047;
+        public static final int setsuMyouTextview=0x7f09004b;
+        public static final int settingLayoutScroll=0x7f090049;
+        public static final int settingLayoutTabhost=0x7f09004a;
+        public static final int tv_character=0x7f090053;
+        public static final int tv_encode=0x7f090054;
+        public static final int tv_group_name=0x7f090052;
     }
     public static final class layout {
         public static final int keyboard=0x7f030000;
         public static final int keyboard_qwerty1=0x7f030001;
         public static final int keyboardnumsimitem=0x7f030002;
-        public static final int keyboardsim_tab_content=0x7f030003;
-        public static final int setting=0x7f030004;
-        public static final int setting_dict_item_group=0x7f030005;
-        public static final int setting_dict_item_item=0x7f030006;
-        public static final int setting_tab_content=0x7f030007;
+        public static final int setting=0x7f030003;
+        public static final int setting_dict_item_group=0x7f030004;
+        public static final int setting_dict_item_item=0x7f030005;
+        public static final int setting_tab_content=0x7f030006;
     }
     public static final class string {
         public static final int app_name=0x7f060001;
