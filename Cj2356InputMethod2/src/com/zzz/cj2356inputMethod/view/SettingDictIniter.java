@@ -15,6 +15,8 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -61,7 +63,10 @@ public class SettingDictIniter {
 
         editText = (EditText) ((Activity) context).findViewById(R.id.setTabDictEditText);
         editText.setTypeface(FontManager.getTypeface(context));
+        editText.setOnKeyListener(new MyEditTextKeyListener(context));
+
         editTextBtn = (Button) ((Activity) context).findViewById(R.id.setTabDictEditTextBtn);
+        editTextBtn.setTextColor(Color.DKGRAY);
         editTextBtn.setOnClickListener(new EditTextBtnOnClickListener(context));
 
         // 字典結果數據準備
@@ -182,7 +187,7 @@ public class SettingDictIniter {
      * @author fszhouzz@qq.com
      * @time 2017年10月31日下午5:01:15
      */
-    static class EditTextBtnOnClickListener implements View.OnClickListener {
+    private static class EditTextBtnOnClickListener implements View.OnClickListener {
         private Context context;
 
         public EditTextBtnOnClickListener(Context con) {
@@ -203,7 +208,6 @@ public class SettingDictIniter {
                     } else {
                         gData = SettingDictMbUtils.selectDbByChar(query);
                     }
-                    editText.clearFocus();
                 } else {
                     editText.setText("");
                     editText.requestFocus();
@@ -213,6 +217,31 @@ public class SettingDictIniter {
                 Toast.makeText(context, "請輸入查詢", Toast.LENGTH_SHORT).show();
             }
             SettingDictIniter.setgData(gData);
+        }
+    }
+
+    /**
+     * 輸入後回車
+     * 
+     * @author 日月遞炤
+     * @time 2017年11月1日 下午9:23:33
+     */
+    private static class MyEditTextKeyListener implements View.OnKeyListener {
+        @SuppressWarnings("unused")
+        private Context context;
+
+        public MyEditTextKeyListener(Context con) {
+            this.context = con;
+        }
+
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                // 㸃下查詢按鈕
+                editTextBtn.performClick();
+                return true;
+            }
+            return false;
         }
     }
 }
