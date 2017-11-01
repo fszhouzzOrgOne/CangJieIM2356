@@ -115,7 +115,7 @@
 		            android:layout_weight="1"
 		            android:padding="0dp"
 		            android:text="a" 
-		            android:background="@drawable/keyboard_button_selector"
+		            android:background="@drawable/keyboard_button_a_selector"
 		            />
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnS"
@@ -133,7 +133,7 @@
 		            android:layout_weight="1"
 		            android:padding="0dp"
 		            android:text="d" 
-		            android:background="@drawable/keyboard_button_selector"
+		            android:background="@drawable/keyboard_button_d_selector"
 		            />
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnF"
@@ -232,7 +232,7 @@
 		            android:layout_weight="1"
 		            android:padding="0dp"
 		            android:text="c" 
-		            android:background="@drawable/keyboard_button_selector"
+		            android:background="@drawable/keyboard_button_c_selector"
 		            />
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnV"
@@ -250,7 +250,7 @@
 		            android:layout_weight="1"
 		            android:padding="0dp"
 		            android:text="b" 
-		            android:background="@drawable/keyboard_button_selector"
+		            android:background="@drawable/keyboard_button_b_selector"
 		            />
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnN"
