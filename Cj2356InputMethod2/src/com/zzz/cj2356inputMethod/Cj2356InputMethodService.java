@@ -32,9 +32,9 @@ public class Cj2356InputMethodService extends InputMethodService {
     public void onInitializeInterface() {
         // 初始化詞典數據
         MbUtils.init(this);
-        
+
         Cangjie2356ConfigUtils.init(this);
-        
+
         Cangjie2356IMsUtils.init(this);
     }
 
@@ -141,8 +141,12 @@ public class Cj2356InputMethodService extends InputMethodService {
      * 設置輸入法狀態
      */
     public void setInputMethodStatus(InputMethodStatus stat) {
-        KeyboardBodyIniter.setInputMethodStatus(stat);
-        Cangjie2356IMsUtils.setCurrentIm(stat.getType(), stat);
+        try {
+            KeyboardBodyIniter.setInputMethodStatus(stat);
+            Cangjie2356IMsUtils.setCurrentIm(stat.getType(), stat);
+        } catch (Exception e) {
+            Toast.makeText(this, "切換輸入法種類失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
