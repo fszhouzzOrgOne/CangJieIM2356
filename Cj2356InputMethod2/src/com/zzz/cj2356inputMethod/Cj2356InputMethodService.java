@@ -98,15 +98,35 @@ public class Cj2356InputMethodService extends InputMethodService {
     public View onCreateInputView() {
         keyboardView = getLayoutInflater().inflate(R.layout.keyboard, null);
         // 候選欄
-        CandidateViewIniter.initCandidateView(this, keyboardView);
+        try {
+            CandidateViewIniter.initCandidateView(this, keyboardView);
+        } catch (Exception e) {
+            Toast.makeText(this, "候選欄初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         // 鍵盤
-        KeyboardBodyIniter.initKeyboardBody(this, keyboardView, R.layout.keyboard_qwerty1);
+        try {
+            KeyboardBodyIniter.initKeyboardBody(this, keyboardView, R.layout.keyboard_qwerty1);
+        } catch (Exception e) {
+            Toast.makeText(this, "主鍵盤初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         // 第一個輸入法
-        setInputMethodStatus(Cangjie2356IMsUtils.getFirstIm());
+        try {
+            setInputMethodStatus(Cangjie2356IMsUtils.getFirstIm());
+        } catch (Exception e) {
+            Toast.makeText(this, "輸入法初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         // 數字鍵盤
-        KeyboardNumIniter.initKeyboardSim(this, keyboardView);
+        try {
+            KeyboardNumIniter.initKeyboardSim(this, keyboardView);
+        } catch (Exception e) {
+            Toast.makeText(this, "數字鍵盤初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         // 符號鍵盤
-        KeyboardSimIniter.initKeyboardSim(this, keyboardView);
+        try {
+            KeyboardSimIniter.initKeyboardSim(this, keyboardView);
+        } catch (Exception e) {
+            Toast.makeText(this, "符號鍵盤初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
         try {
             // 選擇鍵盤
             ChooseKeyboardLayoutTabIniter.initChooseKeyboardLayoutTab(this, keyboardView);

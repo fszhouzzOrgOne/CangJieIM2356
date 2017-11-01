@@ -66,7 +66,7 @@ public final class R {
         public static final int keyboardBodySimGrid=0x7f09001a;
         public static final int keyboardBodySimPageCtrls=0x7f09001b;
         public static final int keyboardBodySimScroll=0x7f090018;
-        public static final int keyboardBodySimTabhost=0x7f090019;
+        public static final int keyboardBodySimScrollContent=0x7f090019;
         public static final int keyboardCandidate=0x7f090002;
         public static final int keyboardCandidateBody=0x7f090003;
         public static final int keyboardCandidateCtrls=0x7f090008;
