@@ -24,8 +24,6 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -39,7 +37,6 @@ public class SettingDictIniter {
 
     private static LinearLayout setDictLayout;
     private static ExpandableListView expandableListView;
-    private static SearchView searView;
     private static EditText editText;
     private static Button editTextBtn;
 
@@ -60,41 +57,12 @@ public class SettingDictIniter {
         SettingDictMbUtils.init(context);
 
         setDictLayout = (LinearLayout) ((Activity) context).findViewById(R.id.setTabDictSearchLayout);
-        searView = (SearchView) ((Activity) context).findViewById(R.id.setTabDictSearchView);
         expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
 
-        LinearLayout setDictLayout = (LinearLayout) ((Activity) context).findViewById(R.id.setTabDictEditTextLayout);
         editText = (EditText) ((Activity) context).findViewById(R.id.setTabDictEditText);
         editText.setTypeface(FontManager.getTypeface(context));
         editTextBtn = (Button) ((Activity) context).findViewById(R.id.setTabDictEditTextBtn);
         editTextBtn.setOnClickListener(new EditTextBtnOnClickListener(context));
-
-        try {
-            // android.os.Build.MODEL=C106
-            // android.os.Build.VERSION.SDK=23
-            // android.os.Build.VERSION.SDK_INT=23
-            // android.os.Build.VERSION.RELEASE=6.0.1
-            if (!android.os.Build.VERSION.RELEASE.startsWith("7.")) {
-                // 查詢框底字體只能這樣設置
-                int id = searView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-                TextView textView = (TextView) searView.findViewById(id);
-                textView.setTypeface(FontManager.getTypeface(context));
-
-                searView.setIconifiedByDefault(false);
-                searView.setSubmitButtonEnabled(false);
-                searView.setQueryHint("請輸入漢字或編碼...");
-                // 查詢框事件
-                searView.setOnQueryTextListener(new MySearchViewOnQueryTextListener(context));
-
-                setDictLayout.setVisibility(View.GONE);
-            } else {
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            // 安卓7可能兼容searView
-            searView.setVisibility(View.GONE);
-            searView = null;
-        }
 
         // 字典結果數據準備
         setgData(null);
@@ -159,12 +127,8 @@ public class SettingDictIniter {
     }
 
     public static void searchSth(String cont) {
-        if (null != searView) {
-            searView.setQuery(cont, true);
-        } else {
-            editText.setText(cont);
-            editTextBtn.performClick();
-        }
+        editText.setText(cont);
+        editTextBtn.performClick();
     }
 
     /**
@@ -251,48 +215,6 @@ public class SettingDictIniter {
             SettingDictIniter.setgData(gData);
         }
     }
-}
-
-/**
- * 提交查詢
- * 
- * @author t
- * @time 2016-12-18下午12:17:49
- */
-class MySearchViewOnQueryTextListener implements SearchView.OnQueryTextListener {
-
-    private Context mContext;
-
-    public MySearchViewOnQueryTextListener(Context c) {
-        this.mContext = c;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        List<Group> gData = null;
-
-        String pattern = "[a-zA-Z]{1,}";
-        if (null != query && query.trim().length() > 0) {
-            query = query.trim();
-            Toast.makeText(mContext, "查詢“" + query + "”", Toast.LENGTH_SHORT).show();
-            if (query.matches(pattern)) {
-                query = query.toLowerCase();
-                gData = SettingDictMbUtils.selectDbByCode(query);
-            } else {
-                gData = SettingDictMbUtils.selectDbByChar(query);
-            }
-        } else {
-            Toast.makeText(mContext, "請輸入查詢", Toast.LENGTH_SHORT).show();
-        }
-        SettingDictIniter.setgData(gData);
-        return false;
-    }
-
 }
 
 /**
