@@ -101,7 +101,7 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
 
     private String generateCodeText(Item item) {
         if (item.isEmpty()) {
-            return "碼表闕字。";
+            return "無結果。";
         }
         return item.getEncodeName() + "（" + item.getEncode() + "）";
     }
