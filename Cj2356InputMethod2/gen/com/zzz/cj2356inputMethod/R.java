@@ -182,7 +182,7 @@ public final class R {
         public static final int setsuMyouSimbBtn=0x7f090047;
         public static final int setsuMyouTextview=0x7f09004b;
         public static final int settingLayoutScroll=0x7f090049;
-        public static final int settingLayoutTabhost=0x7f09004a;
+        public static final int settingLayoutScrollContent=0x7f09004a;
         public static final int tv_character=0x7f090052;
         public static final int tv_encode=0x7f090053;
         public static final int tv_group_name=0x7f090051;

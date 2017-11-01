@@ -1,15 +1,17 @@
 package com.zzz.cj2356inputMethod.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.zzz.cj2356inputMethod.R;
 
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.widget.LinearLayout.LayoutParams;
-import android.widget.TabHost;
-import android.widget.TabHost.OnTabChangeListener;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,60 +23,50 @@ import android.widget.Toast;
  */
 public class SettingLoayoutTabIniter {
 
-    public static final String SETTING_TAB_ID_LOG = "setting_tab_log";
-    public static final String SETTING_TAB_ID_DICT = "setting_tab_dict";
+    public static final String SETTING_TAB_LOG = "版本說明";
+    public static final String SETTING_TAB_DICT = "倉頡字典";
 
     private static Context context;
 
-    private static TabHost settingLayoutTabhost;
+    private static LinearLayout settingLayoutScrollContent;
+    private static List<String> settingTabNames = null;
+    private static List<TextView> settingTextViews = null;
 
     public static void initSettingLoayoutTab(Context con) {
         context = con;
 
-        settingLayoutTabhost = (TabHost) ((Activity) context).findViewById(R.id.settingLayoutTabhost);
-        settingLayoutTabhost.setup();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        inflater.inflate(R.layout.setting_tab_content, settingLayoutTabhost.getTabContentView());
-        // setContent 內容要在上面的inflate中，才能找到資源
-        settingLayoutTabhost.addTab(settingLayoutTabhost.newTabSpec(SETTING_TAB_ID_LOG).setIndicator("版本說明")
-                .setContent(R.id.linearLayoutSetTab));
-        settingLayoutTabhost.addTab(settingLayoutTabhost.newTabSpec(SETTING_TAB_ID_DICT).setIndicator("倉頡字典")
-                .setContent(R.id.linearLayoutSetTab));
+        settingLayoutScrollContent = (LinearLayout) ((Activity) context).findViewById(R.id.settingLayoutScrollContent);
 
-        int tabCnt = settingLayoutTabhost.getTabWidget().getChildCount();
-        for (int i = 0; i < tabCnt; i++) {
-            TextView textView = (TextView) settingLayoutTabhost.getTabWidget().getChildAt(i)
-                    .findViewById(android.R.id.title);
+        settingTabNames = new ArrayList<String>();
+        settingTabNames.add(SETTING_TAB_LOG);
+        settingTabNames.add(SETTING_TAB_DICT);
+
+        settingTextViews = new ArrayList<TextView>();
+        for (int i = 0; i < settingTabNames.size(); i++) {
+            TextView textView = new TextView(context);
+            textView.setText(settingTabNames.get(i));
             textView.setTextSize(16);
-            textView.setTextColor(Color.GRAY);
-            textView.setGravity(Gravity.CENTER_VERTICAL);
-            textView.setPadding(0, 0, 0, 0);
+            textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
+            textView.setPadding(50, 0, 50, 0);
             textView.setSingleLine();
-            textView.getLayoutParams().height = LayoutParams.MATCH_PARENT;
-            textView.getLayoutParams().width = LayoutParams.WRAP_CONTENT;
+            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+            textView.setLayoutParams(lpParams);
+
+            textView.setOnClickListener(new OnTabChooseSettingListener(context));
+
+            settingLayoutScrollContent.addView(textView);
+            settingTextViews.add(textView);
         }
         setTabBiggerTextSiz(0);
 
-        settingLayoutTabhost.setOnTabChangedListener(new OnTabChooseSettingListener(context));
-        
         SettingVLogIniter.initSettingVLog(context);
 
         SettingDictIniter.initSettingDict(context);
         // 先隱藏字典
         SettingDictIniter.hideSettingVLog();
     }
-    
-    /**
-     * 调整選項卡的顯示
-     * 
-     * @author zhaozizhao
-     * @time 2017年9月26日 下午9:08:22
-     */
-    private static void changeTabShow() {
-        int curIndex = settingLayoutTabhost.getCurrentTab();
-        setTabBiggerTextSiz(curIndex);
-    }
-    
+
     /**
      * 字體调大些
      * 
@@ -83,10 +75,8 @@ public class SettingLoayoutTabIniter {
      * @param curIndex
      */
     private static void setTabBiggerTextSiz(int curIndex) {
-        int tabCnt = settingLayoutTabhost.getTabWidget().getChildCount();
-        for (int i = 0; i < tabCnt; i++) {
-            TextView textView = (TextView) settingLayoutTabhost.getTabWidget().getChildAt(i)
-                    .findViewById(android.R.id.title);
+        for (int i = 0; i < settingTextViews.size(); i++) {
+            TextView textView = settingTextViews.get(i);
             if (curIndex == i) {
                 textView.setTextSize(17);
                 textView.setTextColor(Color.LTGRAY);
@@ -103,7 +93,7 @@ public class SettingLoayoutTabIniter {
      * @author fsz
      * @time 2017年9月26日 下午9:06:40
      */
-    static class OnTabChooseSettingListener implements OnTabChangeListener {
+    static class OnTabChooseSettingListener implements View.OnClickListener {
 
         private Context context;
 
@@ -113,21 +103,22 @@ public class SettingLoayoutTabIniter {
         }
 
         @Override
-        public void onTabChanged(String tabId) {
-            changeTabShow();
-            
-            if (SettingLoayoutTabIniter.SETTING_TAB_ID_LOG.equals(tabId)) {
+        public void onClick(View v) {
+            TextView tv = (TextView) v;
+            int index = settingTextViews.indexOf(tv);
+            setTabBiggerTextSiz(index);
+
+            if (SettingLoayoutTabIniter.SETTING_TAB_LOG.equals(tv.getText())) {
                 SettingDictIniter.hideSettingVLog();
                 SettingVLogIniter.showSettingVLog();
 
-            } else if (SettingLoayoutTabIniter.SETTING_TAB_ID_DICT.equals(tabId)) {
+            } else if (SettingLoayoutTabIniter.SETTING_TAB_DICT.equals(tv.getText())) {
                 SettingVLogIniter.hideSettingVLog();
                 SettingDictIniter.showSettingVLog();
 
             } else {
-                Toast.makeText(context, "未知選項卡" + tabId, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "未知選項卡" + tv.getText(), Toast.LENGTH_SHORT).show();
             }
         }
-
     }
 }
