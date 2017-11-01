@@ -235,13 +235,11 @@ public class KeyboardBodyIniter {
         }
 
         // 26個按鍵背景修改
-        if (inputStat.isShouldTranslate()) {
-            // 鍵盤名不是大字的英文
-            if (!"A".equals(inputStat.getKeysNameMap().get("a"))) {
-                for (int i = 0; i < letterViews.size(); i++) {
-                    View v = letterViews.get(i);
-                    v.setBackgroundResource(letterViewsBgIds.get(i));
-                }
+        String testKey = "a";
+        if (inputStat.isShouldTranslate() && (!testKey.toUpperCase().equals(inputStat.getKeysNameMap().get(testKey)))) {
+            for (int i = 0; i < letterViews.size(); i++) {
+                View v = letterViews.get(i);
+                v.setBackgroundResource(letterViewsBgIds.get(i));
             }
         } else {
             for (View v : letterViews) {
