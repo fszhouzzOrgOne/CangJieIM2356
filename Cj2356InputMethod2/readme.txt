@@ -15,16 +15,16 @@ im.order.cj=cj6
 
 倉頡三五：
 三五代的碼表混合
-assets\config\cangjie2356.config只有cj6，卽：
+assets\config\cangjie2356.config只有cj35，卽：
 im.order.cj=cj35
 
 給鬼島人：
 純五代，
 assets\config\cangjie2356.config只有cj5，卽：
 im.order.cj=cj5
-其牠輸入法都不要
+其牠輸入法不要日文 韓文 滿文
 碼表用這個：https://github.com/Jackchows/Cangjie5
-字的話只要基本區跟A區，安卓4.4.2
 符號界面中只要中文、英文符號
+如果有了符旁邊的「12」鍵，就可以把倉五右邊那個「符」刪除，不需要兩個功能一樣的按鈕
 
 
