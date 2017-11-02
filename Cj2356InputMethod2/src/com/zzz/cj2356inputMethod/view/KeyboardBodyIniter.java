@@ -37,8 +37,8 @@ public class KeyboardBodyIniter {
     private static View keyboardView;
 
     // 26個英文字母鍵列表
-    private static List<View> letterViews = new ArrayList<View>();
-    private static List<Integer> letterViewsBgIds = new ArrayList<Integer>(); // 背景
+    private static List<View> letterViews = null;
+    private static List<Integer> letterViewsBgIds = null; // 背景
 
     private static Button keybtnShift; // 中文換代鍵，英文大小寫轉換鍵
     private static InputMethodStatus inputStat; // 當前輸入法狀態
@@ -168,6 +168,7 @@ public class KeyboardBodyIniter {
         letterViews.add(keyboardView.findViewById(R.id.keybtnY));
         letterViews.add(keyboardView.findViewById(R.id.keybtnZ));
         // 背景主鍵
+        letterViewsBgIds = new ArrayList<Integer>();
         letterViewsBgIds.add(R.drawable.keyboard_button_a_selector);
         letterViewsBgIds.add(R.drawable.keyboard_button_b_selector);
         letterViewsBgIds.add(R.drawable.keyboard_button_c_selector);
