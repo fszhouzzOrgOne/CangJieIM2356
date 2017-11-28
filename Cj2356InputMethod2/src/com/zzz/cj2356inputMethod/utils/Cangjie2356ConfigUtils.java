@@ -56,7 +56,7 @@ public class Cangjie2356ConfigUtils {
                 // 是一样的文件
                 if (IOUtils.isSameFile(context.getResources().getAssets().open(configFullName),
                         new FileInputStream(destFile))) {
-                    shouldCopy = false;
+                    // TODO shouldCopy = false;
                 }
                 if (shouldCopy) {
                     destFile.delete();

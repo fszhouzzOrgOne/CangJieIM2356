@@ -8,6 +8,13 @@ import com.zzz.cj2356inputMethod.mb.MbUtils;
 
 import android.content.Context;
 
+/**
+ * 蒼頡六代輸入法
+ * 
+ * 
+ * @author 日月遞炤
+ * @time 2017年11月28日 下午9:05:59
+ */
 public class InputMethodStatusCnCj6 extends InputMethodStatusCnCj {
 
     public InputMethodStatusCnCj6(Context con) {
