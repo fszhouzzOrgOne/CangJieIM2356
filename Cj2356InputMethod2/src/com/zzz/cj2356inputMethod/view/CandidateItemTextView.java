@@ -26,6 +26,9 @@ import com.zzz.cj2356inputMethod.utils.StringUtils;
  */
 public class CandidateItemTextView extends TextView {
 
+    /** 候選欄是否顯示每個的編碼。 */
+    private boolean showEncode = false;
+    
     private Item item;
 
     public CandidateItemTextView(Context context, Item it) {
@@ -33,7 +36,11 @@ public class CandidateItemTextView extends TextView {
         this.item = it;
         setText(it.getCharacter());
 
-        this.setPadding(50, 0, 50, 0);
+        if (showEncode) {
+            this.setPadding(50, 0, 50, 0);
+        } else {
+            this.setPadding(30, 0, 30, 0);
+        }
 
         RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -51,7 +58,7 @@ public class CandidateItemTextView extends TextView {
         super.onDraw(canvas);
 
         String str = item.getEncode();
-        if (StringUtils.hasText(str)) {
+        if (showEncode && StringUtils.hasText(str)) {
             InputMethodStatus stat = ((Cj2356InputMethodService) this
                     .getContext()).getInputMethodStatus();
             if (stat.isShouldTranslate()) {

@@ -72,10 +72,28 @@ public class Cj2356InputMethodService extends InputMethodService {
         return composingTextView;
     }
 
-    public void setComposingText(String text) {
-        if (null != composingTextView && StringUtils.hasText(text)
+    /**
+     * 設置正在輸入提示內容
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年12月7日 下午10:33:18
+     * @param code
+     */
+    public void setComposingText(String code) {
+        if (null != composingTextView && StringUtils.hasText(code)
                 && false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
-            composingTextView.setComposingText(text);
+            InputMethodStatus stat = this.getInputMethodStatus();
+            String composing = "";
+            if (stat.isShouldTranslate()) {
+                InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
+                composing = cnstat.translateCode2Name(code);
+            }
+            String pattern = "^[a-zA-Z]+$";
+            if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
+                composing = composing + "（" + code + "）";
+            }
+
+            composingTextView.setComposingText(composing);
             setCandidatesViewShown(true);
         } else {
             composingTextView.setComposingText("");

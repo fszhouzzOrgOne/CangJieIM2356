@@ -23,7 +23,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
     InputMethodStatusCn(Context con) {
         super(con);
     }
-    
+
     @Override
     public boolean isShouldTranslate() {
         return true;
@@ -38,9 +38,9 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      *            是否解析結果，如加入時間等
      */
     public abstract List<Item> getCandidatesInfo(String code, boolean extraResolve);
-    
+
     /**
-     * 按字查詣輸入法的编码
+     * 按字查詢輸入法的编码
      * 
      * @param cha
      *            文字
@@ -98,8 +98,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
         }
 
         // 保持提示框中的顯示一致
-        ((Cj2356InputMethodService) this.getContext())
-                .setComposingText(getInputingCnValue());
+        ((Cj2356InputMethodService) this.getContext()).setComposingText(getInputingCnCode());
         return resultValue;
     }
 
@@ -108,8 +107,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      */
     public String getInputingCnValue() {
         String result = "";
-        if (null != inputTempCn
-                && StringUtils.hasText(inputTempCn.get("value"))) {
+        if (null != inputTempCn && StringUtils.hasText(inputTempCn.get("value"))) {
             result = inputTempCn.get("value");
         }
         return result;
