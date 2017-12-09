@@ -37,6 +37,7 @@ public class SettingVLogIniter {
         setTextview = (TextView) ((Activity) context).findViewById(R.id.setsuMyouTextview);
         setTextview.setTextColor(Color.LTGRAY);
         setTextview.setText(readLogTxt());
+        setTextview.setTextIsSelectable(true);
     }
 
     /**
