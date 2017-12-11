@@ -9,7 +9,7 @@ import java.util.Set;
  * 統一碼漢字工具类<br/>
  * 參見http://yedict.com/zsts.htm<br/>
  * http://www.haomeili.net/code/unicode?wd=
- *  
+ * 
  * @author fszhouzz@qq.com
  * @time 2017年12月11日上午9:37:37
  */
