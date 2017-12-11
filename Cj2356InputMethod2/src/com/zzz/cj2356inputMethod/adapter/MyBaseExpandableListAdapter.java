@@ -6,6 +6,7 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Group;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
+import com.zzz.cj2356inputMethod.utils.UnicodeHanziUtil;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -86,6 +87,7 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.setting_dict_item_item, parent, false);
             itemHolder = new ViewHolderItem();
             itemHolder.tv_character = (TextView) convertView.findViewById(R.id.tv_character);
+            itemHolder.tv_unicodeRangeName = (TextView) convertView.findViewById(R.id.tv_unicodeRangeName);
             itemHolder.tv_encode = (TextView) convertView.findViewById(R.id.tv_encode);
 
             convertView.setTag(itemHolder);
@@ -94,7 +96,10 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
         }
         // 字體自定義
         itemHolder.tv_character.setTypeface(FontManager.getTypeface(mContext));
-        itemHolder.tv_character.setText(gData.get(groupPosition).getItems().get(childPosition).getCharacter());
+        String character = gData.get(groupPosition).getItems().get(childPosition).getCharacter();
+        itemHolder.tv_character.setText(character);
+        String unicodeRangeName = UnicodeHanziUtil.getRangeNameByChar(character);
+        itemHolder.tv_unicodeRangeName.setText(unicodeRangeName);
         itemHolder.tv_encode.setText(generateCodeText(gData.get(groupPosition).getItems().get(childPosition)));
         return convertView;
     }
@@ -118,6 +123,7 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
 
     private static class ViewHolderItem {
         private TextView tv_character;
+        private TextView tv_unicodeRangeName;
         private TextView tv_encode;
     }
 
