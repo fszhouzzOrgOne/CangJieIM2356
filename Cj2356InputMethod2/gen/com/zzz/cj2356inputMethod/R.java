@@ -183,9 +183,9 @@ public final class R {
         public static final int settingLayoutScroll=0x7f090049;
         public static final int settingLayoutScrollContent=0x7f09004a;
         public static final int tv_character=0x7f090052;
-        public static final int tv_encode=0x7f090053;
+        public static final int tv_encode=0x7f090054;
         public static final int tv_group_name=0x7f090051;
-        public static final int tv_unicodeRangeName=0x7f090054;
+        public static final int tv_unicodeRangeName=0x7f090053;
     }
     public static final class layout {
         public static final int keyboard=0x7f030000;
