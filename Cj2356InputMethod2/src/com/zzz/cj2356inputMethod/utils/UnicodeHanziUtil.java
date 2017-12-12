@@ -1,4 +1,4 @@
-package com.zzz.cj2356inputMethod.utils;
+package unicode;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -21,7 +21,7 @@ public class UnicodeHanziUtil {
     /** 擴展A */
     private static int[] AextRange = { 0x3400, 0x4DBF };
     /** 擴展B */
-    private static int[] BextRange = { 0x20000, 0x2A6D6 };
+    private static int[] BextRange = { 0x20000, 0x2A6DF };
     /** 擴展C */
     private static int[] CextRange = { 0x2A700, 0x2B734 };
     /** 擴展D */
@@ -32,9 +32,9 @@ public class UnicodeHanziUtil {
     private static int[] FextRange = { 0x2CEB0, 0x2EBE0 };
 
     /** 兼容漢字 */
-    private static int[] hanziCompt = { 0xF900, 0xFAD9 };
+    private static int[] hanziCompt = { 0xF900, 0xFAFF };
     /** 兼容擴展 */
-    private static int[] extCompt = { 0x2F800, 0x2FA1D };
+    private static int[] extCompt = { 0x2F800, 0x2FA1F };
 
     /** 標點補充 */
     private static int[] supplmtlPunctuation = { 0x2E00, 0x2E7F };
