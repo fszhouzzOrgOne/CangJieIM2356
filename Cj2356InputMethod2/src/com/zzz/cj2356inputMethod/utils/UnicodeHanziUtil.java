@@ -1,4 +1,4 @@
-package unicode;
+package com.zzz.cj2356inputMethod.utils;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
