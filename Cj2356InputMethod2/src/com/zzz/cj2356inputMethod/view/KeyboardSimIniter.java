@@ -45,7 +45,7 @@ public class KeyboardSimIniter {
     private static Button prePageButton;
     private static Button nextPageButton;
 
-    private static Map<String, String> simMap = new HashMap<String, String>();
+    private static Map<String, List<String>> simMap = new HashMap<String, List<String>>();
     private static Map<String, String> typeNameKeyMap = new LinkedHashMap<String, String>();
 
     private static String PAGE_CN_KEY = "keyboardBodySimCn"; // 中文
@@ -61,48 +61,61 @@ public class KeyboardSimIniter {
     private static String PAGE_TAB_KEY = "keyboardBodySimTab"; // 製表
     private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
     private static String PAGE_GREERUSSIA_KEY = "keyboardBodySimGr"; // 希臘、俄文
+    private static String PAGE_TIMEEVENT_KEY = "keyboardBodySimTimeEvent"; // 時間、節日
+    private static String PAGE_FACES_KEY = "keyboardBodySimFaces"; // 表情
 
     static {
         // 中文
-        simMap.put(PAGE_CN_KEY, "，、。？！：∶；…‘’“”＇＂〃（）〔〕〈〉《》［］｛｝「」『』〖〗【】～—＋－×÷＝＊＜＞｀Ұ¥￥＄ˇ︿ˉ＿¨．·•｜‖々／＆＼＃％⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻");
-        simMap.put(PAGE_CNPART_KEY,
-                "丨亅丿乛一乙乚丶八勹匕冫刂儿二匚阝丷卩冂冖凵亻厶亠匸讠廴又艹屮彳巛辶廾彐彑口宀犭彡饣扌氵纟囗忄幺弋尢夂灬歹卝旡耂肀牜爿攴攵礻殳尣爻曰爫癶歺钅疒罒衤疋业艸虍覀糸糹镸辵豸釒靣飠髟鬲黽黹夊禸舛襾釆〇α乁乀巜乂丄丆丅龴丩刄亇丌丬乇卂孒乊卄夨乆龶丰冄兂冘龷丯円龵毌卬卅罓朩匁予戋龸甴氺冎丗仺氶叏丱戉両乑龹朿帇亙丣囪乕幷戼丳栆単眔埀宻豙睂臦");
+        simMap.put(PAGE_CN_KEY,
+                getListByString("，、。？！：∶；…‘’“”＇＂〃（）〔〕〈〉《》［］｛｝「」『』〖〗【】～—＋－×÷＝＊＜＞｀Ұ¥￥＄ˇ︿ˉ＿¨．·•｜‖々／＆＼＃％⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻"));
+        simMap.put(PAGE_CNPART_KEY, getListByString(
+                "丨亅丿乛一乙乚丶八勹匕冫刂儿二匚阝丷卩冂冖凵亻厶亠匸讠廴又艹屮彳巛辶廾彐彑口宀犭彡饣扌氵纟囗忄幺弋尢夂灬歹卝旡耂肀牜爿攴攵礻殳尣爻曰爫癶歺钅疒罒衤疋业艸虍覀糸糹镸辵豸釒靣飠髟鬲黽黹夊禸舛襾釆〇α乁乀巜乂丄丆丅龴丩刄亇丌丬乇卂孒乊卄夨乆龶丰冄兂冘龷丯円龵毌卬卅罓朩匁予戋龸甴氺冎丗仺氶叏丱戉両乑龹朿帇亙丣囪乕幷戼丳栆単眔埀宻豙睂臦"));
         // 英文
-        simMap.put(PAGE_EN_KEY,
-                ",.!?:\"';+-*=/|\\^$&@%‰#~`_<>()[]{}¿tᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵");
+        simMap.put(PAGE_EN_KEY, getListByString(
+                ",.!?:\"';+-*=/|\\^$&@%‰#~`_<>()[]{}¿tᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵"));
         // 文化
-        simMap.put(PAGE_WH_KEY, "☯⚋⚊☰☷☳☶☲☵☱☴卍卐❂☭☠☤☥☦☧☨☩☪☫☬☮☸☽☾♕♚♛✙✚✛✜✝✞✟✠✡✢㋀㋁㋂㋃㋄㋅㋆㋇㋈㋉㋊㋋㏠㏡㏢㏣㏤㏥㏦㏧㏨㏩㏪㏫㏬㏭㏮㏯㏰㏱㏲㏳㏴㏵㏶㏷㏸㏹㏺㏻㏼㏽㏾㍙㍚㍛㍜㍝㍞㍟㍠㍡㍢㍣㍤㍥㍦㍧㍨㍩㍪㍫㍬㍭㍮㍯㍰㍘");
+        simMap.put(PAGE_WH_KEY, getListByString("☯⚋⚊☰☷☳☶☲☵☱☴卍卐❂☭☠☤☥☦☧☨☩☪☫☬☮☸☽☾♕♚♛✙✚✛✜✝✞✟✠✡✢"));
+        // 時間、節日
+        simMap.put(PAGE_TIMEEVENT_KEY,
+                getListByString("㋀㋁㋂㋃㋄㋅㋆㋇㋈㋉㋊㋋㏠㏡㏢㏣㏤㏥㏦㏧㏨㏩㏪㏫㏬㏭㏮㏯㏰㏱㏲㏳㏴㏵㏶㏷㏸㏹㏺㏻㏼㏽㏾㍙㍚㍛㍜㍝㍞㍟㍠㍡㍢㍣㍤㍥㍦㍧㍨㍩㍪㍫㍬㍭㍮㍯㍰㍘"));
+
+        // 表情
+        simMap.put(PAGE_FACES_KEY, getFacesListString());
+
         // 特殊
-        simMap.put(PAGE_SP_KEY,
-                "/\\╳︵︶︹︺︿﹀︴﹌﹉﹊﹍﹎╭╮╰╯︽︾﹁﹂﹃﹄﹏ˇ‥︷︸«»︻︼℡™ŠÕ©®‡†♂♀§№☆★♡♥●Θ○◎⊙◆◇▲▼△▽□■※▪〓¤°Ψ∮⊕卍卐囍㈱＿￣―￡↖↑↗←↹→↙↓↘҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨♈♉♊♋♌♍♎♏♐♑♒♓");
+        simMap.put(PAGE_SP_KEY, getListByString(
+                "/\\╳︵︶︹︺︿﹀︴﹌﹉﹊﹍﹎╭╮╰╯︽︾﹁﹂﹃﹄﹏ˇ‥︷︸«»︻︼℡™ŠÕ©®‡†♂♀§№☆★♡♥●Θ○◎⊙◆◇▲▼△▽□■※▪〓¤°Ψ∮⊕卍卐囍㈱＿￣―￡↖↑↗←↹→↙↓↘҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨♈♉♊♋♌♍♎♏♐♑♒♓"));
         // 數學
-        simMap.put(PAGE_MATH_KEY,
-                "＋－×÷≈≡≠＝±✘✔√≤≥＜＞≮≯∷╱╲∫∮∝∞∧∨∑∏∪∩∈∵∴⊥∥∠⌒⊙≌∽≒≦≧⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％‰‱Ｆ′″º℃Å￠￡＄Ұ¥￥¤℉ℓ㏄㎜㎝㎞㎡㎎㎏Ω⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₔ");
+        simMap.put(PAGE_MATH_KEY, getListByString(
+                "＋－×÷≈≡≠＝±✘✔√≤≥＜＞≮≯∷╱╲∫∮∝∞∧∨∑∏∪∩∈∵∴⊥∥∠⌒⊙≌∽≒≦≧⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％‰‱Ｆ′″º℃Å￠￡＄Ұ¥￥¤℉ℓ㏄㎜㎝㎞㎡㎎㎏Ω⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₔ"));
         // 序號
-        simMap.put(PAGE_ORDER_KEY,
-                "⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴１２３４５６７８９０⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇〡〢〣〤〥〦〧〨〩十㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㊣〇一二三四五六七八九十零壹贰貳叁叄肆伍陆陸柒捌玖拾佰仟万萬亿億吉太拍艾ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ");
+        simMap.put(PAGE_ORDER_KEY, getListByString(
+                "⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴１２３４５６７８９０⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇〡〢〣〤〥〦〧〨〩十㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㊣〇一二三四五六七八九十零壹贰貳叁叄肆伍陆陸柒捌玖拾佰仟万萬亿億吉太拍艾ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ"));
         // 注音
-        simMap.put(PAGE_PINYIN_KEY,
-                "āáǎàōóǒòêēéěèīíǐìūúǔùǖǘǚǜüˉˊˇˋ˙˪˫◌〪〭〫〬ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㄪㄫㄬㄭㄮㄯㆠㆡㆢㆣㆤㆥㆦㆧㆨㆩㆪㆫㆬㆭㆮㆯㆰㆱㆲㆳㆴㆵㆶㆷㆸㆹㆺ");
+        simMap.put(PAGE_PINYIN_KEY, getListByString(
+                "āáǎàōóǒòêēéěèīíǐìūúǔùǖǘǚǜüˉˊˇˋ˙˪˫◌〪〭〫〬ㄅㄆㄇㄈㄉㄊㄋㄌㄍㄎㄏㄐㄑㄒㄓㄔㄕㄖㄗㄘㄙㄚㄛㄜㄝㄞㄟㄠㄡㄢㄣㄤㄥㄦㄧㄨㄩㄪㄫㄬㄭㄮㄯㆠㆡㆢㆣㆤㆥㆦㆧㆨㆩㆪㆫㆬㆭㆮㆯㆰㆱㆲㆳㆴㆵㆶㆷㆸㆹㆺ"));
         // 製表
-        simMap.put(PAGE_TAB_KEY, "┌┍┎┏┐┑┒┓─┄┈├┝┞┟┠┡┢┣│┆┊┬┭┮┯┰┱┲┳┼┽┾┿╀╁╂└┕┖┗┘┙┚┛━┅┉┤┥┦┧┨┩┪┫┴┵┶┷┸┹┺┻╄╅╆╇╈╉╊╋");
+        simMap.put(PAGE_TAB_KEY,
+                getListByString("┌┍┎┏┐┑┒┓─┄┈├┝┞┟┠┡┢┣│┆┊┬┭┮┯┰┱┲┳┼┽┾┿╀╁╂└┕┖┗┘┙┚┛━┅┉┤┥┦┧┨┩┪┫┴┵┶┷┸┹┺┻╄╅╆╇╈╉╊╋"));
         // 拉丁
-        simMap.put(PAGE_LATIN_KEY, "ÄÆÅÀÁÂÃÇĒĚÈÉÊËÐÌÍÎÏÖØÒÓÔÕÑÙÚÛÜÝÞäæåàáâãçēěèéêëðìíîïöøòóôõñùúûüýþ");
+        simMap.put(PAGE_LATIN_KEY, getListByString("ÄÆÅÀÁÂÃÇĒĚÈÉÊËÐÌÍÎÏÖØÒÓÔÕÑÙÚÛÜÝÞäæåàáâãçēěèéêëðìíîïöøòóôõñùúûüýþ"));
         // 希俄
-        simMap.put(PAGE_GREERUSSIA_KEY,
-                "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
+        simMap.put(PAGE_GREERUSSIA_KEY, getListByString(
+                "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"));
         // 日文
-        simMap.put(PAGE_JP_KEY,
-                "あいうゔえおアイウヴエオぁぃぅぇぉァィゥェォかゕきくけゖこカヵキクケヶコがぎぐげごガギグゲゴさしすせそサシスセソざじずぜぞザジズゼゾたちつってとタチツッテトだぢづでどダヂヅデドなにぬねのナニヌネノはひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポまみむめもマミムメモやゆよヤユヨゃゅょャュョらりるれろラリルレロわゎゐゑをワヮヷヰヸヱヹヲヺんンー゠々ゝゞヽヾ〆乄ゟ゚゛゜ヿ・");
+        simMap.put(PAGE_JP_KEY, getListByString(
+                "あいうゔえおアイウヴエオぁぃぅぇぉァィゥェォかゕきくけゖこカヵキクケヶコがぎぐげごガギグゲゴさしすせそサシスセソざじずぜぞザジズゼゾたちつってとタチツッテトだぢづでどダヂヅデドなにぬねのナニヌネノはひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポまみむめもマミムメモやゆよヤユヨゃゅょャュョらりるれろラリルレロわゎゐゑをワヮヷヰヸヱヹヲヺんンー゠々ゝゞヽヾ〆乄ゟ゚゛゜ヿ・"));
         // 韓文
-        simMap.put(PAGE_KR_KEY, "ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ");
+        simMap.put(PAGE_KR_KEY, getListByString("ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ"));
 
         typeNameKeyMap.put("中文", PAGE_CN_KEY);
         typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
-        typeNameKeyMap.put("文化", PAGE_WH_KEY);
         typeNameKeyMap.put("特殊", PAGE_SP_KEY);
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
+        typeNameKeyMap.put("文化", PAGE_WH_KEY);
+        typeNameKeyMap.put("時節", PAGE_TIMEEVENT_KEY);
+        typeNameKeyMap.put("表情", PAGE_FACES_KEY);
         typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
         typeNameKeyMap.put("注音", PAGE_PINYIN_KEY);
         typeNameKeyMap.put("製表", PAGE_TAB_KEY);
@@ -185,6 +198,40 @@ public class KeyboardSimIniter {
     }
 
     /**
+     * 表情列表
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年12月12日上午10:20:29
+     * @return
+     */
+    private static List<String> getFacesListString() {
+        String faces = "😀 😁 😂 😃 😄 😅 😆 😉 😊 😋 😎 😍 😘 😗 😙 😚 ☺ 🙂 🤗 🤔 😐 😑 😶 🙄 😏 😣 😥 😮 🤐 😯 😪 😫 😴 😌 😛 😜 😝 😒 😓 😔 😕 🙃 🤑 😲 ☹ 🙁 😖 😞 😟 😤 😢 😭 😦 😧 😨 😩 😬 😰 😱 😳 😵 😡 😠 😷 🤒 🤕 😇 🤓 😈 👿 👹 👺 💀 ☠ 👻 👽 👾 🤖 💩 😺 😸 😹 😻 😼 😽 🙀 😿 😾 🙈 🙉 🙊 👶 👦 👧 👨 👩 👴 👵 💪 👈 👉 ☝ 👆 🖕 👇 ✌ 🖖 🤘 🖐 ✋ 👌 👍 👎 ✊ 👊 👋 ✍ 👏 👐 🙌 🙏 💅 👂 👃 👣 👀 👁 🗨 👅 👄 💋 💘 ❤ 💓 💔 💕 💖 💗 💙 💚 💛 💜 💝 💞 💟 ❣ 💌 💤 💢 💣 💥 💦 💨 💫 💬 🗯 💭 🕳 👓 🕶 👔 👕 👖 👗 👘 👙 👚 👛 👜 👝 🛍 🎒 👞 👟 👠 👡 👢 👑 👒 🎩 🎓 ⛑ 📿 💄 💍 💎 🐵 🐒 🐶 🐕 🐩 🐺 🐱 🐈 🦁 🐯 🐅 🐆 🐴 🐎 🦄 🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 🐏 🐑 🐐 🐪 🐫 🐘 🐭 🐁 🐀 🐹 🐰 🐇 🐿 🐻 🐨 🐼 🐾 🦃 🐔 🐓 🐣 🐤 🐥 🐦 🐧 🕊 🐸 🐊 🐢 🐍 🐲 🐉 🐳 🐋 🐬 🐟 🐠 🐡 🐙 🐚 🦀 🐌 🐛 🐜 🐝 🐞 🕷 🕸 🦂 💐 🌸 💮 🏵 🌹 🌺 🌻 🌼 🌷 🌱 🌲 🌳 🌴 🌵 🌾 🌿 ☘ 🍀 🍁 🍂 🍃 🍇 🍈 🍉 🍊 🍋 🍌 🍍 🍎 🍏 🍐 🍑 🍒 🍓 🍅 🍆 🌽 🌶 🍄 🌰 🍞 🧀 🍖 🍗 🍔 🍟 🍕 🌭 🌮 🌯 🍳 🍲 🍿 🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🍡 🍦 🍧 🍨 🍩 🍪 🎂 🍰 🍫 🍬 🍭 🍮 🍯 🍼 ☕ 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🍽 🍴 🔪 🏺 🌍 🌎 🌏 🌐 🗺 🗾 🏔 ⛰ 🌋 🗻 🏕 🏖 🏜 🏝 🏞 🏟 🏛 🏗 🏘 🏙 🏚 🏠 🏡 🏢 🏣 🏤 🏥 🏦 🏨 🏩 🏪 🏫 🏬 🏭 🏯 🏰 💒 🗼 🗽 ⛪ 🕌 🕍 ⛩ 🕋 ⛲ ⛺ 🌁 🌃 🌄 🌅 🌆 🌇 🌉 ♨ 🌌 🎠 🎡 🎢 💈 🎪 🎭 🖼 🎨 🎰 🚂 🚃 🚄 🚅 🚆 🚇 🚈 🚉 🚊 🚝 🚞 🚋 🚌 🚍 🚎 🚐 🚑 🚒 🚓 🚔 🚕 🚖 🚗 🚘 🚙 🚚 🚛 🚜 🚲 🚏 🛣 🛤 ⛽ 🚨 🚥 🚦 🚧 ⚓ ⛵ 🚤 🛳 ⛴ 🛥 🚢 ✈ 🛩 🛫 🛬 💺 🚁 🚟 🚠 🚡 🛰 🚀 🛎 🚪 🛏 🛋 🚽 🚿 🛁 ⌛ ⏳ ⌚ ⏰ ⏱ ⏲ 🕰 🕛 🕧 🕐 🕜 🕑 🕝 🕒 🕞 🕓 🕟 🕔 🕠 🕕 🕡 🕖 🕢 🕗 🕣 🕘 🕤 🕙 🕥 🕚 🕦 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌙 🌚 🌛 🌜 🌡 ☀ 🌝 🌞 ⭐ 🌟 🌠 ☁ ⛅ ⛈ 🌤 🌥 🌦 🌧 🌨 🌩 🌪 🌫 🌬 🌀 🌈 🌂 ☂ ☔ ⛱ ⚡ ❄ ☃ ⛄ ☄ 🔥 💧 🌊 🎃 🎄 🎆 🎇 ✨ 🎈 🎉 🎊 🎋 🎍 🎎 🎏 🎐 🎑 🎀 🎁 🎗 🎟 🎫 🎖 🏆 🏅 ⚽ ⚾ 🏀 🏐 🏈 🏉 🎾 🎱 🎳 🏏 🏑 🏒 🏓 🏸 🎯 ⛳ ⛸ 🎣 🎽 🎿 🎮 🕹 🎲 ♠ ♥ ♦ ♣ 🃏 🀄 🎴 🔇 🔈 🔉 🔊 📢 📣 📯 🔔 🔕 🎼 🎵 🎶 🎙 🎚 🎛 🎤 🎧 📻 🎷 🎸 🎹 🎺 🎻 📱 📲 ☎ 📞 📟 📠 🔋 🔌 💻 🖥 🖨 ⌨ 🖱 🖲 💽 💾 💿 📀 🎥 🎞 📽 🎬 📺 📷 📸 📹 📼 🔍 🔎 🔬 🔭 📡 🕯 💡 🔦 🏮 📔 📕 📖 📗 📘 📙 📚 📓 📒 📃 📜 📄 📰 🗞 📑 🔖 🏷 💰 💴 💵 💶 💷 💸 💳 💹 💱 💲 ✉ 📧 📨 📩 📤 📥 📦 📫 📪 📬 📭 📮 🗳 ✏ ✒ 🖋 🖊 🖌 🖍 📝 💼 📁 📂 🗂 📅 📆 🗒 🗓 📇 📈 📉 📊 📋 📌 📍 📎 🖇 📏 📐 ✂ 🗃 🗄 🗑 🔒 🔓 🔏 🔐 🔑 🗝 🔨 ⛏ ⚒ 🛠 🗡 ⚔ 🔫 🏹 🛡 🔧 🔩 ⚙ 🗜 ⚗ ⚖ 🔗 ⛓ 💉 💊 🚬 ⚰ ⚱ 🗿 🛢 🔮 🏧 🚮 🚰 ♿ 🚹 🚺 🚻 🚼 🚾 🛂 🛃 🛄 🛅 ⚠ 🚸 ⛔ 🚫 🚳 🚭 🚯 🚱 🚷 📵 🔞 ☢ ☣ ⬆ ↗ ➡ ↘ ⬇ ↙ ⬅ ↖ ↕ ↔ ↩ ↪ ⤴ ⤵ 🔃 🔄 🔙 🔚 🔛 🔜 🔝 🛐 ⚛ 🕉 ✡ ☸ ☯ ✝ ☦ ☪ ☮ 🕎 🔯 ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ 🔀 🔁 🔂 ▶ ⏩ ⏭ ⏯ ◀ ⏪ ⏮ 🔼 ⏫ 🔽 ⏬ ⏸ ⏹ ⏺ ⏏ 🎦 🔅 🔆 📶 📳 📴 ♀ ♂ ⚕ ♻ ⚜ 🔱 📛 🔰 ⭕ ✅ ☑ ✔ ✖ ❌ ❎ ➕ ➖ ➗ ➰ ➿ 〽 ✳ ✴ ❇ ‼ ⁉ ❓ ❔ ❕ ❗ 〰 © ® ™ 💯 🔠 🔡 🔢 🔣 🔤 🅰 🆎 🅱 🆑 🆒 🆓 ℹ 🆔 Ⓜ 🆕 🆖 🅾 🆗 🅿 🆘 🆙 🆚 🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗ ㊙ 🈺 🈵 ▪ ▫ ◻ ◼ ◽ ◾ ⬛ ⬜ 🔶 🔷 🔸 🔹 🔺 🔻 💠 🔘 🔲 🔳 ⚪ ⚫ 🔴 🔵 🏁 🚩 🎌 🏴 🏳 🇦 🇧 🇨 🇩 🇪 🇫 🇬 🇭 🇮 🇯 🇰 🇱 🇲 🇳 🇴 🇵 🇶 🇷 🇸 🇹 🇺 🇻 🇼 🇽 🇾 🇿";
+        String[] facesArr = faces.split(" ");
+        List<String> list = new ArrayList<String>();
+        for (String face : facesArr) {
+            list.add(face);
+        }
+        return list;
+    }
+
+    /**
+     * 把字符串转成字符串的数组
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年12月12日上午10:14:57
+     * @param string
+     * @return
+     */
+    private static List<String> getListByString(String keys) {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < keys.length(); i++) {
+            Character cha = keys.charAt(i);
+            list.add(cha.toString());
+        }
+        return list;
+    }
+
+    /**
      * 回到中文第一頁
      */
     public static void resetKeyboardSimPage() {
@@ -215,10 +262,10 @@ public class KeyboardSimIniter {
     public static Integer getKeyboardSimLastPage() {
         String simMapKey = currentSimMapKey;
         String simMapKeyPrefix = simMapKey.split("_")[0];
-        String content = simMap.get(simMapKeyPrefix);
-        if (null != content && content.length() > 0) {
-            int rows = content.length() / KeyboardSimIniter.SIM_ROW_SIZE;
-            if (content.length() % KeyboardSimIniter.SIM_ROW_SIZE != 0) {
+        List<String> content = simMap.get(simMapKeyPrefix);
+        if (null != content && !content.isEmpty()) {
+            int rows = content.size() / KeyboardSimIniter.SIM_ROW_SIZE;
+            if (content.size() % KeyboardSimIniter.SIM_ROW_SIZE != 0) {
                 rows++;
             }
             int pages = rows / KeyboardSimIniter.SIM_PAGE_ROW;
@@ -236,23 +283,23 @@ public class KeyboardSimIniter {
      * @param page
      * @return
      */
-    public static String getKeyboardSimByPage(int page) {
+    public static List<String> getKeyboardSimByPage(int page) {
         String simMapKey = currentSimMapKey;
         String simMapKeyPrefix = simMapKey.split("_")[0];
-        String content = simMap.get(simMapKeyPrefix);
+        List<String> content = simMap.get(simMapKeyPrefix);
         int start = (page - 1) * KeyboardSimIniter.SIM_PAGE_ROW * KeyboardSimIniter.SIM_ROW_SIZE;
         int end = page * KeyboardSimIniter.SIM_PAGE_ROW * KeyboardSimIniter.SIM_ROW_SIZE - 1;
-        if (end >= content.length() - 1) {
+        if (end >= content.size() - 1) {
             // 結束位置，等於或超過了一行個數
-            if (page > 1 && ((end - (content.length() - 1)) >= KeyboardSimIniter.SIM_ROW_SIZE)) {
-                int emptyRow = (end - (content.length() - 1)) / KeyboardSimIniter.SIM_ROW_SIZE;
+            if (page > 1 && ((end - (content.size() - 1)) >= KeyboardSimIniter.SIM_ROW_SIZE)) {
+                int emptyRow = (end - (content.size() - 1)) / KeyboardSimIniter.SIM_ROW_SIZE;
                 for (int emp = emptyRow; emp > 0; emp--) {
                     start -= KeyboardSimIniter.SIM_ROW_SIZE;
                 }
             }
-            end = content.length() - 1;
+            end = content.size() - 1;
         }
-        return content.substring(start, end + 1);
+        return content.subList(start, end + 1);
     }
 
     private static void setkeyboardBodySimGridKeys(Context context, String simMapKey) {
@@ -260,12 +307,12 @@ public class KeyboardSimIniter {
             currentSimMapKey = simMapKey;
 
             int page = Integer.parseInt(simMapKey.split("_")[1]);
-            String keys = getKeyboardSimByPage(page);
+            List<String> keys = getKeyboardSimByPage(page);
             ArrayList<Map<String, String>> valueList = new ArrayList<Map<String, String>>();
-            for (int i = 0; i < keys.length(); i++) {
+            for (int i = 0; i < keys.size(); i++) {
                 Map<String, String> map = new HashMap<String, String>();
-                Character cha = keys.charAt(i);
-                map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha.toString());
+                String cha = keys.get(i);
+                map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha);
                 valueList.add(map);
             }
             KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList);
