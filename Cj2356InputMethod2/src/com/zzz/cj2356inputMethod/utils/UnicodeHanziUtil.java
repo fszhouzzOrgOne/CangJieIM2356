@@ -36,6 +36,8 @@ public class UnicodeHanziUtil {
     /** 兼容擴展 */
     private static int[] extCompt = { 0x2F800, 0x2FA1F };
 
+    /** 諺文字母 */
+    private static int[] hangulJamo = { 0x1100, 0x11FF };
     /** 標點補充 */
     private static int[] supplmtlPunctuation = { 0x2E00, 0x2E7F };
     /** 部首擴展 */
@@ -78,6 +80,7 @@ public class UnicodeHanziUtil {
         nameRangeMap.put("兼容漢字", getStringSet(hanziCompt));
         nameRangeMap.put("兼容漢字擴展", getStringSet(extCompt));
 
+        nameRangeMap.put("諺文字母", getStringSet(hangulJamo));
         nameRangeMap.put("補充標點符號", getStringSet(supplmtlPunctuation));
         nameRangeMap.put("中日韓部首補充", getStringSet(extPart));
         nameRangeMap.put("康熙部首", getStringSet(kangxiPart));
@@ -103,9 +106,10 @@ public class UnicodeHanziUtil {
         System.out.println(getRangeNameByChar("ㆬ"));
         System.out.println(getRangeNameByChar("ノ"));
         System.out.println(getRangeNameByChar(""));
+        System.out.println(getRangeNameByChar("ᅀ"));
 
         // System.out.println(intc.toHexString((int) 'ノ'));
-        System.out.println(Integer.toHexString((int) ''));
+        System.out.println(Integer.toHexString((int) 'ᅀ'));
     }
 
     public static String getRangeNameByChar(String charStr) {
