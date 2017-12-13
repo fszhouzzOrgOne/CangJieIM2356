@@ -202,7 +202,7 @@ public class KeyboardSimIniter {
     private static List<String> getJapanListString() {
         String str1 = "あいうゔえおアイウヴエオぁぃぅぇぉァィゥェォかゕきくけゖこカヵキクケヶコがぎぐげごガギグゲゴさしすせそサシスセソざじずぜぞザジズゼゾたちつってとタチツッテトだぢづでどダヂヅデドなにぬねのナニヌネノはひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポまみむめもマミムメモやゆよヤユヨゃゅょャュョらりるれろラリルレロわゎゐゑをワヮヷヰヸヱヹヲヺんンー゠々ゝゞヽヾ〆乄ゟ゚゛゜ヿ・";
         List<String> list = getListByString(str1);
-        String faceStr = "🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗ ㊙ 🈺 🈵 🎌 🗾 👘 🏣 🏯 🎎 🎏";
+        String faceStr = "🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗ ㊙ 🈺 🈵 ㊣ ㊎ ㊍ ㊌ ㊋ ㊏ ㊐ ㊊ ㊚ ㊛ ㊤ ㊥ ㊦ ㊧ ㊨ ㊞ ㊑ ㊒ ㊓ ㊓ ㊔ ㊕ ㊖ ㊗ ㊗ ㊘ ㊜ ㊝ ㊟ ㊠ ㊡ ㊢ ㊩ ㊪ ㊫ ㊬ ㊬ ㊭ ㊮ ㊮ ㊯ ㊰ ㊙ 🀄 🈁 🈂 🈷 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 🈺 🈺 🈵 🎌 🗾 👘 🏣 🏯 🎎 🎏";
         list = mergeFaceString2List(list, faceStr);
         return list;
     }
@@ -259,7 +259,7 @@ public class KeyboardSimIniter {
             set.addAll(list);
         }
         for (String face : facesArr) {
-            if (!set.contains(face)) {
+            if (StringUtils.hasText(face) && !set.contains(face)) {
                 set.add(face);
             }
         }
