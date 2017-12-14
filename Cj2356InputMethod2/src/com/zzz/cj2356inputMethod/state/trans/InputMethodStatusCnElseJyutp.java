@@ -11,24 +11,24 @@ import android.content.Context;
 import android.widget.Toast;
 
 /**
- * 普通話拼音
+ * 粵語拼音
  */
-public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
+public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
 
     /**
      * 用什麼代替聲調
      */
-    private static final String TONE_REPLACE_CHAR = "m";
+    private static final String TONE_REPLACE_CHAR = "v";
 
-    public InputMethodStatusCnElsePy(Context con) {
+    public InputMethodStatusCnElseJyutp(Context con) {
         super(con);
-        this.setSubType(MbUtils.TYPE_CODE_PINYIN);
-        this.setSubTypeName("普");
+        this.setSubType(MbUtils.TYPE_CODE_JYUTPING);
+        this.setSubTypeName("粵");
     }
 
     @Override
     public String getInputMethodName() {
-        return MbUtils.getInputMethodName(MbUtils.TYPE_CODE_PINYIN);
+        return MbUtils.getInputMethodName(MbUtils.TYPE_CODE_JYUTPING);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         List<Item> items = MbUtils.selectDbByCode(
-                MbUtils.TYPE_CODE_PINYIN, code, (null != code && (code.length() > 1 || "a".equalsIgnoreCase(code)
+                MbUtils.TYPE_CODE_JYUTPING, code, (null != code && (code.length() > 1 || "a".equalsIgnoreCase(code)
                         || "e".equalsIgnoreCase(code) || "o".equalsIgnoreCase(code))),
                 code + TONE_REPLACE_CHAR, extraResolve);
 
@@ -73,7 +73,7 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_PINYIN, code) > 0;
+        return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_JYUTPING, code) > 0;
     }
 
     @Override
@@ -88,10 +88,10 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
         String code = result;
         if (null != code && code.length() > 1 && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
             int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
-            // 有m開頭的音
-            if (start == 0) {
-                start = 1;
-            }
+            // 和官話拼音不同，沒有v開頭的音
+            // if (start == 0) {
+            // start = 1;
+            // }
             String ms = code.substring(start);
             result = code.substring(0, start) + ms.length();
         }

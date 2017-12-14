@@ -23,7 +23,8 @@ public class MbUtils {
     public static final String TYPE_CODE_CJGEN6 = "cj6";
     public static final String TYPE_CODE_ZYFH = "zyfh"; // 注音符號
     public static final String TYPE_CODE_KARINA = "karina"; // 日語oen假名
-    public static final String TYPE_CODE_PINYIN = "pinyin"; // 拼音
+    public static final String TYPE_CODE_PINYIN = "pinyin"; // 官話拼音
+    public static final String TYPE_CODE_JYUTPING = "jyutp"; // 粵語拼音
     public static final String TYPE_CODE_SIGOHAOMA = "sghm"; // 四角號碼
     public static final String TYPE_CODE_CJGENYAHOO = "cjyhqm"; // 雅虎奇摩
     public static final String TYPE_CODE_CJGENMS = "cjms"; // 微軟倉頡

@@ -16,6 +16,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj5;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj6;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjMs;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjYhqm;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseJyutp;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKarina;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKorea;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseManju;
@@ -121,7 +122,7 @@ public class Cangjie2356IMsUtils {
         } catch (Exception e) {
         }
     }
-    
+
     /**
      * 得到種類的當前輸入法
      * 
@@ -133,7 +134,7 @@ public class Cangjie2356IMsUtils {
     public static InputMethodStatus getCurrentIm(String orderType) {
         return currentIMsMap.get(orderType);
     }
-    
+
     /**
      * 設置種類的當前輸入法
      * 
@@ -181,6 +182,8 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusCnElseSghm(context);
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElsePy(context);
+        allElseIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseJyutp(context);
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseZyfh(context);
         allElseIMsMap.put(im.getSubType(), im);
