@@ -42,7 +42,7 @@ public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         // 只有沒有聲調的才模糊查詢，有聲調了就不再模糊查詢了
-        boolean isPrompt = null != code && code.trim().length() > 1 && !code.endsWith(TONE_REPLACE_CHAR);
+        boolean isPrompt = null != code && code.trim().length() > 0 && !code.endsWith(TONE_REPLACE_CHAR);
         List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_JYUTPING, code, isPrompt, code + TONE_REPLACE_CHAR,
                 extraResolve);
 
