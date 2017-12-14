@@ -27,7 +27,7 @@ import com.zzz.cj2356inputMethod.utils.StringUtils;
 public class CandidateItemTextView extends TextView {
 
     /** 候選欄是否顯示每個的編碼。 */
-    private boolean showEncode = false;
+    public static boolean showEncode = false;
     
     private Item item;
 
