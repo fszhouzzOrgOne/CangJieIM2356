@@ -13,6 +13,7 @@ import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
+import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
@@ -241,6 +242,16 @@ public class KeyboardBodyIniter {
             for (int i = 0; i < letterViews.size(); i++) {
                 View v = letterViews.get(i);
                 v.setBackgroundResource(letterViewsBgIds.get(i));
+            }
+            // 官話拼音m加聲調背景
+            if (MbUtils.TYPE_CODE_PINYIN.equals(inputStat.getSubType())) {
+                View vm = keyboardView.findViewById(R.id.keybtnM);
+                vm.setBackgroundResource(R.drawable.background_button_tone);
+            }
+            // 粵語拼音v加聲調背景
+            if (MbUtils.TYPE_CODE_JYUTPING.equals(inputStat.getSubType())) {
+                View vv = keyboardView.findViewById(R.id.keybtnV);
+                vv.setBackgroundResource(R.drawable.background_button_tone);
             }
         } else {
             for (View v : letterViews) {
