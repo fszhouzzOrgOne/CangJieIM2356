@@ -243,19 +243,19 @@ public class KeyboardBodyIniter {
                 View v = letterViews.get(i);
                 v.setBackgroundResource(letterViewsBgIds.get(i));
             }
+        } else {
+            for (View v : letterViews) {
+                v.setBackgroundResource(R.drawable.keyboard_button_selector);
+            }
             // 官話拼音m加聲調背景
             if (MbUtils.TYPE_CODE_PINYIN.equals(inputStat.getSubType())) {
                 View vm = keyboardView.findViewById(R.id.keybtnM);
-                vm.setBackgroundResource(R.drawable.background_button_tone);
+                vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
             }
             // 粵語拼音v加聲調背景
             if (MbUtils.TYPE_CODE_JYUTPING.equals(inputStat.getSubType())) {
                 View vv = keyboardView.findViewById(R.id.keybtnV);
-                vv.setBackgroundResource(R.drawable.background_button_tone);
-            }
-        } else {
-            for (View v : letterViews) {
-                v.setBackgroundResource(R.drawable.keyboard_button_selector);
+                vv.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
             }
         }
 
