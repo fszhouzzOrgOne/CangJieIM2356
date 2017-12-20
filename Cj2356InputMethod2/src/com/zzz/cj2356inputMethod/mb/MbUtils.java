@@ -5,12 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.utils.DateUtils;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.zzz.cj2356inputMethod.dto.Item;
-import com.zzz.cj2356inputMethod.utils.DateUtils;
 
 /**
  * 加载碼表數據
@@ -71,16 +71,13 @@ public class MbUtils {
      */
     private static void initMbdb() {
         String src = "database" + File.separator + dbName;
-        String dest = context.getFilesDir().toString() + File.separator
-                + dbName;
+        String dest = context.getFilesDir().toString() + File.separator + dbName;
         try {
             boolean shouldCopy = true;
             File destFile = new File(dest);
             if (destFile.exists()) {
                 // 是一样的文件
-                if (IOUtils.isSameFile(
-                        context.getResources().getAssets().open(src),
-                        new FileInputStream(destFile))) {
+                if (IOUtils.isSameFile(context.getResources().getAssets().open(src), new FileInputStream(destFile))) {
                     shouldCopy = false;
                 }
                 if (shouldCopy) {
@@ -88,8 +85,7 @@ public class MbUtils {
                 }
             }
             if (shouldCopy) {
-                IOUtils.copyFile(context.getResources().getAssets().open(src),
-                        new FileOutputStream(destFile));
+                IOUtils.copyFile(context.getResources().getAssets().open(src), new FileOutputStream(destFile));
             }
             if (null == dbOpenHelper) {
                 dbOpenHelper = new SQLiteDatabaseHelper(context, dest);
@@ -105,7 +101,7 @@ public class MbUtils {
     public static ArrayList<Item> selectDbByChar(String typeCode, String cha) {
         return selectDbByChar(new String[] { typeCode }, cha);
     }
-    
+
     /**
      * 按字符查詢2
      */
@@ -120,12 +116,9 @@ public class MbUtils {
             param[i] = typeCode[i];
         }
         param[typeCode.length] = cha;
-        Cursor cursor = getMbdb().query(
-                mbTbName,
-                null,
-                mbClNameGen + " in " + getInTempParams(typeCode.length)
-                        + " and " + mbClNameVal + " = ?", param, null, null,
-                null);
+        Cursor cursor = getMbdb().query(mbTbName, null,
+                mbClNameGen + " in " + getInTempParams(typeCode.length) + " and " + mbClNameVal + " = ?", param, null,
+                null, null);
         ArrayList<Item> items = handleSelectResultCursor(cursor, false);
 
         return items;
@@ -147,56 +140,82 @@ public class MbUtils {
      * @author t
      * @time 2016-12-18下午1:03:35
      */
-    public static ArrayList<Item> selectDbByCode(String typeCode, String code,
-            boolean isPrompt, String promptCode, boolean extraResolve) {
-        return selectDbByCode(new String[] { typeCode }, code, isPrompt,
-                promptCode, extraResolve);
+    public static ArrayList<Item> selectDbByCode(String typeCode, String code, boolean isPrompt, String promptCode,
+            boolean extraResolve) {
+        return selectDbByCode(new String[] { typeCode }, code, isPrompt, promptCode, extraResolve);
     }
 
     /**
      * 按編碼查詢2
      */
-    public static ArrayList<Item> selectDbByCode(String[] typeCode, String code, 
-            boolean isPrompt, String promptCode, boolean extraResolve) {
+    public static ArrayList<Item> selectDbByCode(String[] typeCode, String code, boolean isPrompt, String promptCode,
+            boolean extraResolve) {
         if (null == getMbdb() || null == code || code.trim().length() == 0) {
             return null;
         }
+        SQLiteDatabase mbdb = getMbdb();
         code = code.trim();
 
-        getMbdb().beginTransaction();
-
-        String[] param = new String[typeCode.length + 1];
+        // 輸入法類型條件
+        String typeCodeSql = " and " + mbClNameGen + " in ( ";
         for (int i = 0; i < typeCode.length; i++) {
-            param[i] = typeCode[i];
+            typeCodeSql += "," + typeCode[i] + "'";
+            if (i < typeCode.length - 1) {
+                typeCodeSql += ",";
+            }
         }
-        param[typeCode.length] = code;
-        Cursor cursor = getMbdb().query(
-                mbTbName,
-                null,
-                mbClNameGen + " in " + getInTempParams(typeCode.length)
-                        + " and " + mbClNameCod + " = ? ", param, null, null,
-                mbClNameCod + " asc, " + mbClNameOrder + " desc ");
+        typeCodeSql += " ) ";
+        // 當前輸入條件
+        String codeSql = " and " + mbClNameCod + " = '" + code + "' ";
+        // 排序
+        String orderSql = " order by " + mbClNameCod + " asc, " + mbClNameOrder + " desc ";
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select ");
+        sql.append(mbClNameId + ", ");
+        sql.append(mbClNameGen + ", ");
+        sql.append(mbClNameCod + ", ");
+        sql.append(mbClNameVal + ", ");
+        sql.append(mbClNameOrder);
+        sql.append(" from ");
+        sql.append(mbTbName);
+        sql.append(" where 1=1 ");
+        sql.append(typeCodeSql);
+        sql.append(codeSql);
+        sql.append(orderSql);
+
+        mbdb.beginTransaction();
+        Cursor cursor = mbdb.rawQuery(sql.toString(), null);
         ArrayList<Item> items = handleSelectResultCursor(cursor, extraResolve);
 
         // 如果沒有找到，按模糊查詢，再來一次
         if (isPrompt && (null == items || items.isEmpty())) {
-            param[param.length - 1] = (promptCode == null) ? param[param.length - 1]
-                    + "%"
-                    : promptCode + "%";
-            cursor = getMbdb().query(
-                    mbTbName,
-                    null,
-                    mbClNameGen + " in " + getInTempParams(typeCode.length)
-                            + " and " + mbClNameCod + " like ? ", param, null,
-                    null, mbClNameCod + " asc, " + mbClNameOrder + " desc ");
+            String promptCodeSql = " and " + mbClNameCod + " like '";
+            promptCodeSql += (promptCode == null) ? code + "%" : promptCode + "%";
+            promptCodeSql += "' ";
+
+            sql = new StringBuilder();
+            sql.append(" select ");
+            sql.append(mbClNameId + ", ");
+            sql.append(mbClNameGen + ", ");
+            sql.append(mbClNameCod + ", ");
+            sql.append(mbClNameVal + ", ");
+            sql.append(mbClNameOrder);
+            sql.append(" from ");
+            sql.append(mbTbName);
+            sql.append(" where 1=1 ");
+            sql.append(typeCodeSql);
+            sql.append(promptCodeSql);
+            sql.append(orderSql);
+            cursor = mbdb.rawQuery(sql.toString(), null);
             items = handleSelectResultCursor(cursor, extraResolve);
         }
 
-        getMbdb().endTransaction();
+        mbdb.endTransaction();
         return items;
     }
 
-    /** 
+    /**
      * 游標的動作
      * 
      * @author fsz
@@ -214,17 +233,14 @@ public class MbUtils {
             ArrayList<Item> dateItems = new ArrayList<Item>();
             while (true) {
                 int idVal = cursor.getInt(cursor.getColumnIndex(mbClNameId));
-                String genVal = cursor.getString(cursor
-                        .getColumnIndex(mbClNameGen));
-                String codeVal = cursor.getString(cursor
-                        .getColumnIndex(mbClNameCod));
-                String charVal = cursor.getString(cursor
-                        .getColumnIndex(mbClNameVal));
+                String genVal = cursor.getString(cursor.getColumnIndex(mbClNameGen));
+                String codeVal = cursor.getString(cursor.getColumnIndex(mbClNameCod));
+                String charVal = cursor.getString(cursor.getColumnIndex(mbClNameVal));
                 Item item = new Item(idVal, genVal, codeVal, charVal);
                 items.add(item);
 
                 // 加些時間的提示
-                ArrayList<Item> dateItems1 = null; 
+                ArrayList<Item> dateItems1 = null;
                 if (extraResolve) {
                     dateItems1 = DateUtils.resolveTime(item);
                 }
@@ -264,10 +280,8 @@ public class MbUtils {
             param[i] = typeCode[i];
         }
         param[typeCode.length] = code + "%";
-        String sqlSelect = "SELECT count(1) as cnt FROM " + mbTbName
-                + " WHERE " + mbClNameGen + " in "
-                + getInTempParams(typeCode.length) + " and " + mbClNameCod
-                + " LIKE ?;";
+        String sqlSelect = "SELECT count(1) as cnt FROM " + mbTbName + " WHERE " + mbClNameGen + " in "
+                + getInTempParams(typeCode.length) + " and " + mbClNameCod + " LIKE ?;";
         try {
             Cursor cr = getMbdb().rawQuery(sqlSelect, param);
             if (cr.moveToFirst()) {
@@ -284,12 +298,10 @@ public class MbUtils {
      */
     public static String getInputMethodName(String typeCode) {
         String resultName = null;
-        String sqlSelect = "SELECT " + genClNameName + " as thename, "
-                + genClNameId + " FROM " + genTbName + " WHERE " + genClNameGen
-                + " = ? ;";
+        String sqlSelect = "SELECT " + genClNameName + " as thename, " + genClNameId + " FROM " + genTbName + " WHERE "
+                + genClNameGen + " = ? ;";
         try {
-            Cursor cr = getMbdb()
-                    .rawQuery(sqlSelect, new String[] { typeCode });
+            Cursor cr = getMbdb().rawQuery(sqlSelect, new String[] { typeCode });
             if (cr.moveToFirst()) {
                 resultName = cr.getString(cr.getColumnIndex("thename"));
             }
@@ -300,14 +312,14 @@ public class MbUtils {
     }
 
     private static String getInTempParams(int length) {
-        String res = "(";
+        String res = " (";
         for (int i = 0; i < length; i++) {
             res += "?";
             if (i != length - 1) {
                 res += ",";
             }
         }
-        res += ")";
+        res += ") ";
         return res;
     }
 }
