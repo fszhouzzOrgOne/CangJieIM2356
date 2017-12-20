@@ -89,7 +89,7 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_PINYIN, code) > 0;
+        return MbUtils.existsDBLikeCode(MbUtils.TYPE_CODE_PINYIN, code);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
         this.setSubType(MbUtils.TYPE_CODE_KARINA);
         this.setSubTypeName("日");
     }
-    
+
     @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
         return MbUtils.selectDbByChar(MbUtils.TYPE_CODE_KARINA, cha);
@@ -43,8 +43,7 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA,
-                code, false, null, false);
+        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA, code, false, null, false);
         // 排序
         if (null != items && !items.isEmpty()) {
             try {
@@ -62,13 +61,10 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
                         } else {
                             String chaOne = lhs.getCharacter().charAt(0) + "";
                             String chaTwo = rhs.getCharacter().charAt(0) + "";
-                            if (karinaSet.contains(chaOne)
-                                    || karinaSet.contains(chaTwo)) {
+                            if (karinaSet.contains(chaOne) || karinaSet.contains(chaTwo)) {
                                 // 都是假名符號
-                                if (karinaSet.contains(chaOne)
-                                        && karinaSet.contains(chaTwo)) {
-                                    return lhs.getEncode().compareTo(
-                                            rhs.getEncode());
+                                if (karinaSet.contains(chaOne) && karinaSet.contains(chaTwo)) {
+                                    return lhs.getEncode().compareTo(rhs.getEncode());
                                 } else if (karinaSet.contains(chaOne)) {
                                     return -1;
                                 } else if (karinaSet.contains(chaTwo)) {
@@ -92,7 +88,7 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_KARINA, code) > 0;
+        return MbUtils.existsDBLikeCode(MbUtils.TYPE_CODE_KARINA, code);
     }
 
     @Override

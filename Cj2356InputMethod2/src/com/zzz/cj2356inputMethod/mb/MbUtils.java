@@ -268,29 +268,44 @@ public class MbUtils {
      * @author t
      * @time 2017-1-8下午10:11:02
      */
-    public static int countDBLikeCode(String typeCode, String code) {
-        return countDBLikeCode(new String[] { typeCode }, code);
+    public static boolean existsDBLikeCode(String typeCode, String code) {
+        return existsDBLikeCode(new String[] { typeCode }, code);
     }
 
     // 2
-    public static int countDBLikeCode(String[] typeCode, String code) {
-        int cnt = 0;
-        String[] param = new String[typeCode.length + 1];
+    public static boolean existsDBLikeCode(String[] typeCode, String code) {
+        // 輸入法類型條件
+        String typeCodeSql = " and " + mbClNameGen + " in ( ";
         for (int i = 0; i < typeCode.length; i++) {
-            param[i] = typeCode[i];
+            typeCodeSql += " '" + typeCode[i] + "'";
+            if (i < typeCode.length - 1) {
+                typeCodeSql += ", ";
+            }
         }
-        param[typeCode.length] = code + "%";
-        String sqlSelect = "SELECT count(1) as cnt FROM " + mbTbName + " WHERE " + mbClNameGen + " in "
-                + getInTempParams(typeCode.length) + " and " + mbClNameCod + " LIKE ?;";
+        typeCodeSql += " ) ";
+        // 當前輸入條件
+        String codeSql = " and " + mbClNameCod + " like '" + code + "%' ";
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT 1 ");
+        sql.append(" where exists ( ");
+        sql.append("     select 1 from ");
+        sql.append(mbTbName);
+        sql.append("     where 1=1 ");
+        sql.append(typeCodeSql);
+        sql.append(codeSql);
+        sql.append(" ) ");
+
+        boolean res = false;
         try {
-            Cursor cr = getMbdb().rawQuery(sqlSelect, param);
+            Cursor cr = getMbdb().rawQuery(sql.toString(), null);
             if (cr.moveToFirst()) {
-                cnt = cr.getInt(cr.getColumnIndex("cnt"));
+                res = true;
             }
             cr.close();
         } catch (Exception e) {
         }
-        return cnt;
+        return res;
     }
 
     /**

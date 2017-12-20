@@ -19,7 +19,7 @@ public class InputMethodStatusCnCj2 extends InputMethodStatusCnCj {
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_CJGEN2, code, false, null, extraResolve);
     }
-    
+
     @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
         return MbUtils.selectDbByChar(MbUtils.TYPE_CODE_CJGEN2, cha);
@@ -27,7 +27,7 @@ public class InputMethodStatusCnCj2 extends InputMethodStatusCnCj {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_CJGEN2, code) > 0;
+        return MbUtils.existsDBLikeCode(MbUtils.TYPE_CODE_CJGEN2, code);
     }
 
     @Override

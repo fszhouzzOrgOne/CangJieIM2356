@@ -13,8 +13,7 @@ import android.content.Context;
  * @author t
  * @time 2017-2-9下午9:36:55
  */
-public class InputMethodStatusCnElseKorea extends
-        InputMethodStatusCnElse {
+public class InputMethodStatusCnElseKorea extends InputMethodStatusCnElse {
 
     public InputMethodStatusCnElseKorea(Context con) {
         super(con);
@@ -24,10 +23,9 @@ public class InputMethodStatusCnElseKorea extends
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        return MbUtils.selectDbByCode(this.getSubType(), code,
-                (null != code && code.length() > 1), code, false);
+        return MbUtils.selectDbByCode(this.getSubType(), code, (null != code && code.length() > 1), code, false);
     }
-    
+
     @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
         return MbUtils.selectDbByChar(this.getSubType(), cha);
@@ -35,7 +33,7 @@ public class InputMethodStatusCnElseKorea extends
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(this.getSubType(), code) > 0;
+        return MbUtils.existsDBLikeCode(this.getSubType(), code);
     }
 
     @Override

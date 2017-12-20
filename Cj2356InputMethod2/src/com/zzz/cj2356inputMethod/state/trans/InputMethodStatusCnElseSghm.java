@@ -35,12 +35,12 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
         this.setSubType(MbUtils.TYPE_CODE_SIGOHAOMA);
         this.setSubTypeName("4角");
     }
-    
+
     @Override
     public String getInputMethodName() {
         return MbUtils.getInputMethodName(MbUtils.TYPE_CODE_SIGOHAOMA);
     }
-    
+
     @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
         return MbUtils.selectDbByChar(this.getSubType(), cha);
@@ -48,8 +48,8 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code,
-                (null != code && code.length() > 3), code, extraResolve);
+        List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code, (null != code && code.length() > 3), code,
+                extraResolve);
         // 排序
         if (null != items && !items.isEmpty()) {
             try {
@@ -68,16 +68,12 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
                         } else if (num1.length() > num2.length()) {
                             return 1;
                         } else if (num1.length() == num2.length()) {
-                            if (one.getCharacter().length() > two
-                                    .getCharacter().length()) {
+                            if (one.getCharacter().length() > two.getCharacter().length()) {
                                 return 1;
-                            } else if (one.getCharacter().length() == two
-                                    .getCharacter().length()) {
-                                if (Integer.parseInt(num1) > Integer
-                                        .parseInt(num2)) {
+                            } else if (one.getCharacter().length() == two.getCharacter().length()) {
+                                if (Integer.parseInt(num1) > Integer.parseInt(num2)) {
                                     return 1;
-                                } else if (Integer.parseInt(num1) == Integer
-                                        .parseInt(num2)) {
+                                } else if (Integer.parseInt(num1) == Integer.parseInt(num2)) {
                                     return 0; // 使用默認
                                 } else {
                                     return -1;
@@ -92,8 +88,7 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
 
                 });
             } catch (Exception e) {
-                Toast.makeText(getContext(), "結果排序失敗：" + code2Num(code),
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "結果排序失敗：" + code2Num(code), Toast.LENGTH_LONG).show();
             }
         }
         return items;
@@ -109,8 +104,7 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
             if (null == abcToNumMap.get(ch.toString())) {
                 return null; // 不是漢字
             } else {
-                num = num.replaceFirst(ch.toString(),
-                        abcToNumMap.get(ch.toString()));
+                num = num.replaceFirst(ch.toString(), abcToNumMap.get(ch.toString()));
             }
         }
         return num;
@@ -118,7 +112,7 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(this.getSubType(), code) > 0;
+        return MbUtils.existsDBLikeCode(this.getSubType(), code);
     }
 
     @Override

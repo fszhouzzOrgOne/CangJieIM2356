@@ -30,7 +30,7 @@ public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_ZYFH, code, true, code, false);
     }
-    
+
     @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
         return MbUtils.selectDbByChar(this.getSubType(), cha);
@@ -38,7 +38,7 @@ public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.countDBLikeCode(MbUtils.TYPE_CODE_ZYFH, code) > 0;
+        return MbUtils.existsDBLikeCode(MbUtils.TYPE_CODE_ZYFH, code);
     }
 
 }
