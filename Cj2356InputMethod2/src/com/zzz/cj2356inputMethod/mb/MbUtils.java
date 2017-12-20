@@ -203,7 +203,6 @@ public class MbUtils {
         sql.append(codeSql);
         sql.append(orderSql);
 
-        mbdb.beginTransaction();
         Cursor cursor = mbdb.rawQuery(sql.toString(), null);
         ArrayList<Item> items = handleSelectResultCursor(cursor, extraResolve);
 
@@ -229,8 +228,6 @@ public class MbUtils {
             cursor = mbdb.rawQuery(sql.toString(), null);
             items = handleSelectResultCursor(cursor, extraResolve);
         }
-
-        mbdb.endTransaction();
         return items;
     }
 
@@ -282,7 +279,7 @@ public class MbUtils {
     }
 
     /**
-     * 按編碼模糊查詢統計，大於0就還可以繼續鍵入
+     * 按編碼模糊查詢統計，是否還可以繼續鍵入
      * 
      * @author t
      * @time 2017-1-8下午10:11:02
