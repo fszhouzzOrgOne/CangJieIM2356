@@ -284,7 +284,7 @@ public class MbUtils {
         }
         typeCodeSql += " ) ";
         // 當前輸入條件
-        String codeSql = " and " + mbClNameCod + " like '" + code + "%' ";
+        String codeLikeSql = " and " + mbClNameCod + " like '" + code + "%' ";
 
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT 1 ");
@@ -293,7 +293,7 @@ public class MbUtils {
         sql.append(mbTbName);
         sql.append("     where 1=1 ");
         sql.append(typeCodeSql);
-        sql.append(codeSql);
+        sql.append(codeLikeSql);
         sql.append(" ) ");
 
         boolean res = false;
