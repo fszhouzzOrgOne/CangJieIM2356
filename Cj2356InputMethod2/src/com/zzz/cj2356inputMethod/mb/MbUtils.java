@@ -111,16 +111,35 @@ public class MbUtils {
         }
         cha = cha.trim();
 
-        String[] param = new String[typeCode.length + 1];
+        // 輸入法類型條件
+        String typeCodeSql = " and " + mbClNameGen + " in ( ";
         for (int i = 0; i < typeCode.length; i++) {
-            param[i] = typeCode[i];
+            typeCodeSql += " '" + typeCode[i] + "'";
+            if (i < typeCode.length - 1) {
+                typeCodeSql += ", ";
+            }
         }
-        param[typeCode.length] = cha;
-        Cursor cursor = getMbdb().query(mbTbName, null,
-                mbClNameGen + " in " + getInTempParams(typeCode.length) + " and " + mbClNameVal + " = ?", param, null,
-                null, null);
-        ArrayList<Item> items = handleSelectResultCursor(cursor, false);
+        typeCodeSql += " ) ";
+        // 當前輸入條件
+        String chaSql = " and " + mbClNameVal + " = '" + cha + "' ";
 
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select ");
+        sql.append(mbClNameId + ", ");
+        sql.append(mbClNameGen + ", ");
+        sql.append(mbClNameCod + ", ");
+        sql.append(mbClNameVal + ", ");
+        sql.append(mbClNameOrder);
+        sql.append(" from ");
+        sql.append(mbTbName);
+        sql.append(" where 1=1 ");
+        sql.append(typeCodeSql);
+        sql.append(chaSql);
+
+        getMbdb().beginTransaction();
+        Cursor cursor = getMbdb().rawQuery(sql.toString(), null);
+        ArrayList<Item> items = handleSelectResultCursor(cursor, false);
+        getMbdb().endTransaction();
         return items;
     }
 
@@ -326,15 +345,4 @@ public class MbUtils {
         return resultName;
     }
 
-    private static String getInTempParams(int length) {
-        String res = " (";
-        for (int i = 0; i < length; i++) {
-            res += "?";
-            if (i != length - 1) {
-                res += ",";
-            }
-        }
-        res += ") ";
-        return res;
-    }
 }
