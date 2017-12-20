@@ -329,10 +329,20 @@ public class MbUtils {
      */
     public static String getInputMethodName(String typeCode) {
         String resultName = null;
-        String sqlSelect = "SELECT " + genClNameName + " as thename, " + genClNameId + " FROM " + genTbName + " WHERE "
-                + genClNameGen + " = ? ;";
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT ");
+        sql.append(genClNameName);
+        sql.append("     as thename, ");
+        sql.append(genClNameId);
+        sql.append(" FROM ");
+        sql.append(genTbName);
+        sql.append(" WHERE ");
+        sql.append(genClNameGen);
+        sql.append(" = ? ");
+
         try {
-            Cursor cr = getMbdb().rawQuery(sqlSelect, new String[] { typeCode });
+            Cursor cr = getMbdb().rawQuery(sql.toString(), new String[] { typeCode });
             if (cr.moveToFirst()) {
                 resultName = cr.getString(cr.getColumnIndex("thename"));
             }
