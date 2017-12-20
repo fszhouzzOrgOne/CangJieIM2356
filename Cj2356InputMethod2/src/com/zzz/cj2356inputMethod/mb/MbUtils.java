@@ -159,9 +159,9 @@ public class MbUtils {
         // 輸入法類型條件
         String typeCodeSql = " and " + mbClNameGen + " in ( ";
         for (int i = 0; i < typeCode.length; i++) {
-            typeCodeSql += "," + typeCode[i] + "'";
+            typeCodeSql += " '" + typeCode[i] + "'";
             if (i < typeCode.length - 1) {
-                typeCodeSql += ",";
+                typeCodeSql += ", ";
             }
         }
         typeCodeSql += " ) ";
