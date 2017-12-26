@@ -55,7 +55,7 @@ public class CandidateItemTextView extends TextView {
 
         // 如果是私用區的，字體顯紅色
         if (null != cha) {
-            if (UnicodeHanziUtil.isInPrivateUserArea(cha)) {
+            if (UnicodeHanziUtil.isInPrivateUserArea(cha) || UnicodeHanziUtil.isInhanziCompt(cha)) {
                 this.setTextColor(Color.RED);
             }
         }
