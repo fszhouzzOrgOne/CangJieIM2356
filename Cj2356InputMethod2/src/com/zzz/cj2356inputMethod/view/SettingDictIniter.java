@@ -13,6 +13,7 @@ import com.zzz.cj2356inputMethod.mb.SettingDictMbUtils;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -268,20 +269,37 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
         }
         final String item1 = "查詢文字“" + item.getCharacter() + "”";
         final String item2 = "查詢編碼“" + item.getEncode() + "”";
-        String item3 = "取消";
+        final String item3 = "複製文字“" + item.getCharacter() + "”";
+        final String item4 = "複製編碼“" + item.getEncode() + "”";
+        final String item5 = "複製文字和編碼“" + item.getCharacter() + " " + item.getEncode() + "”";
+        String itemCncl = "取消";
         AlertDialog.Builder builder = new Builder(mContext).setTitle("繼續查詢？");
-        builder.setItems(new String[] { item1, item2, item3 }, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int index) {
-                if (index == 0) {
-                    SettingDictIniter.searchSth(item.getCharacter());
-                } else if (index == 1) {
-                    SettingDictIniter.searchSth(item.getEncode());
-                } else {
-
-                }
-                arg0.dismiss();
-            }
-        });
+        builder.setItems(new String[] { item1, item2, item3, item4, item5, itemCncl },
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int index) {
+                        if (index == 0) {
+                            SettingDictIniter.searchSth(item.getCharacter());
+                        } else if (index == 1) {
+                            SettingDictIniter.searchSth(item.getEncode());
+                        } else if (index == 2) {
+                            ClipboardManager cm = (ClipboardManager) mContext
+                                    .getSystemService(Context.CLIPBOARD_SERVICE);
+                            cm.setText(item.getCharacter());
+                            Toast.makeText(mContext, "複製文字成功。", Toast.LENGTH_LONG).show();
+                        } else if (index == 3) {
+                            ClipboardManager cm = (ClipboardManager) mContext
+                                    .getSystemService(Context.CLIPBOARD_SERVICE);
+                            cm.setText(item.getEncode());
+                            Toast.makeText(mContext, "複製編碼成功。", Toast.LENGTH_LONG).show();
+                        } else if (index == 4) {
+                            ClipboardManager cm = (ClipboardManager) mContext
+                                    .getSystemService(Context.CLIPBOARD_SERVICE);
+                            cm.setText(item.getCharacter() + " " + item.getEncode());
+                            Toast.makeText(mContext, "複製成功。", Toast.LENGTH_LONG).show();
+                        }
+                        arg0.dismiss();
+                    }
+                });
         builder.show();
         return true;
     }
