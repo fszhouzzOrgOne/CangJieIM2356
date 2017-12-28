@@ -13,10 +13,14 @@ x.1版本，默认字體：
 assets\config\cangjie2356.config只有cj6，卽：
 im.order.cj=cj6
 
-倉頡三五：
-三五代的碼表混合
-assets\config\cangjie2356.config只有cj35，卽：
-im.order.cj=cj35
+倉頡三，給鬼島人：
+沒關係，就拿掉其它的
+assets\config\cangjie2356.config只有cj3，卽：
+im.order.cj=cj3
+不要五代六代等等其它
+拆碼時，也不要多一個（）顯示英文拆碼
+也不要諺文，日文，滿文
+粤語拼音也不用了
 
 給鬼島人：
 純五代，
