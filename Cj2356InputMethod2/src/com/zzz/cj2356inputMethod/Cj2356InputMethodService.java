@@ -31,11 +31,15 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public void onInitializeInterface() {
         // 初始化詞典數據
-        MbUtils.init(this);
+        try {
+            MbUtils.init(this);
 
-        Cangjie2356ConfigUtils.init(this);
+            Cangjie2356ConfigUtils.init(this);
 
-        Cangjie2356IMsUtils.init(this);
+            Cangjie2356IMsUtils.init(this);
+        } catch (Exception e) {
+            Toast.makeText(this, "初始化輸入法失敗" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
