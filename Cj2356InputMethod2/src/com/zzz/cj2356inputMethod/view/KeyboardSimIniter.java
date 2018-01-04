@@ -112,8 +112,8 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_KR_KEY, getListByString("ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛㈜㈝㈞㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻㉼㉽㉾㉿"));
 
         typeNameKeyMap.put("中文", PAGE_CN_KEY);
-        typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
+        typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
         typeNameKeyMap.put("特殊", PAGE_SP_KEY);
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
         typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
