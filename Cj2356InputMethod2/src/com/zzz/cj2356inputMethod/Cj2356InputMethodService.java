@@ -92,6 +92,10 @@ public class Cj2356InputMethodService extends InputMethodService {
                 InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
                 composing = cnstat.translateCode2Name(code);
             }
+            String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+            if (composing.matches(patternAbc123)) {
+                composing = composing.toLowerCase();
+            }
             String pattern = "^[a-zA-Z]+$";
             if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
                 composing = composing + "（" + code + "）";
