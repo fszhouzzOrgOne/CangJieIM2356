@@ -20,6 +20,7 @@ public class ComposingTextView extends RelativeLayout {
         super(context);
 
         tv = new TextView(context);
+        tv.setPadding(3, 0, 0, 0);
         tv.setTextColor(Color.RED);
         tv.setTextSize(15); // sp
         tv.setBackgroundColor(context.getResources().getColor(R.color.whiteccc));
