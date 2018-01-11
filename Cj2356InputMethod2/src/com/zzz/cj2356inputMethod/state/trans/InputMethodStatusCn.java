@@ -117,7 +117,12 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      * 得到臨時輸入的所有鍵名，用於回車鍵輸入編碼
      */
     public String getInputingCnValueForEnter() {
-        return getInputingCnValue();
+        String res = getInputingCnValue();
+        String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+        if (res.matches(patternAbc123)) {
+            res = res.toLowerCase();
+        }
+        return res;
     }
 
     /**
