@@ -41,6 +41,10 @@ public class OnEnterClickListener implements OnClickListener {
                     String value = ((InputMethodStatusCn) stat)
                             .getInputingCnValueForEnter();
                     if (StringUtils.hasText(value)) {
+                        String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+                        if (value.matches(patternAbc123)) {
+                            value = value.toLowerCase();
+                        }
                         // 获得InputConnection对象
                         InputConnection inputConnection = ser
                                 .getCurrentInputConnection();

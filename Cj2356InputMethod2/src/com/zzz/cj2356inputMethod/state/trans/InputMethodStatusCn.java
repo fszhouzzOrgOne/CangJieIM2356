@@ -118,10 +118,6 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      */
     public String getInputingCnValueForEnter() {
         String res = getInputingCnValue();
-        String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
-        if (res.matches(patternAbc123)) {
-            res = res.toLowerCase();
-        }
         return res;
     }
 
