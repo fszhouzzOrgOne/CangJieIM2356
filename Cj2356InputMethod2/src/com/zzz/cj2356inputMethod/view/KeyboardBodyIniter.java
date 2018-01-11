@@ -252,9 +252,9 @@ public class KeyboardBodyIniter {
                 View vm = keyboardView.findViewById(R.id.keybtnM);
                 vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
             }
-            // 粵語拼音v加聲調背景
+            // 粵語拼音Q加聲調背景
             if (MbUtils.TYPE_CODE_JYUTPING.equals(inputStat.getSubType())) {
-                View vv = keyboardView.findViewById(R.id.keybtnV);
+                View vv = keyboardView.findViewById(R.id.keybtnQ);
                 vv.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
             }
         }
