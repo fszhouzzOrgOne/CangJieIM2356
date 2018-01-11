@@ -21,7 +21,7 @@ public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
     /**
      * 用什麼代替聲調
      */
-    private static final String TONE_REPLACE_CHAR = "v";
+    private static final String TONE_REPLACE_CHAR = "q";
 
     public InputMethodStatusCnElseJyutp(Context con) {
         super(con);
