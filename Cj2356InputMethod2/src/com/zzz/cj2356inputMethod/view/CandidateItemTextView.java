@@ -58,7 +58,7 @@ public class CandidateItemTextView extends TextView {
             if (UnicodeHanziUtil.isInPrivateUserArea(cha)) {
                 this.setTextColor(Color.parseColor("#FF0000"));
             } else if (UnicodeHanziUtil.isInhanziCompt(cha)) {
-                this.setTextColor(Color.parseColor("#DD0000"));
+                this.setTextColor(Color.parseColor("#CC0000"));
             }
         }
     }
