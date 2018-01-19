@@ -27,8 +27,7 @@ public class InputMethodStatusCnElseKorea extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code, (null != code && code.length() > 1), code,
-                false);
+        List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code, false, code, false);
         // 排序，把韓文放前面
         if (null != items && !items.isEmpty()) {
             Collections.sort(items, new Comparator<Item>() {
