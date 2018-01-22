@@ -77,7 +77,7 @@ public class InputMethodStatusCnElseKorea extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.existsDBLikeCode(this.getSubType(), code);
+        return true;
     }
 
     @Override
