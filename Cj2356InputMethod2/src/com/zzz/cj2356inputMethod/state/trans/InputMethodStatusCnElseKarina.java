@@ -107,7 +107,7 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.existsDBLikeCode(MbUtils.TYPE_CODE_KARINA, code);
+        return true;
     }
 
     @Override
