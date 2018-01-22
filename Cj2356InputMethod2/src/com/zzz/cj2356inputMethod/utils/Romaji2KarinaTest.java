@@ -427,7 +427,7 @@ public class Romaji2KarinaTest {
 
     /**
      * 所有促音轉假名<br />
-     * 促音，か行、さ行、た行、ぱ行前，如kk ss ssh tt tch pp
+     * 促音，か行、さ行、た行、だ行、ぱ行前，如kk ss ssh tt tch dd pp
      * 
      * @author fszhouzz@qq.com
      * @time 2018年1月22日下午2:15:20
@@ -440,7 +440,7 @@ public class Romaji2KarinaTest {
     private static String checkAndTranslateSokuOn(String romaStr, boolean isHiragana) {
         String sokuon = (isHiragana) ? "っ" : "ッ";
         romaStr = romaStr.replaceAll("kk", sokuon + "k").replaceAll("ss", sokuon + "s");
-        romaStr = romaStr.replaceAll("tt", sokuon + "t").replaceAll("tch", sokuon + "ch");
+        romaStr = romaStr.replaceAll("tt", sokuon + "t").replaceAll("tch", sokuon + "ch").replaceAll("dd", sokuon + "d");
         romaStr = romaStr.replaceAll("pp", sokuon + "p");
         return romaStr;
     }

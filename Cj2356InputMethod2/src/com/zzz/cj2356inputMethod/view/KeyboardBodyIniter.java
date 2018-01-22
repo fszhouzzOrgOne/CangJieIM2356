@@ -16,6 +16,7 @@ import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKarina;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
@@ -228,7 +229,12 @@ public class KeyboardBodyIniter {
         // 輸入法切換和逗號句號要特殊處理
         if (inputStat.isShouldTranslate()) {
             keybtnShift.setText(inputStat.getSubTypeName());
-            ((Button) keyboardView.findViewById(R.id.keybtnSimComma)).setText("，");
+            Button commaBtn = ((Button) keyboardView.findViewById(R.id.keybtnSimComma));
+            if (inputStat instanceof InputMethodStatusCnElseKarina) {
+                commaBtn.setText("、");
+            } else {
+                commaBtn.setText("，");
+            }
             ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod)).setText("。");
         } else {
             keybtnShift.setText(inputStat.getSubType());
