@@ -1,11 +1,13 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
+import com.zzz.cj2356inputMethod.utils.Namaja2HangeulTest;
 
 import android.content.Context;
 
@@ -23,10 +25,23 @@ public class InputMethodStatusCnElseKorea extends InputMethodStatusCnElse {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_CJGENKOREA);
         this.setSubTypeName("韓");
+
+        Namaja2HangeulTest.init(con);
     }
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
+        List<Item> res = new ArrayList<Item>();
+        if (null != code && code.length() > 0) {
+            List<String> hangeuls = Namaja2HangeulTest.getHangeulFromNamaja(code);
+            if (null != hangeuls && !hangeuls.isEmpty()) {
+                for (String geul : hangeuls) {
+                    Item it = new Item(null, MbUtils.TYPE_CODE_CJGENKOREA, code, geul);
+                    res.add(it);
+                }
+            }
+        }
+
         List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code, false, code, false);
         // 排序，把韓文放前面
         if (null != items && !items.isEmpty()) {
@@ -50,8 +65,9 @@ public class InputMethodStatusCnElseKorea extends InputMethodStatusCnElse {
                     }
                 }
             });
+            res.addAll(items);
         }
-        return items;
+        return res;
     }
 
     @Override
