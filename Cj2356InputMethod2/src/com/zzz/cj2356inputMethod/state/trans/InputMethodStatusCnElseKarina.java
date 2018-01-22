@@ -1,5 +1,6 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
+import com.zzz.cj2356inputMethod.utils.Romaji2KarinaTest;
 
 import android.content.Context;
 
@@ -43,47 +45,64 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA, code, false, null, false);
-        // 排序
-        if (null != items && !items.isEmpty()) {
-            try {
-                karinaSetInit();
-                Collections.sort(items, new Comparator<Item>() {
+        List<Item> res = new ArrayList<Item>();
+        boolean couldQeury = false;
+        if (null != code && code.length() > 0) {
+            List<String> karinas = Romaji2KarinaTest.getKarinaFromRomaji(code);
+            if (null != karinas && !karinas.isEmpty()) {
+                couldQeury = true;
 
-                    @Override
-                    public int compare(Item lhs, Item rhs) {
-                        if (null == lhs.getEncode() || null == rhs.getEncode()) {
-                            if (null == lhs.getEncode()) {
-                                return 1;
-                            } else {
-                                return -1;
-                            }
-                        } else {
-                            String chaOne = lhs.getCharacter().charAt(0) + "";
-                            String chaTwo = rhs.getCharacter().charAt(0) + "";
-                            if (karinaSet.contains(chaOne) || karinaSet.contains(chaTwo)) {
-                                // 都是假名符號
-                                if (karinaSet.contains(chaOne) && karinaSet.contains(chaTwo)) {
-                                    return lhs.getEncode().compareTo(rhs.getEncode());
-                                } else if (karinaSet.contains(chaOne)) {
-                                    return -1;
-                                } else if (karinaSet.contains(chaTwo)) {
-                                    return 1;
-                                } else {
-                                    return 0;
-                                }
-                            }
-                            // 全是漢字的，默認
-                        }
-                        return 0;
-                    }
-
-                });
-            } catch (Exception e) {
-
+                for (String ka : karinas) {
+                    Item it = new Item(null, MbUtils.TYPE_CODE_KARINA, code, ka);
+                    res.add(it);
+                }
             }
         }
-        return items;
+
+        if (couldQeury) {
+            List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA, code, false, null, false);
+            // 排序
+            if (null != items && !items.isEmpty()) {
+                try {
+                    karinaSetInit();
+                    Collections.sort(items, new Comparator<Item>() {
+
+                        @Override
+                        public int compare(Item lhs, Item rhs) {
+                            if (null == lhs.getEncode() || null == rhs.getEncode()) {
+                                if (null == lhs.getEncode()) {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+                            } else {
+                                String chaOne = lhs.getCharacter().charAt(0) + "";
+                                String chaTwo = rhs.getCharacter().charAt(0) + "";
+                                if (karinaSet.contains(chaOne) || karinaSet.contains(chaTwo)) {
+                                    // 都是假名符號
+                                    if (karinaSet.contains(chaOne) && karinaSet.contains(chaTwo)) {
+                                        return lhs.getEncode().compareTo(rhs.getEncode());
+                                    } else if (karinaSet.contains(chaOne)) {
+                                        return -1;
+                                    } else if (karinaSet.contains(chaTwo)) {
+                                        return 1;
+                                    } else {
+                                        return 0;
+                                    }
+                                }
+                                // 全是漢字的，默認
+                            }
+                            return 0;
+                        }
+
+                    });
+                } catch (Exception e) {
+
+                }
+                res.addAll(items);
+            }
+        }
+        return res;
     }
 
     @Override
