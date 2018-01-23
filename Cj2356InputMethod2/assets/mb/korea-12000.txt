@@ -1,3 +1,5 @@
+# ng在字首的都不發音，註釋掉不用了
+# 去掉ng的放在最前面，共588個。
 a        아
 ak       악
 akk      앆
@@ -7054,594 +7056,594 @@ ssik     앀
 ssit     앁
 ssip     앂
 ssih     앃
-nga      아
-ngak     악
-ngakk    앆
-ngaks    앇
-ngan     안
-nganj    앉
-nganh    않
-ngat     앋
-ngal     알
-ngalk    앍
-ngalm    앎
-ngalp    앏
-ngals    앐
-ngalt    앑
-ngalp    앒
-ngalh    앓
-ngam     암
-ngap     압
-ngaps    앖
-ngas     앗
-ngass    았
-ngang    앙
-ngaj     앚
-ngach    앛
-ngak     앜
-ngat     앝
-ngap     앞
-ngah     앟
-ngae     애
-ngaek    액
-ngaekk   앢
-ngaeks   앣
-ngaen    앤
-ngaenj   앥
-ngaenh   앦
-ngaet    앧
-ngael    앨
-ngaelk   앩
-ngaelm   앪
-ngaelp   앫
-ngaels   앬
-ngaelt   앭
-ngaelp   앮
-ngaelh   앯
-ngaem    앰
-ngaep    앱
-ngaeps   앲
-ngaes    앳
-ngaess   앴
-ngaeng   앵
-ngaej    앶
-ngaech   앷
-ngaek    앸
-ngaet    앹
-ngaep    앺
-ngaeh    앻
-ngya     야
-ngyak    약
-ngyakk   앾
-ngyaks   앿
-ngyan    얀
-ngyanj   얁
-ngyanh   얂
-ngyat    얃
-ngyal    얄
-ngyalk   얅
-ngyalm   얆
-ngyalp   얇
-ngyals   얈
-ngyalt   얉
-ngyalp   얊
-ngyalh   얋
-ngyam    얌
-ngyap    얍
-ngyaps   얎
-ngyas    얏
-ngyass   얐
-ngyang   양
-ngyaj    얒
-ngyach   얓
-ngyak    얔
-ngyat    얕
-ngyap    얖
-ngyah    얗
-ngyae    얘
-ngyaek   얙
-ngyaekk  얚
-ngyaeks  얛
-ngyaen   얜
-ngyaenj  얝
-ngyaenh  얞
-ngyaet   얟
-ngyael   얠
-ngyaelk  얡
-ngyaelm  얢
-ngyaelp  얣
-ngyaels  얤
-ngyaelt  얥
-ngyaelp  얦
-ngyaelh  얧
-ngyaem   얨
-ngyaep   얩
-ngyaeps  얪
-ngyaes   얫
-ngyaess  얬
-ngyaeng  얭
-ngyaej   얮
-ngyaech  얯
-ngyaek   얰
-ngyaet   얱
-ngyaep   얲
-ngyaeh   얳
-ngeo     어
-ngeok    억
-ngeokk   얶
-ngeoks   얷
-ngeon    언
-ngeonj   얹
-ngeonh   얺
-ngeot    얻
-ngeol    얼
-ngeolk   얽
-ngeolm   얾
-ngeolp   얿
-ngeols   엀
-ngeolt   엁
-ngeolp   엂
-ngeolh   엃
-ngeom    엄
-ngeop    업
-ngeops   없
-ngeos    엇
-ngeoss   었
-ngeong   엉
-ngeoj    엊
-ngeoch   엋
-ngeok    엌
-ngeot    엍
-ngeop    엎
-ngeoh    엏
-nge      에
-ngek     엑
-ngekk    엒
-ngeks    엓
-ngen     엔
-ngenj    엕
-ngenh    엖
-nget     엗
-ngel     엘
-ngelk    엙
-ngelm    엚
-ngelp    엛
-ngels    엜
-ngelt    엝
-ngelp    엞
-ngelh    엟
-ngem     엠
-ngep     엡
-ngeps    엢
-nges     엣
-ngess    엤
-ngeng    엥
-ngej     엦
-ngech    엧
-ngek     엨
-nget     엩
-ngep     엪
-ngeh     엫
-ngyeo    여
-ngyeok   역
-ngyeokk  엮
-ngyeoks  엯
-ngyeon   연
-ngyeonj  엱
-ngyeonh  엲
-ngyeot   엳
-ngyeol   열
-ngyeolk  엵
-ngyeolm  엶
-ngyeolp  엷
-ngyeols  엸
-ngyeolt  엹
-ngyeolp  엺
-ngyeolh  엻
-ngyeom   염
-ngyeop   엽
-ngyeops  엾
-ngyeos   엿
-ngyeoss  였
-ngyeong  영
-ngyeoj   옂
-ngyeoch  옃
-ngyeok   옄
-ngyeot   옅
-ngyeop   옆
-ngyeoh   옇
-ngye     예
-ngyek    옉
-ngyekk   옊
-ngyeks   옋
-ngyen    옌
-ngyenj   옍
-ngyenh   옎
-ngyet    옏
-ngyel    옐
-ngyelk   옑
-ngyelm   옒
-ngyelp   옓
-ngyels   옔
-ngyelt   옕
-ngyelp   옖
-ngyelh   옗
-ngyem    옘
-ngyep    옙
-ngyeps   옚
-ngyes    옛
-ngyess   옜
-ngyeng   옝
-ngyej    옞
-ngyech   옟
-ngyek    옠
-ngyet    옡
-ngyep    옢
-ngyeh    옣
-ngo      오
-ngok     옥
-ngokk    옦
-ngoks    옧
-ngon     온
-ngonj    옩
-ngonh    옪
-ngot     옫
-ngol     올
-ngolk    옭
-ngolm    옮
-ngolp    옯
-ngols    옰
-ngolt    옱
-ngolp    옲
-ngolh    옳
-ngom     옴
-ngop     옵
-ngops    옶
-ngos     옷
-ngoss    옸
-ngong    옹
-ngoj     옺
-ngoch    옻
-ngok     옼
-ngot     옽
-ngop     옾
-ngoh     옿
-ngwa     와
-ngwak    왁
-ngwakk   왂
-ngwaks   왃
-ngwan    완
-ngwanj   왅
-ngwanh   왆
-ngwat    왇
-ngwal    왈
-ngwalk   왉
-ngwalm   왊
-ngwalp   왋
-ngwals   왌
-ngwalt   왍
-ngwalp   왎
-ngwalh   왏
-ngwam    왐
-ngwap    왑
-ngwaps   왒
-ngwas    왓
-ngwass   왔
-ngwang   왕
-ngwaj    왖
-ngwach   왗
-ngwak    왘
-ngwat    왙
-ngwap    왚
-ngwah    왛
-ngwae    왜
-ngwaek   왝
-ngwaekk  왞
-ngwaeks  왟
-ngwaen   왠
-ngwaenj  왡
-ngwaenh  왢
-ngwaet   왣
-ngwael   왤
-ngwaelk  왥
-ngwaelm  왦
-ngwaelp  왧
-ngwaels  왨
-ngwaelt  왩
-ngwaelp  왪
-ngwaelh  왫
-ngwaem   왬
-ngwaep   왭
-ngwaeps  왮
-ngwaes   왯
-ngwaess  왰
-ngwaeng  왱
-ngwaej   왲
-ngwaech  왳
-ngwaek   왴
-ngwaet   왵
-ngwaep   왶
-ngwaeh   왷
-ngoe     외
-ngoek    왹
-ngoekk   왺
-ngoeks   왻
-ngoen    왼
-ngoenj   왽
-ngoenh   왾
-ngoet    왿
-ngoel    욀
-ngoelk   욁
-ngoelm   욂
-ngoelp   욃
-ngoels   욄
-ngoelt   욅
-ngoelp   욆
-ngoelh   욇
-ngoem    욈
-ngoep    욉
-ngoeps   욊
-ngoes    욋
-ngoess   욌
-ngoeng   욍
-ngoej    욎
-ngoech   욏
-ngoek    욐
-ngoet    욑
-ngoep    욒
-ngoeh    욓
-ngyo     요
-ngyok    욕
-ngyokk   욖
-ngyoks   욗
-ngyon    욘
-ngyonj   욙
-ngyonh   욚
-ngyot    욛
-ngyol    욜
-ngyolk   욝
-ngyolm   욞
-ngyolp   욟
-ngyols   욠
-ngyolt   욡
-ngyolp   욢
-ngyolh   욣
-ngyom    욤
-ngyop    욥
-ngyops   욦
-ngyos    욧
-ngyoss   욨
-ngyong   용
-ngyoj    욪
-ngyoch   욫
-ngyok    욬
-ngyot    욭
-ngyop    욮
-ngyoh    욯
-ngu      우
-nguk     욱
-ngukk    욲
-nguks    욳
-ngun     운
-ngunj    욵
-ngunh    욶
-ngut     욷
-ngul     울
-ngulk    욹
-ngulm    욺
-ngulp    욻
-nguls    욼
-ngult    욽
-ngulp    욾
-ngulh    욿
-ngum     움
-ngup     웁
-ngups    웂
-ngus     웃
-nguss    웄
-ngung    웅
-nguj     웆
-nguch    웇
-nguk     웈
-ngut     웉
-ngup     웊
-nguh     웋
-ngwo     워
-ngwok    웍
-ngwokk   웎
-ngwoks   웏
-ngwon    원
-ngwonj   웑
-ngwonh   웒
-ngwot    웓
-ngwol    월
-ngwolk   웕
-ngwolm   웖
-ngwolp   웗
-ngwols   웘
-ngwolt   웙
-ngwolp   웚
-ngwolh   웛
-ngwom    웜
-ngwop    웝
-ngwops   웞
-ngwos    웟
-ngwoss   웠
-ngwong   웡
-ngwoj    웢
-ngwoch   웣
-ngwok    웤
-ngwot    웥
-ngwop    웦
-ngwoh    웧
-ngwe     웨
-ngwek    웩
-ngwekk   웪
-ngweks   웫
-ngwen    웬
-ngwenj   웭
-ngwenh   웮
-ngwet    웯
-ngwel    웰
-ngwelk   웱
-ngwelm   웲
-ngwelp   웳
-ngwels   웴
-ngwelt   웵
-ngwelp   웶
-ngwelh   웷
-ngwem    웸
-ngwep    웹
-ngweps   웺
-ngwes    웻
-ngwess   웼
-ngweng   웽
-ngwej    웾
-ngwech   웿
-ngwek    윀
-ngwet    윁
-ngwep    윂
-ngweh    윃
-ngwi     위
-ngwik    윅
-ngwikk   윆
-ngwiks   윇
-ngwin    윈
-ngwinj   윉
-ngwinh   윊
-ngwit    윋
-ngwil    윌
-ngwilk   윍
-ngwilm   윎
-ngwilp   윏
-ngwils   윐
-ngwilt   윑
-ngwilp   윒
-ngwilh   윓
-ngwim    윔
-ngwip    윕
-ngwips   윖
-ngwis    윗
-ngwiss   윘
-ngwing   윙
-ngwij    윚
-ngwich   윛
-ngwik    윜
-ngwit    윝
-ngwip    윞
-ngwih    윟
-ngyu     유
-ngyuk    육
-ngyukk   윢
-ngyuks   윣
-ngyun    윤
-ngyunj   윥
-ngyunh   윦
-ngyut    윧
-ngyul    율
-ngyulk   윩
-ngyulm   윪
-ngyulp   윫
-ngyuls   윬
-ngyult   윭
-ngyulp   윮
-ngyulh   윯
-ngyum    윰
-ngyup    윱
-ngyups   윲
-ngyus    윳
-ngyuss   윴
-ngyung   융
-ngyuj    윶
-ngyuch   윷
-ngyuk    윸
-ngyut    윹
-ngyup    윺
-ngyuh    윻
-ngeu     으
-ngeuk    윽
-ngeukk   윾
-ngeuks   윿
-ngeun    은
-ngeunj   읁
-ngeunh   읂
-ngeut    읃
-ngeul    을
-ngeulk   읅
-ngeulm   읆
-ngeulp   읇
-ngeuls   읈
-ngeult   읉
-ngeulp   읊
-ngeulh   읋
-ngeum    음
-ngeup    읍
-ngeups   읎
-ngeus    읏
-ngeuss   읐
-ngeung   응
-ngeuj    읒
-ngeuch   읓
-ngeuk    읔
-ngeut    읕
-ngeup    읖
-ngeuh    읗
-ngui     의
-nguik    읙
-nguikk   읚
-nguiks   읛
-nguin    읜
-nguinj   읝
-nguinh   읞
-nguit    읟
-nguil    읠
-nguilk   읡
-nguilm   읢
-nguilp   읣
-nguils   읤
-nguilt   읥
-nguilp   읦
-nguilh   읧
-nguim    읨
-nguip    읩
-nguips   읪
-nguis    읫
-nguiss   읬
-nguing   읭
-nguij    읮
-nguich   읯
-nguik    읰
-nguit    읱
-nguip    읲
-nguih    읳
-ngi      이
-ngik     익
-ngikk    읶
-ngiks    읷
-ngin     인
-nginj    읹
-nginh    읺
-ngit     읻
-ngil     일
-ngilk    읽
-ngilm    읾
-ngilp    읿
-ngils    잀
-ngilt    잁
-ngilp    잂
-ngilh    잃
-ngim     임
-ngip     입
-ngips    잆
-ngis     잇
-ngiss    있
-nging    잉
-ngij     잊
-ngich    잋
-ngik     잌
-ngit     잍
-ngip     잎
-ngih     잏
+# nga      아
+# ngak     악
+# ngakk    앆
+# ngaks    앇
+# ngan     안
+# nganj    앉
+# nganh    않
+# ngat     앋
+# ngal     알
+# ngalk    앍
+# ngalm    앎
+# ngalp    앏
+# ngals    앐
+# ngalt    앑
+# ngalp    앒
+# ngalh    앓
+# ngam     암
+# ngap     압
+# ngaps    앖
+# ngas     앗
+# ngass    았
+# ngang    앙
+# ngaj     앚
+# ngach    앛
+# ngak     앜
+# ngat     앝
+# ngap     앞
+# ngah     앟
+# ngae     애
+# ngaek    액
+# ngaekk   앢
+# ngaeks   앣
+# ngaen    앤
+# ngaenj   앥
+# ngaenh   앦
+# ngaet    앧
+# ngael    앨
+# ngaelk   앩
+# ngaelm   앪
+# ngaelp   앫
+# ngaels   앬
+# ngaelt   앭
+# ngaelp   앮
+# ngaelh   앯
+# ngaem    앰
+# ngaep    앱
+# ngaeps   앲
+# ngaes    앳
+# ngaess   앴
+# ngaeng   앵
+# ngaej    앶
+# ngaech   앷
+# ngaek    앸
+# ngaet    앹
+# ngaep    앺
+# ngaeh    앻
+# ngya     야
+# ngyak    약
+# ngyakk   앾
+# ngyaks   앿
+# ngyan    얀
+# ngyanj   얁
+# ngyanh   얂
+# ngyat    얃
+# ngyal    얄
+# ngyalk   얅
+# ngyalm   얆
+# ngyalp   얇
+# ngyals   얈
+# ngyalt   얉
+# ngyalp   얊
+# ngyalh   얋
+# ngyam    얌
+# ngyap    얍
+# ngyaps   얎
+# ngyas    얏
+# ngyass   얐
+# ngyang   양
+# ngyaj    얒
+# ngyach   얓
+# ngyak    얔
+# ngyat    얕
+# ngyap    얖
+# ngyah    얗
+# ngyae    얘
+# ngyaek   얙
+# ngyaekk  얚
+# ngyaeks  얛
+# ngyaen   얜
+# ngyaenj  얝
+# ngyaenh  얞
+# ngyaet   얟
+# ngyael   얠
+# ngyaelk  얡
+# ngyaelm  얢
+# ngyaelp  얣
+# ngyaels  얤
+# ngyaelt  얥
+# ngyaelp  얦
+# ngyaelh  얧
+# ngyaem   얨
+# ngyaep   얩
+# ngyaeps  얪
+# ngyaes   얫
+# ngyaess  얬
+# ngyaeng  얭
+# ngyaej   얮
+# ngyaech  얯
+# ngyaek   얰
+# ngyaet   얱
+# ngyaep   얲
+# ngyaeh   얳
+# ngeo     어
+# ngeok    억
+# ngeokk   얶
+# ngeoks   얷
+# ngeon    언
+# ngeonj   얹
+# ngeonh   얺
+# ngeot    얻
+# ngeol    얼
+# ngeolk   얽
+# ngeolm   얾
+# ngeolp   얿
+# ngeols   엀
+# ngeolt   엁
+# ngeolp   엂
+# ngeolh   엃
+# ngeom    엄
+# ngeop    업
+# ngeops   없
+# ngeos    엇
+# ngeoss   었
+# ngeong   엉
+# ngeoj    엊
+# ngeoch   엋
+# ngeok    엌
+# ngeot    엍
+# ngeop    엎
+# ngeoh    엏
+# nge      에
+# ngek     엑
+# ngekk    엒
+# ngeks    엓
+# ngen     엔
+# ngenj    엕
+# ngenh    엖
+# nget     엗
+# ngel     엘
+# ngelk    엙
+# ngelm    엚
+# ngelp    엛
+# ngels    엜
+# ngelt    엝
+# ngelp    엞
+# ngelh    엟
+# ngem     엠
+# ngep     엡
+# ngeps    엢
+# nges     엣
+# ngess    엤
+# ngeng    엥
+# ngej     엦
+# ngech    엧
+# ngek     엨
+# nget     엩
+# ngep     엪
+# ngeh     엫
+# ngyeo    여
+# ngyeok   역
+# ngyeokk  엮
+# ngyeoks  엯
+# ngyeon   연
+# ngyeonj  엱
+# ngyeonh  엲
+# ngyeot   엳
+# ngyeol   열
+# ngyeolk  엵
+# ngyeolm  엶
+# ngyeolp  엷
+# ngyeols  엸
+# ngyeolt  엹
+# ngyeolp  엺
+# ngyeolh  엻
+# ngyeom   염
+# ngyeop   엽
+# ngyeops  엾
+# ngyeos   엿
+# ngyeoss  였
+# ngyeong  영
+# ngyeoj   옂
+# ngyeoch  옃
+# ngyeok   옄
+# ngyeot   옅
+# ngyeop   옆
+# ngyeoh   옇
+# ngye     예
+# ngyek    옉
+# ngyekk   옊
+# ngyeks   옋
+# ngyen    옌
+# ngyenj   옍
+# ngyenh   옎
+# ngyet    옏
+# ngyel    옐
+# ngyelk   옑
+# ngyelm   옒
+# ngyelp   옓
+# ngyels   옔
+# ngyelt   옕
+# ngyelp   옖
+# ngyelh   옗
+# ngyem    옘
+# ngyep    옙
+# ngyeps   옚
+# ngyes    옛
+# ngyess   옜
+# ngyeng   옝
+# ngyej    옞
+# ngyech   옟
+# ngyek    옠
+# ngyet    옡
+# ngyep    옢
+# ngyeh    옣
+# ngo      오
+# ngok     옥
+# ngokk    옦
+# ngoks    옧
+# ngon     온
+# ngonj    옩
+# ngonh    옪
+# ngot     옫
+# ngol     올
+# ngolk    옭
+# ngolm    옮
+# ngolp    옯
+# ngols    옰
+# ngolt    옱
+# ngolp    옲
+# ngolh    옳
+# ngom     옴
+# ngop     옵
+# ngops    옶
+# ngos     옷
+# ngoss    옸
+# ngong    옹
+# ngoj     옺
+# ngoch    옻
+# ngok     옼
+# ngot     옽
+# ngop     옾
+# ngoh     옿
+# ngwa     와
+# ngwak    왁
+# ngwakk   왂
+# ngwaks   왃
+# ngwan    완
+# ngwanj   왅
+# ngwanh   왆
+# ngwat    왇
+# ngwal    왈
+# ngwalk   왉
+# ngwalm   왊
+# ngwalp   왋
+# ngwals   왌
+# ngwalt   왍
+# ngwalp   왎
+# ngwalh   왏
+# ngwam    왐
+# ngwap    왑
+# ngwaps   왒
+# ngwas    왓
+# ngwass   왔
+# ngwang   왕
+# ngwaj    왖
+# ngwach   왗
+# ngwak    왘
+# ngwat    왙
+# ngwap    왚
+# ngwah    왛
+# ngwae    왜
+# ngwaek   왝
+# ngwaekk  왞
+# ngwaeks  왟
+# ngwaen   왠
+# ngwaenj  왡
+# ngwaenh  왢
+# ngwaet   왣
+# ngwael   왤
+# ngwaelk  왥
+# ngwaelm  왦
+# ngwaelp  왧
+# ngwaels  왨
+# ngwaelt  왩
+# ngwaelp  왪
+# ngwaelh  왫
+# ngwaem   왬
+# ngwaep   왭
+# ngwaeps  왮
+# ngwaes   왯
+# ngwaess  왰
+# ngwaeng  왱
+# ngwaej   왲
+# ngwaech  왳
+# ngwaek   왴
+# ngwaet   왵
+# ngwaep   왶
+# ngwaeh   왷
+# ngoe     외
+# ngoek    왹
+# ngoekk   왺
+# ngoeks   왻
+# ngoen    왼
+# ngoenj   왽
+# ngoenh   왾
+# ngoet    왿
+# ngoel    욀
+# ngoelk   욁
+# ngoelm   욂
+# ngoelp   욃
+# ngoels   욄
+# ngoelt   욅
+# ngoelp   욆
+# ngoelh   욇
+# ngoem    욈
+# ngoep    욉
+# ngoeps   욊
+# ngoes    욋
+# ngoess   욌
+# ngoeng   욍
+# ngoej    욎
+# ngoech   욏
+# ngoek    욐
+# ngoet    욑
+# ngoep    욒
+# ngoeh    욓
+# ngyo     요
+# ngyok    욕
+# ngyokk   욖
+# ngyoks   욗
+# ngyon    욘
+# ngyonj   욙
+# ngyonh   욚
+# ngyot    욛
+# ngyol    욜
+# ngyolk   욝
+# ngyolm   욞
+# ngyolp   욟
+# ngyols   욠
+# ngyolt   욡
+# ngyolp   욢
+# ngyolh   욣
+# ngyom    욤
+# ngyop    욥
+# ngyops   욦
+# ngyos    욧
+# ngyoss   욨
+# ngyong   용
+# ngyoj    욪
+# ngyoch   욫
+# ngyok    욬
+# ngyot    욭
+# ngyop    욮
+# ngyoh    욯
+# ngu      우
+# nguk     욱
+# ngukk    욲
+# nguks    욳
+# ngun     운
+# ngunj    욵
+# ngunh    욶
+# ngut     욷
+# ngul     울
+# ngulk    욹
+# ngulm    욺
+# ngulp    욻
+# nguls    욼
+# ngult    욽
+# ngulp    욾
+# ngulh    욿
+# ngum     움
+# ngup     웁
+# ngups    웂
+# ngus     웃
+# nguss    웄
+# ngung    웅
+# nguj     웆
+# nguch    웇
+# nguk     웈
+# ngut     웉
+# ngup     웊
+# nguh     웋
+# ngwo     워
+# ngwok    웍
+# ngwokk   웎
+# ngwoks   웏
+# ngwon    원
+# ngwonj   웑
+# ngwonh   웒
+# ngwot    웓
+# ngwol    월
+# ngwolk   웕
+# ngwolm   웖
+# ngwolp   웗
+# ngwols   웘
+# ngwolt   웙
+# ngwolp   웚
+# ngwolh   웛
+# ngwom    웜
+# ngwop    웝
+# ngwops   웞
+# ngwos    웟
+# ngwoss   웠
+# ngwong   웡
+# ngwoj    웢
+# ngwoch   웣
+# ngwok    웤
+# ngwot    웥
+# ngwop    웦
+# ngwoh    웧
+# ngwe     웨
+# ngwek    웩
+# ngwekk   웪
+# ngweks   웫
+# ngwen    웬
+# ngwenj   웭
+# ngwenh   웮
+# ngwet    웯
+# ngwel    웰
+# ngwelk   웱
+# ngwelm   웲
+# ngwelp   웳
+# ngwels   웴
+# ngwelt   웵
+# ngwelp   웶
+# ngwelh   웷
+# ngwem    웸
+# ngwep    웹
+# ngweps   웺
+# ngwes    웻
+# ngwess   웼
+# ngweng   웽
+# ngwej    웾
+# ngwech   웿
+# ngwek    윀
+# ngwet    윁
+# ngwep    윂
+# ngweh    윃
+# ngwi     위
+# ngwik    윅
+# ngwikk   윆
+# ngwiks   윇
+# ngwin    윈
+# ngwinj   윉
+# ngwinh   윊
+# ngwit    윋
+# ngwil    윌
+# ngwilk   윍
+# ngwilm   윎
+# ngwilp   윏
+# ngwils   윐
+# ngwilt   윑
+# ngwilp   윒
+# ngwilh   윓
+# ngwim    윔
+# ngwip    윕
+# ngwips   윖
+# ngwis    윗
+# ngwiss   윘
+# ngwing   윙
+# ngwij    윚
+# ngwich   윛
+# ngwik    윜
+# ngwit    윝
+# ngwip    윞
+# ngwih    윟
+# ngyu     유
+# ngyuk    육
+# ngyukk   윢
+# ngyuks   윣
+# ngyun    윤
+# ngyunj   윥
+# ngyunh   윦
+# ngyut    윧
+# ngyul    율
+# ngyulk   윩
+# ngyulm   윪
+# ngyulp   윫
+# ngyuls   윬
+# ngyult   윭
+# ngyulp   윮
+# ngyulh   윯
+# ngyum    윰
+# ngyup    윱
+# ngyups   윲
+# ngyus    윳
+# ngyuss   윴
+# ngyung   융
+# ngyuj    윶
+# ngyuch   윷
+# ngyuk    윸
+# ngyut    윹
+# ngyup    윺
+# ngyuh    윻
+# ngeu     으
+# ngeuk    윽
+# ngeukk   윾
+# ngeuks   윿
+# ngeun    은
+# ngeunj   읁
+# ngeunh   읂
+# ngeut    읃
+# ngeul    을
+# ngeulk   읅
+# ngeulm   읆
+# ngeulp   읇
+# ngeuls   읈
+# ngeult   읉
+# ngeulp   읊
+# ngeulh   읋
+# ngeum    음
+# ngeup    읍
+# ngeups   읎
+# ngeus    읏
+# ngeuss   읐
+# ngeung   응
+# ngeuj    읒
+# ngeuch   읓
+# ngeuk    읔
+# ngeut    읕
+# ngeup    읖
+# ngeuh    읗
+# ngui     의
+# nguik    읙
+# nguikk   읚
+# nguiks   읛
+# nguin    읜
+# nguinj   읝
+# nguinh   읞
+# nguit    읟
+# nguil    읠
+# nguilk   읡
+# nguilm   읢
+# nguilp   읣
+# nguils   읤
+# nguilt   읥
+# nguilp   읦
+# nguilh   읧
+# nguim    읨
+# nguip    읩
+# nguips   읪
+# nguis    읫
+# nguiss   읬
+# nguing   읭
+# nguij    읮
+# nguich   읯
+# nguik    읰
+# nguit    읱
+# nguip    읲
+# nguih    읳
+# ngi      이
+# ngik     익
+# ngikk    읶
+# ngiks    읷
+# ngin     인
+# nginj    읹
+# nginh    읺
+# ngit     읻
+# ngil     일
+# ngilk    읽
+# ngilm    읾
+# ngilp    읿
+# ngils    잀
+# ngilt    잁
+# ngilp    잂
+# ngilh    잃
+# ngim     임
+# ngip     입
+# ngips    잆
+# ngis     잇
+# ngiss    있
+# nging    잉
+# ngij     잊
+# ngich    잋
+# ngik     잌
+# ngit     잍
+# ngip     잎
+# ngih     잏
 ja       자
 jak      작
 jakk     잒
