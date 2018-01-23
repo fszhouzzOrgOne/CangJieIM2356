@@ -3,9 +3,8 @@ package com.zzz.cj2356inputMethod.utils;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -59,6 +58,8 @@ public class Namaja2HangeulTest {
             }
         } catch (Exception e) {
         }
+        
+        inited = true;
     }
 
     /**
@@ -105,89 +106,16 @@ public class Namaja2HangeulTest {
         if (namaja.length() == 1) {
             return baseMbMap.get(namaja);
         }
-        List<String> res = new ArrayList<String>();
-        List<Integer> lens = getPartsLen(namaja);
-        if (null != lens && !lens.isEmpty()) {
-            for (Integer len : lens) {
-                List<String> parts = new ArrayList<String>();
-                int start = 0;
-                for (int index = 0; index < len.toString().length(); index++) {
-                    int number = Integer.parseInt(len.toString().charAt(index) + "");
-                    parts.add(namaja.substring(start, start + number));
 
-                    start += number;
-                }
+        List<Integer> lens = TypingFromRomanUtils.getPartsLen(namaja, baseMbMap, minCodeLen, maxCodeLen);
+        List<String> res = TypingFromRomanUtils.getResByPartsLen(namaja, baseMbMap, lens);
 
-                List<String> res2 = new ArrayList<String>();
-                for (String part : parts) {
-                    List<String> partRes = baseMbMap.get(part);
-                    if (res2.isEmpty()) {
-                        res2.addAll(partRes);
-                    } else {
-                        List<String> res3 = new ArrayList<String>();
-                        for (String old : res2) {
-                            for (String news : partRes) {
-                                res3.add(old + news);
-                            }
-                        }
-                        res2 = res3;
-                    }
-                }
-                res.addAll(res2);
-            }
-        }
+        // 去褈
+        res = new ArrayList<String>(new HashSet<String>(res));
 
         // 排序
-        Collections.sort(res, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                if (o2.length() < o1.length()) {
-                    return 1;
-                } else if (o2.length() > o1.length()) {
-                    return -1;
-                } else {
-                    return o1.compareTo(o2);
-                }
-            }
-        });
+        TypingFromRomanUtils.sortListByLengthAndSo(res);
         return res;
     }
 
-    /**
-     * 看看韓文可以分成幾段
-     * 
-     * @author fszhouzz@qq.com
-     * @time 2018年1月22日 下午9:09:20
-     * @param namaja
-     * @return
-     */
-    private static List<Integer> getPartsLen(String namaja) {
-        List<Integer> temp = new ArrayList<Integer>();
-        for (Integer i = minCodeLen; i < maxCodeLen; i++) {
-            if (i <= namaja.length()) {
-                List<String> one = baseMbMap.get(namaja.substring(0, i));
-                if (null == one) {
-                    continue;
-                }
-
-                if (i == namaja.length()) {
-                    temp.add(i);
-                } else {
-                    List<Integer> subLens = getPartsLen(namaja.substring(i));
-                    if (null != subLens && !subLens.isEmpty()) {
-                        for (Integer subInt : subLens) {
-                            int tempI = i;
-                            for (int ii = 1; ii <= subInt.toString().length(); ii++) {
-                                tempI *= 10;
-                            }
-                            if (null != temp) {
-                                temp.add(tempI + subInt);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return temp;
-    }
 }

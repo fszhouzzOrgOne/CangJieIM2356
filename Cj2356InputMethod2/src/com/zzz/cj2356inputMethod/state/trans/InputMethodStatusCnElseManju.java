@@ -1,9 +1,11 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
+import com.zzz.cj2356inputMethod.utils.ManjuTypingTest;
 
 import android.content.Context;
 
@@ -23,7 +25,17 @@ public class InputMethodStatusCnElseManju extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        return MbUtils.selectDbByCode(this.getSubType(), code, (null != code), code, false);
+        List<Item> res = new ArrayList<Item>();
+        if (null != code && code.length() > 0) {
+            List<String> manjus = ManjuTypingTest.getManjuFromRoman(code);
+            if (null != manjus && !manjus.isEmpty()) {
+                for (String geul : manjus) {
+                    Item it = new Item(null, MbUtils.TYPE_CODE_CJGENMANJU, code, geul);
+                    res.add(it);
+                }
+            }
+        }
+        return res;
     }
 
     @Override
@@ -33,7 +45,7 @@ public class InputMethodStatusCnElseManju extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        return MbUtils.existsDBLikeCode(this.getSubType(), code);
+        return true;
     }
 
     @Override
