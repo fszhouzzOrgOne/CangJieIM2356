@@ -46,12 +46,9 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         List<Item> res = new ArrayList<Item>();
-        boolean couldQeury = false;
         if (null != code && code.length() > 0) {
             List<String> karinas = Romaji2KarinaTest.getKarinaFromRomaji(code);
             if (null != karinas && !karinas.isEmpty()) {
-                couldQeury = true;
-
                 for (String ka : karinas) {
                     Item it = new Item(null, MbUtils.TYPE_CODE_KARINA, code, ka);
                     res.add(it);
@@ -59,48 +56,46 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
             }
         }
 
-        if (couldQeury) {
-            List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA, code, false, null, false);
-            // 排序
-            if (null != items && !items.isEmpty()) {
-                try {
-                    karinaSetInit();
-                    Collections.sort(items, new Comparator<Item>() {
+        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA, code, false, null, false);
+        // 排序
+        if (null != items && !items.isEmpty()) {
+            try {
+                karinaSetInit();
+                Collections.sort(items, new Comparator<Item>() {
 
-                        @Override
-                        public int compare(Item lhs, Item rhs) {
-                            if (null == lhs.getEncode() || null == rhs.getEncode()) {
-                                if (null == lhs.getEncode()) {
+                    @Override
+                    public int compare(Item lhs, Item rhs) {
+                        if (null == lhs.getEncode() || null == rhs.getEncode()) {
+                            if (null == lhs.getEncode()) {
+                                return 1;
+                            } else {
+                                return -1;
+                            }
+                        } else {
+                            String chaOne = lhs.getCharacter().charAt(0) + "";
+                            String chaTwo = rhs.getCharacter().charAt(0) + "";
+                            if (karinaSet.contains(chaOne) || karinaSet.contains(chaTwo)) {
+                                // 都是假名符號
+                                if (karinaSet.contains(chaOne) && karinaSet.contains(chaTwo)) {
+                                    return lhs.getEncode().compareTo(rhs.getEncode());
+                                } else if (karinaSet.contains(chaOne)) {
+                                    return -1;
+                                } else if (karinaSet.contains(chaTwo)) {
                                     return 1;
                                 } else {
-                                    return -1;
+                                    return 0;
                                 }
-                            } else {
-                                String chaOne = lhs.getCharacter().charAt(0) + "";
-                                String chaTwo = rhs.getCharacter().charAt(0) + "";
-                                if (karinaSet.contains(chaOne) || karinaSet.contains(chaTwo)) {
-                                    // 都是假名符號
-                                    if (karinaSet.contains(chaOne) && karinaSet.contains(chaTwo)) {
-                                        return lhs.getEncode().compareTo(rhs.getEncode());
-                                    } else if (karinaSet.contains(chaOne)) {
-                                        return -1;
-                                    } else if (karinaSet.contains(chaTwo)) {
-                                        return 1;
-                                    } else {
-                                        return 0;
-                                    }
-                                }
-                                // 全是漢字的，默認
                             }
-                            return 0;
+                            // 全是漢字的，默認
                         }
+                        return 0;
+                    }
 
-                    });
-                } catch (Exception e) {
+                });
+            } catch (Exception e) {
 
-                }
-                res.addAll(items);
             }
+            res.addAll(items);
         }
         return res;
     }
