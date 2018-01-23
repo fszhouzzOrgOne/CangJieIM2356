@@ -21,6 +21,8 @@ public class InputMethodStatusCnElseManju extends InputMethodStatusCnElse {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_CJGENMANJU);
         this.setSubTypeName("滿");
+        
+        ManjuTypingTest.init(con);
     }
 
     @Override
