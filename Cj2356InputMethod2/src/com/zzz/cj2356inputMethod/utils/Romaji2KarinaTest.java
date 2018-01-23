@@ -469,9 +469,10 @@ public class Romaji2KarinaTest {
             List<String> resTmp3 = new ArrayList<String>();
             for (String line : resTmp) {
                 resTmp3.add(line);
-                // 開頭的n，不換
+                // 開頭的n，不換；如果有兩個nChar相連，換一下後一個为n
                 String suffix = line.substring(1);
-                resTmp3.add(line.substring(0, 1) + suffix.replaceAll("n", nChar));
+                resTmp3.add(
+                        (line.substring(0, 1) + suffix.replaceAll("n", nChar)).replaceAll(nChar + nChar, nChar + "n"));
             }
             resTmp = resTmp3;
         }
