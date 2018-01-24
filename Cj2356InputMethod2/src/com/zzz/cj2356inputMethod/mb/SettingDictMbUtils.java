@@ -16,6 +16,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj5;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj6;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjMs;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjYhqm;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356ConfigUtils;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
@@ -43,7 +44,7 @@ public class SettingDictMbUtils {
         if (dictIms.isEmpty()) {
             try {
                 Cangjie2356ConfigUtils.init(context);
-                String cjConfig = Cangjie2356ConfigUtils.getConfig(Cangjie2356IMsUtils.ORDER_CJ_KEY);
+                String cjConfig = Cangjie2356ConfigUtils.getConfig(Cangjie2356IMsUtils.ORDER_CJDICT_KEY);
                 String[] cjConfigArr = cjConfig.split(",");
                 List<String> cjConfigList = new ArrayList<String>();
                 for (String conf : cjConfigArr) {
@@ -64,6 +65,8 @@ public class SettingDictMbUtils {
                 im = new InputMethodStatusCnCjYhqm(context);
                 allCjIMsMap.put(im.getSubType(), im);
                 im = new InputMethodStatusCnCj2(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnElseSghm(context);
                 allCjIMsMap.put(im.getSubType(), im);
 
                 for (String key : allCjIMsMap.keySet()) {

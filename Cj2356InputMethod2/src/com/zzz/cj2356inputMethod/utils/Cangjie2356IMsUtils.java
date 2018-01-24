@@ -45,6 +45,8 @@ public class Cangjie2356IMsUtils {
     private static final String ORDER_EN_KEY = "im.order.en";
     public static final String ORDER_CJ_KEY = "im.order.cj";
     private static final String ORDER_ELSE_KEY = "im.order.else";
+    
+    public static final String ORDER_CJDICT_KEY = "im.order.cjdict";
 
     // 用於在下面的映射中，放入上面的ORDER_EN_KEY\ORDER_CJ_KEY\ORDER_ELSE_KEY等
     private static final String ORDER_KEY_KEY = "im_type_key";
