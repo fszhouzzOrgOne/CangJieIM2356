@@ -13,7 +13,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -63,11 +62,10 @@ public class ChooseKeyboardLayoutTabIniter {
             textView.setPadding(50, 0, 50, 0);
             textView.setSingleLine();
             RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.MATCH_PARENT);
+                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
             textView.setBackgroundResource(R.drawable.num_button_selector);
-            
+
             textView.setOnClickListener(new MyChooseKeyboardClickListener(context));
 
             chooseKeyboardLayoutScrollContent.addView(textView);
@@ -134,8 +132,7 @@ public class ChooseKeyboardLayoutTabIniter {
                 if (statOld.isShouldTranslate()) {
                     if (((InputMethodStatusCn) statOld).isInputingCn()) {
                         // 先模擬點擊一下打字鍵盤上的回車
-                        ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
-                        keyboardEnter.performClick();
+                        KeyboardBodyIniter.performClickEnter();
                     }
                 }
 

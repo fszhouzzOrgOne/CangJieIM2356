@@ -4,12 +4,11 @@ import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
-import com.zzz.cj2356inputMethod.utils.StringUtils;
+import com.zzz.cj2356inputMethod.view.KeyboardBodyIniter;
 
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.InputConnection;
 
 public class OnCnEnSubsClickListener implements OnClickListener {
 
@@ -30,13 +29,8 @@ public class OnCnEnSubsClickListener implements OnClickListener {
             // 如果是中文輸入
             if (stat.isShouldTranslate()) {
                 if (((InputMethodStatusCn) stat).isInputingCn()) {
-                    String value = ((InputMethodStatusCn) stat).getInputingCnValue();
-                    if (StringUtils.hasText(value)) {
-                        // 获得InputConnection对象
-                        InputConnection inputConnection = ser.getCurrentInputConnection();
-                        inputConnection.commitText(value, 1);
-                    }
-                    ((InputMethodStatusCn) stat).setInputingCn(false);
+                    // 模擬點擊一下打字鍵盤上的回車
+                    KeyboardBodyIniter.performClickEnter();
                 }
             }
 
@@ -44,7 +38,7 @@ public class OnCnEnSubsClickListener implements OnClickListener {
                 ser.setInputMethodStatus(ser.getInputMethodStatus().getNextStatus());
             }
         } catch (Exception e) {
-            
+
         }
     }
 

@@ -88,8 +88,7 @@ public class KeyboardBodyIniter {
                     if (inputStat.isShouldTranslate()) {
                         if (((InputMethodStatusCn) inputStat).isInputingCn()) {
                             // 先模擬點擊一下打字鍵盤上的回車
-                            ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
-                            keyboardEnter.performClick();
+                            performClickEnter();
                         }
                     }
                 }
@@ -110,8 +109,7 @@ public class KeyboardBodyIniter {
                         if (inputStat.isShouldTranslate()) {
                             if (((InputMethodStatusCn) inputStat).isInputingCn()) {
                                 // 先模擬點擊一下打字鍵盤上的回車
-                                ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
-                                keyboardEnter.performClick();
+                                performClickEnter();
                             }
                         }
                     }
@@ -280,6 +278,20 @@ public class KeyboardBodyIniter {
 
     public static InputMethodStatus getInputMethodStatus() {
         return inputStat;
+    }
+
+    /**
+     * 模擬點擊一下打字鍵盤上的回車
+     * 
+     * @author fszhouzz@qq.com
+     */
+    public static void performClickEnter() {
+        if (null != keyboardView) {
+            ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
+            if (null != keyboardEnter) {
+                keyboardEnter.performClick();
+            }
+        }
     }
 
 }
