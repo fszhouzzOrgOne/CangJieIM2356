@@ -171,12 +171,13 @@
 			        android:layout_height="wrap_content"
 			        android:layout_marginLeft="1dp"
 			        android:layout_marginRight="1dp"
+			        android:layout_marginTop="3dp"
 			        android:orientation="horizontal" 
 				    >
 			        <Button
 			            android:id="@+id/keybtnNumPrevPage"
 			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+			            android:layout_height="@dimen/keyboard_key_height"
 			            android:layout_weight="1"
 			            android:textAllCaps="false"
 			            android:text="上頁▲"
@@ -185,7 +186,7 @@
 			        <Button
 			            android:id="@+id/keybtnNumSpace"
 			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+			            android:layout_height="@dimen/keyboard_key_height"
 			            android:layout_weight="1"
 			            android:textAllCaps="false"
 			            android:text="空格"
@@ -194,7 +195,7 @@
 			        <Button
 			            android:id="@+id/keybtnNumNextPage"
 			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+			            android:layout_height="@dimen/keyboard_key_height"
 			            android:layout_weight="1"
 			            android:textAllCaps="false"
 			            android:text="▼下頁"
@@ -218,6 +219,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:textAllCaps="false"
 		            android:text="返"
 		            android:background="@drawable/keyboard_button_selector"
@@ -228,6 +230,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:textAllCaps="false"
 		            android:text="符"
 		            android:background="@drawable/keyboard_button_selector"
@@ -238,6 +241,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:src="@drawable/icon_delete"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -247,6 +251,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:src="@drawable/icon_enter"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -272,7 +277,7 @@
 		        >
 		        <LinearLayout
 				    android:layout_width="match_parent"
-				    android:layout_height="@dimen/keyboard_numsim_griditem_height"
+				    android:layout_height="@dimen/keyboard_key_height"
 				    >
 		        	<HorizontalScrollView
 		        	    android:id="@+id/keyboardBodySimScroll"
@@ -308,12 +313,13 @@
 			        android:layout_height="wrap_content"
 			        android:layout_marginLeft="1dp"
 			        android:layout_marginRight="1dp"
+			        android:layout_marginTop="3dp"
 			        android:orientation="horizontal" >
 			
 			        <Button
 			            android:id="@+id/keybtnSimPreviousPage"
 			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+			            android:layout_height="@dimen/keyboard_key_height"
 			            android:layout_weight="1"
 			            android:text="上頁▲"
 			            android:textAllCaps="false" 
@@ -322,7 +328,7 @@
 			        <Button
 			            android:id="@+id/keybtnSimSpace"
 			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+			            android:layout_height="@dimen/keyboard_key_height"
 			            android:layout_weight="1"
 			            android:textAllCaps="false"
 			            android:text="空格"
@@ -331,7 +337,7 @@
 			        <Button
 			            android:id="@+id/keybtnSimNextPage"
 			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_numsim_griditem_height"
+			            android:layout_height="@dimen/keyboard_key_height"
 			            android:layout_weight="1"
 			            android:text="▼下頁"
 			            android:textAllCaps="false" 
@@ -356,6 +362,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:textAllCaps="false"
 		            android:text="返"
 		            android:background="@drawable/keyboard_button_selector"
@@ -366,6 +373,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:textAllCaps="false"
 		            android:text="12"
 		            android:background="@drawable/keyboard_button_selector"
@@ -376,6 +384,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:src="@drawable/icon_delete"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -385,6 +394,7 @@
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
 		            android:src="@drawable/icon_enter"
 		            android:background="@drawable/keyboard_button_selector"
 		            />

@@ -9,6 +9,7 @@
 		        xmlns:android="http://schemas.android.com/apk/res/android"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
+		        android:layout_marginTop="3dp"
 		        android:orientation="horizontal" >
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnQ"
@@ -106,6 +107,7 @@
 		        xmlns:android="http://schemas.android.com/apk/res/android"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
+		        android:layout_marginTop="3dp"
 		        android:orientation="horizontal" >
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnA"
@@ -196,6 +198,7 @@
 		        xmlns:android="http://schemas.android.com/apk/res/android"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
+		        android:layout_marginTop="3dp"
 		        android:orientation="horizontal" >
 		        
                 <Button android:textAllCaps="false" android:textSize="14dp" 
@@ -284,6 +287,7 @@
 		        xmlns:android="http://schemas.android.com/apk/res/android"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
+		        android:layout_marginTop="3dp"
 		        android:orientation="horizontal" >
                 
 		        <Button android:textAllCaps="false" android:textSize="12dp" 
