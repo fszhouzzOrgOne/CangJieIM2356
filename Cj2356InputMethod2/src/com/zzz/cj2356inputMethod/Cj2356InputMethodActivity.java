@@ -1,5 +1,6 @@
 package com.zzz.cj2356inputMethod;
 
+import com.zzz.cj2356inputMethod.exception.CrashHandler;
 import com.zzz.cj2356inputMethod.view.SettingLoayoutTabIniter;
 
 import android.app.Activity;
@@ -44,6 +45,9 @@ public class Cj2356InputMethodActivity extends Activity {
         // 之三還要在xml中設置focusable和focusableInTouchMode為真
         InputMethodManager imm1 = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm1.hideSoftInputFromWindow(getContentView().getWindowToken(), 0);
+        
+        CrashHandler crashHandler = CrashHandler.getInstance();    
+        crashHandler.init(this); 
     }
 
     /**

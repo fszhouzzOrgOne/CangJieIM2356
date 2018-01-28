@@ -3,6 +3,7 @@ package com.zzz.cj2356inputMethod;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.exception.CrashHandler;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
@@ -37,6 +38,9 @@ public class Cj2356InputMethodService extends InputMethodService {
             Cangjie2356ConfigUtils.init(this);
 
             Cangjie2356IMsUtils.init(this);
+            
+            CrashHandler crashHandler = CrashHandler.getInstance();    
+            crashHandler.init(this); 
         } catch (Exception e) {
             Toast.makeText(this, "初始化輸入法失敗" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
