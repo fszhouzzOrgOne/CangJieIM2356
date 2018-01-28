@@ -166,42 +166,6 @@
 			        android:numColumns="6"
 			        android:verticalSpacing="1dp" 
 		            />
-	            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		            android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:layout_marginLeft="1dp"
-			        android:layout_marginRight="1dp"
-			        android:layout_marginTop="2dp"
-			        android:orientation="horizontal" 
-				    >
-			        <Button
-			            android:id="@+id/keybtnNumPrevPage"
-			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_key_height"
-			            android:layout_weight="1"
-			            android:textAllCaps="false"
-			            android:text="上頁▲"
-		                android:background="@drawable/keyboard_button_selector"
-		                />
-			        <Button
-			            android:id="@+id/keybtnNumSpace"
-			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_key_height"
-			            android:layout_weight="1"
-			            android:textAllCaps="false"
-			            android:text="空格"
-		                android:background="@drawable/keyboard_button_selector"
-		                />
-			        <Button
-			            android:id="@+id/keybtnNumNextPage"
-			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_key_height"
-			            android:layout_weight="1"
-			            android:textAllCaps="false"
-			            android:text="▼下頁"
-		                android:background="@drawable/keyboard_button_selector"
-		                />
-		        </LinearLayout>
 	        </LinearLayout>
 	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		        android:id="@+id/keyboardBodyNumCtrls"
@@ -224,17 +188,6 @@
 		            android:text="返"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
-		        <Button
-		            android:id="@+id/keybtnNumSim"
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="3dp"
-		            android:textAllCaps="false"
-		            android:text="符"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
 		        <ImageButton
 		            android:id="@+id/keybtnNumDelete"
 		            android:layout_width="match_parent"
@@ -246,13 +199,35 @@
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		        <ImageButton
-		            android:id="@+id/keybtnNumEnter"
+		            android:id="@+id/keybtnNumSpace"
 		            android:layout_width="match_parent"
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
 		            android:layout_marginTop="3dp"
-		            android:src="@drawable/icon_enter"
+		            android:src="@drawable/icon_space"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnNumPrevPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
+		            android:textAllCaps="false"
+		            android:text="▲"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnNumNextPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
+		            android:textAllCaps="false"
+		            android:text="▼"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 	        </LinearLayout>
@@ -305,45 +280,6 @@
 			        android:verticalSpacing="1dp" 
 			        >
 			    </GridView>
-			
-			    <LinearLayout
-			        xmlns:android="http://schemas.android.com/apk/res/android"
-			        android:id="@+id/keyboardBodySimPageCtrls"
-			        android:layout_width="match_parent"
-			        android:layout_height="wrap_content"
-			        android:layout_marginLeft="1dp"
-			        android:layout_marginRight="1dp"
-			        android:layout_marginTop="3dp"
-			        android:orientation="horizontal" >
-			
-			        <Button
-			            android:id="@+id/keybtnSimPreviousPage"
-			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_key_height"
-			            android:layout_weight="1"
-			            android:text="上頁▲"
-			            android:textAllCaps="false" 
-		                android:background="@drawable/keyboard_button_selector"
-		                />
-			        <Button
-			            android:id="@+id/keybtnSimSpace"
-			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_key_height"
-			            android:layout_weight="1"
-			            android:textAllCaps="false"
-			            android:text="空格"
-		                android:background="@drawable/keyboard_button_selector"
-		            />
-			        <Button
-			            android:id="@+id/keybtnSimNextPage"
-			            android:layout_width="0dp"
-			            android:layout_height="@dimen/keyboard_key_height"
-			            android:layout_weight="1"
-			            android:text="▼下頁"
-			            android:textAllCaps="false" 
-		                android:background="@drawable/keyboard_button_selector"
-			            />
-			    </LinearLayout>
 	        </LinearLayout>
 	        
 	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -367,17 +303,6 @@
 		            android:text="返"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
-		        <Button
-		            android:id="@+id/keybtnSimNum" android:textSize="15dp" 
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="3dp"
-		            android:textAllCaps="false"
-		            android:text="12"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
 		        <ImageButton 
 		            android:id="@+id/keybtnSimDelete"
 		            android:layout_width="match_parent"
@@ -388,14 +313,36 @@
 		            android:src="@drawable/icon_delete"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
-		        <ImageButton
-		            android:id="@+id/keybtnSimEnter"
+		        <ImageButton 
+		            android:id="@+id/keybtnSimSpace"
 		            android:layout_width="match_parent"
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
 		            android:layout_marginTop="3dp"
-		            android:src="@drawable/icon_enter"
+		            android:src="@drawable/icon_space"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnSimPreviousPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
+		            android:textAllCaps="false"
+		            android:text="▲"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnSimNextPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="3dp"
+		            android:textAllCaps="false"
+		            android:text="▼"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 	        </LinearLayout>

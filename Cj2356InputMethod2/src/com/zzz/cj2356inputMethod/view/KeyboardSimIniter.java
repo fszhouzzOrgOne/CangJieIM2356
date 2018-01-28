@@ -13,7 +13,6 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
-import com.zzz.cj2356inputMethod.listener.OnEnterNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
@@ -31,9 +30,9 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class KeyboardSimIniter {
-    // 一行六個，參見@+id/keyboardBodySimGrid
+    // 一行幾個，下面有設置到@+id/keyboardBodySimGrid
     private static Integer SIM_ROW_SIZE = 6;
-    private static Integer SIM_PAGE_ROW = 3;
+    private static Integer SIM_PAGE_ROW = 4;
 
     private static String currentSimMapKey = null;
     private static Context context;
@@ -109,7 +108,8 @@ public class KeyboardSimIniter {
         // 日文
         simMap.put(PAGE_JP_KEY, getJapanListString());
         // 韓文
-        simMap.put(PAGE_KR_KEY, getListByString("ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛㈜㈝㈞㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻㉼㉽㉾㉿"));
+        simMap.put(PAGE_KR_KEY, getListByString(
+                "ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛㈜㈝㈞㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻㉼㉽㉾㉿"));
 
         typeNameKeyMap.put("中文", PAGE_CN_KEY);
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
@@ -174,8 +174,6 @@ public class KeyboardSimIniter {
         keyboardView.findViewById(R.id.keybtnSimDelete).setOnClickListener(new OnDeleteNumClickListener(context));
         keyboardView.findViewById(R.id.keybtnSimDelete)
                 .setOnLongClickListener(new OnDeleteNumLongClickListener(context));
-        // 回車鍵
-        keyboardView.findViewById(R.id.keybtnSimEnter).setOnClickListener(new OnEnterNumClickListener(context));
         // 空格鍵
         keyboardView.findViewById(R.id.keybtnSimSpace).setOnClickListener(new OnSpaceNumClickListener(context));
         // 符號鍵盤返回
@@ -185,15 +183,6 @@ public class KeyboardSimIniter {
                 // 界面切換
                 ViewFlipper viewFlipper = (ViewFlipper) keyboardView.findViewById(R.id.keyboardBodyFlipper);
                 viewFlipper.showPrevious();
-                viewFlipper.showPrevious();
-            }
-        });
-        // 符號鍵盤的數字鍵
-        keyboardView.findViewById(R.id.keybtnSimNum).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 界面切換
-                ViewFlipper viewFlipper = (ViewFlipper) keyboardView.findViewById(R.id.keyboardBodyFlipper);
                 viewFlipper.showPrevious();
             }
         });
@@ -208,8 +197,8 @@ public class KeyboardSimIniter {
     private static List<String> getJapanListString() {
         // 先按日文符號區內順序
         // 與下面的有褈複
-        String str1 = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ゙゚゛゜ゝゞゟ゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾ"; 
-        
+        String str1 = "ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれろゎわゐゑをんゔゕゖ゙゚゛゜ゝゞゟ゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌネノハバパヒビピフブプヘベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヵヶヷヸヹヺ・ーヽヾ";
+
         str1 += "あいうゔえおアイウヴエオぁぃぅぇぉァィゥェォかゕきくけゖこカヵキクケヶコがぎぐげごガギグゲゴさしすせそサシスセソざじずぜぞザジズゼゾたちつってとタチツッテトだぢづでどダヂヅデドなにぬねのナニヌネノはひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポまみむめもマミムメモやゆよヤユヨゃゅょャュョらりるれろラリルレロわゎゐゑをワヮヷヰヸヱヹヲヺんンー゠々ゝゞヽヾ〆乄ゟ゚゛゜ヿ・";
         str1 += "ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩㈪㈫㈬㈭㈮㈯㈰㈱㈲㈳㈴㈵㈶㈷㈸㈹㈺㈻㈼㈽㈾㈿㉀㉁㉂㉃㉄㉅㉆㉇㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㊊㊋㊌㊍㊎㊏㊐㊑㊒㊓㊔㊕㊖㊗㊘㊙㊚㊛㊜㊝㊞㊟㊠㊡㊢㊣㊤㊥㊦㊧㊨㊩㊪㊫㊬㊭㊮㊯㊰㋐㋑㋒㋓㋔㋕㋖㋗㋘㋙㋚㋛㋜㋝㋞㋟㋠㋡㋢㋣㋤㋥㋦㋧㋨㋩㋪㋫㋬㋭㋮㋯㋰㋱㋲㋳㋴㋵㋶㋷㋸㋹㋺㋻㋼㋽㋾㌀㌁㌂㌃㌄㌅㌆㌇㌈㌉㌊㌋㌌㌍㌎㌏㌐㌑㌒㌓㌔㌕㌖㌗㌘㌙㌚㌛㌜㌝㌞㌟㌠㌡㌢㌣㌤㌥㌦㌧㌨㌩㌪㌫㌬㌭㌮㌯㌰㌱㌲㌳㌴㌵㌶㌷㌸㌹㌺㌻㌼㌽㌾㌿㍀㍁㍂㍃㍄㍅㍆㍇㍈㍉㍊㍋㍌㍍㍎㍏㍐㍑㍒㍓㍔㍕㍖㍗㍻㍼㍽㍾㍿";
         List<String> list = getListByString(str1);
@@ -392,7 +381,9 @@ public class KeyboardSimIniter {
                 map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha);
                 valueList.add(map);
             }
-            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList);
+            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList,
+                    R.layout.keyboardsimitem);
+            keyboardBodySimGrid.setNumColumns(SIM_ROW_SIZE);
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
         } catch (Exception e) {
         }
