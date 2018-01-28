@@ -25,6 +25,10 @@
     <dimen name="keyboard_sim_griditem_height">50dp</dimen>
     <dimen name="keyboard_num_griditem_height">62dp</dimen>
     <dimen name="keyboard_numsim_ctlkey_height">50dp</dimen>
+    
+    <dimen name="keyboard_row_interval_height">3dp</dimen>
+    <dimen name="keyboard_row_interval_height_numsim">2dp</dimen>
+    
     <dimen name="keyboard_text_size">20sp</dimen>
     <dimen name="keyboard_qwerty_text_size">18sp</dimen>
 </resources>
