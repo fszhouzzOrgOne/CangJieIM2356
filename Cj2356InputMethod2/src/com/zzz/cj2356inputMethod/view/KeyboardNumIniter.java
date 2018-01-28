@@ -101,5 +101,9 @@ public class KeyboardNumIniter {
         keyboardBodyNumGrid.setAdapter(kKeyBoardNumAdapter);
 
         currentKeyboardNumPage = index;
+
+        // 翻頁展示的控制
+        keyboardView.findViewById(R.id.keybtnNumPrevPage).setEnabled(!(0 == index));
+        keyboardView.findViewById(R.id.keybtnNumNextPage).setEnabled(!(tatalPage - 1 == index));
     }
 }

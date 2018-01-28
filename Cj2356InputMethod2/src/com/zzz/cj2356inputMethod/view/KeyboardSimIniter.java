@@ -385,6 +385,10 @@ public class KeyboardSimIniter {
                     R.layout.keyboardsimitem);
             keyboardBodySimGrid.setNumColumns(SIM_ROW_SIZE);
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
+
+            int totalPage = getKeyboardSimLastPage();
+            prePageButton.setEnabled(!(page == 1));
+            nextPageButton.setEnabled(!(page == totalPage));
         } catch (Exception e) {
         }
     }
