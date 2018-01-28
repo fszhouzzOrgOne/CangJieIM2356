@@ -45,6 +45,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
                 if (mContext instanceof InputMethodService) {
                     Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();
+                    System.exit(0);
                 } else {
                     new AlertDialog.Builder(mContext).setTitle("錯誤").setCancelable(false).setMessage(msg)
                             .setNeutralButton("我知道了", new OnClickListener() {
