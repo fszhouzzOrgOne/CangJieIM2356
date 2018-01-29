@@ -51,9 +51,6 @@ public class CandidateViewIniter {
         // 根据按下的按钮设置候选词列表
         suggestionlist = suggestion;
         candiScrollContent.removeAllViews();
-        // 左移焦點
-        HorizontalScrollView sv = (HorizontalScrollView) keyboardView.findViewById(R.id.candiScroll);
-        sv.arrowScroll(View.FOCUS_LEFT);
 
         // 爲null說明不能再繼續鍵入了
         // 爲空列表，說明還可以繼續鍵入，只是當前沒有找到
@@ -68,6 +65,12 @@ public class CandidateViewIniter {
                 CandidateItemTextView tv = new CandidateItemTextView(context, it);
                 candiScrollContent.addView(tv);
             }
+        }
+
+        // 移焦點到原點
+        HorizontalScrollView sv = (HorizontalScrollView) keyboardView.findViewById(R.id.candiScroll);
+        if (sv.getScrollX() != 0) {
+            sv.scrollBy(-sv.getScrollX(), 0);
         }
     }
 
