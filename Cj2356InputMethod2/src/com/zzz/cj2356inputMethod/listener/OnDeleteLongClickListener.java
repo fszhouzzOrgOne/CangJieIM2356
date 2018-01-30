@@ -3,6 +3,11 @@ package com.zzz.cj2356inputMethod.listener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
+import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
+import com.zzz.cj2356inputMethod.view.KeyboardBodyIniter;
+
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.os.SystemClock;
@@ -12,11 +17,6 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputConnection;
-
-import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
-import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 public class OnDeleteLongClickListener implements OnLongClickListener {
 
@@ -35,15 +35,8 @@ public class OnDeleteLongClickListener implements OnLongClickListener {
         // 如果是中文輸入
         if (stat.isShouldTranslate()) {
             if (((InputMethodStatusCn) stat).isInputingCn()) {
-                String value = ((InputMethodStatusCn) stat)
-                        .getInputingCnValue();
-                if (StringUtils.hasText(value)) {
-                    // 获得InputConnection对象
-                    InputConnection inputConnection = ser
-                            .getCurrentInputConnection();
-                    inputConnection.commitText(value, 1);
-                }
-                ((InputMethodStatusCn) stat).setInputingCn(false);
+                // 先模擬點擊一下打字鍵盤上的回車
+                KeyboardBodyIniter.performClickEnter();
             }
         }
 
@@ -76,17 +69,12 @@ class LongDeleteTask extends TimerTask {
 
     @Override
     public void run() {
-        InputConnection inputConnection = ((InputMethodService) context)
-                .getCurrentInputConnection();
+        InputConnection inputConnection = ((InputMethodService) context).getCurrentInputConnection();
         long eventTime = SystemClock.uptimeMillis();
-        inputConnection.sendKeyEvent(new KeyEvent(eventTime, eventTime,
-                KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL, 0, 0, 0, 0,
-                KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
-        inputConnection
-                .sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(),
-                        eventTime, KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL, 0,
-                        0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD
-                                | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+        inputConnection.sendKeyEvent(new KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL, 0,
+                0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+        inputConnection.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), eventTime, KeyEvent.ACTION_UP,
+                KeyEvent.KEYCODE_DEL, 0, 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
     }
 
 }
