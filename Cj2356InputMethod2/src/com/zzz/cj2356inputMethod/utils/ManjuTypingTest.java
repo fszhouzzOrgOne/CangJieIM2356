@@ -100,7 +100,7 @@ public class ManjuTypingTest {
             }
         }
 
-        List<Integer> lens = TypingFromRomanUtils.getPartsLen(roman, baseMbMap, minCodeLen, maxCodeLen);
+        List<String> lens = TypingFromRomanUtils.getPartsLen(roman, baseMbMap, minCodeLen, maxCodeLen);
         List<String> res = TypingFromRomanUtils.getResByPartsLen(roman, baseMbMap, lens);
 
         // 去褈

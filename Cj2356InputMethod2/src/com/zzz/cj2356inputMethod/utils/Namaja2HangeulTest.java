@@ -107,7 +107,7 @@ public class Namaja2HangeulTest {
             return baseMbMap.get(namaja);
         }
 
-        List<Integer> lens = TypingFromRomanUtils.getPartsLen(namaja, baseMbMap, minCodeLen, maxCodeLen);
+        List<String> lens = TypingFromRomanUtils.getPartsLen(namaja, baseMbMap, minCodeLen, maxCodeLen);
         List<String> res = TypingFromRomanUtils.getResByPartsLen(namaja, baseMbMap, lens);
 
         // 去褈
