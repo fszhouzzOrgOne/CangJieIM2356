@@ -251,12 +251,13 @@ public class KeyboardBodyIniter {
             for (View v : letterViews) {
                 v.setBackgroundResource(R.drawable.keyboard_button_selector);
             }
-            // 官話拼音m加聲調背景
-            if (MbUtils.TYPE_CODE_PINYIN.equals(inputStat.getSubType())) {
+            // 官話拼音、注音符號：m加聲調背景
+            if (MbUtils.TYPE_CODE_PINYIN.equals(inputStat.getSubType())
+                    || MbUtils.TYPE_CODE_ZYFH.equals(inputStat.getSubType())) {
                 View vm = keyboardView.findViewById(R.id.keybtnM);
                 vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
             }
-            // 粵語拼音Q加聲調背景
+            // 粵語拼音：Q加聲調背景
             if (MbUtils.TYPE_CODE_JYUTPING.equals(inputStat.getSubType())) {
                 View vv = keyboardView.findViewById(R.id.keybtnQ);
                 vv.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
