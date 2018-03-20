@@ -4,7 +4,6 @@
     android:versionCode="36"
     android:versionName="36.2.0" 
     >
-
     <uses-sdk android:minSdkVersion="14" />
 
     <application
