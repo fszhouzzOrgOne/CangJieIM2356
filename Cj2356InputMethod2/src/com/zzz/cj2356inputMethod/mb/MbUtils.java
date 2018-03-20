@@ -30,6 +30,7 @@ public class MbUtils {
     public static final String TYPE_CODE_CJGENMS = "cjms"; // 微軟倉頡
     public static final String TYPE_CODE_CJGENKOREA = "korea"; // 朝鮮諺文
     public static final String TYPE_CODE_CJGENMANJU = "manju"; // 圈點滿文
+    public static final String TYPE_CODE_CJGEN_IPA = "ipa"; // 國際音標
     // 倉頡碼表的交集
     public static final String TYPE_CODE_CJINTERSECT = "cjcommon";
 
