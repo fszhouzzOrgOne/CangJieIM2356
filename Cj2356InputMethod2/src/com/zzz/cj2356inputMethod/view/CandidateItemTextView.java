@@ -6,6 +6,7 @@ import com.zzz.cj2356inputMethod.font.FontManager;
 import com.zzz.cj2356inputMethod.listener.OnCandidateItemClickListener;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
+import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 import com.zzz.cj2356inputMethod.utils.UnicodeHanziUtil;
 
@@ -37,6 +38,7 @@ public class CandidateItemTextView extends TextView {
         this.item = it;
         String cha = it.getCharacter();
         setText(cha);
+        this.setMinimumWidth(DipPxUtil.dip(context, 50));
 
         if (showEncode) {
             this.setPadding(50, 0, 50, 0);
@@ -66,7 +68,11 @@ public class CandidateItemTextView extends TextView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        // 邊框
+        Paint paint = new Paint();
+        paint.setColor(android.graphics.Color.LTGRAY);
+        canvas.drawLine(0, 0, 0, this.getWidth(), paint);
+        
         String str = item.getEncode();
         if (showEncode && StringUtils.hasText(str)) {
             InputMethodStatus stat = ((Cj2356InputMethodService) this.getContext()).getInputMethodStatus();
@@ -75,7 +81,6 @@ public class CandidateItemTextView extends TextView {
                 str = cnstat.translateCode2Name(str);
             }
 
-            Paint paint = new Paint();
             paint.setStrokeWidth(3);
             paint.setTextSize(27);
             paint.setColor(Color.RED);
