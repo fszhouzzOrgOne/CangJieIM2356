@@ -31,7 +31,7 @@ import android.widget.ViewFlipper;
 
 public class KeyboardSimIniter {
     // 一行幾個，下面有設置到@+id/keyboardBodySimGrid
-    private static Integer SIM_ROW_SIZE = 6;
+    private static Integer SIM_ROW_SIZE = 5;
     private static Integer SIM_PAGE_ROW = 4;
 
     private static String currentSimMapKey = null;
