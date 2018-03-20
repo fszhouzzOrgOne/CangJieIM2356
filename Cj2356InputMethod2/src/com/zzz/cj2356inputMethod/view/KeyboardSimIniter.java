@@ -126,7 +126,7 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("表情1", PAGE_FACES_KEY1);
         typeNameKeyMap.put("表情2", PAGE_FACES_KEY2);
         typeNameKeyMap.put("表情3", PAGE_FACES_KEY3);
-        typeNameKeyMap.put("國標", PAGE_IPA_KEY);
+        typeNameKeyMap.put("音標", PAGE_IPA_KEY);
         typeNameKeyMap.put("注音", PAGE_PINYIN_KEY);
         typeNameKeyMap.put("日文", PAGE_JP_KEY);
         typeNameKeyMap.put("韓文", PAGE_KR_KEY);
