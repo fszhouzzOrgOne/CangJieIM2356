@@ -1,4 +1,4 @@
-package com.zzz.cj2356inputMethod.adapter;
+﻿package com.zzz.cj2356inputMethod.adapter;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class KeyBoardNumAdapter extends BaseAdapter {
         }
 
         viewHolder.btnKey.setVisibility(View.VISIBLE);
-        if ("t".equals(valueList.get(position).get("name"))) {
+        if ("	".equals(valueList.get(position).get("name"))) {
             viewHolder.btnKey.setText("\\t");
         } else {
             viewHolder.btnKey.setText(valueList.get(position).get("name"));

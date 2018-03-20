@@ -1,4 +1,4 @@
-package com.zzz.cj2356inputMethod.view;
+﻿package com.zzz.cj2356inputMethod.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,6 +66,7 @@ public class KeyboardSimIniter {
     private static String PAGE_FACES_KEY1 = "keyboardBodySimFaces1"; // 表情1
     private static String PAGE_FACES_KEY2 = "keyboardBodySimFaces2"; // 表情2
     private static String PAGE_FACES_KEY3 = "keyboardBodySimFaces3"; // 表情1
+    private static String PAGE_IPA_KEY = "keyboardBodySimIpa"; // 國際音標
 
     static {
         // 中文
@@ -111,6 +112,9 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_KR_KEY, getListByString(
                 "ㅏㅓㅗㅜㅡㅣㅐㅔㅚㅟㅑㅕㅛㅠㅒㅖㅘㅙㅝㅞㅢㄱㄲㅋㄷㄸㅌㅂㅃㅍㅈㅉㅊㅅㅆㅎㄴㅁㅇㄹᅀᄼᄽᄾᄿᅎᅏᅐᅑᅔᅕᅌᄐᆞᆝᆟᆠᆡᆢ㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛㈜㈝㈞㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻㉼㉽㉾㉿"));
 
+        // 國際音標
+        simMap.put(PAGE_IPA_KEY, getIpaListString());
+        
         typeNameKeyMap.put("中文", PAGE_CN_KEY);
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
         typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
@@ -122,6 +126,7 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("表情1", PAGE_FACES_KEY1);
         typeNameKeyMap.put("表情2", PAGE_FACES_KEY2);
         typeNameKeyMap.put("表情3", PAGE_FACES_KEY3);
+        typeNameKeyMap.put("國標", PAGE_IPA_KEY);
         typeNameKeyMap.put("注音", PAGE_PINYIN_KEY);
         typeNameKeyMap.put("日文", PAGE_JP_KEY);
         typeNameKeyMap.put("韓文", PAGE_KR_KEY);
@@ -192,6 +197,19 @@ public class KeyboardSimIniter {
     }
 
     /**
+     * 國際音標符號
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年3月20日下午3:22:15
+     * @return
+     */
+    private static List<String> getIpaListString() {
+        String faceStr = "a ɐ ɑ ɒ æ ɑ̃ ʌ b ɓ ʙ β c ç ɕ ɔ ɔ̃ d ɗ ɖ ð d͡z d͡ʒ d̠͡ʑ ɖ͡ʐ e ə ɘ ɛ ɛ̃ ɜ f ɸ ɡ ɠ ɢ ʛ ɣ ɤ h ħ ɦ ɧ ʜ ɥ i ĩ ɨ ɪ j ʝ ɟ ʄ k l ɫ ɬ ɭ ʟ ɮ ʎ m ɱ ɯ ɰ n ɲ ŋ ɳ ɴ o õ ɵ ø ɞ œ œ̃ ɶ ʊ ʘ p ɸ p͡f q r ɾ ɼ ɺ ɽ ɹ ɻ ʀ ʁ s ʂ ʃ t ʈ θ t͡ɕ ʈ͡ʂ t͡s t͡ʃ u ũ ʉ ʊ v ʋ ѵ ʌ w w̃ ʍ ɰ x χ y ʏ ɥ ʎ z ʑ ʐ ʒ ʔ ʡ ʕ ʢ ʘ ǀ ǂ ǁ ǃ ˈ ˌ ː ˑ ̆ || ‖ x͡y x͡ . ̋ ˥ ́ ˦ ̄ ˧ ̀ ˨ ̏ ˩ ̌ ̂ ꜜ ꜛ ↗ ↘ ̥ ̬ ʰ ʱ ʲ ʷ ˠ ˁ ̹ ̜ ̟ ̠ ̈ ̽ ̩ ̯ ˞ ̃ ̰ ̝ ̞ ̘ ̙ ̪ ̺ ̻ ⁿ ˡ ̚";
+        List<String> list = mergeFaceString2List(null, faceStr);
+        return list;
+    }
+
+    /**
      * 獲取日文符號
      */
     private static List<String> getJapanListString() {
@@ -222,7 +240,7 @@ public class KeyboardSimIniter {
      * 获取英文符號
      */
     private static List<String> getEnListString() {
-        String str1 = ",.!?:\"';+-*=/|\\^$&@%‰#~`_<>()[]{}¿tᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵";
+        String str1 = ",.?!:;'\"~`@#$%‰^&+-*=_\\/|<>()[]{}¿	ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵";
         List<String> list = getListByString(str1);
         String faceStr = "🇦 🇧 🇨 🇩 🇪 🇫 🇬 🇭 🇮 🇯 🇰 🇱 🇲 🇳 🇴 🇵 🇶 🇷 🇸 🇹 🇺 🇻 🇼 🇽 🇾 🇿 © ® ™ 🔠 🔡 🔢 🔣 🔤 🅰 🆎 🅱 🆑 🆒 🆓 ℹ 🆔 Ⓜ 🆕 🆖 🅾 🆗 🅿 🆘 🆙 🆚 🔙 🔚 🔛 🔜 🔝 📴 🏧 🚾";
         list = mergeFaceString2List(list, faceStr);
