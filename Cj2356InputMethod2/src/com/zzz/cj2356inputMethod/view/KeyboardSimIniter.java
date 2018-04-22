@@ -14,6 +14,7 @@ import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
+import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
@@ -157,10 +158,9 @@ public class KeyboardSimIniter {
             textView.setText(keyName);
             textView.setTextSize(16);
             textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
-            textView.setPadding(50, 0, 50, 0);
             textView.setSingleLine();
             RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                    DipPxUtil.dip(context, 80), RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
             textView.setBackgroundResource(R.drawable.num_button_selector);
 

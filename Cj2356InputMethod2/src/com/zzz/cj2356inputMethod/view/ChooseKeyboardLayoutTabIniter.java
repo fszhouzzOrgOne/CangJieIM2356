@@ -8,6 +8,7 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
+import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -59,10 +60,9 @@ public class ChooseKeyboardLayoutTabIniter {
             textView.setText(tabIndi);
             textView.setTextSize(16);
             textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
-            textView.setPadding(50, 0, 50, 0);
             textView.setSingleLine();
             RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                    DipPxUtil.dip(context, 80), RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
             textView.setBackgroundResource(R.drawable.num_button_selector);
 
