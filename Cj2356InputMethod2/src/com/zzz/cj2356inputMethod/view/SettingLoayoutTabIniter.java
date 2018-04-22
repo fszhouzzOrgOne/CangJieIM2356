@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -47,10 +48,9 @@ public class SettingLoayoutTabIniter {
             textView.setText(settingTabNames.get(i));
             textView.setTextSize(16);
             textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
-            textView.setPadding(50, 0, 50, 0);
             textView.setSingleLine();
-            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(DipPxUtil.dip(context, 100),
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
 
             textView.setOnClickListener(new OnTabChooseSettingListener(context));
