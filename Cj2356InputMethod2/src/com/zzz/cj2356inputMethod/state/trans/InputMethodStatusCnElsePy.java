@@ -103,10 +103,12 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
         String result = super.translateCode2Name(str);
         String code = result;
         if (null != code && code.length() > 1 && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
-            int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
+            int start = 0;
             // 有m開頭的音
-            if (start == 0) {
-                start = 1;
+            if (code.toLowerCase().startsWith(TONE_REPLACE_CHAR)) {
+                start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR, 1);
+            } else {
+                start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
             }
             String ms = code.substring(start);
             result = code.substring(0, start) + ms.length();
