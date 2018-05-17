@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zzz.cj2356inputMethod"
     android:versionCode="20180516"
-    android:versionName="20180516.2.0" 
+    android:versionName="20180516.2.2" 
     >
     <uses-sdk android:minSdkVersion="14" />
 
