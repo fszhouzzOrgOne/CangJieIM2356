@@ -17,6 +17,7 @@ public class DateUtils {
     private static final String[] kes = { "初刻", "二刻", "三刻", "四刻", "五刻", "六刻",
             "七刻", "末刻" };
 
+    /** 格式化 */
     public static String formatDate(Date date, String format) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat(format,
@@ -33,97 +34,68 @@ public class DateUtils {
     public static ArrayList<Item> resolveTime(Item item) {
         ArrayList<Item> items = new ArrayList<Item>();
         if ("時間".equals(item.getCharacter()) || "時".equals(item.getCharacter())) {
+            items.addAll(addFormatTimeItems(item, false));
+        } else if ("时间".equals(item.getCharacter()) || "时".equals(item.getCharacter())) {
+            items.addAll(addFormatTimeItems(item, true));
+        } else if ("日期".equals(item.getCharacter()) || "日".equals(item.getCharacter())) {
             Date now = new Date();
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyy年MM月dd日HH時mm分ss秒")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyy-MM-dd HH:mm:ss")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyyMMddHHmmssSSS")));
+            items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy年MM月dd日")));
+            items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd")));
+            items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMdd")));
             try {
                 String chineseDate = HialiUtils.getChineseCalByWest(now);
                 String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
-                        .parseInt(HialiUtils
-                                .replaceChinaNumberByArab(chineseDate
-                                        .split("年")[0].replace("前", "-"))));
-                items.add(new Item(null, item.getGenCode(), null, formatDate(
-                        now, "yyyy年")
-                        + ganzhi
-                        + chineseDate.split("年")[1]
-                        + getShiShen(now).get(3)));
-                items.add(new Item(null, item.getGenCode(), null, "夏曆"
-                        + chineseDate.split("年")[0] + "年" + ganzhi
-                        + chineseDate.split("年")[1] + getShiShen(now).get(3)));
+                        .parseInt(HialiUtils.replaceChinaNumberByArab(chineseDate.split("年")[0].replace("前", "-"))));
+                items.add(new Item(null, item.getGenCode(), null,
+                        formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1]));
+                items.add(new Item(null, item.getGenCode(), null,
+                        "夏曆" + chineseDate.split("年")[0] + "年" + ganzhi + chineseDate.split("年")[1]));
+                items.add(new Item(null, item.getGenCode(), null,
+                        "夏历" + chineseDate.split("年")[0] + "年" + ganzhi + chineseDate.split("年")[1]));
             } catch (Exception e) {
             }
-        } else if ("时间".equals(item.getCharacter())
-                || "时".equals(item.getCharacter())) {
-            Date now = new Date();
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyy年MM月dd日HH时mm分ss秒")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyy-MM-dd HH:mm:ss")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyyMMddHHmmssSSS")));
-            try {
-                String chineseDate = HialiUtils.getChineseCalByWest(now);
-                String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
-                        .parseInt(HialiUtils
-                                .replaceChinaNumberByArab(chineseDate
-                                        .split("年")[0].replace("前", "-"))));
-                items.add(new Item(null, item.getGenCode(), null, formatDate(
-                        now, "yyyy年")
-                        + ganzhi
-                        + chineseDate.split("年")[1]
-                        + getShiShen(now).get(3)));
-                items.add(new Item(null, item.getGenCode(), null, "夏历"
-                        + chineseDate.split("年")[0] + "年" + ganzhi
-                        + chineseDate.split("年")[1] + getShiShen(now).get(3)));
-            } catch (Exception e) {
-            }
-        } else if ("日期".equals(item.getCharacter())
-                || "日".equals(item.getCharacter())) {
-            Date now = new Date();
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyy年MM月dd日")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyy-MM-dd")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "yyyyMMdd")));
-            try {
-                String chineseDate = HialiUtils.getChineseCalByWest(now);
-                String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
-                        .parseInt(HialiUtils
-                                .replaceChinaNumberByArab(chineseDate
-                                        .split("年")[0].replace("前", "-"))));
-                items.add(new Item(null, item.getGenCode(), null, formatDate(
-                        now, "yyyy年") + ganzhi + chineseDate.split("年")[1]));
-                items.add(new Item(null, item.getGenCode(), null, "夏曆"
-                        + chineseDate.split("年")[0] + "年" + ganzhi
-                        + chineseDate.split("年")[1]));
-                items.add(new Item(null, item.getGenCode(), null, "夏历"
-                        + chineseDate.split("年")[0] + "年" + ganzhi
-                        + chineseDate.split("年")[1]));
-            } catch (Exception e) {
-            }
-        } else if ("星期".equals(item.getCharacter())
-                || "週".equals(item.getCharacter())
+        } else if ("星期".equals(item.getCharacter()) || "週".equals(item.getCharacter())
                 || "周".equals(item.getCharacter())) {
             Date now = new Date();
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "EEEE")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "EEEE").replace("星期", "週")));
-            items.add(new Item(null, item.getGenCode(), null, formatDate(now,
-                    "EEEE").replace("星期", "周")));
-        } else if ("時辰".equals(item.getCharacter())
-                || "辰".equals(item.getCharacter())) { // “时辰”一樣的，不再加
+            items.add(new Item(null, item.getGenCode(), null, formatDate(now, "EEEE")));
+            items.add(new Item(null, item.getGenCode(), null, formatDate(now, "EEEE").replace("星期", "週")));
+            items.add(new Item(null, item.getGenCode(), null, formatDate(now, "EEEE").replace("星期", "周")));
+        } else if ("時辰".equals(item.getCharacter()) || "时辰".equals(item.getCharacter())
+                || "辰".equals(item.getCharacter())) {
             List<String> shis = getShiShen(new Date());
             for (String str : shis) {
                 items.add(new Item(null, item.getGenCode(), null, str));
             }
         }
+        return items;
+    }
 
+    /**
+     * 加入格式化的時間
+     * 
+     * @param item
+     *            節點參數
+     * @param isSimp
+     *            是否簡化字
+     * @return 在他末尾加入新生成的時間節點
+     */
+    private static ArrayList<Item> addFormatTimeItems(Item item, boolean isSimp) {
+        ArrayList<Item> items = new ArrayList<Item>();
+        Date now = new Date();
+        items.add(new Item(null, item.getGenCode(), null,
+                formatDate(now, "yyyy年MM月dd日HH" + (isSimp ? "时" : "時") + "mm分ss秒")));
+        items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd HH:mm:ss")));
+        items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMddHHmmssSSS")));
+        try {
+            String chineseDate = HialiUtils.getChineseCalByWest(now);
+            String ganzhi = HialiUtils.getGanZhiByChinesYear(
+                    Integer.parseInt(HialiUtils.replaceChinaNumberByArab(chineseDate.split("年")[0].replace("前", "-"))));
+            items.add(new Item(null, item.getGenCode(), null,
+                    formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1] + getShiShen(now).get(3)));
+            items.add(new Item(null, item.getGenCode(), null, (isSimp ? "夏历" : "夏曆") + chineseDate.split("年")[0] + "年"
+                    + ganzhi + chineseDate.split("年")[1] + getShiShen(now).get(3)));
+        } catch (Exception e) {
+        }
         return items;
     }
 
