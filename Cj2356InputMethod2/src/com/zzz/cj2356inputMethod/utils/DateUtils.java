@@ -2,7 +2,6 @@ package com.zzz.cj2356inputMethod.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -10,10 +9,6 @@ import java.util.Locale;
 import com.zzz.cj2356inputMethod.dto.Item;
 
 public class DateUtils {
-
-    private static final String[] shiShens = { "子", "丑", "丑", "寅", "寅", "卯", "卯", "辰", "辰", "巳", "巳", "午", "午", "未",
-            "未", "申", "申", "酉", "酉", "戌", "戌", "亥", "亥", "子" };
-    private static final String[] kes = { "初刻", "二刻", "三刻", "四刻", "五刻", "六刻", "七刻", "末刻" };
 
     /** 格式化 */
     public static String formatDate(Date date, String format) {
