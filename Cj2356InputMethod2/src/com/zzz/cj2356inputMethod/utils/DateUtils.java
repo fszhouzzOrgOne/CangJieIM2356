@@ -38,6 +38,7 @@ public class DateUtils {
                 String chineseDate = HialiUtils.getChineseCalByWest(now);
                 String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
                         .parseInt(HialiUtils.replaceChinaNumberByArab(chineseDate.split("年")[0].replace("前", "-"))));
+                ganzhi += "年";
                 items.add(new Item(null, item.getGenCode(), null,
                         formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1]));
                 items.add(new Item(null, item.getGenCode(), null,
@@ -92,6 +93,7 @@ public class DateUtils {
             String chineseDate = HialiUtils.getChineseCalByWest(now);
             String ganzhi = HialiUtils.getGanZhiByChinesYear(
                     Integer.parseInt(HialiUtils.replaceChinaNumberByArab(chineseDate.split("年")[0].replace("前", "-"))));
+            ganzhi += "年";
             String dateGanzhiStr = DateGanzhiTest.getDateGanzhi(now) + "日";
             dateGanzhiStr += DateGanzhiTest.getHourGanzhi(now) + (isSimp ? "时" : "時");
             dateGanzhiStr += DateGanzhiTest.getQuarterTimeStr(now);
