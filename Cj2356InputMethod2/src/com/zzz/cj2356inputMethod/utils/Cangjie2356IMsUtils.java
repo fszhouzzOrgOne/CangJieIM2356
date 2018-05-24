@@ -20,6 +20,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseIpa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseJyutp;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKarina;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKorea;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKoxhanh;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseManju;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElsePy;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
@@ -197,6 +198,8 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusCnElseKorea(context);
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseIpa(context);
+        allElseIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseKoxhanh(context);
         allElseIMsMap.put(im.getSubType(), im);
 
         allEnIMsMap.put(ORDER_KEY_KEY, ORDER_EN_KEY);

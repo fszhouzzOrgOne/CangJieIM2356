@@ -8,17 +8,14 @@ import com.zzz.cj2356inputMethod.mb.MbUtils;
 import android.content.Context;
 
 /**
- * 國際音標
- * 
- * @author t
- * @time 2017-1-9下午10:10:25
+ * 中古漢語輸入法
  */
-public class InputMethodStatusCnElseIpa extends InputMethodStatusCnElse {
+public class InputMethodStatusCnElseKoxhanh extends InputMethodStatusCnElse {
 
-    public InputMethodStatusCnElseIpa(Context con) {
+    public InputMethodStatusCnElseKoxhanh(Context con) {
         super(con);
-        this.setSubType(MbUtils.TYPE_CODE_CJGEN_IPA);
-        this.setSubTypeName("音");
+        this.setSubType(MbUtils.TYPE_CODE_CJGEN_KOXHANH);
+        this.setSubTypeName("漢");
     }
 
     @Override
