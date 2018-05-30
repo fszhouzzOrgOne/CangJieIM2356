@@ -39,12 +39,13 @@ public class DateUtils {
                 String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
                         .parseInt(HialiUtils.replaceChinaNumberByArab(chineseDate.split("年")[0].replace("前", "-"))));
                 ganzhi += "年";
+                String dateGanzhiStr = DateGanzhiTest.getDateGanzhi(now) + "日";
                 items.add(new Item(null, item.getGenCode(), null,
-                        formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1]));
+                        formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1] + dateGanzhiStr));
                 items.add(new Item(null, item.getGenCode(), null,
-                        "夏曆" + chineseDate.split("年")[0] + "年" + ganzhi + chineseDate.split("年")[1]));
+                        "夏曆" + chineseDate.split("年")[0] + "年" + ganzhi + chineseDate.split("年")[1] + dateGanzhiStr));
                 items.add(new Item(null, item.getGenCode(), null,
-                        "夏历" + chineseDate.split("年")[0] + "年" + ganzhi + chineseDate.split("年")[1]));
+                        "夏历" + chineseDate.split("年")[0] + "年" + ganzhi + chineseDate.split("年")[1] + dateGanzhiStr));
             } catch (Exception e) {
             }
         } else if ("星期".equals(item.getCharacter()) || "週".equals(item.getCharacter())
