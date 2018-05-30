@@ -62,6 +62,9 @@ public class DateUtils {
                 String quarterTimeStr = DateGanzhiTest.getQuarterTimeStr(now);
                 shis.add(hourGz + "時");
                 shis.add(hourGz + "时");
+                String couZing = quarterTimeStr.startsWith("正") ? "正" : "初";
+                shis.add(hourGz + "時" + couZing);
+                shis.add(hourGz + "时" + couZing);
                 shis.add(hourGz + "時" + quarterTimeStr);
                 shis.add(hourGz + "时" + quarterTimeStr);
                 for (String str : shis) {
