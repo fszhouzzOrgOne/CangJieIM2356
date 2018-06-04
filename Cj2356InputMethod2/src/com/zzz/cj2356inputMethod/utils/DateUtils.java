@@ -34,6 +34,9 @@ public class DateUtils {
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy年MM月dd日")));
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd")));
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMdd")));
+            // 回曆
+            String huiliStr = IslamicCalendarUtil.getHuiLiByDateWithNames(now);
+            items.add(new Item(null, item.getGenCode(), null, huiliStr));
             try {
                 String chineseDate = HialiUtils.getChineseCalByWest(now);
                 String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
@@ -56,23 +59,39 @@ public class DateUtils {
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "EEEE").replace("星期", "周")));
         } else if ("時辰".equals(item.getCharacter()) || "时辰".equals(item.getCharacter())
                 || "辰".equals(item.getCharacter())) {
-            try {
-                Date now = new Date();
-                List<String> shis = new ArrayList<String>();
-                String hourGz = DateGanzhiTest.getHourGanzhi(now);
-                String quarterTimeStr = DateGanzhiTest.getQuarterTimeStr(now);
-                shis.add(hourGz + "時");
-                shis.add(hourGz + "时");
-                String couZing = quarterTimeStr.startsWith("正") ? "正" : "初";
-                shis.add(hourGz + "時" + couZing);
-                shis.add(hourGz + "时" + couZing);
-                shis.add(hourGz + "時" + quarterTimeStr);
-                shis.add(hourGz + "时" + quarterTimeStr);
-                for (String str : shis) {
-                    items.add(new Item(null, item.getGenCode(), null, str));
-                }
-            } catch (Exception e) {
+            boolean isSimp = "时辰".equals(item.getCharacter());
+            items.addAll(addFormatHourItems(item, isSimp));
+        } else if ("回".equals(item.getCharacter()) || "伊".equals(item.getCharacter())) {
+            String huiliStr = IslamicCalendarUtil.getHuiLiByDateWithNames(new Date());
+            items.add(new Item(null, item.getGenCode(), null, huiliStr));
+        }
+        return items;
+    }
+
+    /**
+     * 加入格式化的時辰
+     * 
+     * @param item
+     *            節點參數
+     * @param isSimp
+     *            是否簡化字
+     * @return 在他末尾加入新生成的時辰節點
+     */
+    private static ArrayList<Item> addFormatHourItems(Item item, boolean isSimp) {
+        ArrayList<Item> items = new ArrayList<Item>();
+        try {
+            Date now = new Date();
+            List<String> shis = new ArrayList<String>();
+            String hourGz = DateGanzhiTest.getHourGanzhi(now);
+            String quarterTimeStr = DateGanzhiTest.getQuarterTimeStr(now);
+            shis.add(hourGz + (isSimp ? "时" : "時"));
+            String couZing = quarterTimeStr.startsWith("正") ? "正" : "初";
+            shis.add(hourGz + (isSimp ? "时" : "時") + couZing);
+            shis.add(hourGz + (isSimp ? "时" : "時") + quarterTimeStr);
+            for (String str : shis) {
+                items.add(new Item(null, item.getGenCode(), null, str));
             }
+        } catch (Exception e) {
         }
         return items;
     }
