@@ -35,8 +35,10 @@ public class DateUtils {
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd")));
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMdd")));
             // 回曆
-            String huiliStr = IslamicCalendarUtil.getHuiLiByDateWithNames(now);
+            String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, false, false);
+            String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, false, false);
             items.add(new Item(null, item.getGenCode(), null, huiliStr));
+            items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
             try {
                 String chineseDate = HialiUtils.getChineseCalByWest(now);
                 String ganzhi = HialiUtils.getGanZhiByChinesYear(Integer
@@ -62,8 +64,11 @@ public class DateUtils {
             boolean isSimp = "时辰".equals(item.getCharacter());
             items.addAll(addFormatHourItems(item, isSimp));
         } else if ("回".equals(item.getCharacter()) || "伊".equals(item.getCharacter())) {
-            String huiliStr = IslamicCalendarUtil.getHuiLiByDateWithNames(new Date());
+            Date now = new Date();
+            String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, true, true);
+            String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, true, true);
             items.add(new Item(null, item.getGenCode(), null, huiliStr));
+            items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
         }
         return items;
     }
@@ -112,6 +117,9 @@ public class DateUtils {
                 formatDate(now, "yyyy年MM月dd日HH" + (isSimp ? "时" : "時") + "mm分ss秒")));
         items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd HH:mm:ss")));
         items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMddHHmmssSSS")));
+        // 回曆
+        String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, isSimp, false, true);
+        items.add(new Item(null, item.getGenCode(), null, huiliStr));
         try {
             String chineseDate = HialiUtils.getChineseCalByWest(now);
             String ganzhi = HialiUtils.getGanZhiByChinesYear(
