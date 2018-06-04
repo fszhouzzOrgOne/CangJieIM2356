@@ -35,8 +35,8 @@ public class DateUtils {
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd")));
             items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMdd")));
             // 回曆
-            String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, false, false);
-            String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, false, false);
+            String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, true, false);
+            String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, true, false);
             items.add(new Item(null, item.getGenCode(), null, huiliStr));
             items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
             try {
@@ -118,7 +118,7 @@ public class DateUtils {
         items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyy-MM-dd HH:mm:ss")));
         items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMddHHmmssSSS")));
         // 回曆
-        String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, isSimp, false, true);
+        String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, isSimp, true, true);
         items.add(new Item(null, item.getGenCode(), null, huiliStr));
         try {
             String chineseDate = HialiUtils.getChineseCalByWest(now);
