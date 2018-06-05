@@ -69,6 +69,10 @@ public class DateUtils {
                 || "辰".equals(item.getCharacter())) {
             boolean isSimp = "时辰".equals(item.getCharacter());
             items.addAll(addFormatHourItems(item, isSimp));
+            if ("辰".equals(item.getCharacter())) {
+                ArrayList<Item> items2 = addFormatHourItems(item, true);
+                addDistinctItems2List(items2, items);
+            }
         } else if ("回".equals(item.getCharacter()) || "伊".equals(item.getCharacter())) {
             String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, true, true);
             String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, true, true);
@@ -95,7 +99,7 @@ public class DateUtils {
      *            目標列表
      */
     private static void addDistinctItems2List(ArrayList<Item> items1, ArrayList<Item> items) {
-        if (!items.isEmpty() && null != items1 && !items1.isEmpty()) {
+        if (null != items && null != items1 && !items1.isEmpty()) {
             for (Item it1 : items1) {
                 boolean exists = false;
                 for (Item it : items) {
