@@ -145,8 +145,9 @@ public class DateUtils {
                 dateGanzhiStr += DateGanzhiTest.getHourGanzhi(now) + (isSimp ? "时" : "時");
                 dateGanzhiStr += DateGanzhiTest.getQuarterTimeStr(now);
             }
-            items.add(new Item(null, item.getGenCode(), null,
-                    formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1] + dateGanzhiStr));
+            // items.add(new Item(null, item.getGenCode(), null,
+            // formatDate(now, "yyyy年") + ganzhi + chineseDate.split("年")[1] +
+            // dateGanzhiStr));
             items.add(new Item(null, item.getGenCode(), null, (isSimp ? "夏历" : "夏曆") + chineseDate.split("年")[0] + "年"
                     + ganzhi + chineseDate.split("年")[1] + dateGanzhiStr));
         } catch (Exception e) {
