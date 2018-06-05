@@ -52,10 +52,12 @@ public class DateUtils {
             addDistinctItems2List(items1, items);
             ArrayList<Item> items2 = addFormatChineseDateItems(item, now, true, true);
             addDistinctItems2List(items2, items);
-        } else if ("農".equals(item.getCharacter())) {
+        } else if ("農".equals(item.getCharacter()) || "農曆".equals(item.getCharacter())
+                || "夏曆".equals(item.getCharacter())) {
             ArrayList<Item> items1 = addFormatChineseDateItems(item, now, false, true);
             addDistinctItems2List(items1, items);
-        } else if ("农".equals(item.getCharacter())) {
+        } else if ("农".equals(item.getCharacter()) || "农历".equals(item.getCharacter())
+                || "夏历".equals(item.getCharacter())) {
             ArrayList<Item> items2 = addFormatChineseDateItems(item, now, true, true);
             addDistinctItems2List(items2, items);
         } else if ("星期".equals(item.getCharacter()) || "週".equals(item.getCharacter())
@@ -71,6 +73,12 @@ public class DateUtils {
             String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, true, true);
             String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, true, true);
             items.add(new Item(null, item.getGenCode(), null, huiliStr));
+            items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
+        } else if ("回曆".equals(item.getCharacter()) || "伊斯蘭曆".equals(item.getCharacter())) {
+            String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, false, true, true);
+            items.add(new Item(null, item.getGenCode(), null, huiliStr));
+        } else if ("回历".equals(item.getCharacter()) || "伊斯兰历".equals(item.getCharacter())) {
+            String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, true, true);
             items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
         }
         return items;
@@ -188,14 +196,10 @@ public class DateUtils {
         items.add(new Item(null, item.getGenCode(), null, formatDate(now, "yyyyMMddHHmmssSSS")));
         // 回曆
         String huiliStr = IslamicCalendarUtil.getHuiLiStrByDate(now, isSimp, true, true);
-        String huiliStrSim = IslamicCalendarUtil.getHuiLiStrByDate(now, true, true, true);
         items.add(new Item(null, item.getGenCode(), null, huiliStr));
-        items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
         // 夏曆
-        ArrayList<Item> items1 = addFormatChineseDateItems(item, now, false, true);
+        ArrayList<Item> items1 = addFormatChineseDateItems(item, now, isSimp, true);
         addDistinctItems2List(items1, items);
-        ArrayList<Item> items2 = addFormatChineseDateItems(item, now, true, true);
-        addDistinctItems2List(items2, items);
         return items;
     }
 
