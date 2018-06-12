@@ -117,8 +117,10 @@ public class DateUtils {
                     true, true, true);
             items.add(new Item(null, item.getGenCode(), null, huiliStrSim));
         }
+
+        // 另起一判斷
         // 共、民，共和國多少週年、民國多少年
-        else if ("共和國".equals(item.getCharacter())
+        if ("共和國".equals(item.getCharacter())
                 || "共和国".equals(item.getCharacter())
                 || "共".equals(item.getCharacter())) {
             int gungYear = (Calendar.getInstance().get(Calendar.YEAR) - 1949);
