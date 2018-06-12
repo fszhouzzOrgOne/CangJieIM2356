@@ -153,6 +153,23 @@ public class DateUtils {
             items.add(new Item(null, item.getGenCode(), null, "汉" + hanYear
                     + "年"));
         }
+        // 周秦唐宋明
+        else if ("周".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) + 1046);
+            items.add(new Item(null, item.getGenCode(), null, "周" + year + "年"));
+        } else if ("秦".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) + 221);
+            items.add(new Item(null, item.getGenCode(), null, "秦" + year + "年"));
+        } else if ("唐".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 617);
+            items.add(new Item(null, item.getGenCode(), null, "唐" + year + "年"));
+        } else if ("宋".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 959);
+            items.add(new Item(null, item.getGenCode(), null, "宋" + year + "年"));
+        } else if ("明".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 1367);
+            items.add(new Item(null, item.getGenCode(), null, "明" + year + "年"));
+        }
         return items;
     }
 
