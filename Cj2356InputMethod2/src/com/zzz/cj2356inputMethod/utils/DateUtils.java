@@ -144,6 +144,15 @@ public class DateUtils {
             items.add(new Item(null, item.getGenCode(), null, "孔子纪元" + kungYear
                     + "年"));
         }
+        // 漢、汉，漢元年以來紀年
+        else if ("漢".equals(item.getCharacter())
+                || "汉".equals(item.getCharacter())) {
+            int hanYear = (Calendar.getInstance().get(Calendar.YEAR) + 206);
+            items.add(new Item(null, item.getGenCode(), null, "漢" + hanYear
+                    + "年"));
+            items.add(new Item(null, item.getGenCode(), null, "汉" + hanYear
+                    + "年"));
+        }
         return items;
     }
 
