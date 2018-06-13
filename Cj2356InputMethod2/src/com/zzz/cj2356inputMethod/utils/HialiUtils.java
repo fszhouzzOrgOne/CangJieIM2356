@@ -41,7 +41,7 @@ public class HialiUtils {
         mapWestChina.put("20141010 18:00:00", "九月十七日");
         mapWestChina.put("20141030 18:00:00", "閏九月初七日");
         mapWestChina.put("19900211 18:00:00", "正月十六日");
-        mapWestChina.put("19880601 18:00:00", "四月十七日");
+        mapWestChina.put("19880719 18:00:00", "六月初六日");
         mapWestChina.put("19491001 09:30:00", "八月初十日");
 
         Date now = new Date();
@@ -67,6 +67,10 @@ public class HialiUtils {
             System.out
                     .println(getGanZhiByMainWestYear(cal2.get(Calendar.YEAR)));
         }
+
+        String dateStr = "四七一二年某月大初七日";
+        dateStr = dateStr.replaceAll("大|小", "");
+        System.out.println(dateStr);
     }
 
     /**
@@ -196,10 +200,15 @@ public class HialiUtils {
      * 按夏曆得到西曆
      * 
      * @param dateStr
-     *            四七一二年閏九月初七日
+     *            如四七一二年某月大初七日
      * @throws Exception
      */
     public static Date getWestCalByChinese(String dateStr) throws Exception {
+        if (null == dateStr || "".equals(dateStr)) {
+            return null;
+        }
+        dateStr = dateStr.replaceAll("大|小", "");
+
         String[] yearParts = dateStr.split("年");
         Integer westyear = getWestYearByMainChineseYear(Integer
                 .parseInt(replaceChinaNumberByArab(yearParts[0])));
@@ -292,6 +301,8 @@ public class HialiUtils {
         Calendar calOne = Calendar.getInstance();
         calOne.setTime(defaultSdf.parse(dateOne));
         calOne.add(Calendar.DATE, -1); // 正月初一的前一天
+
+        boolean isBigMon = false;
         for (int index = 1; index <= end; index++) {
             Character ch = moonsCon.charAt(index - 1);
             int days = 0;
@@ -313,6 +324,7 @@ public class HialiUtils {
                 int moreDays = DateUtils.datesMoreAfterBegin(caldate.getTime(),
                         calOne.getTime());
                 chinaDay = days - moreDays;
+                isBigMon = days > 29;
                 break;
             } else {
                 chinaMoon++;
@@ -320,23 +332,26 @@ public class HialiUtils {
         }
         return resolveChineseCalFormat(
                 Integer.parseInt(config.substring(0, 4)), chinaMoon, chinaDay,
-                leapMoon);
+                isBigMon, leapMoon);
     }
 
     /**
      * 得到夏曆日期格式
      * 
+     * @param isBigMon
+     *            是否大月
      * @param mainWestYear
      *            夏曆年主體對應的西曆年
      */
     private static String resolveChineseCalFormat(int mainWestYear,
-            int chinaMoon, int chinaDay, int leapMoon) {
+            int chinaMoon, int chinaDay, boolean isBigMon, int leapMoon) {
         StringBuilder result = new StringBuilder(
                 replaceArabByChinaNumber(getChineseYearByMainWestYear(mainWestYear)));
         result.append("年");
         result.append((leapMoon != 0 && chinaMoon - 1 == leapMoon) ? "閏" : "");
         result.append((leapMoon != 0 && (chinaMoon - 1) >= leapMoon) ? chinaMoons[chinaMoon - 2]
                 : chinaMoons[chinaMoon - 1]);
+        result.append(isBigMon ? "大" : "小");
         result.append(chinaMoonDays[chinaDay - 1]);
         result.append("日");
         return result.toString();
