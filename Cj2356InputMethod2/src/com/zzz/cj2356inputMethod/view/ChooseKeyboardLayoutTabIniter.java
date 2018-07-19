@@ -61,8 +61,8 @@ public class ChooseKeyboardLayoutTabIniter {
             textView.setTextSize(16);
             textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
             textView.setSingleLine();
-            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
-                    DipPxUtil.dip(context, 80), RelativeLayout.LayoutParams.MATCH_PARENT);
+            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(DipPxUtil.dip(context, 80),
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
             textView.setBackgroundResource(R.drawable.num_button_selector);
 
@@ -136,7 +136,12 @@ public class ChooseKeyboardLayoutTabIniter {
                     }
                 }
 
-                InputMethodStatus stat = Cangjie2356IMsUtils.getCurrentIm(theType);
+                InputMethodStatus stat = null;
+                if (statOld.getType().equals(theType)) {
+                    stat = Cangjie2356IMsUtils.getFirstIm(theType);
+                } else {
+                    stat = Cangjie2356IMsUtils.getCurrentIm(theType);
+                }
                 ((Cj2356InputMethodService) context).setInputMethodStatus(stat);
             } catch (Exception e) {
                 Toast.makeText(context, "切換輸入法種類失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();

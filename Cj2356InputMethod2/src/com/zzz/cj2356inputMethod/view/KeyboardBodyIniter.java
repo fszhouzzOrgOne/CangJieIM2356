@@ -211,7 +211,7 @@ public class KeyboardBodyIniter {
     public static void setInputMethodStatus(InputMethodStatus stat) {
         InputMethodStatus oldStat = inputStat;
         if (oldStat == null) {
-            oldStat = Cangjie2356IMsUtils.getFirstIm();
+            oldStat = Cangjie2356IMsUtils.getFirstIm(null);
         }
         inputStat = stat; // 新狀態
 

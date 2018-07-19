@@ -8,6 +8,10 @@ import java.util.Map;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnAC;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnAb;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnCircledAB;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnCircledaa;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnParenthesizedaa;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnShort;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj2;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj3;
@@ -47,7 +51,7 @@ public class Cangjie2356IMsUtils {
     private static final String ORDER_EN_KEY = "im.order.en";
     public static final String ORDER_CJ_KEY = "im.order.cj";
     private static final String ORDER_ELSE_KEY = "im.order.else";
-    
+
     public static final String ORDER_CJDICT_KEY = "im.order.cjdict";
 
     // 用於在下面的映射中，放入上面的ORDER_EN_KEY\ORDER_CJ_KEY\ORDER_ELSE_KEY等
@@ -87,18 +91,26 @@ public class Cangjie2356IMsUtils {
     /**
      * 第一個輸入法
      * 
+     * @author fszhouzz@qq.com
+     * @time 2018年7月19日 下午11:43:21
+     * @param conType
+     *            類別，如果未傳入，返回所有種類的第一個輸入法
      * @return
      */
-    public static InputMethodStatus getFirstIm() {
+    public static InputMethodStatus getFirstIm(String conType) {
         InputMethodStatus firstIMStatus = null;
-        try {
+        // 第一個方法
+        String firstType = null;
+        if (null == conType || "".equals(conType)) {
             String conTypeOrder = getImOrderTypeCfg();
             String[] conTypeArr = conTypeOrder.split(",");
-            // 第一個方法
-            String firstType = conTypeArr[0];
-            return currentIMsMap.get(firstType);
-        } catch (Exception e) {
+            firstType = conTypeArr[0];
+        } else {
+            firstType = conType;
         }
+        String firstImConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(firstType).get(ORDER_KEY_KEY));
+        String firstImCode = firstImConfig.split(",")[0];
+        firstIMStatus = (InputMethodStatus) allIMsMap.get(firstType).get(firstImCode);
         return firstIMStatus;
     }
 
@@ -133,10 +145,14 @@ public class Cangjie2356IMsUtils {
      * @author fszhouzz@qq.com
      * @time 2017年10月31日上午9:46:19
      * @param orderType
+     *            類別
      * @return
      */
     public static InputMethodStatus getCurrentIm(String orderType) {
-        return currentIMsMap.get(orderType);
+        if (null != orderType && !"".equals(orderType)) {
+            return currentIMsMap.get(orderType);
+        }
+        return null;
     }
 
     /**
@@ -166,6 +182,15 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusEnAb(context);
         allEnIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusEnAC(context);
+        allEnIMsMap.put(im.getSubType(), im);
+
+        im = new InputMethodStatusEnShort(context);
+        allEnIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusEnCircledaa(context);
+        allEnIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusEnCircledAB(context);
+        allEnIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusEnParenthesizedaa(context);
         allEnIMsMap.put(im.getSubType(), im);
 
         im = new InputMethodStatusCnCj6(context);
@@ -231,6 +256,7 @@ public class Cangjie2356IMsUtils {
         }
 
         // 種類數組，設置種類下一狀態
+        // 所在種類下一個輸入法，爲下一個種類的第一個輸入法
         for (int i = 0; i < conTypeList.size(); i++) {
             InputMethodStatus ims = null;
             if (i == conTypeList.size() - 1) {
@@ -258,6 +284,7 @@ public class Cangjie2356IMsUtils {
         }
 
         // 輸入法數組，設置輸入法下一狀態
+        // 本種類內的下個輸入法
         for (int i = 0; i < conTypeList.size(); i++) {
             Map<String, Object> msMap = allIMsMap.get(conTypeList.get(i));
             String theImConfig = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString());

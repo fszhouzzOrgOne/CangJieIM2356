@@ -141,7 +141,7 @@ public class Cj2356InputMethodService extends InputMethodService {
         }
         // 第一個輸入法
         try {
-            setInputMethodStatus(Cangjie2356IMsUtils.getFirstIm());
+            setInputMethodStatus(Cangjie2356IMsUtils.getFirstIm(null));
         } catch (Exception e) {
             Toast.makeText(this, "輸入法初始化失敗：" + e.getMessage(), Toast.LENGTH_LONG).show();
         }

@@ -13,7 +13,9 @@ import android.content.Context;
  */
 public abstract class InputMethodStatus {
 
+    /** 本種類內的下個輸入法 */
     private InputMethodStatus nextStatus;
+    /** 所在種類下一個輸入法，爲下一個種類的第一個輸入法 */
     private InputMethodStatus nextStatusType;
 
     private Context context;
@@ -26,7 +28,7 @@ public abstract class InputMethodStatus {
     protected InputMethodStatus(Context con) {
         this.context = con;
     }
-    
+
     /**
      * 輸入法是否要翻譯
      * 
@@ -55,34 +57,22 @@ public abstract class InputMethodStatus {
         return this.nextStatusType;
     }
 
+    /**
+     * 26個英文鍵，各鍵對應顯示的名字
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年7月19日 下午10:55:32
+     * @return
+     */
     public Map<String, Object> getKeysNameMap() {
+        String letters1 = "abcdefghijklmnopqrstuvwxyz";
+        String letters2 = letters1.toUpperCase();
         Map<String, Object> mbTransMap = new HashMap<String, Object>();
-        mbTransMap.put("a", "A");
-        mbTransMap.put("b", "B");
-        mbTransMap.put("c", "C");
-        mbTransMap.put("d", "D");
-        mbTransMap.put("e", "E");
-        mbTransMap.put("f", "F");
-        mbTransMap.put("g", "G");
-        mbTransMap.put("h", "H");
-        mbTransMap.put("i", "I");
-        mbTransMap.put("j", "J");
-        mbTransMap.put("k", "K");
-        mbTransMap.put("l", "L");
-        mbTransMap.put("m", "M");
-        mbTransMap.put("n", "N");
-        mbTransMap.put("o", "O");
-        mbTransMap.put("p", "P");
-        mbTransMap.put("q", "Q");
-        mbTransMap.put("r", "R");
-        mbTransMap.put("s", "S");
-        mbTransMap.put("t", "T");
-        mbTransMap.put("u", "U");
-        mbTransMap.put("v", "V");
-        mbTransMap.put("w", "W");
-        mbTransMap.put("x", "X");
-        mbTransMap.put("y", "Y");
-        mbTransMap.put("z", "Z");
+        int index = 0;
+        while (index <= letters1.length() - 1) {
+            mbTransMap.put(letters1.substring(index, index + 1), letters2.substring(index, index + 1));
+            index++;
+        }
         return mbTransMap;
     }
 
