@@ -22,7 +22,7 @@ public class KeyboardNumIniter {
     public static int currentKeyboardNumPage = 0;
     // 數字鍵的鍵，把普通鍵盤上的東西都丢進去，製表符用個t代替，需要特殊處理
     // 一行幾個，按這個數組的元素長度定，設置到@+id/keyboardBodyNumGrid上。
-    public static String[] keyboardBodyNums = { "@789/", "#456*", ";123-", ",.0=+", "'\":?!", "~$%^&", "`()<>", "_[]{}",
+    public static String[] keyboardBodyNums = { "@789/", "#456*", "'123-", ",.0=+", "\":;?!", "~$%^&", "`()<>", "_[]{}",
             "|\\" };
 
     private static Context context;
