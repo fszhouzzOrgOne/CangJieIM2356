@@ -4,12 +4,12 @@ import java.util.Map;
 
 import android.content.Context;
 
-public class InputMethodStatusEnCircledaa extends InputMethodStatusEn {
+public class InputMethodStatusEnCircledAC extends InputMethodStatusEn {
 
-    public static final String SUBTYPE_CODE = "ⓐⓐ";
-    public static final String SUBTYPE_NAME = "小寫圈";
+    public static final String SUBTYPE_CODE = "ⒶⒶ";
+    public static final String SUBTYPE_NAME = "大寫圈";
     
-    public InputMethodStatusEnCircledaa(Context con) {
+    public InputMethodStatusEnCircledAC(Context con) {
         super(con);
         this.setSubType(SUBTYPE_CODE);
         this.setSubTypeName(SUBTYPE_NAME);
@@ -23,7 +23,7 @@ public class InputMethodStatusEnCircledaa extends InputMethodStatusEn {
     @Override
     public Map<String, Object> getKeysNameMap() {
         String letters1 = "abcdefghijklmnopqrstuvwxyz";
-        String letters2 = "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ";
+        String letters2 = "ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ";
         Map<String, Object> mbTransMap = super.getKeysNameMap();
         int index = 0;
         while (index <= letters1.length() - 1) {

@@ -4,12 +4,12 @@ import java.util.Map;
 
 import android.content.Context;
 
-public class InputMethodStatusEnCircledAB extends InputMethodStatusEn {
+public class InputMethodStatusEnCircledAb extends InputMethodStatusEn {
 
-    public static final String SUBTYPE_CODE = "Ⓐ";
-    public static final String SUBTYPE_NAME = "大寫圈";
+    public static final String SUBTYPE_CODE = "Ⓐⓐ";
+    public static final String SUBTYPE_NAME = "大小寫圈";
     
-    public InputMethodStatusEnCircledAB(Context con) {
+    public InputMethodStatusEnCircledAb(Context con) {
         super(con);
         this.setSubType(SUBTYPE_CODE);
         this.setSubTypeName(SUBTYPE_NAME);
