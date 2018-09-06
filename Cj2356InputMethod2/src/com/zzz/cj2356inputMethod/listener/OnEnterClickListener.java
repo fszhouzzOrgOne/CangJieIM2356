@@ -65,10 +65,12 @@ public class OnEnterClickListener implements OnClickListener {
                 .show();
 
         int action = EditorInfo.IME_ACTION_UNSPECIFIED;
-        // 是否有前進導航
+        // 防止有前進導航時，不搜索了
+        // 防止有時該搜索時也不搜索了
         boolean isNavigateNext = (info.imeOptions
                 & EditorInfo.IME_FLAG_NAVIGATE_NEXT) == EditorInfo.IME_FLAG_NAVIGATE_NEXT;
-        if (isNavigateNext) { // 防止有有前進導航時，不搜索了
+        boolean isSearch = (info.imeOptions & EditorInfo.IME_ACTION_SEARCH) == EditorInfo.IME_ACTION_SEARCH;
+        if (isNavigateNext || isSearch) {
             action = info.imeOptions & EditorInfo.IME_MASK_ACTION;
         }
 
