@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.widget.Toast;
 
 /**
  * 回車鍵按下，發佈事件
@@ -60,9 +59,6 @@ public class OnEnterClickListener implements OnClickListener {
     public static void doEnterKey(Context context) {
         InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
         EditorInfo info = ((InputMethodService) context).getCurrentInputEditorInfo();
-
-        Toast.makeText(context, "當前imeOptions=" + StringUtils.decimalToBinary(info.imeOptions), Toast.LENGTH_LONG)
-                .show();
 
         int action = EditorInfo.IME_ACTION_UNSPECIFIED;
         // 防止有前進導航時，不搜索了
