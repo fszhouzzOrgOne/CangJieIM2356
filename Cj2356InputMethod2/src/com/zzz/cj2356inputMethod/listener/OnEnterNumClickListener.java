@@ -22,17 +22,16 @@ public class OnEnterNumClickListener implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        InputConnection inputConnection = (InputConnection) ((InputMethodService) context)
-                .getCurrentInputConnection();
+        doPerformEnter(context);
+    }
+
+    public static void doPerformEnter(Context context) {
+        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
 
         long eventTime = SystemClock.uptimeMillis();
-        inputConnection.sendKeyEvent(new KeyEvent(eventTime, eventTime,
-                KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER, 0, 0, 0, 0,
-                KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
-        inputConnection
-                .sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(),
-                        eventTime, KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER,
-                        0, 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD
-                                | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+        inputConnection.sendKeyEvent(new KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER, 0,
+                0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+        inputConnection.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), eventTime, KeyEvent.ACTION_UP,
+                KeyEvent.KEYCODE_ENTER, 0, 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
     }
 }

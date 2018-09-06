@@ -19,6 +19,7 @@ import com.zzz.cj2356inputMethod.view.KeyboardSimIniter;
 
 import android.inputmethodservice.InputMethodService;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
 public class Cj2356InputMethodService extends InputMethodService {
@@ -165,6 +166,11 @@ public class Cj2356InputMethodService extends InputMethodService {
         }
         // 返回View对象
         return keyboardView;
+    }
+    
+    @Override
+    public void onStartInputView(EditorInfo info, boolean restarting) {
+        super.onStartInputView(info, restarting);
     }
 
     /**

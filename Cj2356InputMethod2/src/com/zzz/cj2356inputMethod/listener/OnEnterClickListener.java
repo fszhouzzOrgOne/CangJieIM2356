@@ -1,18 +1,18 @@
 package com.zzz.cj2356inputMethod.listener;
 
-import android.content.Context;
-import android.inputmethodservice.InputMethodService;
-import android.os.SystemClock;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputConnection;
-
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
+
+import android.content.Context;
+import android.inputmethodservice.InputMethodService;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.Toast;
 
 /**
  * 回車鍵按下，發佈事件
@@ -38,16 +38,14 @@ public class OnEnterClickListener implements OnClickListener {
             // 如果是中文輸入
             if (stat.isShouldTranslate()) {
                 if (((InputMethodStatusCn) stat).isInputingCn()) {
-                    String value = ((InputMethodStatusCn) stat)
-                            .getInputingCnValueForEnter();
+                    String value = ((InputMethodStatusCn) stat).getInputingCnValueForEnter();
                     if (StringUtils.hasText(value)) {
                         String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
                         if (value.matches(patternAbc123)) {
                             value = value.toLowerCase();
                         }
                         // 获得InputConnection对象
-                        InputConnection inputConnection = ser
-                                .getCurrentInputConnection();
+                        InputConnection inputConnection = ser.getCurrentInputConnection();
                         inputConnection.commitText(value, 1);
                     }
                     ((InputMethodStatusCn) stat).setInputingCn(false);
@@ -55,21 +53,32 @@ public class OnEnterClickListener implements OnClickListener {
                 }
             }
 
-            InputConnection inputConnection = (InputConnection) ((InputMethodService) context)
-                    .getCurrentInputConnection();
+            doEnterKey(context);
+        }
+    }
 
-            long eventTime = SystemClock.uptimeMillis();
-            inputConnection
-                    .sendKeyEvent(new KeyEvent(eventTime, eventTime,
-                            KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER, 0, 0,
-                            0, 0, KeyEvent.FLAG_SOFT_KEYBOARD
-                                    | KeyEvent.FLAG_KEEP_TOUCH_MODE));
-            inputConnection
-                    .sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(),
-                            eventTime, KeyEvent.ACTION_UP,
-                            KeyEvent.KEYCODE_ENTER, 0, 0, 0, 0,
-                            KeyEvent.FLAG_SOFT_KEYBOARD
-                                    | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+    public static void doEnterKey(Context context) {
+        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
+        EditorInfo info = ((InputMethodService) context).getCurrentInputEditorInfo();
+
+        Toast.makeText(context, "當前imeOptions=" + StringUtils.decimalToBinary(info.imeOptions), Toast.LENGTH_LONG)
+                .show();
+
+        int action = EditorInfo.IME_ACTION_UNSPECIFIED;
+        // 是否有前進導航
+        boolean isNavigateNext = (info.imeOptions
+                & EditorInfo.IME_FLAG_NAVIGATE_NEXT) == EditorInfo.IME_FLAG_NAVIGATE_NEXT;
+        if (isNavigateNext) { // 防止有有前進導航時，不搜索了
+            action = info.imeOptions & EditorInfo.IME_MASK_ACTION;
+        }
+
+        // 是否不執行提交
+        boolean isNoEnter = (info.imeOptions
+                & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == EditorInfo.IME_FLAG_NO_ENTER_ACTION;
+        if (isNoEnter) {
+            OnEnterNumClickListener.doPerformEnter(context);
+        } else {
+            inputConnection.performEditorAction(action);
         }
     }
 }
