@@ -8,12 +8,15 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
+import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
+import com.zzz.cj2356inputMethod.listener.OnKeyNumTabClickListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
 
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
 public class KeyboardNumIniter {
@@ -22,8 +25,8 @@ public class KeyboardNumIniter {
     public static int currentKeyboardNumPage = 0;
     // 數字鍵的鍵，把普通鍵盤上的東西都丢進去，製表符用個t代替，需要特殊處理
     // 一行幾個，按這個數組的元素長度定，設置到@+id/keyboardBodyNumGrid上。
-    public static String[] keyboardBodyNums = { "@789/", "#456*", "'123-", ",.0=+", "\":;?!", "~$%^&", "`()<>", "_[]{}",
-            "|\\" };
+    public static String[] keyboardBodyNums = { "789/", "456*", "123-", ".0=+" };
+    public static String keyboardBodyNumSims = "#@,'\":;?!%_~`$^&|\\<>()[]{}";
 
     private static Context context;
     private static View keyboardView;
@@ -33,28 +36,27 @@ public class KeyboardNumIniter {
         context = con;
         keyboardView = kbView;
 
+        // 符號滑動，ScrollView中只能有一個控件
+        LinearLayout numSimsScrollContent = (LinearLayout) keyboardView
+                .findViewById(R.id.keyboardBodyNumSimScrollContent);
+        char[] numSimsChars = keyboardBodyNumSims.toCharArray();
+        for (Character sim : numSimsChars) {
+            numSimsScrollContent.addView(new KeyboardNumSimItemTextView(context, "" + sim));
+        }
+
         keyboardBodyNumGrid = (GridView) keyboardView.findViewById(R.id.keyboardBodyNumGrid);
         initKeyboardBodyNumGridPage(currentKeyboardNumPage);
-        keyboardView.findViewById(R.id.keybtnNumPrevPage).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                initKeyboardBodyNumGridPage(currentKeyboardNumPage - 1);
-            }
-        });
-        keyboardView.findViewById(R.id.keybtnNumNextPage).setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                initKeyboardBodyNumGridPage(currentKeyboardNumPage + 1);
-            }
-        });
 
+        // 回車鍵
+        keyboardView.findViewById(R.id.keybtnNumEnter).setOnClickListener(new OnEnterClickListener(context));
         // 數字鍵盤的刪除鍵
         keyboardView.findViewById(R.id.keybtnNumDelete).setOnClickListener(new OnDeleteNumClickListener(context));
         keyboardView.findViewById(R.id.keybtnNumDelete)
                 .setOnLongClickListener(new OnDeleteNumLongClickListener(context));
         // 數字鍵盤的空格鍵
         keyboardView.findViewById(R.id.keybtnNumSpace).setOnClickListener(new OnSpaceNumClickListener(context));
-
+        // 製表符按鈕
+        keyboardView.findViewById(R.id.keybtnNumTab).setOnClickListener(new OnKeyNumTabClickListener(context));
         // 數字鍵盤返回
         keyboardView.findViewById(R.id.keybtnNumBack).setOnClickListener(new OnClickListener() {
             @Override
@@ -101,9 +103,5 @@ public class KeyboardNumIniter {
         keyboardBodyNumGrid.setAdapter(kKeyBoardNumAdapter);
 
         currentKeyboardNumPage = index;
-
-        // 翻頁展示的控制
-        keyboardView.findViewById(R.id.keybtnNumPrevPage).setEnabled(!(0 == index));
-        keyboardView.findViewById(R.id.keybtnNumNextPage).setEnabled(!(tatalPage - 1 == index));
     }
 }
