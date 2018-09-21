@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 
 /**
  * 數字鍵盤的點擊事件，按下就輸出
@@ -38,6 +39,7 @@ public class OnKeyNumTouchListener implements OnTouchListener {
                 } else {
                     inputConnection.commitText(button.getText(), 1);
                 }
+                SendKeyEventUtil.handleInputParenthesis(context, button.getText());
             } catch (Exception e) {
                 Toast.makeText(context, "點擊數字鍵盤出錯" + e.getMessage(),
                         Toast.LENGTH_LONG).show();
