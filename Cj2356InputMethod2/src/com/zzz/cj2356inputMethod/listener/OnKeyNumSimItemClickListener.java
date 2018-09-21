@@ -1,6 +1,7 @@
 package com.zzz.cj2356inputMethod.listener;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 
 import android.content.Context;
 import android.view.View;
@@ -28,7 +29,10 @@ public class OnKeyNumSimItemClickListener implements OnClickListener {
         TextView tv = (TextView) v;
         Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
         InputConnection inputConnection = ser.getCurrentInputConnection();
-        inputConnection.commitText(tv.getText(), 1);
+
+        CharSequence text = tv.getText();
+        inputConnection.commitText(text, 1);
+        SendKeyEventUtil.handleInputParenthesis(context, text);
     }
 
 }

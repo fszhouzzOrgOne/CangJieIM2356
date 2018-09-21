@@ -22,7 +22,7 @@ public class KeyboardNumSimItemTextView extends TextView {
     public KeyboardNumSimItemTextView(Context context, String text) {
         super(context);
         setText(text);
-        this.setMinimumHeight(DipPxUtil.dip(context, 50));
+        this.setMinimumHeight(DipPxUtil.dip(context, 45));
 
         this.setPadding(0, 10, 0, 10);
 

@@ -2,14 +2,13 @@ package com.zzz.cj2356inputMethod.listener;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
-import android.os.SystemClock;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -78,19 +77,10 @@ public class OnEnterClickListener implements OnClickListener {
         boolean isNoEnter = (info.imeOptions
                 & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == EditorInfo.IME_FLAG_NO_ENTER_ACTION;
         if (isNoEnter) {
-            doPerformEnter(context);
+            SendKeyEventUtil.doPerformEnter(context);
         } else {
             inputConnection.performEditorAction(action);
         }
     }
 
-    public static void doPerformEnter(Context context) {
-        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
-
-        long eventTime = SystemClock.uptimeMillis();
-        inputConnection.sendKeyEvent(new KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER, 0,
-                0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
-        inputConnection.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), eventTime, KeyEvent.ACTION_UP,
-                KeyEvent.KEYCODE_ENTER, 0, 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
-    }
 }

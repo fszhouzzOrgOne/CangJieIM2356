@@ -1,7 +1,9 @@
 package com.zzz.cj2356inputMethod.view;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.zzz.cj2356inputMethod.R;
@@ -26,7 +28,9 @@ public class KeyboardNumIniter {
     // 數字鍵的鍵，把普通鍵盤上的東西都丢進去，製表符用個t代替，需要特殊處理
     // 一行幾個，按這個數組的元素長度定，設置到@+id/keyboardBodyNumGrid上。
     public static String[] keyboardBodyNums = { "789/", "456*", "123-", ".0=+" };
-    public static String keyboardBodyNumSims = "#@,'\":;?!%_~`·•¥￥Ұұ$^&|\\<>()[]{}";
+    public static List<String> keyboardBodyNumSims = Arrays.asList("#", "@", ",", "'", "\"", ":", ";", "?", "¿", "!",
+            "%", "_", "~", "`", "$", "^", "&", "|", "\\", "<", ">", "(", ")", "[", "]", "{", "}", "·", "•", "¥", "￥",
+            "Ұ", "ұ");
 
     private static Context context;
     private static View keyboardView;
@@ -39,9 +43,8 @@ public class KeyboardNumIniter {
         // 符號滑動，ScrollView中只能有一個控件
         LinearLayout numSimsScrollContent = (LinearLayout) keyboardView
                 .findViewById(R.id.keyboardBodyNumSimScrollContent);
-        char[] numSimsChars = keyboardBodyNumSims.toCharArray();
-        for (Character sim : numSimsChars) {
-            numSimsScrollContent.addView(new KeyboardNumSimItemTextView(context, "" + sim));
+        for (String sim : keyboardBodyNumSims) {
+            numSimsScrollContent.addView(new KeyboardNumSimItemTextView(context, sim));
         }
 
         keyboardBodyNumGrid = (GridView) keyboardView.findViewById(R.id.keyboardBodyNumGrid);
