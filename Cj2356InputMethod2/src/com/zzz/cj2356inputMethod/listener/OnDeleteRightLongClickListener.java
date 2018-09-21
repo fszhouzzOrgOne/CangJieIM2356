@@ -16,17 +16,17 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 
 /**
- * 刪除左邊，長按
+ * 刪除右邊，長按
  * 
  * 
  * @author fszhouzz@qq.com
- * @time 2018年9月21日 下午11:56:14
+ * @time 2018年9月21日 下午11:55:32
  */
-public class OnDeleteLongClickListener implements OnLongClickListener {
+public class OnDeleteRightLongClickListener implements OnLongClickListener {
 
     private Context context;
 
-    public OnDeleteLongClickListener(Context con) {
+    public OnDeleteRightLongClickListener(Context con) {
         super();
         this.context = con;
     }
@@ -46,7 +46,7 @@ public class OnDeleteLongClickListener implements OnLongClickListener {
 
         // 定時刪除
         final Timer timer = new Timer();
-        timer.schedule(new LongDeleteTask(context), 500, 50);
+        timer.schedule(new LongDeleteRightTask(context), 500, 50);
         // 擡手就不再刪除
         v.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -63,17 +63,17 @@ public class OnDeleteLongClickListener implements OnLongClickListener {
     }
 }
 
-class LongDeleteTask extends TimerTask {
+class LongDeleteRightTask extends TimerTask {
     private Context context;
 
-    public LongDeleteTask(Context con) {
+    public LongDeleteRightTask(Context con) {
         super();
         this.context = con;
     }
 
     @Override
     public void run() {
-        SendKeyEventUtil.doPerformDelete(context);
+        SendKeyEventUtil.doPerformDeleteRight(context);
     }
 
 }
