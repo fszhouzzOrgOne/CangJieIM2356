@@ -53,15 +53,16 @@ public class KeyboardNumIniter {
 
         // 回車鍵
         keyboardView.findViewById(R.id.keybtnNumEnter).setOnClickListener(new OnEnterClickListener(context));
+        // 數字鍵盤的空格鍵
+        keyboardView.findViewById(R.id.keybtnNumSpace).setOnClickListener(new OnSpaceNumClickListener(context));
         // 數字鍵盤的刪除鍵
         keyboardView.findViewById(R.id.keybtnNumDelete).setOnClickListener(new OnDeleteNumClickListener(context));
         keyboardView.findViewById(R.id.keybtnNumDelete)
                 .setOnLongClickListener(new OnDeleteNumLongClickListener(context));
-        // 數字鍵盤的空格鍵
-        keyboardView.findViewById(R.id.keybtnNumSpace).setOnClickListener(new OnSpaceNumClickListener(context));
         // 刪除右邊
-        keyboardView.findViewById(R.id.keybtnDeleteRight).setOnClickListener(new OnDeleteRightClickListener(context));
-        keyboardView.findViewById(R.id.keybtnDeleteRight)
+        keyboardView.findViewById(R.id.keybtnNumDeleteRight)
+                .setOnClickListener(new OnDeleteRightClickListener(context));
+        keyboardView.findViewById(R.id.keybtnNumDeleteRight)
                 .setOnLongClickListener(new OnDeleteRightLongClickListener(context));
         // 數字鍵盤返回
         keyboardView.findViewById(R.id.keybtnNumBack).setOnClickListener(new OnClickListener() {

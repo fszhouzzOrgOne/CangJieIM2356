@@ -13,7 +13,8 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
-import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
+import com.zzz.cj2356inputMethod.listener.OnDeleteRightClickListener;
+import com.zzz.cj2356inputMethod.listener.OnDeleteRightLongClickListener;
 import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
@@ -179,8 +180,11 @@ public class KeyboardSimIniter {
         keyboardView.findViewById(R.id.keybtnSimDelete).setOnClickListener(new OnDeleteNumClickListener(context));
         keyboardView.findViewById(R.id.keybtnSimDelete)
                 .setOnLongClickListener(new OnDeleteNumLongClickListener(context));
-        // 空格鍵
-        keyboardView.findViewById(R.id.keybtnSimSpace).setOnClickListener(new OnSpaceNumClickListener(context));
+        // 刪除右邊
+        keyboardView.findViewById(R.id.keybtnSimDeleteRight)
+                .setOnClickListener(new OnDeleteRightClickListener(context));
+        keyboardView.findViewById(R.id.keybtnSimDeleteRight)
+                .setOnLongClickListener(new OnDeleteRightLongClickListener(context));
         // 符號鍵盤返回
         keyboardView.findViewById(R.id.keybtnSimBack).setOnClickListener(new OnClickListener() {
             @Override

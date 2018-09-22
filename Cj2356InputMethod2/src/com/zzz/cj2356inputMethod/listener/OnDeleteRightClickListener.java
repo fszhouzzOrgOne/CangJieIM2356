@@ -1,6 +1,5 @@
 package com.zzz.cj2356inputMethod.listener;
 
-import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 
 import android.content.Context;
@@ -25,9 +24,7 @@ public class OnDeleteRightClickListener implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.keybtnDeleteRight) {
-            SendKeyEventUtil.doPerformDeleteRight(context);
-        }
+        SendKeyEventUtil.doPerformDeleteRight(context);
     }
 
 }
