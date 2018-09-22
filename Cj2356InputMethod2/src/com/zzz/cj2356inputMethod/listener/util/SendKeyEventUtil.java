@@ -14,6 +14,8 @@ public class SendKeyEventUtil {
     private static Map<String, String> parenthesisMap = new HashMap<String, String>();
 
     static {
+        parenthesisMap.put("¿", "?");
+        parenthesisMap.put("¡", "!");
         parenthesisMap.put("'", "'");
         parenthesisMap.put("\"", "\"");
         parenthesisMap.put("(", ")");
