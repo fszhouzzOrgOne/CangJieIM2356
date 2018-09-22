@@ -115,7 +115,7 @@ public class KeyboardSimIniter {
 
         // 國際音標
         simMap.put(PAGE_IPA_KEY, getIpaListString());
-        
+
         typeNameKeyMap.put("中文", PAGE_CN_KEY);
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
         typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
@@ -159,8 +159,8 @@ public class KeyboardSimIniter {
             textView.setTextSize(16);
             textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
             textView.setSingleLine();
-            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
-                    DipPxUtil.dip(context, 80), RelativeLayout.LayoutParams.MATCH_PARENT);
+            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(DipPxUtil.dip(context, 80),
+                    RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
             textView.setBackgroundResource(R.drawable.num_button_selector);
 
@@ -244,10 +244,21 @@ public class KeyboardSimIniter {
      * 获取英文符號
      */
     private static List<String> getEnListString() {
-        String str1 = ",.?!:;'\"~`@#$%‰^&+-*=_\\/|<>()[]{}¿	ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢ⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ";
-        List<String> list = getListByString(str1);
-        String faceStr = "🇦 🇧 🇨 🇩 🇪 🇫 🇬 🇭 🇮 🇯 🇰 🇱 🇲 🇳 🇴 🇵 🇶 🇷 🇸 🇹 🇺 🇻 🇼 🇽 🇾 🇿 © ® ™ 🔠 🔡 🔢 🔣 🔤 🅰 🆎 🅱 🆑 🆒 🆓 ℹ 🆔 Ⓜ 🆕 🆖 🅾 🆗 🅿 🆘 🆙 🆚 🔙 🔚 🔛 🔜 🔝 📴 🏧 🚾";
-        list = mergeFaceString2List(list, faceStr);
+        String str1 = ", . ? ! : ; ' \" @ # $ % ‰ ^ & ~ ` + - * = _ \\ / | < > ( ) [ ] { } ¿ Tab";
+        String str2 = "ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ";
+        String str3 = "⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵";
+        String str4 = "ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ";
+        String str5 = "Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ";
+        String str6 = "🇦 🇧 🇨 🇩 🇪 🇫 🇬 🇭 🇮 🇯 🇰 🇱 🇲 🇳 🇴 🇵 🇶 🇷 🇸 🇹 🇺 🇻 🇼 🇽 🇾 🇿";
+        String str7 = "© ® ™ 🔠 🔡 🔢 🔣 🔤 🅰 🆎 🅱 🆑 🆒 🆓 ℹ 🆔 Ⓜ 🆕 🆖 🅾 🆗 🅿 🆘 🆙 🆚 🔙 🔚 🔛 🔜 🔝 📴 🏧 🚾";
+        List<String> list = new ArrayList<String>();
+        list = mergeFaceString2List(list, str1);
+        list = mergeFaceString2List(list, str2);
+        list = mergeFaceString2List(list, str3);
+        list = mergeFaceString2List(list, str4);
+        list = mergeFaceString2List(list, str5);
+        list = mergeFaceString2List(list, str6);
+        list = mergeFaceString2List(list, str7);
         return list;
     }
 
@@ -287,7 +298,7 @@ public class KeyboardSimIniter {
      * 表情字符串合并入列表 faceStr 各表情字符用空格分隔
      */
     private static List<String> mergeFaceString2List(List<String> list, String faceStr) {
-        String[] facesArr = faceStr.split(" ");
+        String[] facesArr = faceStr.split(" +");
         Set<String> set = new LinkedHashSet<String>();
         if (null != list && !list.isEmpty()) {
             set.addAll(list);

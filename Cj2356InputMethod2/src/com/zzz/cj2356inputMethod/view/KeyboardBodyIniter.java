@@ -10,8 +10,6 @@ import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
 import com.zzz.cj2356inputMethod.listener.OnCommaPeriodTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
-import com.zzz.cj2356inputMethod.listener.OnDeleteRightClickListener;
-import com.zzz.cj2356inputMethod.listener.OnDeleteRightLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
@@ -79,10 +77,6 @@ public class KeyboardBodyIniter {
         // 刪除
         keyboardView.findViewById(R.id.keybtnDelete).setOnClickListener(new OnDeleteClickListener(context));
         keyboardView.findViewById(R.id.keybtnDelete).setOnLongClickListener(new OnDeleteLongClickListener(context));
-        // 刪除右邊
-        keyboardView.findViewById(R.id.keybtnDeleteRight).setOnClickListener(new OnDeleteRightClickListener(context));
-        keyboardView.findViewById(R.id.keybtnDeleteRight)
-                .setOnLongClickListener(new OnDeleteRightLongClickListener(context));
 
         keyboardView.findViewById(R.id.keybtnEnter).setOnClickListener(new OnEnterClickListener(context));
 

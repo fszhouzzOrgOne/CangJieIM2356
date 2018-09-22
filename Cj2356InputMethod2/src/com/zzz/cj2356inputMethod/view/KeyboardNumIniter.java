@@ -10,8 +10,9 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
+import com.zzz.cj2356inputMethod.listener.OnDeleteRightClickListener;
+import com.zzz.cj2356inputMethod.listener.OnDeleteRightLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
-import com.zzz.cj2356inputMethod.listener.OnKeyNumTabClickListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
 
 import android.content.Context;
@@ -28,9 +29,9 @@ public class KeyboardNumIniter {
     // 數字鍵的鍵，把普通鍵盤上的東西都丢進去，製表符用個t代替，需要特殊處理
     // 一行幾個，按這個數組的元素長度定，設置到@+id/keyboardBodyNumGrid上。
     public static String[] keyboardBodyNums = { "789/", "456*", "123-", ".0=+" };
-    public static List<String> keyboardBodyNumSims = Arrays.asList("#", "@", ",", "'", "\"", ":", ";", "?", "¿", "!",
-            "%", "_", "~", "`", "$", "^", "&", "|", "\\", "<", ">", "(", ")", "[", "]", "{", "}", "·", "•", "¥", "￥",
-            "Ұ", "ұ");
+    public static List<String> keyboardBodyNumSims = Arrays.asList("#", "@", ",", "_", "?", "¿", "!", ":", ";", "'",
+            "\"", "$", "%", "‰", "^", "&", "<", ">", "Tab", "~", "`", "|", "\\", "(", ")", "[", "]", "{", "}", "·", "•",
+            "¥", "￥", "Ұ", "ұ");
 
     private static Context context;
     private static View keyboardView;
@@ -58,8 +59,10 @@ public class KeyboardNumIniter {
                 .setOnLongClickListener(new OnDeleteNumLongClickListener(context));
         // 數字鍵盤的空格鍵
         keyboardView.findViewById(R.id.keybtnNumSpace).setOnClickListener(new OnSpaceNumClickListener(context));
-        // 製表符按鈕
-        keyboardView.findViewById(R.id.keybtnNumTab).setOnClickListener(new OnKeyNumTabClickListener(context));
+        // 刪除右邊
+        keyboardView.findViewById(R.id.keybtnDeleteRight).setOnClickListener(new OnDeleteRightClickListener(context));
+        keyboardView.findViewById(R.id.keybtnDeleteRight)
+                .setOnLongClickListener(new OnDeleteRightLongClickListener(context));
         // 數字鍵盤返回
         keyboardView.findViewById(R.id.keybtnNumBack).setOnClickListener(new OnClickListener() {
             @Override

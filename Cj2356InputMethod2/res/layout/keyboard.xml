@@ -213,16 +213,14 @@
 		            android:text="返"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
-		        <Button
-		            android:id="@+id/keybtnNumTab"
-		            android:textSize="12dp"
+		        <ImageButton
+		            android:id="@+id/keybtnDeleteRight"
 		            android:layout_width="match_parent"
 		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
 		            android:layout_marginLeft="1dp"
 		            android:layout_marginRight="1dp"
 		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
-		            android:textAllCaps="false"
-		            android:text="Tab"
+		            android:src="@drawable/icon_delete_right"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		        <ImageButton
