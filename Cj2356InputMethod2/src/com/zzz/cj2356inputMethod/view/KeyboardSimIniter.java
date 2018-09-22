@@ -244,7 +244,7 @@ public class KeyboardSimIniter {
      * 获取英文符號
      */
     private static List<String> getEnListString() {
-        String str1 = ", . ? ! : ; ' \" @ # $ % ‰ ^ & ~ ` + - * = _ \\ / | < > ( ) [ ] { } ¿ Tab";
+        String str1 = ", . _ ? ! : ; ' \" @ # $ % ‰ ^ & ~ ` + - * = \\ / | < > ( ) [ ] { } ¿ Tab";
         String str2 = "ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ";
         String str3 = "⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵";
         String str4 = "ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ";
