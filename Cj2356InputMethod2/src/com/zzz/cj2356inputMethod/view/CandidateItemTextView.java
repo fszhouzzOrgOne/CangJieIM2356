@@ -1,7 +1,6 @@
 package com.zzz.cj2356inputMethod.view;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
 import com.zzz.cj2356inputMethod.listener.OnCandidateItemClickListener;

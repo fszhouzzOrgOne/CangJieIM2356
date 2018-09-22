@@ -20,7 +20,6 @@ import android.widget.Toast;
 public class CrashHandler implements UncaughtExceptionHandler {
     private static CrashHandler INSTANCE = new CrashHandler();
     private Context mContext;
-    private Thread.UncaughtExceptionHandler mDefaultHandler;
 
     private CrashHandler() {
     }
@@ -31,7 +30,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     public void init(Context ctx) {
         mContext = ctx;
-        mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
