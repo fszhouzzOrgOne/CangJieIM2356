@@ -22,7 +22,7 @@ public class SendKeyEventUtil {
         parenthesisList.add("[]");
         parenthesisList.add("{}");
         parenthesisList.add("‘’");
-        parenthesisList.add("｀＇");
+        parenthesisList.add("＇＇");
         parenthesisList.add("“”");
         parenthesisList.add("＂＂");
         parenthesisList.add("〃〃");
