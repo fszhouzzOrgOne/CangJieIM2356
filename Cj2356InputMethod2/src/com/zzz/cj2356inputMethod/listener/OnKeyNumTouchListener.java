@@ -36,9 +36,8 @@ public class OnKeyNumTouchListener implements OnTouchListener {
                 if ("Tab".equals(button.getText()) || "\\t".equals(button.getText())) {
                     inputConnection.commitText("\t", 1);
                 } else {
-                    inputConnection.commitText(button.getText(), 1);
+                    SendKeyEventUtil.handleInputParenthesis(context, button.getText());
                 }
-                SendKeyEventUtil.handleInputParenthesis(context, button.getText());
             } catch (Exception e) {
                 Toast.makeText(context, "點擊數字鍵盤出錯" + e.getMessage(), Toast.LENGTH_LONG).show();
             }

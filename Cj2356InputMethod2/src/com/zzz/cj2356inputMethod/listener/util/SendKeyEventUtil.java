@@ -1,7 +1,7 @@
 package com.zzz.cj2356inputMethod.listener.util;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
@@ -11,39 +11,40 @@ import android.view.inputmethod.InputConnection;
 
 public class SendKeyEventUtil {
 
-    private static Map<String, String> parenthesisMap = new HashMap<String, String>();
+    private static List<String> parenthesisList = new ArrayList<String>();
 
     static {
-        parenthesisMap.put("¿", "?");
-        parenthesisMap.put("¡", "!");
-        parenthesisMap.put("'", "'");
-        parenthesisMap.put("\"", "\"");
-        parenthesisMap.put("(", ")");
-        parenthesisMap.put("[", "]");
-        parenthesisMap.put("{", "}");
-        parenthesisMap.put("‘", "’");
-        parenthesisMap.put("“", "”");
-        parenthesisMap.put("＂", "＂");
-        parenthesisMap.put("〃", "〃");
-        parenthesisMap.put("（", "）");
-        parenthesisMap.put("〔", "〕");
-        parenthesisMap.put("〈", "〉");
-        parenthesisMap.put("《", "》");
-        parenthesisMap.put("［", "］");
-        parenthesisMap.put("｛", "｝");
-        parenthesisMap.put("「", "」");
-        parenthesisMap.put("『", "』");
-        parenthesisMap.put("〖", "〗");
-        parenthesisMap.put("【", "】");
-        parenthesisMap.put("«", "»");
-        parenthesisMap.put("︿", "﹀");
-        parenthesisMap.put("︵", "︶");
-        parenthesisMap.put("︹", "︺");
-        parenthesisMap.put("︷", "︸");
-        parenthesisMap.put("︻", "︼");
-        parenthesisMap.put("︽", "︾");
-        parenthesisMap.put("﹁", "﹂");
-        parenthesisMap.put("﹃", "﹄");
+        parenthesisList.add("¿?");
+        parenthesisList.add("¡!");
+        parenthesisList.add("''");
+        parenthesisList.add("\"\"");
+        parenthesisList.add("()");
+        parenthesisList.add("[]");
+        parenthesisList.add("{}");
+        parenthesisList.add("‘’");
+        parenthesisList.add("｀＇");
+        parenthesisList.add("“”");
+        parenthesisList.add("＂＂");
+        parenthesisList.add("〃〃");
+        parenthesisList.add("（）");
+        parenthesisList.add("〔〕");
+        parenthesisList.add("〈〉");
+        parenthesisList.add("《》");
+        parenthesisList.add("［］");
+        parenthesisList.add("｛｝");
+        parenthesisList.add("「」");
+        parenthesisList.add("『』");
+        parenthesisList.add("〖〗");
+        parenthesisList.add("【】");
+        parenthesisList.add("«»");
+        parenthesisList.add("︿﹀");
+        parenthesisList.add("︵︶");
+        parenthesisList.add("︹︺");
+        parenthesisList.add("︷︸");
+        parenthesisList.add("︻︼");
+        parenthesisList.add("︽︾");
+        parenthesisList.add("﹁﹂");
+        parenthesisList.add("﹃﹄");
     }
 
     /**
@@ -58,13 +59,14 @@ public class SendKeyEventUtil {
         if (null == text) {
             return;
         }
-        String textStr = text.toString();
-        if (parenthesisMap.keySet().contains(textStr)) {
-            InputConnection inputConnection = (InputConnection) ((InputMethodService) context)
-                    .getCurrentInputConnection();
-            inputConnection.commitText(parenthesisMap.get(textStr), 1);
+        String textStr = text.toString().replaceAll(" +", "");
+        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
+        if (parenthesisList.contains(textStr)) {
+            inputConnection.commitText(textStr, 1);
 
             doPerformLeft(context);
+        } else {
+            inputConnection.commitText(textStr, 1);
         }
     }
 

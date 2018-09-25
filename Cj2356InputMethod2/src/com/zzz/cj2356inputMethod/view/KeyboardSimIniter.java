@@ -72,8 +72,7 @@ public class KeyboardSimIniter {
 
     static {
         // 中文
-        simMap.put(PAGE_CN_KEY,
-                getListByString("，、。？！：∶；…‘’“”＇＂〃（）〔〕〈〉《》［］｛｝「」『』〖〗【】—＋－×÷＝＜＞～｀＃¥￥Ұұ＄％＆＊｜‖／＼ˉˊˇˋ˙．·•々⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻"));
+        simMap.put(PAGE_CN_KEY, getCnListString());
         simMap.put(PAGE_CNPART_KEY, getListByString(
                 "々丨亅丿乛一乙乚丶八勹匕冫刂儿二匚阝丷卩冂冖凵亻厶亠匸讠廴又艹屮彳巛辶廾彐彑口宀犭彡饣扌氵纟囗忄幺弋尢夂灬歹卝旡耂肀牜爿攴攵礻殳尣爻曰爫癶歺钅疒罒衤疋业艸虍覀糸糹镸辵豸釒靣飠髟鬲黽黹夊禸舛襾釆〇α乁乀巜乂丄丆丅龴丩刄亇丌丬乇卂孒乊卄夨乆龶丰冄兂冘龷丯円龵毌卬卅罓朩匁予戋龸甴氺冎丗仺氶叏丱戉両乑龹朿帇亙丣囪乕幷戼丳栆単眔埀宻豙睂臦"));
         // 英文
@@ -198,6 +197,23 @@ public class KeyboardSimIniter {
 
         // 中文第一頁
         resetKeyboardSimPage();
+    }
+
+    /**
+     * 中文
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年9月25日 下午8:19:26
+     * @return
+     */
+    private static List<String> getCnListString() {
+        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃 （） 〔〕 〈〉 《》 ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
+        String[] facesArr = cnstr.split(" ");
+        List<String> list = new ArrayList<String>();
+        for (String str : facesArr) {
+            list.add(str);
+        }
+        return list;
     }
 
     /**

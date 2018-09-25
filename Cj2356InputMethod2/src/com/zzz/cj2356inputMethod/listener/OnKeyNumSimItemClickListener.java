@@ -34,9 +34,8 @@ public class OnKeyNumSimItemClickListener implements OnClickListener {
         if ("Tab".equals(text) || "\\t".equals(text)) {
             inputConnection.commitText("\t", 1);
         } else {
-            inputConnection.commitText(text, 1);
+            SendKeyEventUtil.handleInputParenthesis(context, text);
         }
-        SendKeyEventUtil.handleInputParenthesis(context, text);
     }
 
 }
