@@ -90,7 +90,7 @@ public class KeyboardSimIniter {
 
         // 特殊
         simMap.put(PAGE_SP_KEY, getListByString(
-                "╳«»︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®‡†♂♀§№☆★♡♥●Θ○◎⊙◆◇▲▼△▽□■※▪〓¤°Ψ∮⊕卍卐囍㈱￡↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
+                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®‡†♂♀§№☆★♡♥●Θ○◎⊙◆◇▲▼△▽□■※▪〓¤°Ψ∮⊕卍卐囍㈱￡↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
         // 數學
         simMap.put(PAGE_MATH_KEY, getMathListByString());
         // 序號
@@ -226,7 +226,7 @@ public class KeyboardSimIniter {
      * @return
      */
     private static List<String> getCnListString() {
-        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃 （） 〔〕 〈〉 《》 ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
+        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃 （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
         String[] facesArr = cnstr.split(" ");
         List<String> list = new ArrayList<String>();
         for (String str : facesArr) {
