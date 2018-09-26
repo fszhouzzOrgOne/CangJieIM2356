@@ -7,6 +7,7 @@ import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.os.SystemClock;
 import android.view.KeyEvent;
+import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 
 public class SendKeyEventUtil {
@@ -57,7 +58,8 @@ public class SendKeyEventUtil {
         InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
         if (parenthesisList.contains(textStr)) {
             inputConnection.commitText(textStr, 1);
-
+            // 加這句只是爲了，讓光標能成功進入括號中間
+            inputConnection.getExtractedText(new ExtractedTextRequest(), 0);
             doPerformLeft(context);
         } else {
             inputConnection.commitText(textStr, 1);
