@@ -134,86 +134,6 @@ public class MbUtils {
     }
 
     /**
-     * 得到查询語句字串
-     * 
-     * @author fszhouzz@qq.com
-     * @time 2018年10月8日 下午10:58:18
-     * @param typeArr
-     * @param cha
-     * @param code
-     * @return
-     */
-    private static String getQuerySql(String[] typeArr, String cha, String code) {
-        // 輸入法類型條件
-        List<String> types = new ArrayList<String>(Arrays.asList(typeArr));
-        boolean unionIntersect = false;
-        for (int i = types.size() - 1; i >= 0; i--) {
-            if (TYPE_CODE_CJINTERSECT.equals(types.get(i))) {
-                unionIntersect = true;
-                types.remove(i);
-            }
-        }
-
-        String typeCodeSql = " and " + mbClNameGen + " = '" + types.get(0) + "' ";
-        // 當前輸入條件
-        String chaSql = "";
-        if (null != cha && !"".equals(cha.trim())) {
-            chaSql = " and " + mbClNameVal + " = '" + cha + "' ";
-        }
-        String codeSql = "";
-        if (null != code && !"".equals(code.trim())) {
-            codeSql = " and " + mbClNameCod + " = '" + code + "' ";
-        }
-        // 排序
-        String orderSql = " order by " + mbClNameCod + " asc, " + mbClNameOrder + " desc ";
-
-        StringBuilder sql = new StringBuilder();
-        sql.append(" select ");
-        sql.append(mbClNameId + ", ");
-        sql.append(mbClNameGen + ", ");
-        sql.append(mbClNameCod + ", ");
-        sql.append(mbClNameVal + ", ");
-        sql.append(mbClNameOrder);
-        sql.append(" from ");
-        sql.append(mbTbName);
-        sql.append(" where 1=1 ");
-        sql.append(typeCodeSql);
-        sql.append(chaSql);
-        sql.append(codeSql);
-        if (unionIntersect) {
-            sql.append(" union all select ");
-            sql.append(mbClNameIdIntersect + ", ");
-            sql.append("'" + TYPE_CODE_CJINTERSECT + "' as " + mbClNameGen + ", ");
-            sql.append(mbClNameCodIntersect + ", ");
-            sql.append(mbClNameValIntersect + ", ");
-            String colName = getColOrderName(types.get(0));
-            sql.append(colName + " as " + mbClNameOrder);
-            sql.append(" from ");
-            sql.append(mbTbNameIntersect);
-            sql.append(" where 1=1 ");
-            sql.append(chaSql);
-            sql.append(codeSql);
-        }
-        return "select * from (" + sql.toString() + ") t " + orderSql;
-    }
-
-    private static String getColOrderName(String typeName) {
-        String colName = mbClNameOrder;
-        if (TYPE_CODE_CJGEN6.equals(typeName)) {
-            colName = mbClNameOrderIntersect6;
-        } else if (TYPE_CODE_CJGEN5.equals(typeName)) {
-            colName = mbClNameOrderIntersect5;
-        } else if (TYPE_CODE_CJGEN3.equals(typeName)) {
-            colName = mbClNameOrderIntersect3;
-        } else if (TYPE_CODE_CJGENYAHOO.equals(typeName)) {
-            colName = mbClNameOrderIntersectyh;
-        } else if (TYPE_CODE_CJGENMS.equals(typeName)) {
-            colName = mbClNameOrderIntersectms;
-        }
-        return colName;
-    }
-
-    /**
      * 按編碼查詢
      * 
      * @param typeCode
@@ -416,4 +336,83 @@ public class MbUtils {
         return resultName;
     }
 
+    /**
+     * 得到查询語句字串
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月8日 下午10:58:18
+     * @param typeArr
+     * @param cha
+     * @param code
+     * @return
+     */
+    private static String getQuerySql(String[] typeArr, String cha, String code) {
+        // 輸入法類型條件
+        List<String> types = new ArrayList<String>(Arrays.asList(typeArr));
+        boolean unionIntersect = false;
+        for (int i = types.size() - 1; i >= 0; i--) {
+            if (TYPE_CODE_CJINTERSECT.equals(types.get(i))) {
+                unionIntersect = true;
+                types.remove(i);
+            }
+        }
+
+        String typeCodeSql = " and " + mbClNameGen + " = '" + types.get(0) + "' ";
+        // 當前輸入條件
+        String chaSql = "";
+        if (null != cha && !"".equals(cha.trim())) {
+            chaSql = " and " + mbClNameVal + " = '" + cha + "' ";
+        }
+        String codeSql = "";
+        if (null != code && !"".equals(code.trim())) {
+            codeSql = " and " + mbClNameCod + " = '" + code + "' ";
+        }
+        // 排序
+        String orderSql = " order by " + mbClNameCod + " asc, " + mbClNameOrder + " desc ";
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select ");
+        sql.append(mbClNameId + ", ");
+        sql.append(mbClNameGen + ", ");
+        sql.append(mbClNameCod + ", ");
+        sql.append(mbClNameVal + ", ");
+        sql.append(mbClNameOrder);
+        sql.append(" from ");
+        sql.append(mbTbName);
+        sql.append(" where 1=1 ");
+        sql.append(typeCodeSql);
+        sql.append(chaSql);
+        sql.append(codeSql);
+        if (unionIntersect) {
+            sql.append(" union all select ");
+            sql.append(mbClNameIdIntersect + ", ");
+            sql.append("'" + TYPE_CODE_CJINTERSECT + "' as " + mbClNameGen + ", ");
+            sql.append(mbClNameCodIntersect + ", ");
+            sql.append(mbClNameValIntersect + ", ");
+            String colName = getColOrderName(types.get(0));
+            sql.append(colName + " " + mbClNameOrder);
+            sql.append(" from ");
+            sql.append(mbTbNameIntersect);
+            sql.append(" where 1=1 ");
+            sql.append(chaSql);
+            sql.append(codeSql);
+        }
+        return "select * from (" + sql.toString() + ") t " + orderSql;
+    }
+
+    private static String getColOrderName(String typeName) {
+        String colName = mbClNameOrder;
+        if (TYPE_CODE_CJGEN6.equals(typeName)) {
+            colName = mbClNameOrderIntersect6;
+        } else if (TYPE_CODE_CJGEN5.equals(typeName)) {
+            colName = mbClNameOrderIntersect5;
+        } else if (TYPE_CODE_CJGEN3.equals(typeName)) {
+            colName = mbClNameOrderIntersect3;
+        } else if (TYPE_CODE_CJGENYAHOO.equals(typeName)) {
+            colName = mbClNameOrderIntersectyh;
+        } else if (TYPE_CODE_CJGENMS.equals(typeName)) {
+            colName = mbClNameOrderIntersectms;
+        }
+        return colName;
+    }
 }
