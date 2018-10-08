@@ -203,11 +203,15 @@ public class SettingDictIniter {
                 if (query.length() > 0) {
                     String pattern = "[a-zA-Z]{1,}";
                     Toast.makeText(context, "查詢“" + query + "”", Toast.LENGTH_SHORT).show();
-                    if (query.matches(pattern)) {
-                        query = query.toLowerCase();
-                        gData = SettingDictMbUtils.selectDbByCode(query);
-                    } else {
-                        gData = SettingDictMbUtils.selectDbByChar(query);
+                    try {
+                        if (query.matches(pattern)) {
+                            query = query.toLowerCase();
+                            gData = SettingDictMbUtils.selectDbByCode(query);
+                        } else {
+                            gData = SettingDictMbUtils.selectDbByChar(query);
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(context, "查詢撰选失敗：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     editText.setText("");
