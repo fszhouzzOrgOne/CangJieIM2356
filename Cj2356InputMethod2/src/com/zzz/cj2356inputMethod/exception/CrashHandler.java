@@ -40,7 +40,10 @@ public class CrashHandler implements UncaughtExceptionHandler {
             @Override
             public void run() {
                 Looper.prepare();
-                String msg = "程序崩潰了，請重啓程序...\n" + "崩潰原因如：" + ex.getMessage();
+                String msg = "程序崩潰了，請重啓程序...\n" + "崩潰原因如：\n";
+                for (StackTraceElement st : ex.getStackTrace()) {
+                    msg += st + "\n";
+                }
 
                 if (mContext instanceof InputMethodService) {
                     Toast.makeText(mContext, msg, Toast.LENGTH_LONG).show();

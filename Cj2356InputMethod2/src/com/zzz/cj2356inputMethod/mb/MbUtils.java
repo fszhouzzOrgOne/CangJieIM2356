@@ -126,10 +126,8 @@ public class MbUtils {
 
         String sql = getQuerySql(typeCode, cha, null);
 
-        getMbdb().beginTransaction();
         Cursor cursor = getMbdb().rawQuery(sql.toString(), null);
         ArrayList<Item> items = handleSelectResultCursor(cursor, false);
-        getMbdb().endTransaction();
         return items;
     }
 
@@ -267,7 +265,7 @@ public class MbUtils {
     // 2
     public static boolean existsDBLikeCode(String[] typeCode, String code) {
         // 輸入法類型條件
-        List<String> types = Arrays.asList(typeCode);
+        List<String> types = new ArrayList<String>(Arrays.asList(typeCode));
         boolean unionIntersect = false;
         for (int i = types.size() - 1; i >= 0; i--) {
             if (TYPE_CODE_CJINTERSECT.equals(types.get(i))) {
