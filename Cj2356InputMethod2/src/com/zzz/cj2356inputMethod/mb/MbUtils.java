@@ -172,7 +172,7 @@ public class MbUtils {
         // 倉頡不模糊查詢，先不管交集表了
         if (isPrompt && (null == items || items.isEmpty())) {
             // 輸入法類型條件
-            List<String> types = Arrays.asList(typeCode);
+            List<String> types = new ArrayList<String>(Arrays.asList(typeCode));
             for (int i = types.size() - 1; i >= 0; i--) {
                 if (TYPE_CODE_CJINTERSECT.equals(types.get(i))) {
                     types.remove(i);
