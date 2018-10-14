@@ -29,7 +29,18 @@ public class Cj2356InputMethodService extends InputMethodService {
     private View keyboardView; // 鍵盤
 
     private ComposingTextView composingTextView;
+    
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        composingTextView = null;
+    }
+    
     @Override
     public void onInitializeInterface() {
         // 初始化詞典數據
@@ -65,14 +76,13 @@ public class Cj2356InputMethodService extends InputMethodService {
         KeyboardNumIniter.resetKeyboardNumPage();
         // 輸入提示框去掉
         this.setCandidatesViewShown(false);
+        composingTextView = null;
     }
     
     @Override
     public void onWindowShown() {
         super.onWindowShown();
-        // 輸入提示框重建
-        composingTextView = new ComposingTextView(this);
-        this.setCandidatesView(composingTextView);
+        this.setCandidatesView(doCreateCandidatesView());
     }
 
     /**
@@ -86,7 +96,11 @@ public class Cj2356InputMethodService extends InputMethodService {
         return CandidateViewIniter.getSuggestions();
     }
 
+    @Override
     public View onCreateCandidatesView() {
+        return null;
+    }
+    public View doCreateCandidatesView() {
         composingTextView = new ComposingTextView(this);
         return composingTextView;
     }
@@ -99,6 +113,10 @@ public class Cj2356InputMethodService extends InputMethodService {
      * @param code
      */
     public void setComposingText(String code) {
+        if (null == composingTextView) {
+            this.setCandidatesView(doCreateCandidatesView());
+        }
+        
         if (null != composingTextView && StringUtils.hasText(code)
                 && false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
             InputMethodStatus stat = this.getInputMethodStatus();
