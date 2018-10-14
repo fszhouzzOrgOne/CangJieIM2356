@@ -51,6 +51,9 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (!SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
+            System.exit(0);
+        }
     }
 
     @Override
