@@ -108,8 +108,10 @@ public class Cj2356InputMethodService extends InputMethodService {
     }
 
     public View doCreateCandidatesView() {
-        composingTextView = new ComposingTextView(this);
-        this.setCandidatesView(composingTextView);
+        if (null == composingTextView) {
+            composingTextView = new ComposingTextView(this);
+            this.setCandidatesView(composingTextView);
+        }
         this.setCandidatesViewShown(true);
         return composingTextView;
     }
