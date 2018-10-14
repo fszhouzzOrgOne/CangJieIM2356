@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class Cj2356InputMethodService extends InputMethodService {
     // 提交正在編輯的內容
-    public static boolean SHOW_COMPOSING_TEXT_FOR_INPUT_CONN = false;
+    public static boolean SHOW_COMPOSING_TEXT_FOR_INPUT_CONN = true;
 
     private View keyboardView; // 鍵盤
 
