@@ -139,7 +139,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      * @return
      */
     public String getComposingTextForInputConn() {
-        if (false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
+        if (!Cj2356InputMethodService.SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
             return null;
         }
         String code = getInputingCnCode();
