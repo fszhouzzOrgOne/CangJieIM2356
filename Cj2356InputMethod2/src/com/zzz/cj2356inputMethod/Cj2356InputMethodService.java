@@ -38,8 +38,7 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "再見。\n倉頡輸入法2356已關閉...", Toast.LENGTH_LONG).show();
-        System.exit(0);
+        // System.exit(0);
     }
 
     @Override
