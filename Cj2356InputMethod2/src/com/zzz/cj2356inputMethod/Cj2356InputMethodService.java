@@ -38,7 +38,6 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // System.exit(0);
     }
 
     @Override
@@ -107,20 +106,6 @@ public class Cj2356InputMethodService extends InputMethodService {
         return composingTextView;
     }
 
-    public View doCreateCandidatesView() {
-        if (null == composingTextView) {
-            composingTextView = new ComposingTextView(this);
-            this.setCandidatesView(composingTextView);
-        }
-        return composingTextView;
-    }
-
-    @Override
-    public void onWindowShown() {
-        super.onWindowShown();
-        doCreateCandidatesView();
-    }
-
     // 解決問題：候選區底隱顯，使其牠應用老是上下移動
     @Override
     public void onComputeInsets(InputMethodService.Insets outInsets) {
@@ -130,6 +115,11 @@ public class Cj2356InputMethodService extends InputMethodService {
             // contentTopInsets默認是從下到打字區高度
             outInsets.visibleTopInsets = outInsets.contentTopInsets;
         }
+    }
+
+    @Override
+    public void onWindowShown() {
+        super.onWindowShown();
     }
 
     /**
@@ -148,9 +138,6 @@ public class Cj2356InputMethodService extends InputMethodService {
 
         KeyboardSimIniter.resetKeyboardSimPage();
         KeyboardNumIniter.resetKeyboardNumPage();
-        // 輸入提示框去掉
-        this.setCandidatesViewShown(false);
-        composingTextView = null;
     }
 
     @Override
@@ -166,10 +153,6 @@ public class Cj2356InputMethodService extends InputMethodService {
      * @param code
      */
     public void setComposingText(String code) {
-        if (null == composingTextView) {
-            doCreateCandidatesView();
-        }
-
         String composing = "";
         if (StringUtils.hasText(code)) {
             InputMethodStatus stat = this.getInputMethodStatus();
