@@ -38,7 +38,7 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        composingTextView = null;
+        System.exit(0);
     }
 
     @Override
@@ -112,7 +112,6 @@ public class Cj2356InputMethodService extends InputMethodService {
             composingTextView = new ComposingTextView(this);
             this.setCandidatesView(composingTextView);
         }
-        this.setCandidatesViewShown(true);
         return composingTextView;
     }
 
@@ -186,6 +185,10 @@ public class Cj2356InputMethodService extends InputMethodService {
             if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
                 composing = composing + "（" + code + "）";
             }
+
+            this.setCandidatesViewShown(true);
+        } else {
+            this.setCandidatesViewShown(false);
         }
         if (false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
             composingTextView.setComposingText(composing);

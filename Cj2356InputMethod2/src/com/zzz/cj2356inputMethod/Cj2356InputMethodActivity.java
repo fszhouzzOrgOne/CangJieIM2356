@@ -5,8 +5,10 @@ import com.zzz.cj2356inputMethod.view.SettingLoayoutTabIniter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -33,7 +35,7 @@ public class Cj2356InputMethodActivity extends Activity {
 
         TextView tvBtn = (TextView) findViewById(R.id.setsuMyouSimbBtn);
         tvBtn.setTextColor(Color.LTGRAY);
-        
+
         Button setInputMethodBtn = (Button) findViewById(R.id.setInputMethodBtn);
         setInputMethodBtn.setTextColor(Color.DKGRAY);
         setInputMethodBtn.setTextSize(16);
@@ -45,9 +47,9 @@ public class Cj2356InputMethodActivity extends Activity {
         // 之三還要在xml中設置focusable和focusableInTouchMode為真
         InputMethodManager imm1 = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm1.hideSoftInputFromWindow(getContentView().getWindowToken(), 0);
-        
-        CrashHandler crashHandler = CrashHandler.getInstance();    
-        crashHandler.init(this); 
+
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(this);
     }
 
     /**
@@ -77,7 +79,14 @@ class OnClickSetInputMethodBtnListener implements OnClickListener {
     public void onClick(View v) {
         // 隱藏輸入法
         v.requestFocus();
-        
+        toChooseInputMethod();
+    }
+
+    public void toChooseInputMethod() {
+        ((Cj2356InputMethodActivity) context).startActivity(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS));
+    }
+
+    public void showInputMethodPicker() {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showInputMethodPicker();
     }
