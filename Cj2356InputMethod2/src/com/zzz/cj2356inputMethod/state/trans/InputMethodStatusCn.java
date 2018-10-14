@@ -117,8 +117,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      * 得到臨時輸入的所有鍵名，用於回車鍵輸入編碼
      */
     public String getInputingCnValueForEnter() {
-        String res = getInputingCnValue();
-        return res;
+        return getComposingTextForInputConn();
     }
 
     /**
