@@ -139,9 +139,6 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      * @return
      */
     public String getComposingTextForInputConn() {
-        if (!Cj2356InputMethodService.SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
-            return null;
-        }
         String code = getInputingCnCode();
         String composingText = translateCode2Name(code);
         String patternAbc123 = "^[a-zA-Z]+[0-9]?$";

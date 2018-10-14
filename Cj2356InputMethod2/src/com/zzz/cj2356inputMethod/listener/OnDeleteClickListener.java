@@ -65,7 +65,9 @@ public class OnDeleteClickListener implements OnClickListener {
                         String composingText = ((InputMethodStatusCn) stat).getComposingTextForInputConn();
                         if (StringUtils.hasText(composingText)) {
                             // 提交正在編輯的內容
-                            inputConnection.setComposingText(composingText, 1);
+                            if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
+                                inputConnection.setComposingText(composingText, 1);
+                            }
                         }
 
                         // 取當前輸入編碼的候選項
