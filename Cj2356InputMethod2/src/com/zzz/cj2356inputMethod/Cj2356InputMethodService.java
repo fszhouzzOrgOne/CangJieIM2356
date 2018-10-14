@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class Cj2356InputMethodService extends InputMethodService {
     // 提交正在編輯的內容
-    public static boolean SHOW_COMPOSING_TEXT_FOR_INPUT_CONN = true;
+    public static boolean SHOW_COMPOSING_TEXT_FOR_INPUT_CONN = false;
 
     private View keyboardView; // 鍵盤
 
@@ -171,10 +171,10 @@ public class Cj2356InputMethodService extends InputMethodService {
             if (composing.matches(patternAbc123)) {
                 composing = composing.toLowerCase();
                 if (!composing.equals(code)) {
-                    composing += "(" + code + ")";
+                    composing += "（" + code + "）";
                 }
             } else {
-                composing = code + "(" + composing + ")";
+                composing = code + "（" + composing + "）";
             }
 
             this.setCandidatesViewShown(true);
