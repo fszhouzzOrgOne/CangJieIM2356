@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
-
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
+
+import android.content.Context;
 
 /**
  * 要翻譯的輸入法
@@ -130,6 +130,28 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
             result = inputTempCn.get("code");
         }
         return result;
+    }
+
+    /**
+     * 用於inputConnection.setComposingText(composingText, 1);
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月14日 下午8:53:22
+     * @return
+     */
+    public String getComposingTextForInputConn() {
+        if (false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
+            return null;
+        }
+        String code = getInputingCnCode();
+        String composingText = translateCode2Name(code);
+        String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+        if (composingText.matches(patternAbc123)) {
+            composingText = composingText.toLowerCase();
+        } else {
+            composingText = code.toLowerCase();
+        }
+        return composingText;
     }
 
     public boolean isInputingCn() {

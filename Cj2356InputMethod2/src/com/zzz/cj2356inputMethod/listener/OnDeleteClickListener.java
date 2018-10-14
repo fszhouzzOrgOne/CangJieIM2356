@@ -60,21 +60,21 @@ public class OnDeleteClickListener implements OnClickListener {
 
                         // 先置空，再放進去
                         ((InputMethodStatusCn) stat).inputingCnCode(null, null);
-                        String composingText = ((InputMethodStatusCn) stat).inputingCnCode(code, value);
-                        if (StringUtils.hasText(composingText)) {
-                            // 不再提交正在編輯的內容
-                            if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
-                                inputConnection.setComposingText(composingText, 1);
-                            }
+                        ((InputMethodStatusCn) stat).inputingCnCode(code, value);
 
-                            // 取當前輸入編碼的候選項
-                            List<Item> items = ((InputMethodStatusCn) stat).getCandidatesInfo(code, true);
-                            if (items == null) {
-                                // 還可以繼續鍵入，所以生成一個空的，防止以後報錯
-                                items = new ArrayList<Item>();
-                            }
-                            ser.setSuggestions(items);
+                        String composingText = ((InputMethodStatusCn) stat).getComposingTextForInputConn();
+                        if (StringUtils.hasText(composingText)) {
+                            // 提交正在編輯的內容
+                            inputConnection.setComposingText(composingText, 1);
                         }
+
+                        // 取當前輸入編碼的候選項
+                        List<Item> items = ((InputMethodStatusCn) stat).getCandidatesInfo(code, true);
+                        if (items == null) {
+                            // 還可以繼續鍵入，所以生成一個空的，防止以後報錯
+                            items = new ArrayList<Item>();
+                        }
+                        ser.setSuggestions(items);
                     }
                     return;
                 }

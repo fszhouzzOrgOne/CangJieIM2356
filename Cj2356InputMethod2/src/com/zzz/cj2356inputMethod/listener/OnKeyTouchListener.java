@@ -59,24 +59,15 @@ public class OnKeyTouchListener implements OnTouchListener {
                             items = new ArrayList<Item>();
                         }
                     }
-
                     ((InputMethodStatusCn) stat).inputingCnCode(key, value);
-                    String composingText = ((InputMethodStatusCn) stat).translateCode2Name(key);
+
+                    String composingText = ((InputMethodStatusCn) stat).getComposingTextForInputConn();
                     if (StringUtils.hasText(composingText)) {
                         // 提交正在編輯的內容
-                        if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
-                            String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
-                            if (composingText.matches(patternAbc123)) {
-                                composingText = composingText.toLowerCase();
-                            } else {
-                                composingText = key.toLowerCase();
-                            }
-                            inputConnection.setComposingText(composingText, 1);
-                        }
-
-                        // 取當前輸入編碼的候選項
-                        ser.setSuggestions(items);
+                        inputConnection.setComposingText(composingText, 1);
                     }
+                    // 取當前輸入編碼的候選項
+                    ser.setSuggestions(items);
                 } else {
                     // 英文直接輸入
                     // commitText方法第2个参数值为1，表示在当前位置插入文本
