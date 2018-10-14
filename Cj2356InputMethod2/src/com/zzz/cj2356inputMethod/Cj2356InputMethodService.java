@@ -147,7 +147,6 @@ public class Cj2356InputMethodService extends InputMethodService {
         // 輸入提示框去掉
         this.setCandidatesViewShown(false);
         composingTextView = null;
-        this.setCandidatesView(null);
     }
 
     @Override
