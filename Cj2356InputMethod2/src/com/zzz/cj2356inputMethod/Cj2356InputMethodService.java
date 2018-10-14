@@ -33,15 +33,6 @@ public class Cj2356InputMethodService extends InputMethodService {
     @Override
     public void onCreate() {
         super.onCreate();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onInitializeInterface() {
         // 初始化詞典數據
         try {
             MbUtils.init(this);
@@ -55,6 +46,16 @@ public class Cj2356InputMethodService extends InputMethodService {
         } catch (Exception e) {
             Toast.makeText(this, "初始化輸入法失敗" + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onInitializeInterface() {
+        super.onInitializeInterface();
     }
 
     @Override
