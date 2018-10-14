@@ -29,7 +29,7 @@ public class Cj2356InputMethodService extends InputMethodService {
     private View keyboardView; // 鍵盤
 
     private ComposingTextView composingTextView;
-    
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,7 +40,7 @@ public class Cj2356InputMethodService extends InputMethodService {
         super.onDestroy();
         composingTextView = null;
     }
-    
+
     @Override
     public void onInitializeInterface() {
         // 初始化詞典數據
@@ -50,106 +50,11 @@ public class Cj2356InputMethodService extends InputMethodService {
             Cangjie2356ConfigUtils.init(this);
 
             Cangjie2356IMsUtils.init(this);
-            
-            CrashHandler crashHandler = CrashHandler.getInstance();    
-            crashHandler.init(this); 
+
+            CrashHandler crashHandler = CrashHandler.getInstance();
+            crashHandler.init(this);
         } catch (Exception e) {
             Toast.makeText(this, "初始化輸入法失敗" + e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-
-    /**
-     * 隱藏輸入法
-     */
-    @Override
-    public void onWindowHidden() {
-        if (null != getInputMethodStatus()) {
-            // 停止中文輸入狀態
-            if (getInputMethodStatus().isShouldTranslate()) {
-                if (((InputMethodStatusCn) getInputMethodStatus()).isInputingCn()) {
-                    ((InputMethodStatusCn) getInputMethodStatus()).setInputingCn(false);
-                }
-            }
-        }
-
-        KeyboardSimIniter.resetKeyboardSimPage();
-        KeyboardNumIniter.resetKeyboardNumPage();
-        // 輸入提示框去掉
-        this.setCandidatesViewShown(false);
-        composingTextView = null;
-    }
-    
-    @Override
-    public void onWindowShown() {
-        super.onWindowShown();
-        this.setCandidatesView(doCreateCandidatesView());
-    }
-
-    /**
-     * 設置候選數據
-     */
-    public void setSuggestions(List<Item> suggestion) {
-        CandidateViewIniter.setSuggestions(suggestion);
-    }
-
-    public List<Item> getSuggestions() {
-        return CandidateViewIniter.getSuggestions();
-    }
-
-    @Override
-    public View onCreateCandidatesView() {
-        return null;
-    }
-    public View doCreateCandidatesView() {
-        composingTextView = new ComposingTextView(this);
-        return composingTextView;
-    }
-
-    /**
-     * 設置正在輸入提示內容
-     * 
-     * @author fszhouzz@qq.com
-     * @time 2017年12月7日 下午10:33:18
-     * @param code
-     */
-    public void setComposingText(String code) {
-        if (null == composingTextView) {
-            this.setCandidatesView(doCreateCandidatesView());
-        }
-        
-        if (null != composingTextView && StringUtils.hasText(code)
-                && false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
-            InputMethodStatus stat = this.getInputMethodStatus();
-            String composing = "";
-            if (stat.isShouldTranslate()) {
-                InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
-                composing = cnstat.translateCode2Name(code);
-            }
-            String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
-            if (composing.matches(patternAbc123)) {
-                composing = composing.toLowerCase();
-            }
-            String pattern = "^[a-zA-Z]+$";
-            if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
-                composing = composing + "（" + code + "）";
-            }
-
-            composingTextView.setComposingText(composing);
-            setCandidatesViewShown(true);
-        } else {
-            composingTextView.setComposingText("");
-            setCandidatesViewShown(false);
-        }
-    }
-
-    // 解決問題：候選區底隱顯，使其牠應用老是上下移動
-    @Override
-    public void onComputeInsets(InputMethodService.Insets outInsets) {
-        super.onComputeInsets(outInsets);
-        if (!isFullscreenMode()) {
-            // visibleTopInsets默認是從下到候選區的高度
-            // contentTopInsets默認是從下到打字區高度
-            outInsets.visibleTopInsets = outInsets.contentTopInsets;
         }
     }
 
@@ -195,10 +100,107 @@ public class Cj2356InputMethodService extends InputMethodService {
         // 返回View对象
         return keyboardView;
     }
-    
+
+    @Override
+    public View onCreateCandidatesView() {
+        return null;
+    }
+
+    public View doCreateCandidatesView() {
+        composingTextView = new ComposingTextView(this);
+        return composingTextView;
+    }
+
+    @Override
+    public void onWindowShown() {
+        super.onWindowShown();
+        this.setCandidatesView(doCreateCandidatesView());
+    }
+
+    // 解決問題：候選區底隱顯，使其牠應用老是上下移動
+    @Override
+    public void onComputeInsets(InputMethodService.Insets outInsets) {
+        super.onComputeInsets(outInsets);
+        if (!isFullscreenMode()) {
+            // visibleTopInsets默認是從下到候選區的高度
+            // contentTopInsets默認是從下到打字區高度
+            outInsets.visibleTopInsets = outInsets.contentTopInsets;
+        }
+    }
+
+    /**
+     * 隱藏輸入法
+     */
+    @Override
+    public void onWindowHidden() {
+        if (null != getInputMethodStatus()) {
+            // 停止中文輸入狀態
+            if (getInputMethodStatus().isShouldTranslate()) {
+                if (((InputMethodStatusCn) getInputMethodStatus()).isInputingCn()) {
+                    ((InputMethodStatusCn) getInputMethodStatus()).setInputingCn(false);
+                }
+            }
+        }
+
+        KeyboardSimIniter.resetKeyboardSimPage();
+        KeyboardNumIniter.resetKeyboardNumPage();
+        // 輸入提示框去掉
+        this.setCandidatesViewShown(false);
+        composingTextView = null;
+        this.setCandidatesView(null);
+    }
+
     @Override
     public void onStartInputView(EditorInfo info, boolean restarting) {
         super.onStartInputView(info, restarting);
+    }
+
+    /**
+     * 設置正在輸入提示內容
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2017年12月7日 下午10:33:18
+     * @param code
+     */
+    public void setComposingText(String code) {
+        if (null == composingTextView) {
+            this.setCandidatesView(doCreateCandidatesView());
+        }
+
+        if (null != composingTextView && StringUtils.hasText(code)
+                && false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
+            InputMethodStatus stat = this.getInputMethodStatus();
+            String composing = "";
+            if (stat.isShouldTranslate()) {
+                InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
+                composing = cnstat.translateCode2Name(code);
+            }
+            String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+            if (composing.matches(patternAbc123)) {
+                composing = composing.toLowerCase();
+            }
+            String pattern = "^[a-zA-Z]+$";
+            if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
+                composing = composing + "（" + code + "）";
+            }
+
+            composingTextView.setComposingText(composing);
+            setCandidatesViewShown(true);
+        } else {
+            composingTextView.setComposingText("");
+            setCandidatesViewShown(false);
+        }
+    }
+
+    /**
+     * 設置候選數據
+     */
+    public void setSuggestions(List<Item> suggestion) {
+        CandidateViewIniter.setSuggestions(suggestion);
+    }
+
+    public List<Item> getSuggestions() {
+        return CandidateViewIniter.getSuggestions();
     }
 
     /**
