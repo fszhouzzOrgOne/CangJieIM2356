@@ -60,10 +60,17 @@ public class OnKeyTouchListener implements OnTouchListener {
                         }
                     }
 
-                    String composingText = ((InputMethodStatusCn) stat).inputingCnCode(key, value);
+                    ((InputMethodStatusCn) stat).inputingCnCode(key, value);
+                    String composingText = ((InputMethodStatusCn) stat).translateCode2Name(key);
                     if (StringUtils.hasText(composingText)) {
                         // 提交正在編輯的內容
                         if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
+                            String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+                            if (composingText.matches(patternAbc123)) {
+                                composingText = composingText.toLowerCase();
+                            } else {
+                                composingText = key.toLowerCase();
+                            }
                             inputConnection.setComposingText(composingText, 1);
                         }
 

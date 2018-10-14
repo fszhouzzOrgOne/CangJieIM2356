@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class Cj2356InputMethodService extends InputMethodService {
     // 提交正在編輯的內容
-    public static boolean SHOW_COMPOSING_TEXT = false;
+    public static boolean SHOW_COMPOSING_TEXT = true;
 
     private View keyboardView; // 鍵盤
 
@@ -103,6 +103,9 @@ public class Cj2356InputMethodService extends InputMethodService {
 
     @Override
     public View onCreateCandidatesView() {
+        if (false == SHOW_COMPOSING_TEXT) {
+            return null;
+        }
         composingTextView = new ComposingTextView(this);
         return composingTextView;
     }
@@ -154,27 +157,27 @@ public class Cj2356InputMethodService extends InputMethodService {
      * @param code
      */
     public void setComposingText(String code) {
-        String composing = "";
-        if (StringUtils.hasText(code)) {
-            InputMethodStatus stat = this.getInputMethodStatus();
-            if (stat.isShouldTranslate()) {
-                InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
-                composing = cnstat.translateCode2Name(code);
-            }
-            String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
-            if (composing.matches(patternAbc123)) {
-                composing = composing.toLowerCase();
-            }
-            String pattern = "^[a-zA-Z]+$";
-            if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
-                composing = composing + "（" + code + "）";
-            }
-
-            this.setCandidatesViewShown(true);
-        } else {
-            this.setCandidatesViewShown(false);
-        }
         if (false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
+            String composing = "";
+            if (StringUtils.hasText(code)) {
+                InputMethodStatus stat = this.getInputMethodStatus();
+                if (stat.isShouldTranslate()) {
+                    InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
+                    composing = cnstat.translateCode2Name(code);
+                }
+                String patternAbc123 = "^[a-zA-Z]+[0-9]?$";
+                if (composing.matches(patternAbc123)) {
+                    composing = composing.toLowerCase();
+                }
+                String pattern = "^[a-zA-Z]+$";
+                if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
+                    composing = composing + "（" + code + "）";
+                }
+
+                this.setCandidatesViewShown(true);
+            } else {
+                this.setCandidatesViewShown(false);
+            }
             composingTextView.setComposingText(composing);
         }
     }
