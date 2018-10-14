@@ -63,6 +63,16 @@ public class Cj2356InputMethodService extends InputMethodService {
 
         KeyboardSimIniter.resetKeyboardSimPage();
         KeyboardNumIniter.resetKeyboardNumPage();
+        // 輸入提示框去掉
+        this.setCandidatesViewShown(false);
+    }
+    
+    @Override
+    public void onWindowShown() {
+        super.onWindowShown();
+        // 輸入提示框重建
+        composingTextView = new ComposingTextView(this);
+        this.setCandidatesView(composingTextView);
     }
 
     /**
