@@ -103,18 +103,21 @@ public class Cj2356InputMethodService extends InputMethodService {
 
     @Override
     public View onCreateCandidatesView() {
-        return null;
+        composingTextView = new ComposingTextView(this);
+        return composingTextView;
     }
 
     public View doCreateCandidatesView() {
         composingTextView = new ComposingTextView(this);
+        this.setCandidatesView(composingTextView);
+        this.setCandidatesViewShown(true);
         return composingTextView;
     }
 
     @Override
     public void onWindowShown() {
         super.onWindowShown();
-        this.setCandidatesView(doCreateCandidatesView());
+        doCreateCandidatesView();
     }
 
     // 解決問題：候選區底隱顯，使其牠應用老是上下移動
@@ -163,13 +166,12 @@ public class Cj2356InputMethodService extends InputMethodService {
      */
     public void setComposingText(String code) {
         if (null == composingTextView) {
-            this.setCandidatesView(doCreateCandidatesView());
+            doCreateCandidatesView();
         }
 
-        if (null != composingTextView && StringUtils.hasText(code)
-                && false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
+        String composing = "";
+        if (StringUtils.hasText(code)) {
             InputMethodStatus stat = this.getInputMethodStatus();
-            String composing = "";
             if (stat.isShouldTranslate()) {
                 InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
                 composing = cnstat.translateCode2Name(code);
@@ -182,12 +184,9 @@ public class Cj2356InputMethodService extends InputMethodService {
             if (!(composing.matches(pattern) && composing.toLowerCase().equals(code))) {
                 composing = composing + "（" + code + "）";
             }
-
+        }
+        if (false == Cj2356InputMethodService.SHOW_COMPOSING_TEXT) {
             composingTextView.setComposingText(composing);
-            setCandidatesViewShown(true);
-        } else {
-            composingTextView.setComposingText("");
-            setCandidatesViewShown(false);
         }
     }
 

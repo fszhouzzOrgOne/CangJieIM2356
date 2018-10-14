@@ -14,24 +14,36 @@ import android.widget.TextView;
  * @author 日月遞炤
  */
 public class ComposingTextView extends RelativeLayout {
+    private Context context = null;
     TextView tv;
 
     public ComposingTextView(Context context) {
         super(context);
+        this.context = context;
+    }
 
+    public void setComposingText(String text) {
+        this.removeAllViews();
+        boolean hasContent = true;
+        if (null == text || "".equals(text.trim())) {
+            text = "";
+            hasContent = false;
+        }
         tv = new TextView(context);
         tv.setPadding(3, 0, 0, 0);
         tv.setTextColor(Color.RED);
         tv.setTextSize(15); // sp
-        tv.setBackgroundColor(context.getResources().getColor(R.color.whiteccc));
-        RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+        tv.setText(text);
+        if (hasContent) {
+            tv.setBackgroundColor(context.getResources().getColor(R.color.whiteccc));
+        }
+        RelativeLayout.LayoutParams lps = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         lps.addRule(RelativeLayout.ALIGN_LEFT);
         addView(tv, lps);
     }
 
-    public void setComposingText(String text) {
-        tv.setText(text);
+    public CharSequence getText() {
+        return tv.getText();
     }
 }
