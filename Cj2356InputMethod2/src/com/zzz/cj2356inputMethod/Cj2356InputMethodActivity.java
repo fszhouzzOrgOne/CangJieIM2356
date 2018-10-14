@@ -36,10 +36,15 @@ public class Cj2356InputMethodActivity extends Activity {
         TextView tvBtn = (TextView) findViewById(R.id.setsuMyouSimbBtn);
         tvBtn.setTextColor(Color.LTGRAY);
 
-        Button setInputMethodBtn = (Button) findViewById(R.id.setInputMethodBtn);
-        setInputMethodBtn.setTextColor(Color.DKGRAY);
-        setInputMethodBtn.setTextSize(16);
-        setInputMethodBtn.setOnClickListener(new OnClickSetInputMethodBtnListener(this));
+        Button setInputMethodBtn1 = (Button) findViewById(R.id.setInputMethodBtn1);
+        setInputMethodBtn1.setTextColor(Color.DKGRAY);
+        setInputMethodBtn1.setTextSize(16);
+        setInputMethodBtn1.setOnClickListener(new OnClickSetInputMethodBtnListener1(this));
+
+        Button setInputMethodBtn2 = (Button) findViewById(R.id.setInputMethodBtn2);
+        setInputMethodBtn2.setTextColor(Color.DKGRAY);
+        setInputMethodBtn2.setTextSize(16);
+        setInputMethodBtn2.setOnClickListener(new OnClickSetInputMethodBtnListener2(this));
 
         SettingLoayoutTabIniter.initSettingLoayoutTab(mContext);
 
@@ -67,11 +72,11 @@ public class Cj2356InputMethodActivity extends Activity {
 
 }
 
-class OnClickSetInputMethodBtnListener implements OnClickListener {
+class OnClickSetInputMethodBtnListener1 implements OnClickListener {
 
     private Context context;
 
-    public OnClickSetInputMethodBtnListener(Context con) {
+    public OnClickSetInputMethodBtnListener1(Context con) {
         this.context = con;
     }
 
@@ -84,6 +89,22 @@ class OnClickSetInputMethodBtnListener implements OnClickListener {
 
     public void toChooseInputMethod() {
         ((Cj2356InputMethodActivity) context).startActivity(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS));
+    }
+}
+
+class OnClickSetInputMethodBtnListener2 implements OnClickListener {
+
+    private Context context;
+
+    public OnClickSetInputMethodBtnListener2(Context con) {
+        this.context = con;
+    }
+
+    @Override
+    public void onClick(View v) {
+        // 隱藏輸入法
+        v.requestFocus();
+        showInputMethodPicker();
     }
 
     public void showInputMethodPicker() {

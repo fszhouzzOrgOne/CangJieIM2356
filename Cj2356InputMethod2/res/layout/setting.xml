@@ -25,16 +25,33 @@
             android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我："
             />
         
-        <Button
-            android:id="@+id/setInputMethodBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/keyboard_key_height"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="10dp" 
             android:paddingRight="10dp" 
             android:layout_marginBottom="10dp"
-            android:background="@drawable/keyboard_button_selector"
-            android:text="變更輸入法"
-            />
+		    android:orientation="horizontal" 
+            >
+            <Button
+                android:id="@+id/setInputMethodBtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/keyboard_key_height"
+                android:paddingLeft="10dp" 
+                android:paddingRight="10dp" 
+                android:background="@drawable/keyboard_button_selector"
+                android:text="啟用輸入法"
+                />
+            <Button
+                android:id="@+id/setInputMethodBtn2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/keyboard_key_height"
+                android:paddingLeft="10dp" 
+                android:paddingRight="10dp" 
+                android:background="@drawable/keyboard_button_selector"
+                android:text="選擇輸入法"
+                />
+        </LinearLayout>
         
         <LinearLayout
             android:layout_width="match_parent"
