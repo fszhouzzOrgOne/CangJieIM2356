@@ -90,7 +90,7 @@ public class KeyboardSimIniter {
 
         // 特殊
         simMap.put(PAGE_SP_KEY, getListByString(
-                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®‡†♂♀§№☆★♡♥●Θ○◎⊙◆◇▲▼△▽□■※▪〓¤°Ψ∮⊕卍卐囍㈱￡↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
+                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®♯♭♪¶‡†♂♀§№☆★♡♥○●⊙◎Θ◇◆□■△▲▽▼※〒▪〓¤°Ψ∮⊕卍卐囍㈱￡⇒⇔↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
         // 數學
         simMap.put(PAGE_MATH_KEY, getMathListByString());
         // 序號
@@ -207,7 +207,7 @@ public class KeyboardSimIniter {
      * @return
      */
     private static List<String> getMathListByString() {
-        String math1 = "＋－×÷≈≡≠＝±✘✔√≤≥＜＞≮≯∷╱╲∫∮∝∞∧∨∑∏∪∩∈∵∴⊥∥∠⌒⊙≌∽≒≦≧Ｆ′″º℃Å￠￡$＄¥￥Ұұ¤℉ℓΩ";
+        String math1 = "＋－±×÷＝≠≈≡╱╲✘✔√≤≥＜＞≮≯≪≫∫∬∮∝∞∈∋⊆⊇⊂⊃∪∩∧∨∵∴∷⊥∥∠⊿⌒⊙≌∽≒≦≧′″º℃Ｆ℉Å∑∏∀∃￠￡$＄¥￥Ұұ¤∂ℓΩ";
         String math2 = "⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％‰‱";
         String math3 = "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽⁾ ⁿ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍₎ ₐ ₑ ₒ ₓ ₔ";
         String math4 = "㉐㋌㋍㋎㋏㍱㍲㍳㍴㍵㍶㍷㍸㍹㍺㎀㎁㎂㎃㎄㎅㎆㎇㎈㎉㎊㎋㎌㎍㎎㎏㎐㎑㎒㎓㎔㎕㎖㎗㎘㎙㎚㎛㎜㎝㎞㎟㎠㎡㎢㎣㎤㎥㎦㎧㎨㎩㎪㎫㎬㎭㎮㎯㎰㎱㎲㎳㎴㎵㎶㎷㎸㎹㎺㎻㎼㎽㎾㎿㏀㏁㏂㏃㏄㏅㏆㏇㏈㏉㏊㏋㏌㏍㏎㏏㏐㏑㏒㏓㏔㏕㏖㏗㏘㏙㏚㏛㏜㏝㏞㏟㏿";
@@ -226,7 +226,7 @@ public class KeyboardSimIniter {
      * @return
      */
     private static List<String> getCnListString() {
-        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃 （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
+        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃 （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
         String[] facesArr = cnstr.split(" ");
         List<String> list = new ArrayList<String>();
         for (String str : facesArr) {
