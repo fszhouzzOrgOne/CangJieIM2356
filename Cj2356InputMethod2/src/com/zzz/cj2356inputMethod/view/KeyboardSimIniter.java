@@ -207,8 +207,8 @@ public class KeyboardSimIniter {
      * @return
      */
     private static List<String> getMathListByString() {
-        String math1 = "＋－±×÷＝≠≈≡╱╲✘✔√≤≥＜＞≮≯≪≫∫∬∮∝∞∈∋⊆⊇⊂⊃∪∩∧∨∵∴∷⊥∥∠⊿⌒⊙≌∽≒≦≧′″º℃Ｆ℉Å∑∏∀∃￠￡$＄¥￥Ұұ¤∂ℓΩ";
-        String math2 = "⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％‰‱";
+        String math1 = "＋－±×÷＝≠≈≡╱╲✘✔√≤≥＜＞≮≯≪≫∫∬∭∮∯∰∱∲∳∝∞∈∋⊆⊇⊂⊃∪∩∧∨∵∴∷⊥∥∠⊿⌒⊙≌∽≒≦≧′″º℃Ｆ℉Å∑∏∀∃￠￡$＄¥￥Ұұ¤∂ℓΩ";
+        String math2 = "⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％℅‰‱";
         String math3 = "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽⁾ ⁿ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍₎ ₐ ₑ ₒ ₓ ₔ";
         String math4 = "㉐㋌㋍㋎㋏㍱㍲㍳㍴㍵㍶㍷㍸㍹㍺㎀㎁㎂㎃㎄㎅㎆㎇㎈㎉㎊㎋㎌㎍㎎㎏㎐㎑㎒㎓㎔㎕㎖㎗㎘㎙㎚㎛㎜㎝㎞㎟㎠㎡㎢㎣㎤㎥㎦㎧㎨㎩㎪㎫㎬㎭㎮㎯㎰㎱㎲㎳㎴㎵㎶㎷㎸㎹㎺㎻㎼㎽㎾㎿㏀㏁㏂㏃㏄㏅㏆㏇㏈㏉㏊㏋㏌㏍㏎㏏㏐㏑㏒㏓㏔㏕㏖㏗㏘㏙㏚㏛㏜㏝㏞㏟㏿";
         List<String> list = getListByString(math1);
@@ -226,8 +226,8 @@ public class KeyboardSimIniter {
      * @return
      */
     private static List<String> getCnListString() {
-        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃 （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
-        String[] facesArr = cnstr.split(" ");
+        String cnstr = "， 、 。 ？ ！ ： ∶ ； … ‘’ “” ＇＇ ＂＂ 〃〃  ❝❞  （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 — ＋ － × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
+        String[] facesArr = cnstr.split(" +");
         List<String> list = new ArrayList<String>();
         for (String str : facesArr) {
             list.add(str);
@@ -283,9 +283,9 @@ public class KeyboardSimIniter {
      * 获取英文符號
      */
     private static List<String> getEnListString() {
-        List<String> list = Arrays.asList(",", ".", "_", "?", "!", ":", ";", "' '", "\" \"", "@", "#", "$", "%", "‰",
-                "^", "&", "~", "`", "+", "-", "*", "=", "\\", "/", "|", "<", ">", "( )", "[ ]", "{ }", "¿ ?", "¡ !",
-                "Tab");
+        List<String> list = Arrays.asList(",", ".", "_", "?", "!", ":", ";", "' '", "\" \"", "@", "#", "$", "%", "℅",
+                "‰", "‱", "^", "&", "~", "`", "+", "-", "*", "=", "\\", "/", "|", "<", ">", "( )", "[ ]", "{ }", "¿ ?",
+                "¡ !", "Tab");
         String str2 = "ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ";
         String str3 = "⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵";
         String str4 = "ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ";
