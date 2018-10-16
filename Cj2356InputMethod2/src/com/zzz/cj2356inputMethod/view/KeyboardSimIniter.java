@@ -93,7 +93,7 @@ public class KeyboardSimIniter {
 
         // 特殊
         simMap.put(PAGE_SP_KEY, getListByString(
-                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®♯♭♫♬♩♪♮¶‡†♂♀§№☆★♡♥○●⊙◎Θ◇◆□■△▲▽▼※〒▪〓°Ψ∮⊕卍卐囍㈱￡⇒⇔↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
+                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®♯♭♫♬♩♪♮¶‡†♂♀§№☆★♡♥○●⊙◎Θ◇◆□■△▲▽▼※〒▪〓°Ψ⊕卍卐囍㈱￡⇒⇔↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
         // 數學
         simMap.put(PAGE_MATH_KEY, getMathListByString());
         // 序號
@@ -207,7 +207,7 @@ public class KeyboardSimIniter {
     // http://www.runoob.com/charsets/ref-utf-currency.html
     // https://unicode-table.com/cn/20B6/
     private static List<String> getMoneyListString() {
-        String faceStr = "圓 圆 元 円 ¥ ￥ Ұ ұ $ ＄ ₳ ฿ € ￠ ¢ ₵ ₡ ₠ ₢ č ₫ ₯ ￡ £ ₤ ₣ ƒ ₲ K ₭ ł ₥ ₦ ¤ ₱ ₧ ₨ ₴ ₷ ₮ ₸ ₩ ރ z ₶ ₹ र ₰ ₪ ﷼";
+        String faceStr = "圓 圆 元 円 ¥ ￥ Ұ ұ $ ＄ ₳ ฿ € ￠ ¢ ₵ ₡ ₠ ₢ č ₫ ₯ ￡ £ ₤ ₣ ƒ ₲ K ₭ ł ₥ ₦ ¤ ₱ ₧ ₨ ₴ ₷ ₮ ₸ ₩ ރ z ₶ ₹ ₰ ₪ ﷼";
         List<String> list = mergeFaceString2List(null, faceStr);
         return list;
     }
