@@ -56,6 +56,7 @@ public class KeyboardSimIniter {
     private static String PAGE_CNPART_KEY = "keyboardBodySimCnPart"; // 中文部首
     private static String PAGE_EN_KEY = "keyboardBodySimEn"; // 英文
     private static String PAGE_WH_KEY = "keyboardBodySimWenh"; // 文化
+    private static String PAGE_MONEY_KEY = "keyboardBodySimMoney"; // 貨幣
     private static String PAGE_JP_KEY = "keyboardBodySimJp"; // 日文
     private static String PAGE_KR_KEY = "keyboardBodySimKr"; // 韓文
     private static String PAGE_SP_KEY = "keyboardBodySimSp"; // 特殊
@@ -80,6 +81,8 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_EN_KEY, getEnListString());
         // 文化
         simMap.put(PAGE_WH_KEY, getWenhuaListString());
+        // 貨幣
+        simMap.put(PAGE_MONEY_KEY, getMoneyListString());
         // 時間、節日
         simMap.put(PAGE_TIMEEVENT_KEY, getTimeEventListString());
 
@@ -90,7 +93,7 @@ public class KeyboardSimIniter {
 
         // 特殊
         simMap.put(PAGE_SP_KEY, getListByString(
-                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®♯♭♪¶‡†♂♀§№☆★♡♥○●⊙◎Θ◇◆□■△▲▽▼※〒▪〓¤°Ψ∮⊕卍卐囍㈱￡⇒⇔↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
+                "╳︿﹀︵︶︹︺︷︸︻︼︽︾﹁﹂﹃﹄/\\︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯ˉˊˇˋ˙℡™ŠÕ©®♯♭♫♬♩♪♮¶‡†♂♀§№☆★♡♥○●⊙◎Θ◇◆□■△▲▽▼※〒▪〓°Ψ∮⊕卍卐囍㈱￡⇒⇔↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨"));
         // 數學
         simMap.put(PAGE_MATH_KEY, getMathListByString());
         // 序號
@@ -123,6 +126,7 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
         typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
         typeNameKeyMap.put("文化", PAGE_WH_KEY);
+        typeNameKeyMap.put("貨幣", PAGE_MONEY_KEY);
         typeNameKeyMap.put("時節", PAGE_TIMEEVENT_KEY);
         typeNameKeyMap.put("表情1", PAGE_FACES_KEY1);
         typeNameKeyMap.put("表情2", PAGE_FACES_KEY2);
@@ -199,6 +203,15 @@ public class KeyboardSimIniter {
         resetKeyboardSimPage();
     }
 
+    // 貨幣符號
+    // http://www.runoob.com/charsets/ref-utf-currency.html
+    // https://unicode-table.com/cn/20B6/
+    private static List<String> getMoneyListString() {
+        String faceStr = "圓 圆 元 円 ¥ ￥ Ұ ұ $ ＄ ₳ ฿ € ￠ ¢ ₵ ₡ ₠ ₢ č ₫ ₯ ￡ £ ₤ ₣ ƒ ₲ K ₭ ł ₥ ₦ ¤ ₱ ₧ ₨ ₴ ₷ ₮ ₸ ₩ ރ z ₶ ₹ र ₰ ₪ ﷼";
+        List<String> list = mergeFaceString2List(null, faceStr);
+        return list;
+    }
+
     /**
      * 數學
      * 
@@ -207,7 +220,7 @@ public class KeyboardSimIniter {
      * @return
      */
     private static List<String> getMathListByString() {
-        String math1 = "＋－±×÷＝≠≈≡╱╲✘✔√≤≥＜＞≮≯≪≫∫∬∭∮∯∰∱∲∳∝∞∈∋⊆⊇⊂⊃∪∩∧∨∵∴∷⊥∥∠⊿⌒⊙≌∽≒≦≧′″º℃Ｆ℉Å∑∏∀∃￠￡$＄¥￥Ұұ¤∂ℓΩ";
+        String math1 = "＋－±×÷＝≠≈≡╱╲✘✔√≤≥＜＞≮≯≪≫∫∬∭∮∯∰∱∲∳∝∞∈∋⊆⊇⊂⊃∪∩∧∨∵∴∷⊥∥∠⊿⌒⊙≌∽≒≦≧′″º℃Ｆ℉Å∑∏∀∃∂ℓΩ";
         String math2 = "⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％℅‰‱";
         String math3 = "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽⁾ ⁿ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍₎ ₐ ₑ ₒ ₓ ₔ";
         String math4 = "㉐㋌㋍㋎㋏㍱㍲㍳㍴㍵㍶㍷㍸㍹㍺㎀㎁㎂㎃㎄㎅㎆㎇㎈㎉㎊㎋㎌㎍㎎㎏㎐㎑㎒㎓㎔㎕㎖㎗㎘㎙㎚㎛㎜㎝㎞㎟㎠㎡㎢㎣㎤㎥㎦㎧㎨㎩㎪㎫㎬㎭㎮㎯㎰㎱㎲㎳㎴㎵㎶㎷㎸㎹㎺㎻㎼㎽㎾㎿㏀㏁㏂㏃㏄㏅㏆㏇㏈㏉㏊㏋㏌㏍㏎㏏㏐㏑㏒㏓㏔㏕㏖㏗㏘㏙㏚㏛㏜㏝㏞㏟㏿";
