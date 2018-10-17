@@ -100,19 +100,25 @@ public class UnicodeSimUtil {
      * @return
      */
     public static List<String> getMathListByString() {
-        Set<String> list = new LinkedHashSet<String>();
+        Set<String> set = new LinkedHashSet<String>();
         for (Character i = '\u2200'; i <= '\u22FF'; i++) {
-            list.add(i.toString());
+            set.add(i.toString());
         }
         String math1 = "＋－±×÷＝≠≈≡╱╲✘✔√≤≥＜＞≮≯≪≫∫∬∭∮∯∰∱∲∳∝∞∈∋⊆⊇⊂⊃∪∩∧∨∵∴∷⊥∥∠⊿⌒⊙≌∽≒≦≧′″º℃Ｆ℉Å∑∏∀∃∂ℓΩ";
         String math2 = "⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％℅‰‱";
         String math3 = "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽⁾ ⁿ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍₎ ₐ ₑ ₒ ₓ ₔ";
         String math4 = "㉐㋌㋍㋎㋏㍱㍲㍳㍴㍵㍶㍷㍸㍹㍺㎀㎁㎂㎃㎄㎅㎆㎇㎈㎉㎊㎋㎌㎍㎎㎏㎐㎑㎒㎓㎔㎕㎖㎗㎘㎙㎚㎛㎜㎝㎞㎟㎠㎡㎢㎣㎤㎥㎦㎧㎨㎩㎪㎫㎬㎭㎮㎯㎰㎱㎲㎳㎴㎵㎶㎷㎸㎹㎺㎻㎼㎽㎾㎿㏀㏁㏂㏃㏄㏅㏆㏇㏈㏉㏊㏋㏌㏍㏎㏏㏐㏑㏒㏓㏔㏕㏖㏗㏘㏙㏚㏛㏜㏝㏞㏟㏿";
+        List<String> list = new ArrayList<String>();
         list.addAll(getListByString(math1));
         list.addAll(getListByString(math2));
         list.addAll(mergeFaceString2List(null, math3));
         list.addAll(getListByString(math4));
-        return new ArrayList<String>(list);
+        for (String one : list) {
+            if (!set.contains(one)) {
+                set.add(one);
+            }
+        }
+        return new ArrayList<String>(set);
     }
 
     /**
