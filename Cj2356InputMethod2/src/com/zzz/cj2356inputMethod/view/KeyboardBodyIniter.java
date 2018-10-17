@@ -15,6 +15,9 @@ import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAC;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAb;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKarina;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
@@ -243,7 +246,11 @@ public class KeyboardBodyIniter {
 
         // 26個按鍵背景修改
         String testKey = "a";
-        if (inputStat.isShouldTranslate() && (!testKey.toUpperCase().equals(inputStat.getKeysNameMap().get(testKey)))) {
+        if (InputMethodStatusEnScriptaa.SUBTYPE_CODE.equals(inputStat.getSubType())
+                || InputMethodStatusEnScriptAb.SUBTYPE_CODE.equals(inputStat.getSubType())
+                || InputMethodStatusEnScriptAC.SUBTYPE_CODE.equals(inputStat.getSubType())
+                || (inputStat.isShouldTranslate()
+                        && (!testKey.toUpperCase().equals(inputStat.getKeysNameMap().get(testKey))))) {
             for (int i = 0; i < letterViews.size(); i++) {
                 View v = letterViews.get(i);
                 v.setBackgroundResource(letterViewsBgIds.get(i));

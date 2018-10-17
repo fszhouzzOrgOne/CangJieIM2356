@@ -23,11 +23,11 @@ public class InputMethodStatusEnScriptaa extends InputMethodStatusEn {
     @Override
     public Map<String, Object> getKeysNameMap() {
         String letters1 = "abcdefghijklmnopqrstuvwxyz";
-        String letters2 = "𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏";
+        String letters2 = " 𝒶 𝒷 𝒸 𝒹 ℯ 𝒻 ℊ 𝒽 𝒾 𝒿 𝓀 𝓁 𝓂 𝓃 ℴ 𝓅 𝓆 𝓇 𝓈 𝓉 𝓊 𝓋 𝓌 𝓍 𝓎 𝓏 ";
         Map<String, Object> mbTransMap = super.getKeysNameMap();
         int index = 0;
-        while (index <= letters1.length() - 1) {
-            mbTransMap.put(letters1.substring(index, index + 1), letters2.substring(index, index + 1));
+        for (String one : letters2.trim().split(" +")) {
+            mbTransMap.put(letters1.substring(index, index + 1), one);
             index++;
         }
         return mbTransMap;
