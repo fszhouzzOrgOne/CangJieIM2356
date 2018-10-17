@@ -31,8 +31,6 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class KeyboardSimIniter {
-    // 一行幾個，下面有設置到@+id/keyboardBodySimGrid
-    private static Integer SIM_ROW_SIZE = 5;
     private static Integer SIM_PAGE_ROW = 4;
 
     private static String currentSimMapKey = null;
@@ -65,7 +63,7 @@ public class KeyboardSimIniter {
     private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
     private static String PAGE_GREERUSSIA_KEY = "keyboardBodySimGr"; // 希臘、俄文
     private static String PAGE_TIMEEVENT_KEY = "keyboardBodySimTimeEvent"; // 時間、節日
-    private static String PAGE_Biaoqing_KEY1 = "keyboardBodySimBiaoqing"; // 表情
+    private static String PAGE_Biaoqing_KEY = "keyboardBodySimBiaoqing"; // 表情
     private static String PAGE_FACES_KEY1 = "keyboardBodySimFaces1"; // 表情1
     private static String PAGE_FACES_KEY2 = "keyboardBodySimFaces2"; // 表情2
     private static String PAGE_FACES_KEY3 = "keyboardBodySimFaces3"; // 表情3
@@ -91,7 +89,7 @@ public class KeyboardSimIniter {
         // 時間、節日
         simMap.put(PAGE_TIMEEVENT_KEY, UnicodeSimUtil.getTimeEventListString());
         // 表情
-        simMap.put(PAGE_Biaoqing_KEY1, UnicodeSimUtil.getBiaoqingListString());
+        simMap.put(PAGE_Biaoqing_KEY, UnicodeSimUtil.getBiaoqingListString());
         // 表情1 2 3
         simMap.put(PAGE_FACES_KEY1, UnicodeSimUtil.getFacesListString1());
         simMap.put(PAGE_FACES_KEY2, UnicodeSimUtil.getFacesListString2());
@@ -120,7 +118,7 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("文化", PAGE_WH_KEY);
         typeNameKeyMap.put("貨幣", PAGE_MONEY_KEY);
         typeNameKeyMap.put("時節", PAGE_TIMEEVENT_KEY);
-        typeNameKeyMap.put("表情", PAGE_Biaoqing_KEY1);
+        typeNameKeyMap.put("表情", PAGE_Biaoqing_KEY);
         typeNameKeyMap.put("表情1", PAGE_FACES_KEY1);
         typeNameKeyMap.put("表情2", PAGE_FACES_KEY2);
         typeNameKeyMap.put("表情3", PAGE_FACES_KEY3);
@@ -227,10 +225,11 @@ public class KeyboardSimIniter {
     public static Integer getKeyboardSimLastPage() {
         String simMapKey = currentSimMapKey;
         String simMapKeyPrefix = simMapKey.split("_")[0];
+        Integer rowSize = getSimRowSize(simMapKeyPrefix);
         List<String> content = simMap.get(simMapKeyPrefix);
         if (null != content && !content.isEmpty()) {
-            int rows = content.size() / KeyboardSimIniter.SIM_ROW_SIZE;
-            if (content.size() % KeyboardSimIniter.SIM_ROW_SIZE != 0) {
+            int rows = content.size() / rowSize;
+            if (content.size() % rowSize != 0) {
                 rows++;
             }
             int pages = rows / KeyboardSimIniter.SIM_PAGE_ROW;
@@ -251,15 +250,17 @@ public class KeyboardSimIniter {
     public static List<String> getKeyboardSimByPage(int page) {
         String simMapKey = currentSimMapKey;
         String simMapKeyPrefix = simMapKey.split("_")[0];
+        Integer rowSize = getSimRowSize(simMapKeyPrefix);
+
         List<String> content = simMap.get(simMapKeyPrefix);
-        int start = (page - 1) * KeyboardSimIniter.SIM_PAGE_ROW * KeyboardSimIniter.SIM_ROW_SIZE;
-        int end = page * KeyboardSimIniter.SIM_PAGE_ROW * KeyboardSimIniter.SIM_ROW_SIZE - 1;
+        int start = (page - 1) * KeyboardSimIniter.SIM_PAGE_ROW * rowSize;
+        int end = page * KeyboardSimIniter.SIM_PAGE_ROW * rowSize - 1;
         if (end >= content.size() - 1) {
             // 結束位置，等於或超過了一行個數
-            if (page > 1 && ((end - (content.size() - 1)) >= KeyboardSimIniter.SIM_ROW_SIZE)) {
-                int emptyRow = (end - (content.size() - 1)) / KeyboardSimIniter.SIM_ROW_SIZE;
+            if (page > 1 && ((end - (content.size() - 1)) >= rowSize)) {
+                int emptyRow = (end - (content.size() - 1)) / rowSize;
                 for (int emp = emptyRow; emp > 0; emp--) {
-                    start -= KeyboardSimIniter.SIM_ROW_SIZE;
+                    start -= rowSize;
                 }
             }
             end = content.size() - 1;
@@ -270,7 +271,7 @@ public class KeyboardSimIniter {
     private static void setkeyboardBodySimGridKeys(Context context, String simMapKey) {
         try {
             currentSimMapKey = simMapKey;
-
+            Integer rowSize = getSimRowSize(simMapKey.split("_")[0]);
             int page = Integer.parseInt(simMapKey.split("_")[1]);
             List<String> keys = getKeyboardSimByPage(page);
             ArrayList<Map<String, String>> valueList = new ArrayList<Map<String, String>>();
@@ -282,13 +283,22 @@ public class KeyboardSimIniter {
             }
             KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList,
                     R.layout.keyboardsimitem);
-            keyboardBodySimGrid.setNumColumns(SIM_ROW_SIZE);
+            keyboardBodySimGrid.setNumColumns(rowSize);
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
 
             int totalPage = getKeyboardSimLastPage();
             prePageButton.setEnabled(!(page == 1));
             nextPageButton.setEnabled(!(page == totalPage));
         } catch (Exception e) {
+        }
+    }
+
+    /** 一行幾個，下面有設置到@+id/keyboardBodySimGrid */
+    private static Integer getSimRowSize(String currentSimMapKey) {
+        if (PAGE_Biaoqing_KEY.equals(currentSimMapKey)) {
+            return 4;
+        } else {
+            return 5;
         }
     }
 
