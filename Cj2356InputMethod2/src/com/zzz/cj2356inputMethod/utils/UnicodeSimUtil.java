@@ -38,7 +38,7 @@ public class UnicodeSimUtil {
      */
     public static List<String> getCnListString() {
         String cnstr = "， 、 。 ？ ！ ： ； … ‘’ “” ＇＇ ＂＂ 〃〃 〝〞 ❛❜ ❝❞ ❟ ❠ （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 ｟｠ — ";
-        cnstr += " ＋ － ± × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ╳ ˉ ˊ ˇ ˋ ˙ ． · • 々 卍 卐 囍 ";
+        cnstr += " ＋ － ± × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 卍 卐 囍 ";
         cnstr += " ︿ ﹀ ︵ ︶ ︹ ︺ ︷ ︸ ︻ ︼ ︽ ︾ ﹁ ﹂ ﹃ ﹄ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻";
         String[] facesArr = cnstr.split(" +");
         List<String> list = new ArrayList<String>();
@@ -93,7 +93,20 @@ public class UnicodeSimUtil {
      */
     public static List<String> getSpecialListString() {
         return getListByString(
-                "︴﹌﹉﹊￣¨‥―﹍﹎﹏＿╭╮╰╯◟◞◜◝‡†♂♀§№☆★♡♥○●⊙◎Θ◇◆□■△▲▽▼※〒▪⁜⁕⁎⁑⁂⁚∶∵∴⁖⁝⋰⋱∷⁘⁛⁞⁙〓°Ψ⊕⇒⇔↖↑↗←↹→↙↓↘҈҉̶⃢⏎⇧⇪⌂⌘☢☣⌥⎋⌫⌦⌨");
+                "︴﹌﹉﹊￣¨‥―﹍﹎﹏＿◟◞◜◝‡†§№☆★♡○●◎◇◆□■△▲▽▼※⁜⁕⁎⁑⁂⁚⁖⁝⁘⁛⁞⁙〓°҈҉̶⃢⌂⌘⌥⎋⌫⌦");
+    }
+
+    /**
+     * 箭頭
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月17日 下午11:04:44
+     * @return
+     */
+    public static List<String> getArrowListString() {
+        String str = " ← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧ ↨ ↩ ↪ ↫ ↬ ↭ ↮ ↯ ↰ ↱ ↲ ↳ ↴ ↵ ↶ ↷ ↸ ↹ ↺ ↻ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇆ ⇇ ⇈ ⇉ ⇊ ⇋ ⇌ ⇍ ⇎ ⇏ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ⇚ ⇛ ⇜ ⇝ ⇞ ⇟ ⇠ ⇡ ⇢ ⇣ ⇤ ⇥ ⇦ ⇧ ⇨ ⇩ ⇪ ⇫ ⇬ ⇭ ⇮ ⇯ ⇰ ⇱ ⇲ ⇳ ⇴ ⇵ ⇶ ⇷ ⇸ ⇹ ⇺ ⇻ ⇼ ⇽ ⇾ ⇿ ";
+        str += " ⏎ ";
+        return mergeFaceString2List(null, str);
     }
 
     /**
@@ -106,14 +119,13 @@ public class UnicodeSimUtil {
     public static List<String> getMathListByString() {
         // \u8704-8959
         String math1 = " ∀ ∁ ∂ ∃ ∄ ∅ ∆ ∇ ∈ ∉ ∊ ∋ ∌ ∍ ∎ ∏ ∐ ∑ − ∓ ∔ ∕ ∖ ∗ ∘ ∙ √ ∛ ∜ ∝ ∞ ∟ ∠ ∡ ∢ ∣ ∤ ∥ ∦ ∧ ∨ ∩ ∪ ∫ ∬ ∭ ∮ ∯ ∰ ∱ ∲ ∳ ∴ ∵ ∶ ∷ ∸ ∹ ∺ ∻ ∼ ∽ ∾ ∿ ≀ ≁ ≂ ≃ ≄ ≅ ≆ ≇ ≈ ≉ ≊ ≋ ≌ ≍ ≎ ≏ ≐ ≑ ≒ ≓ ≔ ≕ ≖ ≗ ≘ ≙ ≚ ≛ ≜ ≝ ≞ ≟ ≠ ≡ ≢ ≣ ≤ ≥ ≦ ≧ ≨ ≩ ≪ ≫ ≬ ≭ ≮ ≯ ≰ ≱ ≲ ≳ ≴ ≵ ≶ ≷ ≸ ≹ ≺ ≻ ≼ ≽ ≾ ≿ ⊀ ⊁ ⊂ ⊃ ⊄ ⊅ ⊆ ⊇ ⊈ ⊉ ⊊ ⊋ ⊌ ⊍ ⊎ ⊏ ⊐ ⊑ ⊒ ⊓ ⊔ ⊕ ⊖ ⊗ ⊘ ⊙ ⊚ ⊛ ⊜ ⊝ ⊞ ⊟ ⊠ ⊡ ⊢ ⊣ ⊤ ⊥ ⊦ ⊧ ⊨ ⊩ ⊪ ⊫ ⊬ ⊭ ⊮ ⊯ ⊰ ⊱ ⊲ ⊳ ⊴ ⊵ ⊶ ⊷ ⊸ ⊹ ⊺ ⊻ ⊼ ⊽ ⊾ ⊿ ⋀ ⋁ ⋂ ⋃ ⋄ ⋅ ⋆ ⋇ ⋈ ⋉ ⋊ ⋋ ⋌ ⋍ ⋎ ⋏ ⋐ ⋑ ⋒ ⋓ ⋔ ⋕ ⋖ ⋗ ⋘ ⋙ ⋚ ⋛ ⋜ ⋝ ⋞ ⋟ ⋠ ⋡ ⋢ ⋣ ⋤ ⋥ ⋦ ⋧ ⋨ ⋩ ⋪ ⋫ ⋬ ⋭ ⋮ ⋯ ⋰ ⋱ ⋲ ⋳ ⋴ ⋵ ⋶ ⋷ ⋸ ⋹ ⋺ ⋻ ⋼ ⋽ ⋾ ⋿ ";
-        math1 += " ＋ － ± × ÷ ＝ ╱ ╲ ✘ ✔ ＜ ＞ ⌒ ′ ″ º ℃ Ｆ ℉ Å ℓ Ω ";
+        math1 += " ＋ － ± × ÷ ＝ ✘ ✔ ＜ ＞ ⌒ ′ ″ º ℃ Ｆ ℉ Å ℓ Ω ";
         String math2 = "⅟½↉⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⅒％℅‰‱";
         String math3 = "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽⁾ ⁿ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍₎ ₐ ₑ ₒ ₓ ₔ";
         String math4 = "㉐㋌㋍㋎㋏㍱㍲㍳㍴㍵㍶㍷㍸㍹㍺㎀㎁㎂㎃㎄㎅㎆㎇㎈㎉㎊㎋㎌㎍㎎㎏㎐㎑㎒㎓㎔㎕㎖㎗㎘㎙㎚㎛㎜㎝㎞㎟㎠㎡㎢㎣㎤㎥㎦㎧㎨㎩㎪㎫㎬㎭㎮㎯㎰㎱㎲㎳㎴㎵㎶㎷㎸㎹㎺㎻㎼㎽㎾㎿㏀㏁㏂㏃㏄㏅㏆㏇㏈㏉㏊㏋㏌㏍㏎㏏㏐㏑㏒㏓㏔㏕㏖㏗㏘㏙㏚㏛㏜㏝㏞㏟㏿";
-        List<String> list = new ArrayList<String>();
-        list.addAll(getListByString(math1));
+        List<String> list = mergeFaceString2List(null, math1);
         list.addAll(getListByString(math2));
-        list.addAll(mergeFaceString2List(null, math3));
+        list = mergeFaceString2List(list, math3);
         list.addAll(getListByString(math4));
         return list;
     }
@@ -130,9 +142,15 @@ public class UnicodeSimUtil {
                 "⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴㉈㉉㉊㉋㉌㉍㉎㉏１２３４５６７８９０⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇〡〢〣〤〥〦〧〨〩十㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㊣〇一二三四五六七八九十零壹贰貳叁叄肆伍陆陸柒捌玖拾佰仟万萬亿億吉太拍艾ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫ");
     }
 
-    // 貨幣符號
-    // http://www.runoob.com/charsets/ref-utf-currency.html
-    // https://unicode-table.com/cn/20B6/
+    /**
+     * 貨幣符號<br/>
+     * www.runoob.com/charsets/ref-utf-currency.html<br/>
+     * unicode-table.com/cn/20B6/
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月17日 下午11:05:01
+     * @return
+     */
     public static List<String> getMoneyListString() {
         String faceStr = "圓 圆 元 円 ¥ ￥ Ұ ұ $ ＄ ₳ ฿ ₿ € ₡ ₵ ￠ ¢ ₠ ₢ ₾ ₫ ₯ ￡ £ ₤ ₣ ƒ ₲ ₭ Kčs ₺ ℳ ₥ ₦ ¤ ₱ ₽ ₧ ₨ ₴ ₷ ₮ ₸ ₶ ៛ ￦ ₩ ރ zł ₻ ₼ ֏ ₹ ₰ ₪ ؋ ﷼ ৲ ৳ ૱ ௹ ៛ 💰 💴 💵 💶 💷 💸 💳 💹 💱 💲 🏦 🏧";
         List<String> list = mergeFaceString2List(null, faceStr);
@@ -239,7 +257,7 @@ public class UnicodeSimUtil {
         str1 += "あいうゔえおアイウヴエオぁぃぅぇぉァィゥェォかゕきくけゖこカヵキクケヶコがぎぐげごガギグゲゴさしすせそサシスセソざじずぜぞザジズゼゾたちつってとタチツッテトだぢづでどダヂヅデドなにぬねのナニヌネノはひふへほハヒフヘホばびぶべぼバビブベボぱぴぷぺぽパピプペポまみむめもマミムメモやゆよヤユヨゃゅょャュョらりるれろラリルレロわゎゐゑをワヮヷヰヸヱヹヲヺんンー゠々ゝゞヽヾ〆乄ゟ゚゛゜ヿ・";
         str1 += "ㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩㈪㈫㈬㈭㈮㈯㈰㈱㈲㈳㈴㈵㈶㈷㈸㈹㈺㈻㈼㈽㈾㈿㉀㉁㉂㉃㉄㉅㉆㉇㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉㊊㊋㊌㊍㊎㊏㊐㊑㊒㊓㊔㊕㊖㊗㊘㊙㊚㊛㊜㊝㊞㊟㊠㊡㊢㊣㊤㊥㊦㊧㊨㊩㊪㊫㊬㊭㊮㊯㊰㋐㋑㋒㋓㋔㋕㋖㋗㋘㋙㋚㋛㋜㋝㋞㋟㋠㋡㋢㋣㋤㋥㋦㋧㋨㋩㋪㋫㋬㋭㋮㋯㋰㋱㋲㋳㋴㋵㋶㋷㋸㋹㋺㋻㋼㋽㋾㌀㌁㌂㌃㌄㌅㌆㌇㌈㌉㌊㌋㌌㌍㌎㌏㌐㌑㌒㌓㌔㌕㌖㌗㌘㌙㌚㌛㌜㌝㌞㌟㌠㌡㌢㌣㌤㌥㌦㌧㌨㌩㌪㌫㌬㌭㌮㌯㌰㌱㌲㌳㌴㌵㌶㌷㌸㌹㌺㌻㌼㌽㌾㌿㍀㍁㍂㍃㍄㍅㍆㍇㍈㍉㍊㍋㍌㍍㍎㍏㍐㍑㍒㍓㍔㍕㍖㍗㍻㍼㍽㍾㍿";
         List<String> list = getListByString(str1);
-        String faceStr = "🈁 🈂 🈷 🈶 🈯 🈹 🈚 🈲 🈸 🈴 🈳 🈺 🈵 🀄 🉐 🉑 ㊗ ㊙ ㊣ ㊀ ㊁ ㊂ ㊃ ㊄ ㊅ ㊆ ㊇ ㊈ ㊉ ㊎ ㊍ ㊌ ㊋ ㊏ ㊐ ㊊ ㊚ ㊛ ㊤ ㊥ ㊦ ㊧ ㊨ ㊞ ㊑ ㊒ ㊓ ㊓ ㊔ ㊕ ㊖ ㊗ ㊗ ㊘ ㊜ ㊝ ㊟ ㊠ ㊡ ㊢ ㊩ ㊪ ㊫ ㊬ ㊬ ㊭ ㊮ ㊮ ㊯ ㊰ ㊙ 🎌 🗾 👘 🏣 🏯 🎎 🎏";
+        String faceStr = "🈁 🈂 🈷 🈶 🈯 🈹 🈚 🈲 🈸 🈴 🈳 🈺 🈵 🀄 🉐 🉑 ㊗ ㊙ ㊣ ㊀ ㊁ ㊂ ㊃ ㊄ ㊅ ㊆ ㊇ ㊈ ㊉ ㊎ ㊍ ㊌ ㊋ ㊏ ㊐ ㊊ ㊚ ㊛ ㊤ ㊥ ㊦ ㊧ ㊨ ㊞ ㊑ ㊒ ㊓ ㊓ ㊔ ㊕ ㊖ ㊗ ㊗ ㊘ ㊜ ㊝ ㊟ ㊠ ㊡ ㊢ ㊩ ㊪ ㊫ ㊬ ㊬ ㊭ ㊮ ㊮ ㊯ ㊰ ㊙ 🎌 🗾 👘 🏣 🏯 🎎 🎏 〒";
         list = mergeFaceString2List(list, faceStr);
         return list;
     }
@@ -287,7 +305,8 @@ public class UnicodeSimUtil {
      * @return
      */
     public static List<String> getTableListString() {
-        return getListByString("┌┍┎┏┐┑┒┓─┄┈├┝┞┟┠┡┢┣│┆┊┬┭┮┯┰┱┲┳┼┽┾┿╀╁╂└┕┖┗┘┙┚┛━┅┉┤┥┦┧┨┩┪┫┴┵┶┷┸┹┺┻╄╅╆╇╈╉╊╋");
+        String str = " ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟ ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯ ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏ ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯ ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿ ";
+        return mergeFaceString2List(null, str);
     }
 
     /**

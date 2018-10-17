@@ -51,23 +51,24 @@ public class KeyboardSimIniter {
     private static String PAGE_CN_KEY = "keyboardBodySimCn"; // 中文
     private static String PAGE_CNPART_KEY = "keyboardBodySimCnPart"; // 中文部首
     private static String PAGE_EN_KEY = "keyboardBodySimEn"; // 英文
-    private static String PAGE_WH_KEY = "keyboardBodySimWenh"; // 文化
-    private static String PAGE_MONEY_KEY = "keyboardBodySimMoney"; // 貨幣
-    private static String PAGE_JP_KEY = "keyboardBodySimJp"; // 日文
-    private static String PAGE_KR_KEY = "keyboardBodySimKr"; // 韓文
     private static String PAGE_SP_KEY = "keyboardBodySimSp"; // 特殊
+    private static String PAGE_ARROW_KEY = "keyboardBodySimArrow"; // 箭頭
     private static String PAGE_MATH_KEY = "keyboardBodySimMath"; // 數學
     private static String PAGE_ORDER_KEY = "keyboardBodySimOrder"; // 序號
-    private static String PAGE_PINYIN_KEY = "keyboardBodySimPy"; // 注音
-    private static String PAGE_TAB_KEY = "keyboardBodySimTab"; // 製表
-    private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
-    private static String PAGE_GREERUSSIA_KEY = "keyboardBodySimGr"; // 希臘、俄文
+    private static String PAGE_MONEY_KEY = "keyboardBodySimMoney"; // 貨幣
+    private static String PAGE_WH_KEY = "keyboardBodySimWenh"; // 文化
     private static String PAGE_TIMEEVENT_KEY = "keyboardBodySimTimeEvent"; // 時間、節日
     private static String PAGE_Biaoqing_KEY = "keyboardBodySimBiaoqing"; // 表情
     private static String PAGE_FACES_KEY1 = "keyboardBodySimFaces1"; // 表情1
     private static String PAGE_FACES_KEY2 = "keyboardBodySimFaces2"; // 表情2
     private static String PAGE_FACES_KEY3 = "keyboardBodySimFaces3"; // 表情3
     private static String PAGE_IPA_KEY = "keyboardBodySimIpa"; // 國際音標
+    private static String PAGE_PINYIN_KEY = "keyboardBodySimPy"; // 注音
+    private static String PAGE_JP_KEY = "keyboardBodySimJp"; // 日文
+    private static String PAGE_KR_KEY = "keyboardBodySimKr"; // 韓文
+    private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
+    private static String PAGE_GREERUSSIA_KEY = "keyboardBodySimGr"; // 希臘、俄文
+    private static String PAGE_TAB_KEY = "keyboardBodySimTab"; // 製表
 
     static {
         // 中文
@@ -78,6 +79,8 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_EN_KEY, UnicodeSimUtil.getEnListString());
         // 特殊
         simMap.put(PAGE_SP_KEY, UnicodeSimUtil.getSpecialListString());
+        // 箭頭
+        simMap.put(PAGE_ARROW_KEY, UnicodeSimUtil.getArrowListString());
         // 數學
         simMap.put(PAGE_MATH_KEY, UnicodeSimUtil.getMathListByString());
         // 序號
@@ -113,6 +116,7 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
         typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
         typeNameKeyMap.put("特殊", PAGE_SP_KEY);
+        typeNameKeyMap.put("箭頭", PAGE_ARROW_KEY);
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
         typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
         typeNameKeyMap.put("貨幣", PAGE_MONEY_KEY);
