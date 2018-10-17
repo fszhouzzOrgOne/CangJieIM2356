@@ -23,12 +23,15 @@ public class SendKeyEventUtil {
         parenthesisList.add("()");
         parenthesisList.add("[]");
         parenthesisList.add("{}");
+        parenthesisList.add("⁅⁆");
         parenthesisList.add("‘’");
         parenthesisList.add("＇＇");
         parenthesisList.add("“”");
         parenthesisList.add("＂＂");
         parenthesisList.add("〃〃");
         parenthesisList.add("❝❞");
+        parenthesisList.add("❛❜");
+        parenthesisList.add("〝〞");
         parenthesisList.add("（）");
         parenthesisList.add("〔〕");
         parenthesisList.add("〈〉");
@@ -66,7 +69,7 @@ public class SendKeyEventUtil {
             int e = et.selectionEnd;
             doPerformLeft(context);
         } else {
-            inputConnection.commitText(textStr, 1);
+            inputConnection.commitText(text, 1);
         }
     }
 
