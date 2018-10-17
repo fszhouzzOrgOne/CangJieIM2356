@@ -53,6 +53,7 @@ public class KeyboardSimIniter {
     private static String PAGE_EN_KEY = "keyboardBodySimEn"; // 英文
     private static String PAGE_SP_KEY = "keyboardBodySimSp"; // 特殊
     private static String PAGE_ARROW_KEY = "keyboardBodySimArrow"; // 箭頭
+    private static String PAGE_SSSCRPT_KEY = "keyboardBodySimSupSubScript"; // 上下標
     private static String PAGE_MATH_KEY = "keyboardBodySimMath"; // 數學
     private static String PAGE_ORDER_KEY = "keyboardBodySimOrder"; // 序號
     private static String PAGE_MONEY_KEY = "keyboardBodySimMoney"; // 貨幣
@@ -81,6 +82,8 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_SP_KEY, UnicodeSimUtil.getSpecialListString());
         // 箭頭
         simMap.put(PAGE_ARROW_KEY, UnicodeSimUtil.getArrowListString());
+        // 上下標
+        simMap.put(PAGE_SSSCRPT_KEY, UnicodeSimUtil.getSuperSubScriptListString());
         // 數學
         simMap.put(PAGE_MATH_KEY, UnicodeSimUtil.getMathListByString());
         // 序號
@@ -117,6 +120,7 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
         typeNameKeyMap.put("特殊", PAGE_SP_KEY);
         typeNameKeyMap.put("箭頭", PAGE_ARROW_KEY);
+        typeNameKeyMap.put("上下標", PAGE_SSSCRPT_KEY);
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
         typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
         typeNameKeyMap.put("貨幣", PAGE_MONEY_KEY);
