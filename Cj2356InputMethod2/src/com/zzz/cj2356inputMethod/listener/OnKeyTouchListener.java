@@ -9,6 +9,8 @@ import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnAb;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnCircledAb;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnCircledaa;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAb;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptaa;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
@@ -95,6 +97,16 @@ public class OnKeyTouchListener implements OnTouchListener {
                                 break;
                             }
                         } while (!InputMethodStatusEnCircledaa.SUBTYPE_CODE.equals(statNext.getSubType()));
+                        ser.setInputMethodStatus(statNext);
+                    } else if (InputMethodStatusEnScriptAb.SUBTYPE_CODE.equals(stat.getSubType())) {
+                        InputMethodStatus statNext = stat;
+                        do {
+                            statNext = statNext.getNextStatus();
+                            if (statNext.getSubType().equals(stat.getSubType())) {
+                                // 轉了一圈，回到原點
+                                break;
+                            }
+                        } while (!InputMethodStatusEnScriptaa.SUBTYPE_CODE.equals(statNext.getSubType()));
                         ser.setInputMethodStatus(statNext);
                     }
                 }
