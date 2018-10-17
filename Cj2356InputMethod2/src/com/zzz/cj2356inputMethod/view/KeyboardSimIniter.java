@@ -115,8 +115,8 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("特殊", PAGE_SP_KEY);
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
         typeNameKeyMap.put("序號", PAGE_ORDER_KEY);
-        typeNameKeyMap.put("文化", PAGE_WH_KEY);
         typeNameKeyMap.put("貨幣", PAGE_MONEY_KEY);
+        typeNameKeyMap.put("文化", PAGE_WH_KEY);
         typeNameKeyMap.put("時節", PAGE_TIMEEVENT_KEY);
         typeNameKeyMap.put("表情", PAGE_Biaoqing_KEY);
         typeNameKeyMap.put("表情1", PAGE_FACES_KEY1);
