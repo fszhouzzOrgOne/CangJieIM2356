@@ -6,6 +6,7 @@ import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Group;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
+import com.zzz.cj2356inputMethod.utils.UnicodeConvertUtil;
 import com.zzz.cj2356inputMethod.utils.UnicodeHanziUtil;
 
 import android.content.Context;
@@ -99,6 +100,14 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
         String character = gData.get(groupPosition).getItems().get(childPosition).getCharacter();
         itemHolder.tv_character.setText(character);
         String unicodeRangeName = UnicodeHanziUtil.getRangeNameByChar(character);
+        if (null == unicodeRangeName) {
+            unicodeRangeName = "";
+        }
+        // 統一碼碼位
+        List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(character);
+        if (null != codes && codes.size() == 1) {
+            unicodeRangeName += "(" + Integer.toHexString(codes.get(0)).toUpperCase() + ")";
+        }
         itemHolder.tv_unicodeRangeName.setText(unicodeRangeName);
         itemHolder.tv_encode.setText(generateCodeText(gData.get(groupPosition).getItems().get(childPosition)));
         return convertView;
