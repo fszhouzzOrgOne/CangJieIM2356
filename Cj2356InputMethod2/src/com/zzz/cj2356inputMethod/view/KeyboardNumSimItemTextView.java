@@ -1,12 +1,18 @@
 package com.zzz.cj2356inputMethod.view;
 
+import java.util.List;
+
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnKeyNumSimItemClickListener;
 import com.zzz.cj2356inputMethod.utils.DipPxUtil;
+import com.zzz.cj2356inputMethod.utils.UnicodeConvertUtil;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Paint.Align;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,8 +25,11 @@ import android.widget.TextView;
  */
 public class KeyboardNumSimItemTextView extends TextView {
 
+    private Context context = null;
+
     public KeyboardNumSimItemTextView(Context context, String text) {
         super(context);
+        this.context = context;
         setText(text);
         this.setMinimumHeight(DipPxUtil.dip(context, 45));
 
@@ -42,6 +51,29 @@ public class KeyboardNumSimItemTextView extends TextView {
         Paint paint = new Paint();
         paint.setColor(android.graphics.Color.LTGRAY);
         canvas.drawLine(0, 0, this.getWidth(), 0, paint);
+
+        CharSequence text = this.getText();
+        if (null == text) {
+            return;
+        } else if ("\\t".equals(text) || "Tab".equals(text)) {
+            text = "\t";
+        }
+        // 統一碼的展示
+        String cha = text.toString();
+        // 統一碼碼位
+        String code = "";
+        List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(cha);
+        if (null != codes && codes.size() == 1) {
+            code = Integer.toHexString(codes.get(0)).toUpperCase();
+        }
+
+        paint.setStrokeWidth(3);
+        paint.setTextSize(DipPxUtil.dip(context, 10));
+        paint.setColor(Color.GRAY);
+        paint.setTextAlign(Align.LEFT);
+        Rect bounds = new Rect();
+        paint.getTextBounds(code, 0, code.length(), bounds);
+        canvas.drawText(code, DipPxUtil.dip(context, 5), getMeasuredHeight() - DipPxUtil.dip(context, 1), paint);
     }
 
 }
