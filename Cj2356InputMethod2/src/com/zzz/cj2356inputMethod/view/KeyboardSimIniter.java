@@ -51,7 +51,10 @@ public class KeyboardSimIniter {
     private static String PAGE_CN_KEY = "keyboardBodySimCn"; // 中文
     private static String PAGE_CNPART_KEY = "keyboardBodySimCnPart"; // 中文部首
     private static String PAGE_EN_KEY = "keyboardBodySimEn"; // 英文
-    private static String PAGE_SP_KEY = "keyboardBodySimSp"; // 特殊
+    private static String PAGE_SP1_KEY = "keyboardBodySimSp1"; // 特殊1
+    private static String PAGE_SP2_KEY = "keyboardBodySimSp2"; // 特殊2
+    private static String PAGE_SP3_KEY = "keyboardBodySimSp3"; // 特殊3
+    private static String PAGE_Biaoqing_KEY = "keyboardBodySimBiaoqing"; // 表情
     private static String PAGE_ARROW_KEY = "keyboardBodySimArrow"; // 箭頭
     private static String PAGE_SSSCRPT_KEY = "keyboardBodySimSupSubScript"; // 上下標
     private static String PAGE_MATH_KEY = "keyboardBodySimMath"; // 數學
@@ -59,10 +62,6 @@ public class KeyboardSimIniter {
     private static String PAGE_MONEY_KEY = "keyboardBodySimMoney"; // 貨幣
     private static String PAGE_WH_KEY = "keyboardBodySimWenh"; // 文化
     private static String PAGE_TIMEEVENT_KEY = "keyboardBodySimTimeEvent"; // 時間、節日
-    private static String PAGE_Biaoqing_KEY = "keyboardBodySimBiaoqing"; // 表情
-    private static String PAGE_FACES_KEY1 = "keyboardBodySimFaces1"; // 表情1
-    private static String PAGE_FACES_KEY2 = "keyboardBodySimFaces2"; // 表情2
-    private static String PAGE_FACES_KEY3 = "keyboardBodySimFaces3"; // 表情3
     private static String PAGE_IPA_KEY = "keyboardBodySimIpa"; // 國際音標
     private static String PAGE_PINYIN_KEY = "keyboardBodySimPy"; // 注音
     private static String PAGE_JP_KEY = "keyboardBodySimJp"; // 日文
@@ -78,8 +77,14 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_CNPART_KEY, UnicodeSimUtil.getCnPartListString());
         // 英文
         simMap.put(PAGE_EN_KEY, UnicodeSimUtil.getEnListString());
-        // 特殊
-        simMap.put(PAGE_SP_KEY, UnicodeSimUtil.getSpecialListString());
+        // 特殊1
+        simMap.put(PAGE_SP1_KEY, UnicodeSimUtil.getSpecial1ListString());
+        // 特殊1
+        simMap.put(PAGE_SP2_KEY, UnicodeSimUtil.getSpecial2ListString());
+        // 特殊1
+        simMap.put(PAGE_SP3_KEY, UnicodeSimUtil.getSpecial3ListString());
+        // 表情
+        simMap.put(PAGE_Biaoqing_KEY, UnicodeSimUtil.getBiaoqingListString());
         // 箭頭
         simMap.put(PAGE_ARROW_KEY, UnicodeSimUtil.getArrowListString());
         // 上下標
@@ -94,12 +99,6 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_MONEY_KEY, UnicodeSimUtil.getMoneyListString());
         // 時間、節日
         simMap.put(PAGE_TIMEEVENT_KEY, UnicodeSimUtil.getTimeEventListString());
-        // 表情
-        simMap.put(PAGE_Biaoqing_KEY, UnicodeSimUtil.getBiaoqingListString());
-        // 表情1 2 3
-        simMap.put(PAGE_FACES_KEY1, UnicodeSimUtil.getFacesListString1());
-        simMap.put(PAGE_FACES_KEY2, UnicodeSimUtil.getFacesListString2());
-        simMap.put(PAGE_FACES_KEY3, UnicodeSimUtil.getFacesListString3());
         // 國際音標
         simMap.put(PAGE_IPA_KEY, UnicodeSimUtil.getIpaListString());
         // 注音
@@ -118,7 +117,10 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("中文", PAGE_CN_KEY);
         typeNameKeyMap.put("英文", PAGE_EN_KEY);
         typeNameKeyMap.put("部首", PAGE_CNPART_KEY);
-        typeNameKeyMap.put("特殊", PAGE_SP_KEY);
+        typeNameKeyMap.put("符號1", PAGE_SP1_KEY);
+        typeNameKeyMap.put("符號2", PAGE_SP2_KEY);
+        typeNameKeyMap.put("符號3", PAGE_SP3_KEY);
+        typeNameKeyMap.put("表情", PAGE_Biaoqing_KEY);
         typeNameKeyMap.put("箭頭", PAGE_ARROW_KEY);
         typeNameKeyMap.put("上下標", PAGE_SSSCRPT_KEY);
         typeNameKeyMap.put("數學", PAGE_MATH_KEY);
@@ -126,10 +128,6 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("貨幣", PAGE_MONEY_KEY);
         typeNameKeyMap.put("文化", PAGE_WH_KEY);
         typeNameKeyMap.put("時節", PAGE_TIMEEVENT_KEY);
-        typeNameKeyMap.put("表情", PAGE_Biaoqing_KEY);
-        typeNameKeyMap.put("表情1", PAGE_FACES_KEY1);
-        typeNameKeyMap.put("表情2", PAGE_FACES_KEY2);
-        typeNameKeyMap.put("表情3", PAGE_FACES_KEY3);
         typeNameKeyMap.put("音標", PAGE_IPA_KEY);
         typeNameKeyMap.put("注音", PAGE_PINYIN_KEY);
         typeNameKeyMap.put("日文", PAGE_JP_KEY);

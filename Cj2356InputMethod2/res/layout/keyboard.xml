@@ -277,13 +277,13 @@
 				    android:layout_width="match_parent"
 				    android:layout_height="@dimen/keyboard_key_height"
 				    >
+				    <!-- android:scrollbars="none" -->
 		        	<HorizontalScrollView
 		        	    android:id="@+id/keyboardBodySimScroll"
 		                android:layout_width="match_parent"
 				        android:layout_height="match_parent"
 				        android:layout_gravity="center_vertical"
 				        android:orientation="horizontal"
-				        android:scrollbars="none"
 				        >
 				        <LinearLayout
 		                    android:id="@+id/keyboardBodySimScrollContent"

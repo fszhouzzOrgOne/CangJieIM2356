@@ -7,7 +7,7 @@ import android.content.Context;
 public class InputMethodStatusEnScriptAC extends InputMethodStatusEn {
 
     public static final String SUBTYPE_CODE = "SA";
-    public static final String SUBTYPE_NAME = "小字";
+    public static final String SUBTYPE_NAME = "花體大寫";
 
     public InputMethodStatusEnScriptAC(Context con) {
         super(con);
@@ -17,7 +17,7 @@ public class InputMethodStatusEnScriptAC extends InputMethodStatusEn {
 
     @Override
     public String getInputMethodName() {
-        return "英文" + SUBTYPE_NAME;
+        return SUBTYPE_NAME;
     }
 
     @Override
