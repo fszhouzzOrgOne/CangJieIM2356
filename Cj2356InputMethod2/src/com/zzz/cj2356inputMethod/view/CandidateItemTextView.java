@@ -1,5 +1,7 @@
 package com.zzz.cj2356inputMethod.view;
 
+import java.util.List;
+
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
@@ -8,6 +10,7 @@ import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
+import com.zzz.cj2356inputMethod.utils.UnicodeConvertUtil;
 import com.zzz.cj2356inputMethod.utils.UnicodeHanziUtil;
 
 import android.content.Context;
@@ -31,10 +34,13 @@ public class CandidateItemTextView extends TextView {
     /** 候選欄是否顯示每個的編碼。 */
     public static boolean showEncode = false;
 
+    private Context context = null;
+
     private Item item;
 
     public CandidateItemTextView(Context context, Item it) {
         super(context);
+        this.context = context;
         this.item = it;
         String cha = it.getCharacter();
         setText(cha);
@@ -70,9 +76,9 @@ public class CandidateItemTextView extends TextView {
         super.onDraw(canvas);
         // 邊框
         Paint paint = new Paint();
-        paint.setColor(android.graphics.Color.LTGRAY);
+        paint.setColor(Color.LTGRAY);
         canvas.drawLine(0, 0, 0, this.getWidth(), paint);
-        
+
         String str = item.getEncode();
         if (showEncode && StringUtils.hasText(str)) {
             InputMethodStatus stat = ((Cj2356InputMethodService) this.getContext()).getInputMethodStatus();
@@ -82,12 +88,31 @@ public class CandidateItemTextView extends TextView {
             }
 
             paint.setStrokeWidth(3);
-            paint.setTextSize(27);
+            paint.setTextSize(DipPxUtil.dip(context, 10));
             paint.setColor(Color.RED);
             paint.setTextAlign(Align.LEFT);
             Rect bounds = new Rect();
             paint.getTextBounds(str, 0, str.length(), bounds);
             canvas.drawText(str, getMeasuredWidth() / 2 - bounds.width() / 2, bounds.height(), paint);
+        }
+        // 展示統一碼碼位
+        String cha = item.getCharacter();
+        if (StringUtils.hasText(cha)) {
+            // 統一碼碼位
+            String code = "";
+            List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(cha);
+            if (null != codes && codes.size() == 1) {
+                code = Integer.toHexString(codes.get(0)).toUpperCase();
+            }
+
+            paint.setStrokeWidth(3);
+            paint.setTextSize(DipPxUtil.dip(context, 10));
+            paint.setColor(Color.GRAY);
+            paint.setTextAlign(Align.LEFT);
+            Rect bounds = new Rect();
+            paint.getTextBounds(code, 0, code.length(), bounds);
+            canvas.drawText(code, getMeasuredWidth() / 2 - bounds.width() / 2,
+                    getMeasuredHeight() - DipPxUtil.dip(context, 1), paint);
         }
     }
 

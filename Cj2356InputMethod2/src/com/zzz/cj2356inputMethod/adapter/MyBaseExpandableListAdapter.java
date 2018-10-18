@@ -117,7 +117,7 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
         if (item.isEmpty()) {
             return "無結果。";
         }
-        return item.getEncodeName() + "（" + item.getEncode() + "）";
+        return item.getEncodeName() + "(" + item.getEncode() + ")";
     }
 
     // 设置子列表是否可选中
