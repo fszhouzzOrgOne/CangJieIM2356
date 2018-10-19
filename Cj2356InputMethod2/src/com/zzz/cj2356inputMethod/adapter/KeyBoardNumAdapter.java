@@ -22,11 +22,22 @@ public class KeyBoardNumAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Map<String, String>> valueList;
     private int itemViewId; // 表格中按钮的主鍵
+    private boolean showUnicode; // 是否展示統一碼
 
-    public KeyBoardNumAdapter(Context con, ArrayList<Map<String, String>> list, int itemViewId) {
+    /**
+     * 
+     * @param con
+     * @param list
+     * @param itemViewId
+     *            表格中按钮在xml中的主鍵
+     * @param showUnicode
+     *            是否展示統一碼
+     */
+    public KeyBoardNumAdapter(Context con, ArrayList<Map<String, String>> list, int itemViewId, boolean showUnicode) {
         this.context = con;
         this.valueList = list;
         this.itemViewId = itemViewId;
+        this.showUnicode = showUnicode;
     }
 
     @Override
@@ -52,6 +63,7 @@ public class KeyBoardNumAdapter extends BaseAdapter {
             viewHolder = new ViewHolderNum();
             viewHolder.btnKey = (KeyBoardNumItemButton) convertView.findViewById(R.id.keyboardgridbtn);
             viewHolder.btnKey.setOnTouchListener(new OnKeyNumTouchListener(context));
+            viewHolder.btnKey.setShowUnicode(showUnicode);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolderNum) convertView.getTag();

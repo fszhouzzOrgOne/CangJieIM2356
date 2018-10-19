@@ -287,8 +287,8 @@ public class KeyboardSimIniter {
                 map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha);
                 valueList.add(map);
             }
-            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList,
-                    R.layout.keyboardsimitem);
+            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList, R.layout.keyboardsimitem,
+                    true);
             keyboardBodySimGrid.setNumColumns(rowSize);
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
 

@@ -105,7 +105,8 @@ public class KeyboardNumIniter {
             map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha.toString());
             valueList.add(map);
         }
-        KeyBoardNumAdapter kKeyBoardNumAdapter = new KeyBoardNumAdapter(context, valueList, R.layout.keyboardnumitem);
+        KeyBoardNumAdapter kKeyBoardNumAdapter = new KeyBoardNumAdapter(context, valueList, R.layout.keyboardnumitem,
+                false);
         keyboardBodyNumGrid.setNumColumns(keyboardBodyNums[0].length());
         keyboardBodyNumGrid.setAdapter(kKeyBoardNumAdapter);
 
