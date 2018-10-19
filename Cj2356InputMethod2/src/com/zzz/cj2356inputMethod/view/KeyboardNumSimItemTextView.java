@@ -11,8 +11,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Paint.Align;
+import android.graphics.Rect;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,9 +62,9 @@ public class KeyboardNumSimItemTextView extends TextView {
         String cha = text.toString();
         // 統一碼碼位
         String code = "";
-        List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(cha);
+        List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(cha);
         if (null != codes && codes.size() == 1) {
-            code = Integer.toHexString(codes.get(0)).toUpperCase();
+            code = codes.get(0);
         }
 
         paint.setStrokeWidth(3);

@@ -104,9 +104,9 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
             unicodeRangeName = "";
         }
         // 統一碼碼位
-        List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(character);
+        List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(character);
         if (null != codes && codes.size() == 1) {
-            unicodeRangeName += "(" + Integer.toHexString(codes.get(0)).toUpperCase() + ")";
+            unicodeRangeName += "(" + codes.get(0) + ")";
         }
         itemHolder.tv_unicodeRangeName.setText(unicodeRangeName);
         itemHolder.tv_encode.setText(generateCodeText(gData.get(groupPosition).getItems().get(childPosition)));

@@ -1,6 +1,7 @@
 package com.zzz.cj2356inputMethod.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,10 +20,10 @@ public class UnicodeConvertUtil {
     public static void main(String[] args) {
         String str = "aaaa圍，取𬺰45";
         List<Integer> list = getUnicodeListFromStr(str);
-        for (Integer i : list) {
-            System.out.print(Integer.toHexString(i));
-            System.out.println(" " + getStringByUnicode(i));
-        }
+        System.out.println(Arrays.toString(list.toArray()));
+
+        List<String> str16 = getUnicodeStr4ListFromStr(str);
+        System.out.println(Arrays.toString(str16.toArray()));
     }
 
     /** 按統一碼編號範圍，取到對应的字符集合 */
@@ -47,12 +48,29 @@ public class UnicodeConvertUtil {
         return new String(Character.toChars(unicode));
     }
 
+    /** 字符串轉統一碼16進制字符串列表 */
+    public static List<String> getUnicodeStr4ListFromStr(String str) {
+        List<Integer> ints = getUnicodeListFromStr(str);
+        if (null == ints || ints.isEmpty()) {
+            return null;
+        }
+        List<String> list = new ArrayList<String>();
+        for (Integer i : ints) {
+            String hex = Integer.toHexString(i);
+            while (hex.length() < 4) {
+                hex = "0" + hex;
+            }
+            list.add(hex.toUpperCase());
+        }
+        return list;
+    }
+
     /** 字符串轉統一碼列表 */
     public static List<Integer> getUnicodeListFromStr(String str) {
         if (null == str || str.length() == 0) {
             return null;
         }
-        String bitemp = getBinaryStrFromStr(str);
+        String bitemp = getBinaryStrFromStr(str, "UTF-8");
         if (null == bitemp) {
             return null;
         }
@@ -84,11 +102,16 @@ public class UnicodeConvertUtil {
         return codes;
     }
 
-    public static String getBinaryStrFromStr(String str) {
+    public static String getBinaryStrFromStr(String str, String charSet) {
         if (null == str || str.length() == 0) {
             return null;
         }
-        byte[] bys = str.getBytes();
+        byte[] bys = null;
+        try {
+            bys = str.getBytes(charSet);
+        } catch (Exception e) {
+            return null;
+        }
         StringBuilder sb = new StringBuilder();
         for (byte by : bys) {
             sb.append(getBinaryStrFromInt(by, 8));

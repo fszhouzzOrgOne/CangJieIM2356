@@ -100,9 +100,9 @@ public class CandidateItemTextView extends TextView {
         if (StringUtils.hasText(cha)) {
             // 統一碼碼位
             String code = "";
-            List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(cha);
+            List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(cha);
             if (null != codes && codes.size() == 1) {
-                code = Integer.toHexString(codes.get(0)).toUpperCase();
+                code = codes.get(0);
             }
 
             paint.setStrokeWidth(3);
