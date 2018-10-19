@@ -3,14 +3,14 @@
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
+import com.zzz.cj2356inputMethod.view.KeyBoardNumItemButton;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
-
-import com.zzz.cj2356inputMethod.R;
-import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 
 /**
  * 數字鍵盤Adapter
@@ -50,7 +50,7 @@ public class KeyBoardNumAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = View.inflate(context, itemViewId, null);
             viewHolder = new ViewHolderNum();
-            viewHolder.btnKey = (Button) convertView.findViewById(R.id.keyboardgridbtn);
+            viewHolder.btnKey = (KeyBoardNumItemButton) convertView.findViewById(R.id.keyboardgridbtn);
             viewHolder.btnKey.setOnTouchListener(new OnKeyNumTouchListener(context));
             convertView.setTag(viewHolder);
         } else {
@@ -58,16 +58,16 @@ public class KeyBoardNumAdapter extends BaseAdapter {
         }
 
         viewHolder.btnKey.setVisibility(View.VISIBLE);
-        if ("	".equals(valueList.get(position).get("name"))) {
+        if ("	".equals(valueList.get(position).get(ITEM_KEY_NAME))) {
             viewHolder.btnKey.setText("\\t");
         } else {
-            viewHolder.btnKey.setText(valueList.get(position).get("name"));
+            viewHolder.btnKey.setText(valueList.get(position).get(ITEM_KEY_NAME));
         }
         return convertView;
     }
 
     private static class ViewHolderNum {
-        private Button btnKey;
+        private KeyBoardNumItemButton btnKey;
     }
 
 }

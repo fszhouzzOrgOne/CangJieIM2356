@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@color/whiteddd"
     >
-    <Button 
+    <com.zzz.cj2356inputMethod.view.KeyBoardNumItemButton 
         android:id="@+id/keyboardgridbtn"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/keyboard_sim_griditem_height"
