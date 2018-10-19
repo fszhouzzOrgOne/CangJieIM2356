@@ -9,6 +9,7 @@ import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.mb.SettingDictMbUtils;
+import com.zzz.cj2356inputMethod.utils.UnicodeConvertUtil;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -271,39 +272,49 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
         if (item.isEmpty()) {
             return false;
         }
+        // 統一碼
+        List<String> strUnics = UnicodeConvertUtil.getUnicodeStr4ListFromStr(item.getCharacter());
+        final String unicode = (null == strUnics || strUnics.isEmpty()) ? null : strUnics.get(0);
+
         final String item1 = "查詢文字“" + item.getCharacter() + "”";
         final String item2 = "查詢編碼“" + item.getEncode() + "”";
         final String item3 = "複製文字“" + item.getCharacter() + "”";
         final String item4 = "複製編碼“" + item.getEncode() + "”";
         final String item5 = "複製文字和編碼“" + item.getCharacter() + " " + item.getEncode() + "”";
+        final String item6 = "複製統一碼“" + unicode + "”";
         String itemCncl = "取消";
         AlertDialog.Builder builder = new Builder(mContext).setTitle("繼續查詢？");
-        builder.setItems(new String[] { item1, item2, item3, item4, item5, itemCncl },
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int index) {
-                        if (index == 0) {
-                            SettingDictIniter.searchSth(item.getCharacter());
-                        } else if (index == 1) {
-                            SettingDictIniter.searchSth(item.getEncode());
-                        } else if (index == 2) {
-                            ClipboardManager cm = (ClipboardManager) mContext
-                                    .getSystemService(Context.CLIPBOARD_SERVICE);
-                            cm.setText(item.getCharacter());
-                            Toast.makeText(mContext, "複製文字成功。", Toast.LENGTH_LONG).show();
-                        } else if (index == 3) {
-                            ClipboardManager cm = (ClipboardManager) mContext
-                                    .getSystemService(Context.CLIPBOARD_SERVICE);
-                            cm.setText(item.getEncode());
-                            Toast.makeText(mContext, "複製編碼成功。", Toast.LENGTH_LONG).show();
-                        } else if (index == 4) {
-                            ClipboardManager cm = (ClipboardManager) mContext
-                                    .getSystemService(Context.CLIPBOARD_SERVICE);
-                            cm.setText(item.getCharacter() + " " + item.getEncode());
-                            Toast.makeText(mContext, "複製成功。", Toast.LENGTH_LONG).show();
-                        }
-                        arg0.dismiss();
-                    }
-                });
+        CharSequence[] itemsTemp = new String[] { item1, item2, item3, item4, item5, itemCncl };
+        if (null != unicode) {
+            itemsTemp = new String[] { item1, item2, item3, item4, item5, item6, itemCncl };
+        }
+        final CharSequence[] items = itemsTemp;
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int index) {
+                if (index == 0) {
+                    SettingDictIniter.searchSth(item.getCharacter());
+                } else if (index == 1) {
+                    SettingDictIniter.searchSth(item.getEncode());
+                } else if (index == 2) {
+                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    cm.setText(item.getCharacter());
+                    Toast.makeText(mContext, "複製文字成功。", Toast.LENGTH_LONG).show();
+                } else if (index == 3) {
+                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    cm.setText(item.getEncode());
+                    Toast.makeText(mContext, "複製編碼成功。", Toast.LENGTH_LONG).show();
+                } else if (index == 4) {
+                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    cm.setText(item.getCharacter() + " " + item.getEncode());
+                    Toast.makeText(mContext, "複製成功。", Toast.LENGTH_LONG).show();
+                } else if (index == 5 && items.length > 6) {
+                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    cm.setText(unicode);
+                    Toast.makeText(mContext, "複製成功。", Toast.LENGTH_LONG).show();
+                }
+                arg0.dismiss();
+            }
+        });
         builder.show();
         return true;
     }
