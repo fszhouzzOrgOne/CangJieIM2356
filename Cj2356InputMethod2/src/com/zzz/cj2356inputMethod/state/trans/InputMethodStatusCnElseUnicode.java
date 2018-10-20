@@ -19,7 +19,7 @@ import android.content.Context;
  */
 public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
 
-    private static final String UNICODE16_PATTERN = "[0-9a-fA-F]+";
+    public static final String UNICODE16_PATTERN = "[0-9a-fA-F]+";
 
     private static final String UNICODE16_MAXNUM = "10FFFF";
 
@@ -31,14 +31,10 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        if (null == code || !code.matches(UNICODE16_PATTERN)) {
+        if (null == code || "".equals(code.trim())) {
             return null;
         }
-        Map<String, Object> keysNameMap = getKeysNameMap();
-        String trueCode = "";
-        for (Character key : code.toCharArray()) {
-            trueCode += keysNameMap.get(key.toString());
-        }
+        String trueCode = getTrueCode(code);
         List<Item> items = new ArrayList<Item>();
         try {
             Item it = Item.unicodeItem.clone();
@@ -96,12 +92,13 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
 
     @Override
     public boolean couldContinueInputing(String code) {
-        if (!code.matches(UNICODE16_PATTERN)) {
+        if (null == code || "".equals(code.trim())) {
             return false;
         }
+        String trueCode = this.getTrueCode(code);
         try {
             int max = Integer.parseInt(UNICODE16_MAXNUM, 16);
-            int par = Integer.parseInt(code, 16);
+            int par = Integer.parseInt(trueCode, 16);
             return par >= 0 && par <= max;
         } catch (Exception e) {
             return false;
@@ -111,6 +108,15 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
     @Override
     public String getInputMethodName() {
         return "統一碼(10F⁴)";
+    }
+
+    private String getTrueCode(String code) {
+        Map<String, Object> keysNameMap = getKeysNameMap();
+        String trueCode = "";
+        for (Character key : code.toCharArray()) {
+            trueCode += keysNameMap.get(key.toString());
+        }
+        return trueCode;
     }
 
     @Override

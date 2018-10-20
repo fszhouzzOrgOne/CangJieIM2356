@@ -146,15 +146,39 @@ public class SettingDictIniter {
             String query = editText.getText().toString().trim();
             if (query.length() > 0) {
                 // 先按編碼
+                String pattern = InputMethodStatusCnElseUnicode.UNICODE16_PATTERN;
                 List<Item> items = new ArrayList<Item>();
-                InputMethodStatusCnElseUnicode uniIm = new InputMethodStatusCnElseUnicode(context);
-                List<Item> byCodes = uniIm.getCandidatesInfo(query, false);
-                if (null != byCodes && !byCodes.isEmpty()) {
-                    items.addAll(byCodes);
+                try {
+                    if (query.matches(pattern)) {
+                        Item it = Item.unicodeItem.clone();
+                        String cha = UnicodeConvertUtil.getStringByUnicodeStr(query);
+                        if (null != cha) {
+                            String tempCode = query.toUpperCase();
+                            while (tempCode.length() < 4) {
+                                tempCode = "0" + tempCode;
+                            }
+                            it.setCharacter(cha);
+                            it.setEncode(tempCode);
+                            items.add(it);
+                        }
+                    }
+                } catch (Exception e) {
                 }
-                List<Item> byChas = uniIm.getCandidatesInfoByChar(query);
-                if (null != byChas && !byChas.isEmpty()) {
-                    items.addAll(byChas);
+                // 再分開字符查
+                try {
+                    List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(query);
+                    if (null != codes && !codes.isEmpty()) {
+                        for (String code : codes) {
+                            Item it = Item.unicodeItem.clone();
+                            String cha = UnicodeConvertUtil.getStringByUnicodeStr(code);
+                            if (null != cha) {
+                                it.setCharacter(cha);
+                                it.setEncode(code);
+                                items.add(it);
+                            }
+                        }
+                    }
+                } catch (Exception e) {
                 }
                 if (!items.isEmpty()) {
                     gu.setItems(items);
