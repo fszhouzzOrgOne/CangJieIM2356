@@ -32,6 +32,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKoxhanh;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseManju;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElsePy;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseUnicode;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseZyfh;
 
 import android.content.Context;
@@ -237,6 +238,8 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusCnElseIpa(context);
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseKoxhanh(context);
+        allElseIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseUnicode(context);
         allElseIMsMap.put(im.getSubType(), im);
 
         allEnIMsMap.put(ORDER_KEY_KEY, ORDER_EN_KEY);

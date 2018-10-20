@@ -10,6 +10,7 @@ import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.font.FontManager;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.mb.SettingDictMbUtils;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseUnicode;
 import com.zzz.cj2356inputMethod.utils.UnicodeConvertUtil;
 
 import android.app.Activity;
@@ -145,39 +146,15 @@ public class SettingDictIniter {
             String query = editText.getText().toString().trim();
             if (query.length() > 0) {
                 // 先按編碼
-                String pattern = "[0-9a-fA-F]+";
                 List<Item> items = new ArrayList<Item>();
-                try {
-                    if (query.matches(pattern)) {
-                        Item it = Item.unicodeItem.clone();
-                        String cha = UnicodeConvertUtil.getStringByUnicodeStr(query);
-                        if (null != cha) {
-                            String tempCode = query.toUpperCase();
-                            while (tempCode.length() < 4) {
-                                tempCode = "0" + tempCode;
-                            }
-                            it.setCharacter(cha);
-                            it.setEncode(tempCode);
-                            items.add(it);
-                        }
-                    }
-                } catch (Exception e) {
+                InputMethodStatusCnElseUnicode uniIm = new InputMethodStatusCnElseUnicode(context);
+                List<Item> byCodes = uniIm.getCandidatesInfo(query, false);
+                if (null != byCodes && !byCodes.isEmpty()) {
+                    items.addAll(byCodes);
                 }
-                // 再分開字符查
-                try {
-                    List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(query);
-                    if (null != codes && !codes.isEmpty()) {
-                        for (String code : codes) {
-                            Item it = Item.unicodeItem.clone();
-                            String cha = UnicodeConvertUtil.getStringByUnicodeStr(code);
-                            if (null != cha) {
-                                it.setCharacter(cha);
-                                it.setEncode(code);
-                                items.add(it);
-                            }
-                        }
-                    }
-                } catch (Exception e) {
+                List<Item> byChas = uniIm.getCandidatesInfoByChar(query);
+                if (null != byChas && !byChas.isEmpty()) {
+                    items.addAll(byChas);
                 }
                 if (!items.isEmpty()) {
                     gu.setItems(items);
