@@ -1,5 +1,6 @@
 package com.zzz.cj2356inputMethod.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.R;
@@ -115,6 +116,7 @@ public class SettingDictIniter {
         if (null == gData || gData.isEmpty()) {
             gData = SettingDictMbUtils.initGroupDatas();
         }
+        tryInitUnicodeGroup(gData);
         SettingDictIniter.gData = gData;
         MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
         expandableListView.setAdapter(myAdapter);
@@ -127,6 +129,50 @@ public class SettingDictIniter {
                 expandableListView.expandGroup(i);
             }
         }
+    }
+
+    /**
+     * 構造一個統一碼分組
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月20日 上午11:40:29
+     * @param groups
+     *            肯定不爲Null
+     */
+    private static void tryInitUnicodeGroup(List<Group> groups) {
+        Group gu = Group.unicodeGroup.clone();
+        if (null != editText && null != editText.getText()) {
+            String query = editText.getText().toString().trim();
+            if (query.length() > 0) {
+                try {
+                    String pattern = "[0-9a-fA-F]+";
+                    List<Item> items = new ArrayList<Item>();
+                    if (query.matches(pattern)) {
+                        Item it = Item.unicodeItem.clone();
+                        String cha = UnicodeConvertUtil.getStringByUnicode(Integer.parseInt(query, 16));
+                        it.setCharacter(cha);
+                        it.setEncode(query);
+                        items.add(it);
+                    } else {
+                        List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(query);
+                        if (null != codes && !codes.isEmpty()) {
+                            for (String code : codes) {
+                                Item it = Item.unicodeItem.clone();
+                                String cha = UnicodeConvertUtil.getStringByUnicode(Integer.parseInt(code, 16));
+                                it.setCharacter(cha);
+                                it.setEncode(code);
+                                items.add(it);
+                            }
+                        }
+                    }
+                    if (!items.isEmpty()) {
+                        gu.setItems(items);
+                    }
+                } catch (Exception e) {
+                }
+            } // end query.length()
+        } // end editText
+        groups.add(gu);
     }
 
     public static List<Group> getgData() {
@@ -285,7 +331,7 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
         String itemCncl = "取消";
         AlertDialog.Builder builder = new Builder(mContext).setTitle("繼續查詢？");
         CharSequence[] itemsTemp = new String[] { item1, item2, item3, item4, item5, itemCncl };
-        if (null != unicode) {
+        if (!item.isUnicodeItem() && null != unicode) {
             itemsTemp = new String[] { item1, item2, item3, item4, item5, item6, itemCncl };
         }
         final CharSequence[] items = itemsTemp;
@@ -294,6 +340,10 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
                 if (index == 0) {
                     SettingDictIniter.searchSth(item.getCharacter());
                 } else if (index == 1) {
+                    if (item.isUnicodeItem()) {
+                        Toast.makeText(mContext, "不支持操作。", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     SettingDictIniter.searchSth(item.getEncode());
                 } else if (index == 2) {
                     ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);

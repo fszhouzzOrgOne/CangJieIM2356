@@ -97,25 +97,33 @@ public class MyBaseExpandableListAdapter extends BaseExpandableListAdapter {
         }
         // 字體自定義
         itemHolder.tv_character.setTypeface(FontManager.getTypeface(mContext));
-        String character = gData.get(groupPosition).getItems().get(childPosition).getCharacter();
+        Item item = gData.get(groupPosition).getItems().get(childPosition);
+        String character = item.getCharacter();
         itemHolder.tv_character.setText(character);
+
         String unicodeRangeName = UnicodeHanziUtil.getRangeNameByChar(character);
         if (null == unicodeRangeName) {
             unicodeRangeName = "";
         }
         // 統一碼碼位
-        List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(character);
-        if (null != codes && codes.size() == 1) {
-            unicodeRangeName += "(" + codes.get(0) + ")";
+        if (!item.isUnicodeItem()) {
+            List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(character);
+            if (null != codes && codes.size() == 1) {
+                unicodeRangeName += "(" + codes.get(0) + ")";
+            }
         }
         itemHolder.tv_unicodeRangeName.setText(unicodeRangeName);
-        itemHolder.tv_encode.setText(generateCodeText(gData.get(groupPosition).getItems().get(childPosition)));
+
+        itemHolder.tv_encode.setText(generateCodeText(item));
         return convertView;
     }
 
     private String generateCodeText(Item item) {
         if (item.isEmpty()) {
             return "無結果。";
+        }
+        if (item.isUnicodeItem()) {
+            return item.getEncode();
         }
         return item.getEncodeName() + "(" + item.getEncode() + ")";
     }

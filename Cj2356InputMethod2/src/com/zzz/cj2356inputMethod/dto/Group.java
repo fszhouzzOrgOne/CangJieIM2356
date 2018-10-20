@@ -9,7 +9,9 @@ import java.util.List;
  * @author t
  * @time 2016-12-18下午1:02:38
  */
-public class Group {
+public class Group implements Cloneable {
+    /** 統一碼 */
+    public static final Group unicodeGroup = new Group(-2, "unicode", "統一碼(10FFFF)");
 
     private int gId;
     private String gCode;
@@ -24,6 +26,17 @@ public class Group {
 
         items = new ArrayList<Item>();
         items.add(Item.emptyItem);
+    }
+
+    /**
+     * 是統一碼分組
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月20日 下午12:44:04
+     * @return
+     */
+    public boolean isUnicodeGroup() {
+        return this.gId == unicodeGroup.getgId();
     }
 
     public String getgName() {
@@ -62,6 +75,17 @@ public class Group {
     public String toString() {
         String itemStr = ", items.size=" + ((null == items) ? "0" : items.size());
         return "Group [gId=" + gId + ", gCode=" + gCode + ", gName=" + gName + itemStr + "]";
+    }
+
+    @Override
+    public Group clone() {
+        Group g = new Group(gId, gCode, gName);
+        List<Item> itemList = new ArrayList<Item>();
+        for (Item it : items) {
+            itemList.add(it.clone());
+        }
+        g.setItems(itemList);
+        return g;
     }
 
 }
