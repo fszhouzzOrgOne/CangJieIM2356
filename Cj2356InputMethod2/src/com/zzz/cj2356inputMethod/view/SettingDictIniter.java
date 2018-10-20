@@ -152,8 +152,12 @@ public class SettingDictIniter {
                         Item it = Item.unicodeItem.clone();
                         String cha = UnicodeConvertUtil.getStringByUnicodeStr(query);
                         if (null != cha) {
+                            String tempCode = query.toUpperCase();
+                            while (tempCode.length() < 4) {
+                                tempCode = "0" + tempCode;
+                            }
                             it.setCharacter(cha);
-                            it.setEncode(query);
+                            it.setEncode(tempCode);
                             items.add(it);
                         }
                     }
