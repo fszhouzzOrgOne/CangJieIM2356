@@ -131,6 +131,12 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
     }
 
     @Override
+    public String getComposingTextForInputConn() {
+        String code = getInputingCnCode();
+        return getTrueCode(code).toUpperCase();
+    }
+
+    @Override
     public Map<String, Object> getKeysNameMap() {
         String letters1 = "qwertyuiopasdfghjklzxcvbnm";
         String letters2 = " 0 1 2 3 4 5 6 7 8 9 A B C D E F 00 10 20 30 34 4D 4E 9F A6 FF ";
