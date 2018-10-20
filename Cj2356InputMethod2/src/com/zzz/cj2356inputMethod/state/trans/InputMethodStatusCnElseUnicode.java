@@ -103,7 +103,7 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
         try {
             int max = Integer.parseInt(UNICODE16_MAXNUM, 16);
             int par = Integer.parseInt(trueCode, 16);
-            return par >= 0 && par <= max;
+            return trueCode.length() <= UNICODE16_MAXNUM.length() && par >= 0 && par <= max;
         } catch (Exception e) {
             return false;
         }
