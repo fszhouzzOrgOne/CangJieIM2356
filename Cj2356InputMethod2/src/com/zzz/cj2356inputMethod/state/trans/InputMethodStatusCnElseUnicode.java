@@ -41,6 +41,15 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
     public List<Item> getCandidatesInfoByTrueCode(String trueCode, boolean extraResolve) {
         List<Item> items = new ArrayList<Item>();
         try {
+            int wrongStart = Integer.parseInt("D800", 16);
+            int wrongEnd = Integer.parseInt("DFFF", 16);
+            int intCode = Integer.parseInt(trueCode, 16);
+            if (intCode >= wrongStart && intCode <= wrongEnd) {
+                Item it = Item.emptyItem.clone();
+                items.add(it);
+                return items;
+            }
+
             Item it = Item.unicodeItem.clone();
             String cha = UnicodeConvertUtil.getStringByUnicodeStr(trueCode);
             if (null != cha) {
