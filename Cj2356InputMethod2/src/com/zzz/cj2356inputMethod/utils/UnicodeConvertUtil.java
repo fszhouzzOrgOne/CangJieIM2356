@@ -48,6 +48,19 @@ public class UnicodeConvertUtil {
         return new String(Character.toChars(unicode));
     }
 
+    /** 按統一碼16進制字符串，取到對应的字符 */
+    public static String getStringByUnicodeStr(String unicode) {
+        String pattern = "[0-9a-fA-F]+";
+        if (!unicode.matches(pattern)) {
+            return null;
+        }
+        try {
+            return getStringByUnicode(Integer.parseInt(unicode, 16));
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     /** 字符串轉統一碼16進制字符串列表 */
     public static List<String> getUnicodeStr4ListFromStr(String str) {
         List<Integer> ints = getUnicodeListFromStr(str);
