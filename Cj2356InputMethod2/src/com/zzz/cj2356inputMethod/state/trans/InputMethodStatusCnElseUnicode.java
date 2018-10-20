@@ -133,7 +133,7 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
     @Override
     public String getComposingTextForInputConn() {
         String code = getInputingCnCode();
-        return getTrueCode(code).toUpperCase();
+        return getTrueCode(code);
     }
 
     @Override
