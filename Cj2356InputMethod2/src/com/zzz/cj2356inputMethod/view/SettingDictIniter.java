@@ -340,10 +340,6 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
                 if (index == 0) {
                     SettingDictIniter.searchSth(item.getCharacter());
                 } else if (index == 1) {
-                    if (item.isUnicodeItem()) {
-                        Toast.makeText(mContext, "不支持操作。", Toast.LENGTH_LONG).show();
-                        return;
-                    }
                     SettingDictIniter.searchSth(item.getEncode());
                 } else if (index == 2) {
                     ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
