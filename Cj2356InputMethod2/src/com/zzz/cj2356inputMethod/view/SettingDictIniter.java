@@ -151,6 +151,9 @@ public class SettingDictIniter {
                 List<Item> byCodes = uniIm.getCandidatesInfoByTrueCode(query, false);
                 if (null != byCodes && !byCodes.isEmpty()) {
                     items.addAll(byCodes);
+                } else {
+                    Item it = Item.emptyItem.clone();
+                    items.add(it);
                 }
                 List<Item> byChas = uniIm.getCandidatesInfoByChar(query);
                 if (null != byChas && !byChas.isEmpty()) {

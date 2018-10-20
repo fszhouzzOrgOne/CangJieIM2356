@@ -45,8 +45,6 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
             int wrongEnd = Integer.parseInt("DFFF", 16);
             int intCode = Integer.parseInt(trueCode, 16);
             if (intCode >= wrongStart && intCode <= wrongEnd) {
-                Item it = Item.emptyItem.clone();
-                items.add(it);
                 return items;
             }
 
