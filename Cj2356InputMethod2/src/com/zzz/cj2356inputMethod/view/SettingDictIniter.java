@@ -172,7 +172,7 @@ public class SettingDictIniter {
                             String cha = UnicodeConvertUtil.getStringByUnicodeStr(code);
                             if (null != cha) {
                                 it.setCharacter(cha);
-                                it.setEncode(query);
+                                it.setEncode(code);
                                 items.add(it);
                             }
                         }
