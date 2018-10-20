@@ -35,6 +35,10 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
             return null;
         }
         String trueCode = getTrueCode(code);
+        return getCandidatesInfoByTrueCode(trueCode, extraResolve);
+    }
+
+    public List<Item> getCandidatesInfoByTrueCode(String trueCode, boolean extraResolve) {
         List<Item> items = new ArrayList<Item>();
         try {
             Item it = Item.unicodeItem.clone();
