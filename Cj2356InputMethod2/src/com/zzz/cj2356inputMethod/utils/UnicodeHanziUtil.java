@@ -38,7 +38,7 @@ public class UnicodeHanziUtil {
 
     private static List<String> list = new ArrayList<String>();
 
-    private static Map<String, Object> nameRangeMap = new LinkedHashMap<String, Object>();
+    private static Map<String, List<Integer>> nameRangeMap = new LinkedHashMap<String, List<Integer>>();
 
     static {
         list.add("0000 0019 C0控制符");
@@ -365,8 +365,8 @@ public class UnicodeHanziUtil {
         List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(charStr);
         int code = codes.get(0); // 只取第一個
         for (String name : nameRangeMap.keySet()) {
-            int[] range = (int[]) nameRangeMap.get(name);
-            if (code >= range[0] && code <= range[1]) {
+            List<Integer> range = (List<Integer>) nameRangeMap.get(name);
+            if (code >= range.get(0) && code <= range.get(range.size() - 1)) {
                 return name;
             }
         }
