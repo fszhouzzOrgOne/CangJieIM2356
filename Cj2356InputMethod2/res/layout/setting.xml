@@ -22,7 +22,7 @@
             android:paddingLeft="10dp" 
             android:paddingRight="10dp" 
             android:textSize="15dp" 
-            android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我："
+            android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我。\n（當心了！由倉頡改用其他輸入法，我將自盡。）"
             />
         
         <LinearLayout
@@ -110,7 +110,7 @@
 	                android:layout_width="0dp" 
 	                android:layout_weight="6"
                     android:layout_height="@dimen/keyboard_key_height"
-	                android:maxLength="10"
+	                android:maxLength="20"
 	                android:singleLine="true"
 	                android:maxLines="1"
 	                android:hint="請輸入漢字或編碼..."
