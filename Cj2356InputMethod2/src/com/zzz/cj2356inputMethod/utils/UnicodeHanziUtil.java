@@ -302,6 +302,8 @@ public class UnicodeHanziUtil {
         list.add("20000 2A6DF 中日韓擴展B");
         list.add("2A700 2B73F 中日韓擴展C");
         list.add("2B740 2B81F 中日韓擴展D");
+        list.add("2B820 2CEAF 中日韓擴展E");
+        list.add("2CEB0 2EBE0 中日韓擴展F");
         list.add("2F800 2FA1F 中日韓兼容表意補");
         list.add("E0000 E007F 標記");
         list.add("E0100 E01EF 變量選擇符17+");
