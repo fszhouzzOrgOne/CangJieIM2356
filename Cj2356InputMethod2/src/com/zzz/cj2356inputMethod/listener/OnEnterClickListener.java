@@ -60,27 +60,36 @@ public class OnEnterClickListener implements OnClickListener {
     }
 
     public static void doEnterKey(Context context) {
-        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
-        EditorInfo info = ((InputMethodService) context).getCurrentInputEditorInfo();
-
-        int action = EditorInfo.IME_ACTION_UNSPECIFIED;
-        // 防止有前進導航時，不搜索了
-        // 防止有時該搜索時也不搜索了
-        boolean isNavigateNext = (info.imeOptions
-                & EditorInfo.IME_FLAG_NAVIGATE_NEXT) == EditorInfo.IME_FLAG_NAVIGATE_NEXT;
-        boolean isSearch = (info.imeOptions & EditorInfo.IME_ACTION_SEARCH) == EditorInfo.IME_ACTION_SEARCH;
-        if (isNavigateNext || isSearch) {
-            action = info.imeOptions & EditorInfo.IME_MASK_ACTION;
-        }
-
-        // 是否不執行提交
-        boolean isNoEnter = (info.imeOptions
-                & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == EditorInfo.IME_FLAG_NO_ENTER_ACTION;
-        if (isNoEnter) {
+        if (!sendDefaultEditorAction(true, context)) {
             SendKeyEventUtil.doPerformEnter(context);
-        } else {
-            inputConnection.performEditorAction(action);
         }
+    }
+
+    /**
+     * https://blog.csdn.net/jianguo_liao19840726/article/details/25282259<br/>
+     * 解決交通銀行，忘記密碼頁輸入了號碼後，按回車不隱藏輸入法的問題<br/>
+     * 各軟件搜索欄也使用正常
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年10月24日 下午11:45:28
+     * @param fromEnterKey
+     * @param context
+     * @return
+     */
+    public static boolean sendDefaultEditorAction(boolean fromEnterKey, Context context) {
+        EditorInfo ei = ((InputMethodService) context).getCurrentInputEditorInfo();
+        if (ei != null && (!fromEnterKey || (ei.imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)
+                && (ei.imeOptions & EditorInfo.IME_MASK_ACTION) != EditorInfo.IME_ACTION_NONE) {
+            // If the enter key was pressed, and the editor has a default
+            // action associated with pressing enter, then send it that
+            // explicit action instead of the key event.
+            InputConnection ic = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
+            if (ic != null) {
+                ic.performEditorAction(ei.imeOptions & EditorInfo.IME_MASK_ACTION);
+            }
+            return true;
+        }
+        return false;
     }
 
 }
