@@ -67,6 +67,11 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
     }
 
     @Override
+    public String getComposingTextForCandidateView() {
+        return this.getInputingCnCode();
+    }
+
+    @Override
     public Map<String, Object> getKeysNameMap() {
         String letters1 = "qwertyuiopasdfghjklzxcvbnm";
         String letters2 = " 0 1 2 3 4 5 6 7 8 ⠀⠀ ⠀ ⠂ ⠐ ⠒ ⠁ ⠃ ⠑ ⠓ ⠈ ⠊ ⠘ ⠚ ⠉ ⠋ ⠙ ⠛ ";

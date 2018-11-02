@@ -37,7 +37,8 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      * @param extraResolve
      *            是否解析結果，如加入時間等
      */
-    public abstract List<Item> getCandidatesInfo(String code, boolean extraResolve);
+    public abstract List<Item> getCandidatesInfo(String code,
+            boolean extraResolve);
 
     /**
      * 按字查詢輸入法的编码
@@ -98,7 +99,8 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
         }
 
         // 保持提示框中的顯示一致
-        ((Cj2356InputMethodService) this.getContext()).setComposingText(getInputingCnCode());
+        ((Cj2356InputMethodService) this.getContext())
+                .setComposingText(getInputingCnCode());
         return resultValue;
     }
 
@@ -107,7 +109,8 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      */
     public String getInputingCnValue() {
         String result = "";
-        if (null != inputTempCn && StringUtils.hasText(inputTempCn.get("value"))) {
+        if (null != inputTempCn
+                && StringUtils.hasText(inputTempCn.get("value"))) {
             result = inputTempCn.get("value");
         }
         return result;
@@ -125,7 +128,8 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      */
     public String getInputingCnCode() {
         String result = "";
-        if (null != inputTempCn && StringUtils.hasText(inputTempCn.get("code"))) {
+        if (null != inputTempCn
+                && StringUtils.hasText(inputTempCn.get("code"))) {
             result = inputTempCn.get("code");
         }
         return result;
@@ -148,6 +152,28 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
             composingText = code.toLowerCase();
         }
         return composingText;
+    }
+
+    /**
+     * 候選框上的輸入法提示
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月3日 上午12:42:51
+     * @return
+     */
+    public String getComposingTextForCandidateView() {
+        String code = getInputingCnCode();
+        String composing = translateCode2Name(code);
+        String patternAbc123 = "^[a-zA-Z0-9]+$";
+        if (composing.matches(patternAbc123)) {
+            composing = composing.toLowerCase();
+            if (!composing.equals(code)) {
+                composing += "（" + code + "）";
+            }
+        } else {
+            composing = code + "（" + composing + "）";
+        }
+        return composing;
     }
 
     public boolean isInputingCn() {
