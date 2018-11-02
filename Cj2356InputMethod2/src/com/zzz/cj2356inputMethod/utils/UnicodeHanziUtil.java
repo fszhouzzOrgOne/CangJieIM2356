@@ -184,7 +184,7 @@ public class UnicodeHanziUtil {
         list.add("A9E0 A9FF 緬甸語擴展B");
         list.add("AA00 AA5F 占族文");
         list.add("AA60 AA7F 緬甸語擴展A");
-        list.add("AA80 AADF 泰越");
+        list.add("AA80 AADF 越南傣文");
         list.add("AAE0 AAFF 曼尼普爾語擴展");
         list.add("AB00 AB2F 埃塞俄比亞擴展A");
         list.add("AB30 AB6F 拉丁文擴展E");
@@ -345,7 +345,7 @@ public class UnicodeHanziUtil {
      * @return
      */
     public static boolean isInPrivateUserArea(String charStr) {
-        if (null == charStr || charStr.toCharArray().length > 2) {
+        if (null == charStr || "".equals(charStr) || charStr.toCharArray().length > 2) {
             return false;
         }
         int start1 = 0xF0000;
@@ -365,7 +365,7 @@ public class UnicodeHanziUtil {
      * @return
      */
     public static boolean isInhanziCompt(String charStr) {
-        if (null == charStr || charStr.toCharArray().length > 2) {
+        if (null == charStr || "".equals(charStr) || charStr.toCharArray().length > 2) {
             return false;
         }
         int start1 = 0x2F800;
@@ -381,7 +381,7 @@ public class UnicodeHanziUtil {
      * 按字符，取得它在統一碼中所在區名字
      */
     public static String getRangeNameByChar(String charStr) {
-        if (null == charStr || charStr.toCharArray().length > 2) {
+        if (null == charStr || "".equals(charStr) || charStr.toCharArray().length > 2) {
             return "";
         }
         List<Integer> codes = UnicodeConvertUtil.getUnicodeListFromStr(charStr);
