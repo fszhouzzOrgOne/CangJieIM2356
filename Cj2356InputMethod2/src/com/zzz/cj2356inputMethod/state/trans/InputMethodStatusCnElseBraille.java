@@ -69,7 +69,7 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
     @Override
     public Map<String, Object> getKeysNameMap() {
         String letters1 = "qwertyuiopasdfghjklzxcvbnm";
-        String letters2 = " 0 1 2 3 4 5 6 7 8 ⠀ ⠀ ⠂ ⠐ ⠒ ⠁ ⠃ ⠑ ⠓ ⠈ ⠊ ⠘ ⠚ ⠉ ⠋ ⠙ ⠛ ";
+        String letters2 = " 0 1 2 3 4 5 6 7 8 ⠀⠀ ⠀ ⠂ ⠐ ⠒ ⠁ ⠃ ⠑ ⠓ ⠈ ⠊ ⠘ ⠚ ⠉ ⠋ ⠙ ⠛ ";
         Map<String, Object> mbTransMap = super.getKeysNameMap();
         int index = 0;
         for (String one : letters2.trim().split(" +")) {
