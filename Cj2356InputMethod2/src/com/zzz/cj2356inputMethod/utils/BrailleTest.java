@@ -24,7 +24,7 @@ public class BrailleTest {
     private static Map<String, List<String>> codeCharMapEn = new HashMap<String, List<String>>();
 
     public static void main(String[] args) {
-        String input = "wqwe";
+        String input = "wqwep";
         System.out.println(input);
         List<String> cands = getCandidatesByInput(input);
         System.out.println(cands);
@@ -33,7 +33,6 @@ public class BrailleTest {
     public static List<String> getCandidatesByInput(String input) {
         List<String> resList = new ArrayList<String>();
         List<String> parts = resolveInputParts(input);
-        System.out.println(parts);
         String fullCode = "";
         String reses = "";
         for (String part : parts) {
@@ -58,7 +57,7 @@ public class BrailleTest {
     public static String resolveImageTrueCode(String part) {
         String code1 = keyMap2.get(part.charAt(0) + "");
         if (code1.length() == 8) {
-            return codeCharMap.get(code1);
+            return code1;
         }
         String code2 = keyMap2.get(part.charAt(1) + "");
         List<String> codes = new ArrayList<String>(
