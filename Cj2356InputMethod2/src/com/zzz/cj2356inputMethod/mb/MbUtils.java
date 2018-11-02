@@ -35,6 +35,7 @@ public class MbUtils {
     public static final String TYPE_CODE_CJGEN_IPA = "ipa"; // 國際音標
     public static final String TYPE_CODE_CJGEN_KOXHANH = "kohan"; // 中古漢語
     public static final String TYPE_CODE_CJGENUNICODE = "unic16"; // 統一碼16進制
+    public static final String TYPE_CODE_CJGENBRAILLE = "mangw"; // 盲文
     // 倉頡碼表的交集
     public static final String TYPE_CODE_CJINTERSECT = "cjcommon";
 
