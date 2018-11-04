@@ -179,12 +179,12 @@ public class KeyboardSimIniter {
 
         prePageButton = (Button) keyboardView
                 .findViewById(R.id.keybtnSimPreviousPage);
-        prePageButton.setTextColor(Color.RED);
+        prePageButton.setTextColor(Color.DKGRAY);
         prePageButton
                 .setOnClickListener(new OnPrePageButtonClickListener(context));
         nextPageButton = (Button) keyboardView
                 .findViewById(R.id.keybtnSimNextPage);
-        nextPageButton.setTextColor(Color.RED);
+        nextPageButton.setTextColor(Color.DKGRAY);
         nextPageButton
                 .setOnClickListener(new OnNextPageButtonClickListener(context));
 
@@ -202,7 +202,7 @@ public class KeyboardSimIniter {
         // 符號鍵盤返回
         Button btnSimBack = (Button) keyboardView
                 .findViewById(R.id.keybtnSimBack);
-        btnSimBack.setTextColor(Color.RED);
+        btnSimBack.setTextColor(Color.DKGRAY);
         btnSimBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

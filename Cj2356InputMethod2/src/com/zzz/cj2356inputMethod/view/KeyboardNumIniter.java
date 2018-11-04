@@ -77,7 +77,7 @@ public class KeyboardNumIniter {
         // 數字鍵盤返回
         Button btnNumBack = (Button) keyboardView
                 .findViewById(R.id.keybtnNumBack);
-        btnNumBack.setTextColor(Color.RED);
+        btnNumBack.setTextColor(Color.DKGRAY);
         btnNumBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
