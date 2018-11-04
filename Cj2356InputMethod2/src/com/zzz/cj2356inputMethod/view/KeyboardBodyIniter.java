@@ -79,8 +79,10 @@ public class KeyboardBodyIniter {
         keybtnShift.setOnClickListener(new OnCnEnSubsClickListener(context));
         keybtnShift.setTextColor(Color.DKGRAY);
 
-        keyboardView.findViewById(R.id.keybtnSpace)
-                .setOnClickListener(new OnSpaceClickListener(context));
+        // 空格
+        Button btnSpace = (Button) keyboardView.findViewById(R.id.keybtnSpace);
+        btnSpace.setTextColor(Color.RED);
+        btnSpace.setOnClickListener(new OnSpaceClickListener(context));
 
         // 刪除
         keyboardView.findViewById(R.id.keybtnDelete)
