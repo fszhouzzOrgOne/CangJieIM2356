@@ -29,6 +29,7 @@ public class KeyBoardNumItemButton extends Button {
     public KeyBoardNumItemButton(Context context) {
         super(context);
         this.context = context;
+        setTextColor(Color.RED);
     }
 
     public KeyBoardNumItemButton(Context context, AttributeSet attrs) {
