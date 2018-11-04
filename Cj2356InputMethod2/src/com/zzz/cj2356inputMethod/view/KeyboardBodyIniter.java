@@ -77,7 +77,7 @@ public class KeyboardBodyIniter {
 
         keybtnShift = (Button) keyboardView.findViewById(R.id.keybtnShift);
         keybtnShift.setOnClickListener(new OnCnEnSubsClickListener(context));
-        keybtnShift.setTextColor(Color.RED);
+        keybtnShift.setTextColor(Color.DKGRAY);
 
         keyboardView.findViewById(R.id.keybtnSpace)
                 .setOnClickListener(new OnSpaceClickListener(context));
@@ -93,7 +93,7 @@ public class KeyboardBodyIniter {
 
         // 數字鍵
         Button btnNum = (Button) keyboardView.findViewById(R.id.keybtnNum);
-        btnNum.setTextColor(Color.RED);
+        btnNum.setTextColor(Color.DKGRAY);
         btnNum.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +116,7 @@ public class KeyboardBodyIniter {
 
         // 符號鍵
         Button btnSim = (Button) keyboardView.findViewById(R.id.keybtnSim);
-        btnSim.setTextColor(Color.RED);
+        btnSim.setTextColor(Color.DKGRAY);
         btnSim.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,13 +147,13 @@ public class KeyboardBodyIniter {
         // 逗號
         Button btnSimComma = (Button) keyboardView
                 .findViewById(R.id.keybtnSimComma);
-        btnSimComma.setTextColor(Color.RED);
+        btnSimComma.setTextColor(Color.DKGRAY);
         btnSimComma.setOnTouchListener(new OnCommaPeriodTouchListener(context));
 
         // 句號
         Button btnSimPeriod = (Button) keyboardView
                 .findViewById(R.id.keybtnSimPeriod);
-        btnSimPeriod.setTextColor(Color.RED);
+        btnSimPeriod.setTextColor(Color.DKGRAY);
         btnSimPeriod
                 .setOnTouchListener(new OnCommaPeriodTouchListener(context));
 

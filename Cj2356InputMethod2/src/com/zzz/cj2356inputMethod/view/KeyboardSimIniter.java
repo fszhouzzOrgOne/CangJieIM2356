@@ -88,7 +88,8 @@ public class KeyboardSimIniter {
         // 箭頭
         simMap.put(PAGE_ARROW_KEY, UnicodeSimUtil.getArrowListString());
         // 上下標
-        simMap.put(PAGE_SSSCRPT_KEY, UnicodeSimUtil.getSuperSubScriptListString());
+        simMap.put(PAGE_SSSCRPT_KEY,
+                UnicodeSimUtil.getSuperSubScriptListString());
         // 數學
         simMap.put(PAGE_MATH_KEY, UnicodeSimUtil.getMathListByString());
         // 序號
@@ -110,7 +111,8 @@ public class KeyboardSimIniter {
         // 拉丁
         simMap.put(PAGE_LATIN_KEY, UnicodeSimUtil.getLatinListString());
         // 希俄
-        simMap.put(PAGE_GREERUSSIA_KEY, UnicodeSimUtil.getGreerussiaListString());
+        simMap.put(PAGE_GREERUSSIA_KEY,
+                UnicodeSimUtil.getGreerussiaListString());
         // 製表
         simMap.put(PAGE_TAB_KEY, UnicodeSimUtil.getTableListString());
 
@@ -145,11 +147,13 @@ public class KeyboardSimIniter {
         context = con;
         keyboardView = kbView;
 
-        keyboardBodySimGrid = (GridView) keyboardView.findViewById(R.id.keyboardBodySimGrid);
+        keyboardBodySimGrid = (GridView) keyboardView
+                .findViewById(R.id.keyboardBodySimGrid);
 
         // keyboardBodySimScroll =
         // keyboardView.findViewById(R.id.keyboardBodySimScroll);
-        keyboardBodySimScrollContent = (LinearLayout) keyboardView.findViewById(R.id.keyboardBodySimScrollContent);
+        keyboardBodySimScrollContent = (LinearLayout) keyboardView
+                .findViewById(R.id.keyboardBodySimScrollContent);
 
         keyboardBodySimScrollViews = new ArrayList<TextView>();
         Iterator<String> itr = typeNameKeyMap.keySet().iterator();
@@ -160,37 +164,51 @@ public class KeyboardSimIniter {
             textView.setTextSize(16);
             textView.setGravity(Gravity.CENTER | Gravity.CENTER_VERTICAL);
             textView.setSingleLine();
-            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(DipPxUtil.dip(context, 80),
+            RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
+                    DipPxUtil.dip(context, 80),
                     RelativeLayout.LayoutParams.MATCH_PARENT);
             textView.setLayoutParams(lpParams);
             textView.setBackgroundResource(R.drawable.num_button_selector);
 
-            textView.setOnClickListener(new MyKeyboardBodySimScrollClickListener(context));
+            textView.setOnClickListener(
+                    new MyKeyboardBodySimScrollClickListener(context));
 
             keyboardBodySimScrollContent.addView(textView);
             keyboardBodySimScrollViews.add(textView);
         }
 
-        prePageButton = (Button) keyboardView.findViewById(R.id.keybtnSimPreviousPage);
-        prePageButton.setOnClickListener(new OnPrePageButtonClickListener(context));
-        nextPageButton = (Button) keyboardView.findViewById(R.id.keybtnSimNextPage);
-        nextPageButton.setOnClickListener(new OnNextPageButtonClickListener(context));
+        prePageButton = (Button) keyboardView
+                .findViewById(R.id.keybtnSimPreviousPage);
+        prePageButton.setTextColor(Color.RED);
+        prePageButton
+                .setOnClickListener(new OnPrePageButtonClickListener(context));
+        nextPageButton = (Button) keyboardView
+                .findViewById(R.id.keybtnSimNextPage);
+        nextPageButton.setTextColor(Color.RED);
+        nextPageButton
+                .setOnClickListener(new OnNextPageButtonClickListener(context));
 
         // 刪除鍵
-        keyboardView.findViewById(R.id.keybtnSimDelete).setOnClickListener(new OnDeleteNumClickListener(context));
         keyboardView.findViewById(R.id.keybtnSimDelete)
-                .setOnLongClickListener(new OnDeleteNumLongClickListener(context));
+                .setOnClickListener(new OnDeleteNumClickListener(context));
+        keyboardView.findViewById(R.id.keybtnSimDelete).setOnLongClickListener(
+                new OnDeleteNumLongClickListener(context));
         // 刪除右邊
         keyboardView.findViewById(R.id.keybtnSimDeleteRight)
                 .setOnClickListener(new OnDeleteRightClickListener(context));
         keyboardView.findViewById(R.id.keybtnSimDeleteRight)
-                .setOnLongClickListener(new OnDeleteRightLongClickListener(context));
+                .setOnLongClickListener(
+                        new OnDeleteRightLongClickListener(context));
         // 符號鍵盤返回
-        keyboardView.findViewById(R.id.keybtnSimBack).setOnClickListener(new OnClickListener() {
+        Button btnSimBack = (Button) keyboardView
+                .findViewById(R.id.keybtnSimBack);
+        btnSimBack.setTextColor(Color.RED);
+        btnSimBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 界面切換
-                ViewFlipper viewFlipper = (ViewFlipper) keyboardView.findViewById(R.id.keyboardBodyFlipper);
+                ViewFlipper viewFlipper = (ViewFlipper) keyboardView
+                        .findViewById(R.id.keyboardBodyFlipper);
                 viewFlipper.showPrevious();
                 viewFlipper.showPrevious();
             }
@@ -218,7 +236,8 @@ public class KeyboardSimIniter {
         setTabBiggerTextSiz(index);
         if (null != keyboardView) {
             // 左移焦點
-            HorizontalScrollView sv = (HorizontalScrollView) keyboardView.findViewById(R.id.keyboardBodySimScroll);
+            HorizontalScrollView sv = (HorizontalScrollView) keyboardView
+                    .findViewById(R.id.keyboardBodySimScroll);
             sv.scrollTo(0, 0);
         }
     }
@@ -274,7 +293,8 @@ public class KeyboardSimIniter {
         return content.subList(start, end + 1);
     }
 
-    private static void setkeyboardBodySimGridKeys(Context context, String simMapKey) {
+    private static void setkeyboardBodySimGridKeys(Context context,
+            String simMapKey) {
         try {
             currentSimMapKey = simMapKey;
             Integer rowSize = getSimRowSize(simMapKey.split("_")[0]);
@@ -287,8 +307,8 @@ public class KeyboardSimIniter {
                 map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha);
                 valueList.add(map);
             }
-            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(context, valueList, R.layout.keyboardsimitem,
-                    true);
+            KeyBoardNumAdapter keyBoardSimAdapter = new KeyBoardNumAdapter(
+                    context, valueList, R.layout.keyboardsimitem, true);
             keyboardBodySimGrid.setNumColumns(rowSize);
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
 
@@ -334,7 +354,8 @@ public class KeyboardSimIniter {
      * @author fszhouzz@qq.com
      * @time 2017年11月1日上午9:15:09
      */
-    private static class MyKeyboardBodySimScrollClickListener implements View.OnClickListener {
+    private static class MyKeyboardBodySimScrollClickListener
+            implements View.OnClickListener {
 
         private Context context;
 
@@ -349,11 +370,13 @@ public class KeyboardSimIniter {
             int index = keyboardBodySimScrollViews.indexOf(tv);
             setTabBiggerTextSiz(index);
 
-            setkeyboardBodySimGridKeys(context, typeNameKeyMap.get(tv.getText()) + "_" + 1);
+            setkeyboardBodySimGridKeys(context,
+                    typeNameKeyMap.get(tv.getText()) + "_" + 1);
         }
     }
 
-    private static class OnPrePageButtonClickListener implements OnClickListener {
+    private static class OnPrePageButtonClickListener
+            implements OnClickListener {
 
         private Context context;
 
@@ -370,14 +393,16 @@ public class KeyboardSimIniter {
                     return;
                 } else {
                     int topage = page - 1;
-                    String simMapKey = currentSimMapKey.split("_")[0] + "_" + topage;
+                    String simMapKey = currentSimMapKey.split("_")[0] + "_"
+                            + topage;
                     setkeyboardBodySimGridKeys(context, simMapKey);
                 }
             }
         }
     }
 
-    private static class OnNextPageButtonClickListener implements OnClickListener {
+    private static class OnNextPageButtonClickListener
+            implements OnClickListener {
 
         private Context context;
 
@@ -394,7 +419,8 @@ public class KeyboardSimIniter {
                     return;
                 } else {
                     int topage = page + 1;
-                    String simMapKey = currentSimMapKey.split("_")[0] + "_" + topage;
+                    String simMapKey = currentSimMapKey.split("_")[0] + "_"
+                            + topage;
                     setkeyboardBodySimGridKeys(context, simMapKey);
                 }
             }
