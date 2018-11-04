@@ -81,7 +81,7 @@ public class KeyboardBodyIniter {
 
         // 空格
         Button btnSpace = (Button) keyboardView.findViewById(R.id.keybtnSpace);
-        btnSpace.setTextColor(Color.RED);
+        btnSpace.setTextColor(Color.DKGRAY);
         btnSpace.setOnClickListener(new OnSpaceClickListener(context));
 
         // 刪除
