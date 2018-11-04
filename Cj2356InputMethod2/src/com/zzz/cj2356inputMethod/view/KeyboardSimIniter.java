@@ -313,8 +313,21 @@ public class KeyboardSimIniter {
             keyboardBodySimGrid.setAdapter(keyBoardSimAdapter);
 
             int totalPage = getKeyboardSimLastPage();
-            prePageButton.setEnabled(!(page == 1));
-            nextPageButton.setEnabled(!(page == totalPage));
+            // 翻頁按鈕的顯示
+            if (page == 1) {
+                prePageButton.setEnabled(false);
+                prePageButton.setTextColor(Color.LTGRAY);
+            } else {
+                prePageButton.setEnabled(true);
+                prePageButton.setTextColor(Color.DKGRAY);
+            }
+            if (page == totalPage) {
+                nextPageButton.setEnabled(false);
+                nextPageButton.setTextColor(Color.LTGRAY);
+            } else {
+                nextPageButton.setEnabled(true);
+                nextPageButton.setTextColor(Color.DKGRAY);
+            }
         } catch (Exception e) {
         }
     }
