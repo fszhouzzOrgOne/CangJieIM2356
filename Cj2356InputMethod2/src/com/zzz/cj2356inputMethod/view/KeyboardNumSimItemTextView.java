@@ -30,7 +30,7 @@ public class KeyboardNumSimItemTextView extends TextView {
     public KeyboardNumSimItemTextView(Context context, String text) {
         super(context);
         this.context = context;
-        setTextColor(Color.RED);
+        setTextColor(Color.DKGRAY);
         setText(text);
         this.setMinimumHeight(DipPxUtil.dip(context, 45));
 

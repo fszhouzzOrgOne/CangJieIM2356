@@ -29,7 +29,6 @@ public class KeyBoardNumItemButton extends Button {
     public KeyBoardNumItemButton(Context context) {
         super(context);
         this.context = context;
-        setTextColor(Color.RED);
     }
 
     public KeyBoardNumItemButton(Context context, AttributeSet attrs) {
@@ -49,6 +48,7 @@ public class KeyBoardNumItemButton extends Button {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        setTextColor(Color.DKGRAY);
 
         // 展示統一碼碼位
         String cha = null == this.getText() ? "" : this.getText().toString();
