@@ -48,7 +48,8 @@ public class KeyboardBodyIniter {
     private static Button keybtnShift; // 中文換代鍵，英文大小寫轉換鍵
     private static InputMethodStatus inputStat; // 當前輸入法狀態
 
-    public static void initKeyboardBody(Context con, View kbView, Integer keyboardId) {
+    public static void initKeyboardBody(Context con, View kbView,
+            Integer keyboardId) {
         context = con;
         keyboardView = kbView;
 
@@ -65,8 +66,10 @@ public class KeyboardBodyIniter {
 
     private static void initKeyboardLayout(int keyboardId) {
         // 裝入鍵盤
-        View keyboard = ((InputMethodService) context).getLayoutInflater().inflate(keyboardId, null);
-        LinearLayout keyboardBody = (LinearLayout) keyboardView.findViewById(R.id.keyboardBodyContent);
+        View keyboard = ((InputMethodService) context).getLayoutInflater()
+                .inflate(keyboardId, null);
+        LinearLayout keyboardBody = (LinearLayout) keyboardView
+                .findViewById(R.id.keyboardBodyContent);
         keyboardBody.removeAllViews();
         keyboardBody.addView(keyboard);
 
@@ -74,17 +77,24 @@ public class KeyboardBodyIniter {
 
         keybtnShift = (Button) keyboardView.findViewById(R.id.keybtnShift);
         keybtnShift.setOnClickListener(new OnCnEnSubsClickListener(context));
+        keybtnShift.setTextColor(Color.RED);
 
-        keyboardView.findViewById(R.id.keybtnSpace).setOnClickListener(new OnSpaceClickListener(context));
+        keyboardView.findViewById(R.id.keybtnSpace)
+                .setOnClickListener(new OnSpaceClickListener(context));
 
         // 刪除
-        keyboardView.findViewById(R.id.keybtnDelete).setOnClickListener(new OnDeleteClickListener(context));
-        keyboardView.findViewById(R.id.keybtnDelete).setOnLongClickListener(new OnDeleteLongClickListener(context));
+        keyboardView.findViewById(R.id.keybtnDelete)
+                .setOnClickListener(new OnDeleteClickListener(context));
+        keyboardView.findViewById(R.id.keybtnDelete)
+                .setOnLongClickListener(new OnDeleteLongClickListener(context));
 
-        keyboardView.findViewById(R.id.keybtnEnter).setOnClickListener(new OnEnterClickListener(context));
+        keyboardView.findViewById(R.id.keybtnEnter)
+                .setOnClickListener(new OnEnterClickListener(context));
 
         // 數字鍵
-        keyboardView.findViewById(R.id.keybtnNum).setOnClickListener(new OnClickListener() {
+        Button btnNum = (Button) keyboardView.findViewById(R.id.keybtnNum);
+        btnNum.setTextColor(Color.RED);
+        btnNum.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != inputStat) {
@@ -98,20 +108,24 @@ public class KeyboardBodyIniter {
                 }
 
                 // 界面切換
-                ViewFlipper viewFlipper = (ViewFlipper) keyboardView.findViewById(R.id.keyboardBodyFlipper);
+                ViewFlipper viewFlipper = (ViewFlipper) keyboardView
+                        .findViewById(R.id.keyboardBodyFlipper);
                 viewFlipper.showNext();
             }
         });
 
         // 符號鍵
-        keyboardView.findViewById(R.id.keybtnSim).setOnClickListener(new OnClickListener() {
+        Button btnSim = (Button) keyboardView.findViewById(R.id.keybtnSim);
+        btnSim.setTextColor(Color.RED);
+        btnSim.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     if (null != inputStat) {
                         // 停止中文輸入狀態
                         if (inputStat.isShouldTranslate()) {
-                            if (((InputMethodStatusCn) inputStat).isInputingCn()) {
+                            if (((InputMethodStatusCn) inputStat)
+                                    .isInputingCn()) {
                                 // 先模擬點擊一下打字鍵盤上的回車
                                 performClickEnter();
                             }
@@ -119,20 +133,29 @@ public class KeyboardBodyIniter {
                     }
 
                     // 界面切換
-                    ViewFlipper viewFlipper = (ViewFlipper) keyboardView.findViewById(R.id.keyboardBodyFlipper);
+                    ViewFlipper viewFlipper = (ViewFlipper) keyboardView
+                            .findViewById(R.id.keyboardBodyFlipper);
                     viewFlipper.showNext();
                     viewFlipper.showNext();
                 } catch (Exception e) {
-                    Toast.makeText(context, "跳转到符號鍵鍵盤失敗" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "跳转到符號鍵鍵盤失敗" + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
                 }
             }
         });
 
         // 逗號
-        keyboardView.findViewById(R.id.keybtnSimComma).setOnTouchListener(new OnCommaPeriodTouchListener(context));
+        Button btnSimComma = (Button) keyboardView
+                .findViewById(R.id.keybtnSimComma);
+        btnSimComma.setTextColor(Color.RED);
+        btnSimComma.setOnTouchListener(new OnCommaPeriodTouchListener(context));
 
         // 句號
-        keyboardView.findViewById(R.id.keybtnSimPeriod).setOnTouchListener(new OnCommaPeriodTouchListener(context));
+        Button btnSimPeriod = (Button) keyboardView
+                .findViewById(R.id.keybtnSimPeriod);
+        btnSimPeriod.setTextColor(Color.RED);
+        btnSimPeriod
+                .setOnTouchListener(new OnCommaPeriodTouchListener(context));
 
         currentKeyboardId = keyboardId;
     }
@@ -231,26 +254,33 @@ public class KeyboardBodyIniter {
         // 輸入法切換和逗號句號要特殊處理
         if (inputStat.isShouldTranslate()) {
             keybtnShift.setText(inputStat.getSubTypeName());
-            Button commaBtn = ((Button) keyboardView.findViewById(R.id.keybtnSimComma));
+            Button commaBtn = ((Button) keyboardView
+                    .findViewById(R.id.keybtnSimComma));
             if (inputStat instanceof InputMethodStatusCnElseKarina) {
                 commaBtn.setText("、");
             } else {
                 commaBtn.setText("，");
             }
-            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod)).setText("。");
+            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod))
+                    .setText("。");
         } else {
             keybtnShift.setText(inputStat.getSubType());
-            ((Button) keyboardView.findViewById(R.id.keybtnSimComma)).setText(",");
-            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod)).setText(".");
+            ((Button) keyboardView.findViewById(R.id.keybtnSimComma))
+                    .setText(",");
+            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod))
+                    .setText(".");
         }
 
         // 26個按鍵背景修改
         String testKey = "a";
-        if (InputMethodStatusEnScriptaa.SUBTYPE_CODE.equals(inputStat.getSubType())
-                || InputMethodStatusEnScriptAb.SUBTYPE_CODE.equals(inputStat.getSubType())
-                || InputMethodStatusEnScriptAC.SUBTYPE_CODE.equals(inputStat.getSubType())
-                || (inputStat.isShouldTranslate()
-                        && (!testKey.toUpperCase().equals(inputStat.getKeysNameMap().get(testKey))))) {
+        if (InputMethodStatusEnScriptaa.SUBTYPE_CODE
+                .equals(inputStat.getSubType())
+                || InputMethodStatusEnScriptAb.SUBTYPE_CODE
+                        .equals(inputStat.getSubType())
+                || InputMethodStatusEnScriptAC.SUBTYPE_CODE
+                        .equals(inputStat.getSubType())
+                || (inputStat.isShouldTranslate() && (!testKey.toUpperCase()
+                        .equals(inputStat.getKeysNameMap().get(testKey))))) {
             for (int i = 0; i < letterViews.size(); i++) {
                 View v = letterViews.get(i);
                 v.setBackgroundResource(letterViewsBgIds.get(i));
@@ -263,12 +293,14 @@ public class KeyboardBodyIniter {
             if (MbUtils.TYPE_CODE_PINYIN.equals(inputStat.getSubType())
                     || MbUtils.TYPE_CODE_ZYFH.equals(inputStat.getSubType())) {
                 View vm = keyboardView.findViewById(R.id.keybtnM);
-                vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
+                vm.setBackgroundResource(
+                        R.drawable.keyboard_button_tone_selector);
             }
             // 粵語拼音：Q加聲調背景
             if (MbUtils.TYPE_CODE_JYUTPING.equals(inputStat.getSubType())) {
                 View vv = keyboardView.findViewById(R.id.keybtnQ);
-                vv.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
+                vv.setBackgroundResource(
+                        R.drawable.keyboard_button_tone_selector);
             }
         }
 
@@ -279,7 +311,8 @@ public class KeyboardBodyIniter {
             if (StringUtils.hasText(tempName)) {
                 spaceName = "[" + tempName + "]";
             }
-            ((Button) keyboardView.findViewById(R.id.keybtnSpace)).setText(spaceName);
+            ((Button) keyboardView.findViewById(R.id.keybtnSpace))
+                    .setText(spaceName);
         } catch (Exception e) {
 
         }
@@ -296,7 +329,8 @@ public class KeyboardBodyIniter {
      */
     public static void performClickEnter() {
         if (null != keyboardView) {
-            ImageButton keyboardEnter = (ImageButton) keyboardView.findViewById(R.id.keybtnEnter);
+            ImageButton keyboardEnter = (ImageButton) keyboardView
+                    .findViewById(R.id.keybtnEnter);
             if (null != keyboardEnter) {
                 keyboardEnter.performClick();
             }
