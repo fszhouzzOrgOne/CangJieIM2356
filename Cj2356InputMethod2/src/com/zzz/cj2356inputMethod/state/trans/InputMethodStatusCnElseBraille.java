@@ -58,17 +58,17 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
 
     @Override
     public String getInputingCnValueForEnter() {
-        return this.getInputingCnCode();
+        return this.getInputingCnValue();
     }
 
     @Override
     public String getComposingTextForInputConn() {
-        return this.getInputingCnCode();
+        return this.getInputingCnValue();
     }
 
     @Override
     public String getComposingTextForCandidateView() {
-        return this.getInputingCnCode();
+        return this.getInputingCnValue();
     }
 
     @Override
