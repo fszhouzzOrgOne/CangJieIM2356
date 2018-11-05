@@ -15,6 +15,7 @@
 	        android:id="@+id/tv_character"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
+	        android:gravity="center"
 	        android:textSize="24sp" 
 	        android:textColor="#333333"
 	        android:focusable="false"/>
