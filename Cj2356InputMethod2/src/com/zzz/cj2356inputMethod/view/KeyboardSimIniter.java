@@ -33,6 +33,15 @@ import android.widget.ViewFlipper;
 public class KeyboardSimIniter {
     private static Integer SIM_PAGE_ROW = 4;
 
+    /** 一行幾個，下面有設置到@+id/keyboardBodySimGrid */
+    private static Integer getSimRowSize(String currentSimMapKey) {
+        if (PAGE_Biaoqing_KEY.equals(currentSimMapKey)) {
+            return 3;
+        } else {
+            return 5;
+        }
+    }
+
     private static String currentSimMapKey = null;
     private static Context context;
     private static View keyboardView;
@@ -329,15 +338,6 @@ public class KeyboardSimIniter {
                 nextPageButton.setTextColor(Color.DKGRAY);
             }
         } catch (Exception e) {
-        }
-    }
-
-    /** 一行幾個，下面有設置到@+id/keyboardBodySimGrid */
-    private static Integer getSimRowSize(String currentSimMapKey) {
-        if (PAGE_Biaoqing_KEY.equals(currentSimMapKey)) {
-            return 4;
-        } else {
-            return 5;
         }
     }
 
