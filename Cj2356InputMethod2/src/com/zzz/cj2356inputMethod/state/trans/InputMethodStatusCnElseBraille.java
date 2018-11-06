@@ -23,6 +23,8 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_CJGENBRAILLE);
         this.setSubTypeName("盲");
+
+        BrailleTest.init(con);
     }
 
     @Override
