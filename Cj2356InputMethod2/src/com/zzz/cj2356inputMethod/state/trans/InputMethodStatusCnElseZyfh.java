@@ -2,10 +2,12 @@ package com.zzz.cj2356inputMethod.state.trans;
 
 import java.util.List;
 
+import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 
 import android.content.Context;
+import android.view.View;
 
 /**
  * 注音符號
@@ -22,13 +24,23 @@ public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
     }
 
     @Override
+    public void setKeysBackground(List<View> letterViews,
+            List<Integer> letterViewsBgIds) {
+        super.setKeysBackground(letterViews, letterViewsBgIds);
+        // 官話拼音、注音符號：m加聲調背景
+        View vm = letterViews.get(7 + 6 - 1);
+        vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
+    }
+
+    @Override
     public String getInputMethodName() {
         return MbUtils.getInputMethodName(MbUtils.TYPE_CODE_ZYFH);
     }
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_ZYFH, code, true, code, false);
+        return MbUtils.selectDbByCode(MbUtils.TYPE_CODE_ZYFH, code, true, code,
+                false);
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.zzz.cj2356inputMethod.state.en;
 
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.view.View;
 
 public class InputMethodStatusEnScriptAC extends InputMethodStatusEn {
 
@@ -13,6 +15,15 @@ public class InputMethodStatusEnScriptAC extends InputMethodStatusEn {
         super(con);
         this.setSubType(SUBTYPE_CODE);
         this.setSubTypeName(SUBTYPE_NAME);
+    }
+
+    @Override
+    public void setKeysBackground(List<View> letterViews,
+            List<Integer> letterViewsBgIds) {
+        for (int i = 0; i < letterViews.size(); i++) {
+            View v = letterViews.get(i);
+            v.setBackgroundResource(letterViewsBgIds.get(i));
+        }
     }
 
     @Override

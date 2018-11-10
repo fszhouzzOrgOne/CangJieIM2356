@@ -1,9 +1,11 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.view.View;
 
 /**
  * 倉頡輸入法
@@ -14,6 +16,15 @@ public abstract class InputMethodStatusCnCj extends InputMethodStatusCn {
         super(con);
         this.setType("cj");
         this.setTypeName("倉");
+    }
+
+    @Override
+    public void setKeysBackground(List<View> letterViews,
+            List<Integer> letterViewsBgIds) {
+        for (int i = 0; i < letterViews.size(); i++) {
+            View v = letterViews.get(i);
+            v.setBackgroundResource(letterViewsBgIds.get(i));
+        }
     }
 
     @Override

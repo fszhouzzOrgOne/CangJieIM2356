@@ -11,11 +11,7 @@ import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
-import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAC;
-import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAb;
-import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
@@ -258,37 +254,7 @@ public class KeyboardBodyIniter {
                 .setText(inputStat.getPeriodBtnText());
 
         // 26個按鍵背景修改
-        String testKey = "a";
-        if (InputMethodStatusEnScriptaa.SUBTYPE_CODE
-                .equals(inputStat.getSubType())
-                || InputMethodStatusEnScriptAb.SUBTYPE_CODE
-                        .equals(inputStat.getSubType())
-                || InputMethodStatusEnScriptAC.SUBTYPE_CODE
-                        .equals(inputStat.getSubType())
-                || (inputStat.isShouldTranslate() && (!testKey.toUpperCase()
-                        .equals(inputStat.getKeyValue(testKey))))) {
-            for (int i = 0; i < letterViews.size(); i++) {
-                View v = letterViews.get(i);
-                v.setBackgroundResource(letterViewsBgIds.get(i));
-            }
-        } else {
-            for (View v : letterViews) {
-                v.setBackgroundResource(R.drawable.keyboard_button_selector);
-            }
-            // 官話拼音、注音符號：m加聲調背景
-            if (MbUtils.TYPE_CODE_PINYIN.equals(inputStat.getSubType())
-                    || MbUtils.TYPE_CODE_ZYFH.equals(inputStat.getSubType())) {
-                View vm = keyboardView.findViewById(R.id.keybtnM);
-                vm.setBackgroundResource(
-                        R.drawable.keyboard_button_tone_selector);
-            }
-            // 粵語拼音：Q加聲調背景
-            if (MbUtils.TYPE_CODE_JYUTPING.equals(inputStat.getSubType())) {
-                View vv = keyboardView.findViewById(R.id.keybtnQ);
-                vv.setBackgroundResource(
-                        R.drawable.keyboard_button_tone_selector);
-            }
-        }
+        inputStat.setKeysBackground(letterViews, letterViewsBgIds);
 
         // 空格上顯示輸入法名字
         String spaceName = "空格";
@@ -300,7 +266,6 @@ public class KeyboardBodyIniter {
             ((Button) keyboardView.findViewById(R.id.keybtnSpace))
                     .setText(spaceName);
         } catch (Exception e) {
-
         }
     }
 

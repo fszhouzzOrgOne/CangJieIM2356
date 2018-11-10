@@ -6,11 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.view.CandidateItemTextView;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -30,6 +32,15 @@ public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
     }
 
     @Override
+    public void setKeysBackground(List<View> letterViews,
+            List<Integer> letterViewsBgIds) {
+        super.setKeysBackground(letterViews, letterViewsBgIds);
+        // 粵語拼音：Q加聲調背景
+        View vq = letterViews.get(7 + 7 + 3 - 1);
+        vq.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
+    }
+
+    @Override
     public String getInputMethodName() {
         return MbUtils.getInputMethodName(MbUtils.TYPE_CODE_JYUTPING);
     }
@@ -42,9 +53,10 @@ public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
         // 只有沒有聲調的才模糊查詢，有聲調了就不再模糊查詢了
-        boolean isPrompt = null != code && code.trim().length() > 0 && !code.endsWith(TONE_REPLACE_CHAR);
-        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_JYUTPING, code, isPrompt, code + TONE_REPLACE_CHAR,
-                extraResolve);
+        boolean isPrompt = null != code && code.trim().length() > 0
+                && !code.endsWith(TONE_REPLACE_CHAR);
+        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_JYUTPING,
+                code, isPrompt, code + TONE_REPLACE_CHAR, extraResolve);
 
         // 排序
         if (null != items && !items.isEmpty()) {
@@ -68,12 +80,15 @@ public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
                     }
                 });
             } catch (Exception e) {
-                Toast.makeText(getContext(), "結果排序失敗：" + translateCode2Name(code), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),
+                        "結果排序失敗：" + translateCode2Name(code), Toast.LENGTH_LONG)
+                        .show();
             }
         }
 
         // 如果不展示編碼，就去褈
-        if (false == CandidateItemTextView.showEncode && null != items && !items.isEmpty()) {
+        if (false == CandidateItemTextView.showEncode && null != items
+                && !items.isEmpty()) {
             Set<String> chaSet = new HashSet<String>();
             for (int i = items.size() - 1; i >= 0; i--) {
                 Item it = items.get(i);

@@ -1,9 +1,13 @@
 package com.zzz.cj2356inputMethod.state;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.R;
+
 import android.content.Context;
+import android.view.View;
 
 /**
  * 當前輸入狀態
@@ -150,6 +154,23 @@ public abstract class InputMethodStatus {
      * @return
      */
     public abstract String getShiftBtnText();
+
+    /**
+     * 設置各鍵的背景
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月10日 下午11:28:23
+     * @param letterViews
+     *            鍵按鈕
+     * @param letterViewsBgIds
+     *            英文小寫背景id列表
+     */
+    public void setKeysBackground(List<View> letterViews,
+            List<Integer> letterViewsBgIds) {
+        for (View v : letterViews) {
+            v.setBackgroundResource(R.drawable.keyboard_button_selector);
+        }
+    }
 
     public String getType() {
         return type;
