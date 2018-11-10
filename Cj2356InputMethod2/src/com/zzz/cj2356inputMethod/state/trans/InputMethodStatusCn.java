@@ -61,14 +61,13 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
      */
     public String translateCode2Name(String str) {
         String result = null;
-        Map<String, Object> map = getKeysNameMap();
-        if (null != map && StringUtils.hasText(str)) {
+        if (StringUtils.hasText(str)) {
             for (int index = 0; index < str.length(); index++) {
                 Character c = str.charAt(index);
                 if (null == result) {
                     result = "";
                 }
-                result += map.get(c.toString());
+                result += getKeyNameValue(c.toString());
             }
         }
         return result;
