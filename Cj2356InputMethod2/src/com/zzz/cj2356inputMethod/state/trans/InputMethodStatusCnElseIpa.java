@@ -22,13 +22,24 @@ public class InputMethodStatusCnElseIpa extends InputMethodStatusCnElse {
     }
 
     @Override
+    public String getCommaBtnText() {
+        return ",";
+    }
+
+    @Override
+    public String getPeriodBtnText() {
+        return ".";
+    }
+
+    @Override
     public String getInputMethodName() {
         return MbUtils.getInputMethodName(this.getSubType());
     }
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
-        return MbUtils.selectDbByCode(this.getSubType(), code, false, code, false);
+        return MbUtils.selectDbByCode(this.getSubType(), code, false, code,
+                false);
     }
 
     @Override
