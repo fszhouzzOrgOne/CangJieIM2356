@@ -35,38 +35,40 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
             List<Integer> letterViewsBgIds) {
         super.setKeysBackground(letterViews, letterViewsBgIds);
         // 盲文背景
+        letterViews.get(15).setBackgroundResource(
+                R.drawable.keyboard_button_00000000_selector);
         letterViews.get(0).setBackgroundResource(
-                R.drawable.background_button_braille0000);
+                R.drawable.keyboard_button_0000_selector);
         letterViews.get(18).setBackgroundResource(
-                R.drawable.background_button_braille0010);
+                R.drawable.keyboard_button_0010_selector);
         letterViews.get(3).setBackgroundResource(
-                R.drawable.background_button_braille0001);
+                R.drawable.keyboard_button_0001_selector);
         letterViews.get(5).setBackgroundResource(
-                R.drawable.background_button_braille0011);
+                R.drawable.keyboard_button_0011_selector);
         letterViews.get(6).setBackgroundResource(
-                R.drawable.background_button_braille1000);
+                R.drawable.keyboard_button_1000_selector);
         letterViews.get(7).setBackgroundResource(
-                R.drawable.background_button_braille1010);
+                R.drawable.keyboard_button_1010_selector);
         letterViews.get(9).setBackgroundResource(
-                R.drawable.background_button_braille1001);
+                R.drawable.keyboard_button_1001_selector);
         letterViews.get(10).setBackgroundResource(
-                R.drawable.background_button_braille1011);
+                R.drawable.keyboard_button_1011_selector);
         letterViews.get(11).setBackgroundResource(
-                R.drawable.background_button_braille0100);
+                R.drawable.keyboard_button_0100_selector);
         letterViews.get(25).setBackgroundResource(
-                R.drawable.background_button_braille0110);
+                R.drawable.keyboard_button_0110_selector);
         letterViews.get(23).setBackgroundResource(
-                R.drawable.background_button_braille0101);
+                R.drawable.keyboard_button_0101_selector);
         letterViews.get(2).setBackgroundResource(
-                R.drawable.background_button_braille0111);
+                R.drawable.keyboard_button_0111_selector);
         letterViews.get(21).setBackgroundResource(
-                R.drawable.background_button_braille1100);
+                R.drawable.keyboard_button_1100_selector);
         letterViews.get(1).setBackgroundResource(
-                R.drawable.background_button_braille1110);
+                R.drawable.keyboard_button_1110_selector);
         letterViews.get(13).setBackgroundResource(
-                R.drawable.background_button_braille1101);
+                R.drawable.keyboard_button_1101_selector);
         letterViews.get(12).setBackgroundResource(
-                R.drawable.background_button_braille1111);
+                R.drawable.keyboard_button_1111_selector);
     }
 
     @Override
