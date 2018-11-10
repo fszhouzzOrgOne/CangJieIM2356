@@ -55,7 +55,7 @@ public class OnDeleteClickListener implements OnClickListener {
                         for (int index = 0; index < getInputingCnCode.length() - 1; index++) {
                             Character thecode = getInputingCnCode.charAt(index);
                             code += thecode.toString();
-                            value += ((InputMethodStatusCn) stat).getKeysNameMap().get(thecode.toString());
+                            value += ((InputMethodStatusCn) stat).getKeyNameValue(thecode.toString());
                         }
 
                         // 先置空，再放進去

@@ -1,9 +1,7 @@
 package com.zzz.cj2356inputMethod.view;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
@@ -225,9 +223,10 @@ public class KeyboardBodyIniter {
         letterViewsBgIds.add(R.drawable.keyboard_button_y_selector);
         letterViewsBgIds.add(R.drawable.keyboard_button_z_selector);
 
-        for (View v : letterViews) {
-            ((Button) v).setTextColor(Color.BLACK);
-            v.setOnTouchListener(new OnKeyTouchListener(context));
+        for (int i = 0; i < letterViews.size(); i++) {
+            Button v = (Button) letterViews.get(i);
+            v.setTextColor(Color.BLACK);
+            v.setOnTouchListener(new OnKeyTouchListener(context, i));
         }
     }
 
@@ -245,12 +244,11 @@ public class KeyboardBodyIniter {
         inputStat = stat; // 新狀態
 
         // 按鍵顯示的轉換
-        Map<String, Object> keysNameMap = inputStat.getKeysNameMap();
-        List<String> keysList = new ArrayList<String>(keysNameMap.keySet());
-        Collections.sort(keysList);
-        for (int i = 0; i < keysList.size(); i++) {
+        String keys = "abcdefghijklmnopqrstuvwxyz";
+        for (int i = 0; i < keys.length(); i++) {
+            String key = keys.charAt(i) + "";
             Button btn = (Button) letterViews.get(i);
-            btn.setText(keysNameMap.get(keysList.get(i)).toString());
+            btn.setText(stat.getKeyNameValue(key));
         }
 
         // 輸入法切換和逗號句號要特殊處理
@@ -282,7 +280,7 @@ public class KeyboardBodyIniter {
                 || InputMethodStatusEnScriptAC.SUBTYPE_CODE
                         .equals(inputStat.getSubType())
                 || (inputStat.isShouldTranslate() && (!testKey.toUpperCase()
-                        .equals(inputStat.getKeysNameMap().get(testKey))))) {
+                        .equals(inputStat.getKeyNameValue(testKey))))) {
             for (int i = 0; i < letterViews.size(); i++) {
                 View v = letterViews.get(i);
                 v.setBackgroundResource(letterViewsBgIds.get(i));

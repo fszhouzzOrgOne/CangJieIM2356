@@ -64,7 +64,7 @@ public abstract class InputMethodStatus {
      * @time 2018年7月19日 下午10:55:32
      * @return
      */
-    public Map<String, Object> getKeysNameMap() {
+    protected Map<String, Object> getKeysNameMap() {
         String letters1 = "abcdefghijklmnopqrstuvwxyz";
         String letters2 = letters1.toUpperCase();
         Map<String, Object> mbTransMap = new HashMap<String, Object>();
@@ -74,6 +74,11 @@ public abstract class InputMethodStatus {
             index++;
         }
         return mbTransMap;
+    }
+
+    public String getKeyNameValue(String key) {
+        Map<String, Object> map = getKeysNameMap();
+        return (String) map.get(key);
     }
 
     /**
