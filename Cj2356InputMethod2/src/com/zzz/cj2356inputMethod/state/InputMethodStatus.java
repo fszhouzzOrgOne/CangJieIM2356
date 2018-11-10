@@ -70,13 +70,34 @@ public abstract class InputMethodStatus {
         Map<String, Object> mbTransMap = new HashMap<String, Object>();
         int index = 0;
         while (index <= letters1.length() - 1) {
-            mbTransMap.put(letters1.substring(index, index + 1), letters2.substring(index, index + 1));
+            mbTransMap.put(letters1.substring(index, index + 1),
+                    letters2.substring(index, index + 1));
             index++;
         }
         return mbTransMap;
     }
 
-    public String getKeyNameValue(String key) {
+    /**
+     * 得到鍵對應的鍵名，用於展示
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月10日 下午10:35:37
+     * @param key
+     * @return
+     */
+    public String getKeyName(String key) {
+        return getKeyValue(key);
+    }
+
+    /**
+     * 得到鍵對應的值
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月10日 下午10:35:37
+     * @param key
+     * @return
+     */
+    public String getKeyValue(String key) {
         Map<String, Object> map = getKeysNameMap();
         return (String) map.get(key);
     }
@@ -137,8 +158,8 @@ public abstract class InputMethodStatus {
 
     @Override
     public String toString() {
-        return "InputMethodStatus [type=" + type + ", typeName=" + typeName + ", subType=" + subType + ", subTypeName="
-                + subTypeName + "]";
+        return "InputMethodStatus [type=" + type + ", typeName=" + typeName
+                + ", subType=" + subType + ", subTypeName=" + subTypeName + "]";
     }
 
     public void setNextStatus(InputMethodStatus nextStatus) {

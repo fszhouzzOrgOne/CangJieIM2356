@@ -248,7 +248,7 @@ public class KeyboardBodyIniter {
         for (int i = 0; i < keys.length(); i++) {
             String key = keys.charAt(i) + "";
             Button btn = (Button) letterViews.get(i);
-            btn.setText(stat.getKeyNameValue(key));
+            btn.setText(stat.getKeyValue(key));
         }
 
         // 輸入法切換和逗號句號要特殊處理
@@ -280,7 +280,7 @@ public class KeyboardBodyIniter {
                 || InputMethodStatusEnScriptAC.SUBTYPE_CODE
                         .equals(inputStat.getSubType())
                 || (inputStat.isShouldTranslate() && (!testKey.toUpperCase()
-                        .equals(inputStat.getKeyNameValue(testKey))))) {
+                        .equals(inputStat.getKeyValue(testKey))))) {
             for (int i = 0; i < letterViews.size(); i++) {
                 View v = letterViews.get(i);
                 v.setBackgroundResource(letterViewsBgIds.get(i));

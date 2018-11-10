@@ -67,7 +67,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
                 if (null == result) {
                     result = "";
                 }
-                result += getKeyNameValue(c.toString());
+                result += getKeyValue(c.toString());
             }
         }
         return result;

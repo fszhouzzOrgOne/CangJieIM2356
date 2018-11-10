@@ -50,7 +50,7 @@ public class OnKeyTouchListener implements OnTouchListener {
                 InputConnection inputConnection = ser
                         .getCurrentInputConnection();
                 InputMethodStatus stat = ser.getInputMethodStatus();
-                String value = (String) stat.getKeyNameValue(key);
+                String value = (String) stat.getKeyValue(key);
                 // 如果是中文輸入
                 if (stat.isShouldTranslate()) {
 
