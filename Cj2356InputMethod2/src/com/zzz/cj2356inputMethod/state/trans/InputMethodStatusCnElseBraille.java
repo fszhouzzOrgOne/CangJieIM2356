@@ -40,33 +40,33 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
         letterViews.get(0).setBackgroundResource(
                 R.drawable.keyboard_button_0000_selector);
         letterViews.get(18).setBackgroundResource(
-                R.drawable.keyboard_button_0010_selector);
-        letterViews.get(3).setBackgroundResource(
-                R.drawable.keyboard_button_0001_selector);
-        letterViews.get(5).setBackgroundResource(
-                R.drawable.keyboard_button_0011_selector);
-        letterViews.get(6).setBackgroundResource(
                 R.drawable.keyboard_button_1000_selector);
+        letterViews.get(3).setBackgroundResource(
+                R.drawable.keyboard_button_0100_selector);
+        letterViews.get(5).setBackgroundResource(
+                R.drawable.keyboard_button_1100_selector);
+        letterViews.get(6).setBackgroundResource(
+                R.drawable.keyboard_button_0010_selector);
         letterViews.get(7).setBackgroundResource(
                 R.drawable.keyboard_button_1010_selector);
         letterViews.get(9).setBackgroundResource(
-                R.drawable.keyboard_button_1001_selector);
-        letterViews.get(10).setBackgroundResource(
-                R.drawable.keyboard_button_1011_selector);
-        letterViews.get(11).setBackgroundResource(
-                R.drawable.keyboard_button_0100_selector);
-        letterViews.get(25).setBackgroundResource(
                 R.drawable.keyboard_button_0110_selector);
+        letterViews.get(10).setBackgroundResource(
+                R.drawable.keyboard_button_1110_selector);
+        letterViews.get(11).setBackgroundResource(
+                R.drawable.keyboard_button_0001_selector);
+        letterViews.get(25).setBackgroundResource(
+                R.drawable.keyboard_button_1001_selector);
         letterViews.get(23).setBackgroundResource(
                 R.drawable.keyboard_button_0101_selector);
         letterViews.get(2).setBackgroundResource(
-                R.drawable.keyboard_button_0111_selector);
-        letterViews.get(21).setBackgroundResource(
-                R.drawable.keyboard_button_1100_selector);
-        letterViews.get(1).setBackgroundResource(
-                R.drawable.keyboard_button_1110_selector);
-        letterViews.get(13).setBackgroundResource(
                 R.drawable.keyboard_button_1101_selector);
+        letterViews.get(21).setBackgroundResource(
+                R.drawable.keyboard_button_0011_selector);
+        letterViews.get(1).setBackgroundResource(
+                R.drawable.keyboard_button_1011_selector);
+        letterViews.get(13).setBackgroundResource(
+                R.drawable.keyboard_button_0111_selector);
         letterViews.get(12).setBackgroundResource(
                 R.drawable.keyboard_button_1111_selector);
     }

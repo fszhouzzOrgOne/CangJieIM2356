@@ -251,20 +251,20 @@ public class BrailleTest {
 
         keyMap2.put("p", "00000000");
         keyMap2.put("a", "0000");
-        keyMap2.put("s", "0010");
-        keyMap2.put("d", "0001");
-        keyMap2.put("f", "0011");
-        keyMap2.put("g", "1000");
+        keyMap2.put("s", "1000");
+        keyMap2.put("d", "0100");
+        keyMap2.put("f", "1100");
+        keyMap2.put("g", "0010");
         keyMap2.put("h", "1010");
-        keyMap2.put("j", "1001");
-        keyMap2.put("k", "1011");
-        keyMap2.put("l", "0100");
-        keyMap2.put("z", "0110");
+        keyMap2.put("j", "0110");
+        keyMap2.put("k", "1110");
+        keyMap2.put("l", "0001");
+        keyMap2.put("z", "1001");
         keyMap2.put("x", "0101");
-        keyMap2.put("c", "0111");
-        keyMap2.put("v", "1100");
-        keyMap2.put("b", "1110");
-        keyMap2.put("n", "1101");
+        keyMap2.put("c", "1101");
+        keyMap2.put("v", "0011");
+        keyMap2.put("b", "1011");
+        keyMap2.put("n", "0111");
         keyMap2.put("m", "1111");
     }
 
