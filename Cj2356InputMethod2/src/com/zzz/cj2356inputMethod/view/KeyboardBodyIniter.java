@@ -248,7 +248,7 @@ public class KeyboardBodyIniter {
         for (int i = 0; i < keys.length(); i++) {
             String key = keys.charAt(i) + "";
             Button btn = (Button) letterViews.get(i);
-            btn.setText(stat.getKeyValue(key));
+            btn.setText(stat.getKeyName(key));
         }
 
         // 輸入法切換和逗號句號要特殊處理

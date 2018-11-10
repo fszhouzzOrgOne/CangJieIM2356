@@ -1,6 +1,7 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -86,4 +87,17 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
         return mbTransMap;
     }
 
+    // 只有一排有展示
+    @Override
+    public String getKeyName(String key) {
+        String letters1 = "qwertyuio";
+        String letters2 = " 0 1 2 3 4 5 6 7 8";
+        Map<String, String> mbTransMap = new HashMap<String, String>();
+        int index = 0;
+        for (String one : letters2.trim().split(" +")) {
+            mbTransMap.put(letters1.substring(index, index + 1), one);
+            index++;
+        }
+        return mbTransMap.get(key);
+    }
 }
