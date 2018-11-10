@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 import com.zzz.cj2356inputMethod.utils.BrailleTest;
 
 import android.content.Context;
+import android.view.View;
 
 /**
  * 盲文
@@ -26,6 +28,45 @@ public class InputMethodStatusCnElseBraille extends InputMethodStatusCnElse {
         this.setSubTypeName("盲");
 
         BrailleTest.init(con);
+    }
+
+    @Override
+    public void setKeysBackground(List<View> letterViews,
+            List<Integer> letterViewsBgIds) {
+        super.setKeysBackground(letterViews, letterViewsBgIds);
+        // 盲文背景
+        letterViews.get(0).setBackgroundResource(
+                R.drawable.background_button_braille0000);
+        letterViews.get(18).setBackgroundResource(
+                R.drawable.background_button_braille0010);
+        letterViews.get(3).setBackgroundResource(
+                R.drawable.background_button_braille0001);
+        letterViews.get(5).setBackgroundResource(
+                R.drawable.background_button_braille0011);
+        letterViews.get(6).setBackgroundResource(
+                R.drawable.background_button_braille1000);
+        letterViews.get(7).setBackgroundResource(
+                R.drawable.background_button_braille1010);
+        letterViews.get(9).setBackgroundResource(
+                R.drawable.background_button_braille1001);
+        letterViews.get(10).setBackgroundResource(
+                R.drawable.background_button_braille1011);
+        letterViews.get(11).setBackgroundResource(
+                R.drawable.background_button_braille0100);
+        letterViews.get(25).setBackgroundResource(
+                R.drawable.background_button_braille0110);
+        letterViews.get(23).setBackgroundResource(
+                R.drawable.background_button_braille0101);
+        letterViews.get(2).setBackgroundResource(
+                R.drawable.background_button_braille0111);
+        letterViews.get(21).setBackgroundResource(
+                R.drawable.background_button_braille1100);
+        letterViews.get(1).setBackgroundResource(
+                R.drawable.background_button_braille1110);
+        letterViews.get(13).setBackgroundResource(
+                R.drawable.background_button_braille1101);
+        letterViews.get(12).setBackgroundResource(
+                R.drawable.background_button_braille1111);
     }
 
     @Override
