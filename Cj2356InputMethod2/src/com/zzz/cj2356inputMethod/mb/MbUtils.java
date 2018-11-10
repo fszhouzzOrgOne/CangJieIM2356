@@ -120,8 +120,12 @@ public class MbUtils {
     /**
      * 按字符查詢2
      */
-    public static ArrayList<Item> selectDbByChar(String[] typeCode, String cha) {
+    public static ArrayList<Item> selectDbByChar(String[] typeCode,
+            String cha) {
         if (null == getMbdb() || null == cha || cha.trim().length() == 0) {
+            return null;
+        }
+        if (cha.contains("'")) {
             return null;
         }
         cha = cha.trim();
