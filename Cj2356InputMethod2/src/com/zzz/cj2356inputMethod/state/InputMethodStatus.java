@@ -120,6 +120,37 @@ public abstract class InputMethodStatus {
         return null;
     }
 
+    /**
+     * 逗號鍵展示字符
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月10日 下午10:56:48
+     * @return
+     */
+    public String getCommaBtnText() {
+        return ",";
+    }
+
+    /**
+     * 句號鍵展示字符
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月10日 下午10:57:03
+     * @return
+     */
+    public String getPeriodBtnText() {
+        return ".";
+    }
+
+    /**
+     * 輸入法切換鍵展示字符
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2018年11月10日 下午10:57:03
+     * @return
+     */
+    public abstract String getShiftBtnText();
+
     public String getType() {
         return type;
     }

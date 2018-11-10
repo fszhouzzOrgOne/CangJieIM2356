@@ -29,6 +29,21 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
         return true;
     }
 
+    @Override
+    public String getCommaBtnText() {
+        return "，";
+    }
+
+    @Override
+    public String getPeriodBtnText() {
+        return "。";
+    }
+
+    @Override
+    public String getShiftBtnText() {
+        return this.getSubTypeName();
+    }
+
     /**
      * 得到候選信息
      * 

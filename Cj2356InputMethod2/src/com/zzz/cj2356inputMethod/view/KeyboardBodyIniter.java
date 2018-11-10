@@ -17,7 +17,6 @@ import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAC;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAb;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
-import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKarina;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
@@ -248,28 +247,15 @@ public class KeyboardBodyIniter {
         for (int i = 0; i < keys.length(); i++) {
             String key = keys.charAt(i) + "";
             Button btn = (Button) letterViews.get(i);
-            btn.setText(stat.getKeyName(key));
+            btn.setText(inputStat.getKeyName(key));
         }
 
         // 輸入法切換和逗號句號要特殊處理
-        if (inputStat.isShouldTranslate()) {
-            keybtnShift.setText(inputStat.getSubTypeName());
-            Button commaBtn = ((Button) keyboardView
-                    .findViewById(R.id.keybtnSimComma));
-            if (inputStat instanceof InputMethodStatusCnElseKarina) {
-                commaBtn.setText("、");
-            } else {
-                commaBtn.setText("，");
-            }
-            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod))
-                    .setText("。");
-        } else {
-            keybtnShift.setText(inputStat.getSubType());
-            ((Button) keyboardView.findViewById(R.id.keybtnSimComma))
-                    .setText(",");
-            ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod))
-                    .setText(".");
-        }
+        keybtnShift.setText(inputStat.getShiftBtnText());
+        ((Button) keyboardView.findViewById(R.id.keybtnSimComma))
+                .setText(inputStat.getCommaBtnText());
+        ((Button) keyboardView.findViewById(R.id.keybtnSimPeriod))
+                .setText(inputStat.getPeriodBtnText());
 
         // 26個按鍵背景修改
         String testKey = "a";

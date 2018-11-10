@@ -25,4 +25,9 @@ public abstract class InputMethodStatusEn extends InputMethodStatus {
     public boolean isShouldTranslate() {
         return false;
     }
+
+    @Override
+    public String getShiftBtnText() {
+        return this.getSubType();
+    }
 }

@@ -39,6 +39,11 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
     }
 
     @Override
+    public String getCommaBtnText() {
+        return "、";
+    }
+
+    @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
         return MbUtils.selectDbByChar(MbUtils.TYPE_CODE_KARINA, cha);
     }
@@ -50,13 +55,15 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
             List<String> karinas = Romaji2KarinaTest.getKarinaFromRomaji(code);
             if (null != karinas && !karinas.isEmpty()) {
                 for (String ka : karinas) {
-                    Item it = new Item(null, MbUtils.TYPE_CODE_KARINA, code, ka);
+                    Item it = new Item(null, MbUtils.TYPE_CODE_KARINA, code,
+                            ka);
                     res.add(it);
                 }
             }
         }
 
-        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA, code, false, null, false);
+        List<Item> items = MbUtils.selectDbByCode(MbUtils.TYPE_CODE_KARINA,
+                code, false, null, false);
         // 排序
         if (null != items && !items.isEmpty()) {
             try {
@@ -65,7 +72,8 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
 
                     @Override
                     public int compare(Item lhs, Item rhs) {
-                        if (null == lhs.getEncode() || null == rhs.getEncode()) {
+                        if (null == lhs.getEncode()
+                                || null == rhs.getEncode()) {
                             if (null == lhs.getEncode()) {
                                 return 1;
                             } else {
@@ -74,10 +82,13 @@ public class InputMethodStatusCnElseKarina extends InputMethodStatusCnElse {
                         } else {
                             String chaOne = lhs.getCharacter().charAt(0) + "";
                             String chaTwo = rhs.getCharacter().charAt(0) + "";
-                            if (karinaSet.contains(chaOne) || karinaSet.contains(chaTwo)) {
+                            if (karinaSet.contains(chaOne)
+                                    || karinaSet.contains(chaTwo)) {
                                 // 都是假名符號
-                                if (karinaSet.contains(chaOne) && karinaSet.contains(chaTwo)) {
-                                    return lhs.getEncode().compareTo(rhs.getEncode());
+                                if (karinaSet.contains(chaOne)
+                                        && karinaSet.contains(chaTwo)) {
+                                    return lhs.getEncode()
+                                            .compareTo(rhs.getEncode());
                                 } else if (karinaSet.contains(chaOne)) {
                                     return -1;
                                 } else if (karinaSet.contains(chaTwo)) {
