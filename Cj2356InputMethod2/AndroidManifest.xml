@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zzz.cj2356inputMethod"
-    android:versionCode="20181025"
-    android:versionName="20181025.2.3" 
+    android:versionCode="20181111"
+    android:versionName="20181111.2.0" 
     >
     <uses-sdk android:minSdkVersion="14" />
 
