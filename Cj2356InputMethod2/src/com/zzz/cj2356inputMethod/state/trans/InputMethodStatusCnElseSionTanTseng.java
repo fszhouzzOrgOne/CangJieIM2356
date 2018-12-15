@@ -22,6 +22,11 @@ import android.view.View;
 public class InputMethodStatusCnElseSionTanTseng
         extends InputMethodStatusCnElse {
 
+    /**
+     * 用什麼代替聲調
+     */
+    private static final String TONE_REPLACE_CHAR = "q";
+
     public InputMethodStatusCnElseSionTanTseng(Context con) {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_CJGEN_SIONTANTSENG);
@@ -42,18 +47,19 @@ public class InputMethodStatusCnElseSionTanTseng
         if (null == ipas || ipas.isEmpty()) {
             return null;
         }
-        String tempCode = ipas.get(0);
         // 只有沒有聲調的才模糊查詢，有聲調了就不再模糊查詢了
-        boolean isPrompt = null != tempCode && tempCode.trim().length() > 0
-                && !tempCode.matches("[^¹²³⁴⁵]+[¹²³⁴⁵]+.*");
-        List<Item> items = MbUtils.selectDbByCode(this.getSubType(), tempCode,
-                isPrompt, tempCode, false);
+        boolean isPrompt = null != code && code.trim().length() > 0
+                && !code.contains(TONE_REPLACE_CHAR);
+        List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code,
+                isPrompt, code + TONE_REPLACE_CHAR, false);
 
         List<Item> res = new ArrayList<Item>();
         for (String ipa : ipas) {
             res.add(new Item(null, this.getSubType(), ipas.get(0), ipa));
         }
-        res.addAll(items);
+        if (null != items && !items.isEmpty()) {
+            res.addAll(items);
+        }
         return res;
     }
 
