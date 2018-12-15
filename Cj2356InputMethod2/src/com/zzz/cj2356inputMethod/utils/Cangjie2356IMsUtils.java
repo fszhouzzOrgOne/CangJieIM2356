@@ -33,6 +33,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseKoxhanh;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseManju;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElsePy;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSionTanTseng;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseUnicode;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseZyfh;
 
@@ -114,9 +115,11 @@ public class Cangjie2356IMsUtils {
         } else {
             firstType = conType;
         }
-        String firstImConfig = Cangjie2356ConfigUtils.getConfig((String) allIMsMap.get(firstType).get(ORDER_KEY_KEY));
+        String firstImConfig = Cangjie2356ConfigUtils.getConfig(
+                (String) allIMsMap.get(firstType).get(ORDER_KEY_KEY));
         String firstImCode = firstImConfig.split(",")[0];
-        firstIMStatus = (InputMethodStatus) allIMsMap.get(firstType).get(firstImCode);
+        firstIMStatus = (InputMethodStatus) allIMsMap.get(firstType)
+                .get(firstImCode);
         return firstIMStatus;
     }
 
@@ -134,10 +137,11 @@ public class Cangjie2356IMsUtils {
             String[] conTypeArr = conTypeOrder.split(",");
             // 初始化爲各自第一個方法
             for (String conType : conTypeArr) {
-                String firstImConfig = Cangjie2356ConfigUtils
-                        .getConfig((String) allIMsMap.get(conType).get(ORDER_KEY_KEY));
+                String firstImConfig = Cangjie2356ConfigUtils.getConfig(
+                        (String) allIMsMap.get(conType).get(ORDER_KEY_KEY));
                 String firstImCode = firstImConfig.split(",")[0];
-                firstIMStatus = (InputMethodStatus) allIMsMap.get(conType).get(firstImCode);
+                firstIMStatus = (InputMethodStatus) allIMsMap.get(conType)
+                        .get(firstImCode);
 
                 currentIMsMap.put(conType, firstIMStatus);
             }
@@ -244,6 +248,8 @@ public class Cangjie2356IMsUtils {
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseBraille(context);
         allElseIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseSionTanTseng(context);
+        allElseIMsMap.put(im.getSubType(), im);
 
         allEnIMsMap.put(ORDER_KEY_KEY, ORDER_EN_KEY);
         allCjIMsMap.put(ORDER_KEY_KEY, ORDER_CJ_KEY);
@@ -280,13 +286,15 @@ public class Cangjie2356IMsUtils {
             if (i == conTypeList.size() - 1) {
                 String firstImConfig = conTypeList.get(0);
                 Map<String, Object> msMap = allIMsMap.get(firstImConfig);
-                String firstImCode = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString())
+                String firstImCode = Cangjie2356ConfigUtils
+                        .getConfig(msMap.get(ORDER_KEY_KEY).toString())
                         .split(",")[0];
                 ims = (InputMethodStatus) msMap.get(firstImCode);
             } else {
                 String firstImConfig = conTypeList.get(i + 1);
                 Map<String, Object> msMap = allIMsMap.get(firstImConfig);
-                String firstImCode = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString())
+                String firstImCode = Cangjie2356ConfigUtils
+                        .getConfig(msMap.get(ORDER_KEY_KEY).toString())
                         .split(",")[0];
                 ims = (InputMethodStatus) msMap.get(firstImCode);
             }
@@ -294,7 +302,8 @@ public class Cangjie2356IMsUtils {
                 Map<String, Object> msMap = allIMsMap.get(conTypeList.get(i));
                 for (String key : msMap.keySet()) {
                     if (msMap.get(key) instanceof InputMethodStatus) {
-                        InputMethodStatus imOne = (InputMethodStatus) msMap.get(key);
+                        InputMethodStatus imOne = (InputMethodStatus) msMap
+                                .get(key);
                         imOne.setNextStatusType(ims);
                     }
                 }
@@ -305,7 +314,8 @@ public class Cangjie2356IMsUtils {
         // 本種類內的下個輸入法
         for (int i = 0; i < conTypeList.size(); i++) {
             Map<String, Object> msMap = allIMsMap.get(conTypeList.get(i));
-            String theImConfig = Cangjie2356ConfigUtils.getConfig(msMap.get(ORDER_KEY_KEY).toString());
+            String theImConfig = Cangjie2356ConfigUtils
+                    .getConfig(msMap.get(ORDER_KEY_KEY).toString());
             String[] theImConfigArr = theImConfig.split(",");
 
             for (int j = 0; j < theImConfigArr.length; j++) {
@@ -315,7 +325,8 @@ public class Cangjie2356IMsUtils {
                 } else {
                     ims = (InputMethodStatus) msMap.get(theImConfigArr[j + 1]);
                 }
-                InputMethodStatus imOne = (InputMethodStatus) msMap.get(theImConfigArr[j]);
+                InputMethodStatus imOne = (InputMethodStatus) msMap
+                        .get(theImConfigArr[j]);
                 imOne.setNextStatus(ims);
 
             }
