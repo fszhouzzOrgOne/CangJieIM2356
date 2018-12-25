@@ -61,10 +61,7 @@ public class UnicodeSimUtil {
         String cnstr = " ＋ － ± × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 囍 卍 卐 ࿕ ࿖ ࿗ ࿘ ";
         cnstr += " ︿ ﹀ ︵ ︶ ︹ ︺ ︷ ︸ ︻ ︼ ︽ ︾ ﹁ ﹂ ﹃ ﹄ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻  ";
         cnstr += " ◌  ̄  ́  ̌  ̀  ̇  ";
-        String[] facesArr = cnstr.split(" +");
-        for (String str : facesArr) {
-            list.add(str);
-        }
+        list = mergeFaceString2List(list, cnstr);
         return list;
     }
 
