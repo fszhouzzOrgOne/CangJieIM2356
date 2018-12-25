@@ -54,12 +54,14 @@ public class UnicodeSimUtil {
      * @return
      */
     public static List<String> getCnListString() {
-        String cnstr = "， 、 。 ？ ！ ： ； … ‘’ “” ＇＇ ＂＂ 〃〃 〝〞 ❛❜ ❝❞ ❟ ❠ （） 〔〕 〈〉 《》 «» ［］ ｛｝ 「」 『』 〖〗 【】 ｟｠ — ";
-        cnstr += " ＋ － ± × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 囍 卍 卐 ࿕ ࿖ ࿗ ࿘ ";
+        List<String> list = new ArrayList<String>(Arrays.asList("，", "、", "。",
+                "？", "！", "：", "；", "…", "‘ ’", "“ ”", "＇＇", "＂＂", "〃〃", "〝〞",
+                "❛❜", "❝❞", "❟", "❠", "（）", "〔〕", "〈〉", "《》", "«»", "［］", "｛｝",
+                "「」", "『』", "〖〗", "【】", "｟｠", "—"));
+        String cnstr = " ＋ － ± × ÷ ＝ ＜ ＞ ～ ｀ ＠ ＃ ¥ ￥ Ұ ұ ＄ ％ ＆ ＊ ｜ ‖ ／ ＼ ˉ ˊ ˇ ˋ ˙ ． · • 々 囍 卍 卐 ࿕ ࿖ ࿗ ࿘ ";
         cnstr += " ︿ ﹀ ︵ ︶ ︹ ︺ ︷ ︸ ︻ ︼ ︽ ︾ ﹁ ﹂ ﹃ ﹄ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻  ";
         cnstr += " ◌  ̄  ́  ̌  ̀  ̇  ";
         String[] facesArr = cnstr.split(" +");
-        List<String> list = new ArrayList<String>();
         for (String str : facesArr) {
             list.add(str);
         }
