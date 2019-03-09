@@ -80,7 +80,8 @@ public class DateUtils {
             addDistinctItems2List(items2, items);
         } else if ("星期".equals(item.getCharacter())
                 || "週".equals(item.getCharacter())
-                || "周".equals(item.getCharacter())) {
+                || "周".equals(item.getCharacter())
+                || "星".equals(item.getCharacter())) {
             items.add(new Item(null, item.getGenCode(), null, formatDate(now,
                     "EEEE")));
             items.add(new Item(null, item.getGenCode(), null, formatDate(now,
