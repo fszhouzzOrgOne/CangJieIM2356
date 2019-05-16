@@ -33,7 +33,7 @@ public class KeyboardNumIniter {
     public static String[] keyboardBodyNums = { "789/", "456*", "123-",
             ",0.+" };
     public static List<String> keyboardBodyNumSims = Arrays.asList("#", "@",
-            "=", "_", "?", "¿?", "!", "¡!", ":", ";", "'", "' '", "\" \"", "$",
+            "=", "_", "'", "?", "¿?", "!", "¡!", ":", ";", "' '", "\" \"", "$",
             "%", "℅", "‰", "‱", "^", "&", "<", ">", "Tab", "~", "`", "|", "\\",
             "( )", "[ ]", "{ }", "·", "•", "¥", "￥", "Ұ", "ұ");
 
