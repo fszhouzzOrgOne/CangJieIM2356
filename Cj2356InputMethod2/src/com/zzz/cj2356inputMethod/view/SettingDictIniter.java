@@ -330,7 +330,7 @@ class MyExpandableListViewOnChildClickListener
         }
         // 統一碼
         List<String> strUnics = UnicodeConvertUtil
-                .getUnicodeStr4ListFromStr(item.getCharacter().trim());
+                .getUnicodeStr4ListFromStr(item.getCharacter());
         final String unicode = (null == strUnics || strUnics.isEmpty()) ? null
                 : strUnics.get(0);
 

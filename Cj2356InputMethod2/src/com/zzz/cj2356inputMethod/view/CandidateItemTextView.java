@@ -104,7 +104,7 @@ public class CandidateItemTextView extends TextView {
             // 統一碼碼位
             String code = "";
             List<String> codes = UnicodeConvertUtil
-                    .getUnicodeStr4ListFromStr(cha.trim());
+                    .getUnicodeStr4ListFromStr(cha);
             if (null != codes && codes.size() == 1) {
                 code = codes.get(0);
             }

@@ -82,7 +82,7 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
         }
         try {
             List<String> codes = UnicodeConvertUtil
-                    .getUnicodeStr4ListFromStr(cha.trim());
+                    .getUnicodeStr4ListFromStr(cha);
             if (null != codes && !codes.isEmpty()) {
                 List<Item> items = new ArrayList<Item>();
                 for (String code : codes) {
