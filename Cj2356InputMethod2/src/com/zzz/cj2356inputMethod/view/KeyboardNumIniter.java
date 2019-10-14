@@ -34,8 +34,8 @@ public class KeyboardNumIniter {
             ",0.+" };
     public static List<String> keyboardBodyNumSims = Arrays.asList("#", "@",
             "=", "_", "'", "?", "¿?", "!", "¡!", ":", ";", "' '", "\" \"", "$",
-            "%", "℅", "‰", "‱", "^", "&", "<", ">", "Tab", "~", "`", "|", "\\",
-            "( )", "[ ]", "{ }", "·", "•", "¥", "￥", "Ұ", "ұ");
+            "%", "℅", "‰", "‱", "^", "&", "<", ">", "Tab", "~", " ̃", "`", "‒",
+            "–", "|", "\\", "( )", "[ ]", "{ }", "·", "•", "¥", "￥", "Ұ", "ұ");
 
     private static Context context;
     private static View keyboardView;
