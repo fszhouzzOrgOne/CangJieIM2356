@@ -62,34 +62,41 @@ public class SettingDictIniter {
         MbUtils.init(context);
         SettingDictMbUtils.init(context);
 
-        setDictLayout = (LinearLayout) ((Activity) context).findViewById(R.id.setTabDictSearchLayout);
-        expandableListView = (ExpandableListView) ((Activity) context).findViewById(R.id.setTabDictExpandableListView);
+        setDictLayout = (LinearLayout) ((Activity) context)
+                .findViewById(R.id.setTabDictSearchLayout);
+        expandableListView = (ExpandableListView) ((Activity) context)
+                .findViewById(R.id.setTabDictExpandableListView);
 
-        editText = (EditText) ((Activity) context).findViewById(R.id.setTabDictEditText);
+        editText = (EditText) ((Activity) context)
+                .findViewById(R.id.setTabDictEditText);
         editText.setTypeface(FontManager.getTypeface(context));
         editText.setOnKeyListener(new MyEditTextKeyListener(context));
 
-        editTextBtn = (Button) ((Activity) context).findViewById(R.id.setTabDictEditTextBtn);
+        editTextBtn = (Button) ((Activity) context)
+                .findViewById(R.id.setTabDictEditTextBtn);
         editTextBtn.setTextColor(Color.DKGRAY);
         editTextBtn.setOnClickListener(new EditTextBtnOnClickListener(context));
 
         // 字典結果數據準備
         setgData(null);
         // 为列表设置点击事件
-        expandableListView.setOnChildClickListener(new MyExpandableListViewOnChildClickListener(context));
+        expandableListView.setOnChildClickListener(
+                new MyExpandableListViewOnChildClickListener(context));
         // 展開、關閉都重新算高度
-        expandableListView.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-            @Override
-            public void onGroupCollapse(int paramInt) {
-                setListViewHeightBasedOnChildren(expandableListView);
-            }
-        });
-        expandableListView.setOnGroupExpandListener(new OnGroupExpandListener() {
-            @Override
-            public void onGroupExpand(int paramInt) {
-                setListViewHeightBasedOnChildren(expandableListView);
-            }
-        });
+        expandableListView
+                .setOnGroupCollapseListener(new OnGroupCollapseListener() {
+                    @Override
+                    public void onGroupCollapse(int paramInt) {
+                        setListViewHeightBasedOnChildren(expandableListView);
+                    }
+                });
+        expandableListView
+                .setOnGroupExpandListener(new OnGroupExpandListener() {
+                    @Override
+                    public void onGroupExpand(int paramInt) {
+                        setListViewHeightBasedOnChildren(expandableListView);
+                    }
+                });
     }
 
     /** 隱藏倉頡字典 */
@@ -119,7 +126,8 @@ public class SettingDictIniter {
         }
         tryInitUnicodeGroup(gData);
         SettingDictIniter.gData = gData;
-        MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(gData, context);
+        MyBaseExpandableListAdapter myAdapter = new MyBaseExpandableListAdapter(
+                gData, context);
         expandableListView.setAdapter(myAdapter);
         setListViewHeightBasedOnChildren(expandableListView);
         // 隱藏輸入法
@@ -147,8 +155,10 @@ public class SettingDictIniter {
             if (query.length() > 0) {
                 // 先按編碼
                 List<Item> items = new ArrayList<Item>();
-                InputMethodStatusCnElseUnicode uniIm = new InputMethodStatusCnElseUnicode(context);
-                List<Item> byCodes = uniIm.getCandidatesInfoByTrueCode(query, false);
+                InputMethodStatusCnElseUnicode uniIm = new InputMethodStatusCnElseUnicode(
+                        context);
+                List<Item> byCodes = uniIm.getCandidatesInfoByTrueCode(query,
+                        false);
                 if (null != byCodes && !byCodes.isEmpty()) {
                     items.addAll(byCodes);
                 }
@@ -184,8 +194,10 @@ public class SettingDictIniter {
      * @time 2017年9月27日下午4:39:04
      * @param expandableListView
      */
-    public static void setListViewHeightBasedOnChildren(ExpandableListView expandableListView) {
-        BaseExpandableListAdapter adapter = (BaseExpandableListAdapter) expandableListView.getExpandableListAdapter();
+    public static void setListViewHeightBasedOnChildren(
+            ExpandableListView expandableListView) {
+        BaseExpandableListAdapter adapter = (BaseExpandableListAdapter) expandableListView
+                .getExpandableListAdapter();
         if (adapter == null) {
             return;
         }
@@ -196,7 +208,8 @@ public class SettingDictIniter {
         int groupCnt = adapter.getGroupCount(); // 返回分組底數目
         listCount += groupCnt;
         for (int i = 0, len = groupCnt; i < len; i++) {
-            View listItem = adapter.getGroupView(i, false, null, expandableListView);
+            View listItem = adapter.getGroupView(i, false, null,
+                    expandableListView);
             listItem.measure(0, 0); // 計算子項的寬高
             totalHeight += listItem.getMeasuredHeight();
 
@@ -204,7 +217,8 @@ public class SettingDictIniter {
                 int childCount = adapter.getChildrenCount(i);
                 listCount += childCount;
                 for (int j = 0; j < childCount; j++) {
-                    View childView = adapter.getChildView(i, j, false, null, expandableListView);
+                    View childView = adapter.getChildView(i, j, false, null,
+                            expandableListView);
                     childView.measure(0, 0); // 計算子項的寬高
                     totalHeight += childView.getMeasuredHeight();
                 }
@@ -214,7 +228,8 @@ public class SettingDictIniter {
         ViewGroup.LayoutParams params = expandableListView.getLayoutParams();
         // listView.getDividerHeight()獲取子項間分隔符佔的高度
         // expandableListView完整顯示需求的高度
-        params.height = totalHeight + (expandableListView.getDividerHeight() * (listCount - 1));
+        params.height = totalHeight
+                + (expandableListView.getDividerHeight() * (listCount - 1));
         expandableListView.setLayoutParams(params);
     }
 
@@ -224,7 +239,8 @@ public class SettingDictIniter {
      * @author fszhouzz@qq.com
      * @time 2017年10月31日下午5:01:15
      */
-    private static class EditTextBtnOnClickListener implements View.OnClickListener {
+    private static class EditTextBtnOnClickListener
+            implements View.OnClickListener {
         private Context context;
 
         public EditTextBtnOnClickListener(Context con) {
@@ -238,7 +254,8 @@ public class SettingDictIniter {
                 String query = editText.getText().toString().trim();
                 if (query.length() > 0) {
                     String pattern = "[a-zA-Z]{1,}";
-                    Toast.makeText(context, "查詢“" + query + "”", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "查詢“" + query + "”",
+                            Toast.LENGTH_SHORT).show();
                     try {
                         if (query.matches(pattern)) {
                             query = query.toLowerCase();
@@ -247,7 +264,8 @@ public class SettingDictIniter {
                             gData = SettingDictMbUtils.selectDbByChar(query);
                         }
                     } catch (Exception e) {
-                        Toast.makeText(context, "查詢失敗：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "查詢失敗：" + e.getMessage(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     editText.setText("");
@@ -293,7 +311,8 @@ public class SettingDictIniter {
  * @author t
  * @time 2016-12-18上午10:11:24
  */
-class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnChildClickListener {
+class MyExpandableListViewOnChildClickListener
+        implements ExpandableListView.OnChildClickListener {
 
     private Context mContext;
 
@@ -302,26 +321,33 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
     }
 
     @Override
-    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-        final Item item = SettingDictIniter.getgData().get(groupPosition).getItems().get(childPosition);
+    public boolean onChildClick(ExpandableListView parent, View v,
+            int groupPosition, int childPosition, long id) {
+        final Item item = SettingDictIniter.getgData().get(groupPosition)
+                .getItems().get(childPosition);
         if (item.isEmpty()) {
             return false;
         }
         // 統一碼
-        List<String> strUnics = UnicodeConvertUtil.getUnicodeStr4ListFromStr(item.getCharacter());
-        final String unicode = (null == strUnics || strUnics.isEmpty()) ? null : strUnics.get(0);
+        List<String> strUnics = UnicodeConvertUtil
+                .getUnicodeStr4ListFromStr(item.getCharacter().trim());
+        final String unicode = (null == strUnics || strUnics.isEmpty()) ? null
+                : strUnics.get(0);
 
         final String item1 = "查詢文字“" + item.getCharacter() + "”";
         final String item2 = "查詢編碼“" + item.getEncode() + "”";
         final String item3 = "複製文字“" + item.getCharacter() + "”";
         final String item4 = "複製編碼“" + item.getEncode() + "”";
-        final String item5 = "複製文字和編碼“" + item.getCharacter() + " " + item.getEncode() + "”";
+        final String item5 = "複製文字和編碼“" + item.getCharacter() + " "
+                + item.getEncode() + "”";
         final String item6 = "複製統一碼“" + unicode + "”";
         String itemCncl = "取消";
         AlertDialog.Builder builder = new Builder(mContext).setTitle("繼續查詢？");
-        CharSequence[] itemsTemp = new String[] { item1, item2, item3, item4, item5, itemCncl };
+        CharSequence[] itemsTemp = new String[] { item1, item2, item3, item4,
+                item5, itemCncl };
         if (!item.isUnicodeItem() && null != unicode) {
-            itemsTemp = new String[] { item1, item2, item3, item4, item5, item6, itemCncl };
+            itemsTemp = new String[] { item1, item2, item3, item4, item5, item6,
+                    itemCncl };
         }
         final CharSequence[] items = itemsTemp;
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -331,19 +357,25 @@ class MyExpandableListViewOnChildClickListener implements ExpandableListView.OnC
                 } else if (index == 1) {
                     SettingDictIniter.searchSth(item.getEncode());
                 } else if (index == 2) {
-                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipboardManager cm = (ClipboardManager) mContext
+                            .getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setText(item.getCharacter());
-                    Toast.makeText(mContext, "複製文字成功。", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "複製文字成功。", Toast.LENGTH_LONG)
+                            .show();
                 } else if (index == 3) {
-                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipboardManager cm = (ClipboardManager) mContext
+                            .getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setText(item.getEncode());
-                    Toast.makeText(mContext, "複製編碼成功。", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "複製編碼成功。", Toast.LENGTH_LONG)
+                            .show();
                 } else if (index == 4) {
-                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipboardManager cm = (ClipboardManager) mContext
+                            .getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setText(item.getCharacter() + " " + item.getEncode());
                     Toast.makeText(mContext, "複製成功。", Toast.LENGTH_LONG).show();
                 } else if (index == 5 && items.length > 6) {
-                    ClipboardManager cm = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipboardManager cm = (ClipboardManager) mContext
+                            .getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setText(unicode);
                     Toast.makeText(mContext, "複製成功。", Toast.LENGTH_LONG).show();
                 }

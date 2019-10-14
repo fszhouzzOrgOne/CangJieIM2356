@@ -52,7 +52,8 @@ public class CandidateItemTextView extends TextView {
             this.setPadding(30, 0, 30, 0);
         }
 
-        RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+        RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
         setLayoutParams(lpParams);
         setTextSize(24);
@@ -81,7 +82,8 @@ public class CandidateItemTextView extends TextView {
 
         String str = item.getEncode();
         if (showEncode && StringUtils.hasText(str)) {
-            InputMethodStatus stat = ((Cj2356InputMethodService) this.getContext()).getInputMethodStatus();
+            InputMethodStatus stat = ((Cj2356InputMethodService) this
+                    .getContext()).getInputMethodStatus();
             if (stat.isShouldTranslate()) {
                 InputMethodStatusCn cnstat = (InputMethodStatusCn) stat;
                 str = cnstat.translateCode2Name(str);
@@ -93,14 +95,16 @@ public class CandidateItemTextView extends TextView {
             paint.setTextAlign(Align.LEFT);
             Rect bounds = new Rect();
             paint.getTextBounds(str, 0, str.length(), bounds);
-            canvas.drawText(str, getMeasuredWidth() / 2 - bounds.width() / 2, bounds.height(), paint);
+            canvas.drawText(str, getMeasuredWidth() / 2 - bounds.width() / 2,
+                    bounds.height(), paint);
         }
         // 展示統一碼碼位
         String cha = item.getCharacter();
         if (StringUtils.hasText(cha)) {
             // 統一碼碼位
             String code = "";
-            List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(cha);
+            List<String> codes = UnicodeConvertUtil
+                    .getUnicodeStr4ListFromStr(cha.trim());
             if (null != codes && codes.size() == 1) {
                 code = codes.get(0);
             }

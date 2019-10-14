@@ -10,8 +10,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Paint.Align;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.Button;
 
@@ -36,7 +36,8 @@ public class KeyBoardNumItemButton extends Button {
         this.context = context;
     }
 
-    public KeyBoardNumItemButton(Context context, AttributeSet attrs, int defStyle) {
+    public KeyBoardNumItemButton(Context context, AttributeSet attrs,
+            int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
     }
@@ -56,7 +57,8 @@ public class KeyBoardNumItemButton extends Button {
             Paint paint = new Paint();
             // 統一碼碼位
             String code = "";
-            List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(cha);
+            List<String> codes = UnicodeConvertUtil
+                    .getUnicodeStr4ListFromStr(cha.trim());
             if (null != codes && codes.size() == 1) {
                 code = codes.get(0);
             }

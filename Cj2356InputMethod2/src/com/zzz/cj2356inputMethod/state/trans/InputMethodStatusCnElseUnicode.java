@@ -38,7 +38,8 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
         return getCandidatesInfoByTrueCode(trueCode, extraResolve);
     }
 
-    public List<Item> getCandidatesInfoByTrueCode(String trueCode, boolean extraResolve) {
+    public List<Item> getCandidatesInfoByTrueCode(String trueCode,
+            boolean extraResolve) {
         List<Item> items = new ArrayList<Item>();
         try {
             int wrongStart = Integer.parseInt("D800", 16);
@@ -80,12 +81,14 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
             return null;
         }
         try {
-            List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(cha);
+            List<String> codes = UnicodeConvertUtil
+                    .getUnicodeStr4ListFromStr(cha.trim());
             if (null != codes && !codes.isEmpty()) {
                 List<Item> items = new ArrayList<Item>();
                 for (String code : codes) {
                     Item it = Item.unicodeItem.clone();
-                    String cha1 = UnicodeConvertUtil.getStringByUnicodeStr(code);
+                    String cha1 = UnicodeConvertUtil
+                            .getStringByUnicodeStr(code);
                     if (null != cha1) {
                         it.setCharacter(cha1);
                         it.setEncode(code);
@@ -110,7 +113,8 @@ public class InputMethodStatusCnElseUnicode extends InputMethodStatusCnElse {
         try {
             int max = Integer.parseInt(UNICODE16_MAXNUM, 16);
             int par = Integer.parseInt(trueCode, 16);
-            return trueCode.length() <= UNICODE16_MAXNUM.length() && par >= 0 && par <= max;
+            return trueCode.length() <= UNICODE16_MAXNUM.length() && par >= 0
+                    && par <= max;
         } catch (Exception e) {
             return false;
         }

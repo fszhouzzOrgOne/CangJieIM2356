@@ -36,7 +36,8 @@ public class KeyboardNumSimItemTextView extends TextView {
 
         this.setPadding(0, 10, 0, 10);
 
-        RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+        RelativeLayout.LayoutParams lpParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
         setLayoutParams(lpParams);
         setTextSize(20);
@@ -63,7 +64,8 @@ public class KeyboardNumSimItemTextView extends TextView {
         String cha = text.toString();
         // 統一碼碼位
         String code = "";
-        List<String> codes = UnicodeConvertUtil.getUnicodeStr4ListFromStr(cha);
+        List<String> codes = UnicodeConvertUtil
+                .getUnicodeStr4ListFromStr(cha.trim());
         if (null != codes && codes.size() == 1) {
             code = codes.get(0);
         }
@@ -74,7 +76,8 @@ public class KeyboardNumSimItemTextView extends TextView {
         paint.setTextAlign(Align.LEFT);
         Rect bounds = new Rect();
         paint.getTextBounds(code, 0, code.length(), bounds);
-        canvas.drawText(code, DipPxUtil.dip(context, 5), getMeasuredHeight() - DipPxUtil.dip(context, 1), paint);
+        canvas.drawText(code, DipPxUtil.dip(context, 5),
+                getMeasuredHeight() - DipPxUtil.dip(context, 1), paint);
     }
 
 }
