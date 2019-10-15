@@ -18,6 +18,15 @@ public class DateUtils {
         item = new Item(1, null, null, "照");
         items = resolveTime(item);
         System.out.println(items);
+        item = new Item(1, null, null, "父");
+        items = resolveTime(item);
+        System.out.println(items);
+        item = new Item(1, null, null, "母");
+        items = resolveTime(item);
+        System.out.println(items);
+        item = new Item(1, null, null, "兄");
+        items = resolveTime(item);
+        System.out.println(items);
         item = new Item(1, null, null, "榕");
         items = resolveTime(item);
         System.out.println(items);
@@ -240,16 +249,64 @@ public class DateUtils {
         }
         // 我自己
         else if ("照".equals(item.getCharacter())
-                || "我".equals(item.getCharacter())) {
+                || "递照".equals(item.getCharacter())
+                || "遞照".equals(item.getCharacter())
+                || "遞㷖".equals(item.getCharacter())
+                || "遞炤".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1990);
             items.add(new Item(null, item.getGenCode(), null,
-                    "我" + (year + 1) + "年"));
+                    "鄙人" + (year + 1) + "年"));
             try {
                 String beginDate = "19900211";
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
                 int dates = datesMoreAfterBegin(beginDate, sdf.format(now));
                 items.add(new Item(null, item.getGenCode(), null,
-                        "我" + (dates + 1) + "天"));
+                        "鄙人" + (dates + 1) + "天"));
+            } catch (Exception e) {
+            }
+        }
+        // 家父1963-11-18
+        else if ("父".equals(item.getCharacter())
+                || "家父".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 1963);
+            items.add(new Item(null, item.getGenCode(), null,
+                    "家父" + (year + 1) + "年"));
+            try {
+                String beginDate = "19631118";
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                int dates = datesMoreAfterBegin(beginDate, sdf.format(now));
+                items.add(new Item(null, item.getGenCode(), null,
+                        "家父" + (dates + 1) + "天"));
+            } catch (Exception e) {
+            }
+        }
+        // 家母1969-09-19
+        else if ("母".equals(item.getCharacter())
+                || "家母".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 1969);
+            items.add(new Item(null, item.getGenCode(), null,
+                    "家母" + (year + 1) + "年"));
+            try {
+                String beginDate = "19690919";
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                int dates = datesMoreAfterBegin(beginDate, sdf.format(now));
+                items.add(new Item(null, item.getGenCode(), null,
+                        "家母" + (dates + 1) + "天"));
+            } catch (Exception e) {
+            }
+        }
+        // 家兄1988-07-19
+        else if ("兄".equals(item.getCharacter())
+                || "家兄".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 1988);
+            items.add(new Item(null, item.getGenCode(), null,
+                    "家兄" + (year + 1) + "年"));
+            try {
+                String beginDate = "19880719";
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                int dates = datesMoreAfterBegin(beginDate, sdf.format(now));
+                items.add(new Item(null, item.getGenCode(), null,
+                        "家兄" + (dates + 1) + "天"));
             } catch (Exception e) {
             }
         }
