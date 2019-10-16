@@ -56,19 +56,17 @@ public class SendKeyEventUtil {
      * @param context
      * @param text
      */
-    public static void handleInputParenthesis(Context context, CharSequence text) {
+    public static void handleInputParenthesis(Context context,
+            CharSequence text) {
         if (null == text) {
             return;
         }
         String textStr = text.toString().replaceAll(" +", "");
-        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
+        InputConnection inputConnection = (InputConnection) ((InputMethodService) context)
+                .getCurrentInputConnection();
         if (parenthesisList.contains(textStr)) {
             inputConnection.commitText(textStr, 1);
-            // 加這句只是爲了，讓光標能成功進入括號中間
-            ExtractedText et = inputConnection.getExtractedText(new ExtractedTextRequest(), 0);
-            int s = et.selectionStart;
-            int e = et.selectionEnd;
-            doPerformLeft(context);
+            doPerformLeft(inputConnection, context, 1);
         } else {
             inputConnection.commitText(text, 1);
         }
@@ -125,6 +123,17 @@ public class SendKeyEventUtil {
                 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
     }
 
+    /** 左移光標 */
+    public static void doPerformLeft(InputConnection inputConnection,
+            Context context, int times) {
+        // 加這句只是爲了，讓光標能成功進入括號中間
+        ExtractedText et = inputConnection
+                .getExtractedText(new ExtractedTextRequest(), 0);
+        int s = et.selectionStart;
+        int e = et.selectionEnd;
+        doPerformLeft(context, times);
+    }
+
     /**
      * 左移光標
      * 
@@ -132,13 +141,23 @@ public class SendKeyEventUtil {
      * @time 2018年9月21日 下午10:21:34
      * @param context
      */
-    public static void doPerformLeft(Context context) {
-        InputConnection inputConnection = (InputConnection) ((InputMethodService) context).getCurrentInputConnection();
-        int keyCode = KeyEvent.KEYCODE_DPAD_LEFT;
-        long eventTime = SystemClock.uptimeMillis();
-        inputConnection.sendKeyEvent(new KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, keyCode, 0, 0, 0, 0,
-                KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
-        inputConnection.sendKeyEvent(new KeyEvent(SystemClock.uptimeMillis(), eventTime, KeyEvent.ACTION_UP, keyCode, 0,
-                0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+    public static void doPerformLeft(Context context, int times) {
+        if (times < 1) {
+            return;
+        }
+        InputConnection inputConnection = (InputConnection) ((InputMethodService) context)
+                .getCurrentInputConnection();
+        for (int i = times; i >= 1; i--) {
+            int keyCode = KeyEvent.KEYCODE_DPAD_LEFT;
+            long eventTime = SystemClock.uptimeMillis();
+            inputConnection.sendKeyEvent(
+                    new KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN,
+                            keyCode, 0, 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD
+                                    | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+            inputConnection.sendKeyEvent(new KeyEvent(
+                    SystemClock.uptimeMillis(), eventTime, KeyEvent.ACTION_UP,
+                    keyCode, 0, 0, 0, 0, KeyEvent.FLAG_SOFT_KEYBOARD
+                            | KeyEvent.FLAG_KEEP_TOUCH_MODE));
+        }
     }
 }

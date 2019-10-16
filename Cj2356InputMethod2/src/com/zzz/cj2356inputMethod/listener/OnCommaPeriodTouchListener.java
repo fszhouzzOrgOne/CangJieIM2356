@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
@@ -48,8 +49,7 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
                     }
                     if (StringUtils.hasText(value)) {
                         // 获得InputConnection对象
-                        boolean cursorRight = stat.isNewCursorPositionRight();
-                        inputConnection.commitText(value, cursorRight ? 1 : 0);
+                        inputConnection.commitText(value, 1);
                     }
                     ((InputMethodStatusCn) stat).setInputingCn(false);
                 }
@@ -57,8 +57,11 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
 
             // 輸入符號
             Button button = (Button) v;
-            boolean cursorRight = stat.isNewCursorPositionRight();
-            inputConnection.commitText(button.getText(), cursorRight ? 1 : 0);
+            inputConnection.commitText(button.getText(), 1);
+            if (stat.isNewCursorPositionRight() && null != button.getText()) {
+                SendKeyEventUtil.doPerformLeft(inputConnection, context,
+                        button.getText().length());
+            }
         }
         return false;
     }

@@ -2,18 +2,19 @@ package com.zzz.cj2356inputMethod.listener;
 
 import java.util.List;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
+import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
+import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
+import com.zzz.cj2356inputMethod.utils.StringUtils;
+
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputConnection;
-
-import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.R;
-import com.zzz.cj2356inputMethod.dto.Item;
-import com.zzz.cj2356inputMethod.state.InputMethodStatus;
-import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
-import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 /** 空格鍵事件 */
 public class OnSpaceClickListener implements OnClickListener {
@@ -43,8 +44,7 @@ public class OnSpaceClickListener implements OnClickListener {
                         // 获得InputConnection对象
                         InputConnection inputConnection = ser
                                 .getCurrentInputConnection();
-                        boolean cursorRight = stat.isNewCursorPositionRight();
-                        inputConnection.commitText(value, cursorRight ? 1 : 0);
+                        inputConnection.commitText(value, 1);
                     }
                     ((InputMethodStatusCn) stat).setInputingCn(false);
                     return;
@@ -53,8 +53,12 @@ public class OnSpaceClickListener implements OnClickListener {
 
             InputConnection inputConnection = ((InputMethodService) context)
                     .getCurrentInputConnection();
-            boolean cursorRight = stat.isNewCursorPositionRight();
-            inputConnection.commitText(" ", cursorRight ? 1 : 0);
+            String value = " ";
+            inputConnection.commitText(" ", 1);
+            if (stat.isNewCursorPositionRight() && null != value) {
+                SendKeyEventUtil.doPerformLeft(inputConnection, context,
+                        value.length());
+            }
         }
     }
 

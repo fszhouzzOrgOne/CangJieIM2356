@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.dto.Item;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnAb;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnCircledAb;
@@ -87,9 +88,12 @@ public class OnKeyTouchListener implements OnTouchListener {
                 } else {
                     // 英文直接輸入
                     // commitText方法第2个参数值为1，表示在当前位置插入文本
-                    boolean cursorRight = stat.isNewCursorPositionRight();
-                    inputConnection.commitText(button.getText(),
-                            cursorRight ? 1 : 0);
+                    inputConnection.commitText(button.getText(), 1);
+                    if (stat.isNewCursorPositionRight()
+                            && null != button.getText()) {
+                        SendKeyEventUtil.doPerformLeft(inputConnection, context,
+                                button.getText().length());
+                    }
 
                     // 如果是大小寫狀態，馬上回到小寫
                     if (InputMethodStatusEnAb.SUBTYPE_CODE
