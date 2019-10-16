@@ -15,6 +15,7 @@ import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
+/** 空格鍵事件 */
 public class OnSpaceClickListener implements OnClickListener {
 
     private Context context;

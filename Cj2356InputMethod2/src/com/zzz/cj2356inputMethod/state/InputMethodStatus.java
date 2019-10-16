@@ -43,6 +43,17 @@ public abstract class InputMethodStatus {
     public abstract boolean isShouldTranslate();
 
     /**
+     * 光標是否在輸入字符右邊
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2019年10月17日 上午12:22:09
+     * @return
+     */
+    public boolean isNewCursorPositionRight() {
+        return true;
+    }
+
+    /**
      * 得到輸入法名字
      */
     public abstract String getInputMethodName();

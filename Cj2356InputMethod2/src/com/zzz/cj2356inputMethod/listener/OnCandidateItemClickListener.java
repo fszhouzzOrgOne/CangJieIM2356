@@ -11,6 +11,7 @@ import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 
+/** 候選欄㸃擊 */
 public class OnCandidateItemClickListener implements OnClickListener {
 
     private Context context;

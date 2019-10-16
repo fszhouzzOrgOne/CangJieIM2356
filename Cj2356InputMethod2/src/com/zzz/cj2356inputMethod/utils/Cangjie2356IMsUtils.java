@@ -16,6 +16,7 @@ import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAC;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptAb;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnScriptaa;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnShort;
+import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnUpsideDown;
 import com.zzz.cj2356inputMethod.state.en.InputMethodStatusEnaa;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj2;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj3;
@@ -194,6 +195,8 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusEnAC(context);
         allEnIMsMap.put(im.getSubType(), im);
 
+        im = new InputMethodStatusEnUpsideDown(context);
+        allEnIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusEnShort(context);
         allEnIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusEnScriptaa(context);
