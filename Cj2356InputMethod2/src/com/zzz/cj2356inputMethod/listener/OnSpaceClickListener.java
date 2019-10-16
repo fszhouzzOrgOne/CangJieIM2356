@@ -43,7 +43,8 @@ public class OnSpaceClickListener implements OnClickListener {
                         // 获得InputConnection对象
                         InputConnection inputConnection = ser
                                 .getCurrentInputConnection();
-                        inputConnection.commitText(value, 1);
+                        boolean cursorRight = stat.isNewCursorPositionRight();
+                        inputConnection.commitText(value, cursorRight ? 1 : 0);
                     }
                     ((InputMethodStatusCn) stat).setInputingCn(false);
                     return;
@@ -53,7 +54,7 @@ public class OnSpaceClickListener implements OnClickListener {
             InputConnection inputConnection = ((InputMethodService) context)
                     .getCurrentInputConnection();
             boolean cursorRight = stat.isNewCursorPositionRight();
-            inputConnection.commitText(" ", cursorRight ? 1 : -1);
+            inputConnection.commitText(" ", cursorRight ? 1 : 0);
         }
     }
 

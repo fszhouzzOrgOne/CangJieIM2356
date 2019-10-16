@@ -89,7 +89,7 @@ public class OnKeyTouchListener implements OnTouchListener {
                     // commitText方法第2个参数值为1，表示在当前位置插入文本
                     boolean cursorRight = stat.isNewCursorPositionRight();
                     inputConnection.commitText(button.getText(),
-                            cursorRight ? 1 : -1);
+                            cursorRight ? 1 : 0);
 
                     // 如果是大小寫狀態，馬上回到小寫
                     if (InputMethodStatusEnAb.SUBTYPE_CODE

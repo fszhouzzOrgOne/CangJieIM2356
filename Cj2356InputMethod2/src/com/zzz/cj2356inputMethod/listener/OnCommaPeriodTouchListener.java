@@ -48,7 +48,8 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
                     }
                     if (StringUtils.hasText(value)) {
                         // 获得InputConnection对象
-                        inputConnection.commitText(value, 1);
+                        boolean cursorRight = stat.isNewCursorPositionRight();
+                        inputConnection.commitText(value, cursorRight ? 1 : 0);
                     }
                     ((InputMethodStatusCn) stat).setInputingCn(false);
                 }
@@ -57,7 +58,7 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
             // 輸入符號
             Button button = (Button) v;
             boolean cursorRight = stat.isNewCursorPositionRight();
-            inputConnection.commitText(button.getText(), cursorRight ? 1 : -1);
+            inputConnection.commitText(button.getText(), cursorRight ? 1 : 0);
         }
         return false;
     }
