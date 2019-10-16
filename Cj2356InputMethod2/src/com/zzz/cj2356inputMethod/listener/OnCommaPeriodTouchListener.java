@@ -56,7 +56,8 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
 
             // 輸入符號
             Button button = (Button) v;
-            inputConnection.commitText(button.getText(), 1);
+            boolean cursorRight = stat.isNewCursorPositionRight();
+            inputConnection.commitText(button.getText(), cursorRight ? 1 : -1);
         }
         return false;
     }

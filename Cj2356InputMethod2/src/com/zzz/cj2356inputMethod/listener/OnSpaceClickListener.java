@@ -52,7 +52,8 @@ public class OnSpaceClickListener implements OnClickListener {
 
             InputConnection inputConnection = ((InputMethodService) context)
                     .getCurrentInputConnection();
-            inputConnection.commitText(" ", 1);
+            boolean cursorRight = stat.isNewCursorPositionRight();
+            inputConnection.commitText(" ", cursorRight ? 1 : -1);
         }
     }
 
