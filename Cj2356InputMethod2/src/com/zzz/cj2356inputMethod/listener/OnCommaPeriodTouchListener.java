@@ -59,8 +59,7 @@ public class OnCommaPeriodTouchListener implements OnTouchListener {
             Button button = (Button) v;
             inputConnection.commitText(button.getText(), 1);
             if (!stat.isNewCursorPositionRight() && null != button.getText()) {
-                SendKeyEventUtil.doPerformLeft(inputConnection, context,
-                        button.getText().length());
+                SendKeyEventUtil.doPerformLeft(inputConnection, context, 1);
             }
         }
         return false;

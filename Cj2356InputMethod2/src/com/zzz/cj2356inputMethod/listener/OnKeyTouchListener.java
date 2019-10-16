@@ -92,7 +92,7 @@ public class OnKeyTouchListener implements OnTouchListener {
                     if (!stat.isNewCursorPositionRight()
                             && null != button.getText()) {
                         SendKeyEventUtil.doPerformLeft(inputConnection, context,
-                                button.getText().length());
+                                1);
                     }
 
                     // 如果是大小寫狀態，馬上回到小寫
