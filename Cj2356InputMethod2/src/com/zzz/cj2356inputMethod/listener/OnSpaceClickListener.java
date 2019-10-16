@@ -55,7 +55,7 @@ public class OnSpaceClickListener implements OnClickListener {
                     .getCurrentInputConnection();
             String value = " ";
             inputConnection.commitText(" ", 1);
-            if (stat.isNewCursorPositionRight() && null != value) {
+            if (!stat.isNewCursorPositionRight() && null != value) {
                 SendKeyEventUtil.doPerformLeft(inputConnection, context,
                         value.length());
             }

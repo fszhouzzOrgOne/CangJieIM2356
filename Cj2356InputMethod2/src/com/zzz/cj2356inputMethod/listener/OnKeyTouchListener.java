@@ -89,7 +89,7 @@ public class OnKeyTouchListener implements OnTouchListener {
                     // 英文直接輸入
                     // commitText方法第2个参数值为1，表示在当前位置插入文本
                     inputConnection.commitText(button.getText(), 1);
-                    if (stat.isNewCursorPositionRight()
+                    if (!stat.isNewCursorPositionRight()
                             && null != button.getText()) {
                         SendKeyEventUtil.doPerformLeft(inputConnection, context,
                                 button.getText().length());
