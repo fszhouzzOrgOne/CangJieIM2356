@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
+import android.inputmethodservice.InputMethodService;
 import android.view.View;
+import android.view.inputmethod.InputConnection;
 
 /**
  * 當前輸入狀態
@@ -22,7 +25,7 @@ public abstract class InputMethodStatus {
     /** 所在種類下一個輸入法，爲下一個種類的第一個輸入法 */
     private InputMethodStatus nextStatusType;
 
-    private Context context;
+    protected Context context;
 
     private String type;
     private String typeName;
@@ -181,6 +184,29 @@ public abstract class InputMethodStatus {
         for (View v : letterViews) {
             v.setBackgroundResource(R.drawable.keyboard_button_selector);
         }
+    }
+
+    /**
+     * 主鍵盤按鍵動作，默認輸出btnText
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2019年10月17日 下午10:03:50
+     * @param btnText
+     *            按鈕上文字
+     * @param keyPrsd
+     *            當前是26英文字母的哪個
+     * @return 果有動作，就返回true
+     */
+    public boolean mainKeyTouchAction(String btnText, String keyPrsd) {
+        if ((context instanceof InputMethodService)
+                && (StringUtils.hasText(btnText))) {
+            // commitText方法第2个参数值为1，表示在当前位置插入文本
+            InputMethodService ser = ((InputMethodService) context);
+            InputConnection inputConnection = ser.getCurrentInputConnection();
+            inputConnection.commitText(btnText, 1);
+            return true;
+        }
+        return false;
     }
 
     public String getType() {

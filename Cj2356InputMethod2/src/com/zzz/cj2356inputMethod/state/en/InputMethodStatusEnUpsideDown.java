@@ -3,8 +3,12 @@ package com.zzz.cj2356inputMethod.state.en;
 import java.util.List;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
+
 import android.content.Context;
+import android.inputmethodservice.InputMethodService;
 import android.view.View;
+import android.view.inputmethod.InputConnection;
 
 public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
 
@@ -57,5 +61,19 @@ public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
     @Override
     public String getPeriodBtnText() {
         return "˙";
+    }
+
+    @Override
+    public boolean mainKeyTouchAction(String btnText, String keyPrsd) {
+        if (super.mainKeyTouchAction(btnText, keyPrsd)) {
+            if (!isNewCursorPositionRight() && null != btnText) {
+                InputMethodService ser = ((InputMethodService) context);
+                InputConnection inputConnection = ser
+                        .getCurrentInputConnection();
+                SendKeyEventUtil.doPerformLeft(inputConnection, context, 1);
+                return true;
+            }
+        }
+        return false;
     }
 }

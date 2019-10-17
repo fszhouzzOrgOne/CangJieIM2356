@@ -3,6 +3,9 @@ package com.zzz.cj2356inputMethod.state.en;
 import java.util.List;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
+import com.zzz.cj2356inputMethod.state.InputMethodStatus;
+
 import android.content.Context;
 import android.view.View;
 
@@ -42,5 +45,26 @@ public class InputMethodStatusEnScriptAb extends InputMethodStatusEn {
             index++;
         }
         return mbTransMap;
+    }
+
+    @Override
+    public boolean mainKeyTouchAction(String btnText, String keyPrsd) {
+        if (super.mainKeyTouchAction(btnText, keyPrsd)) {
+            // 如果是大小寫狀態，馬上回到小寫
+            Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
+            InputMethodStatus stat = ser.getInputMethodStatus();
+            InputMethodStatus statNext = stat;
+            do {
+                statNext = statNext.getNextStatus();
+                if (statNext.getSubType().equals(stat.getSubType())) {
+                    // 轉了一圈，回到原點
+                    break;
+                }
+            } while (!InputMethodStatusEnScriptaa.SUBTYPE_CODE
+                    .equals(statNext.getSubType()));
+            ser.setInputMethodStatus(statNext);
+            return true;
+        }
+        return false;
     }
 }

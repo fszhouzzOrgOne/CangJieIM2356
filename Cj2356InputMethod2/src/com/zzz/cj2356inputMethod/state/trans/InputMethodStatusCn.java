@@ -1,5 +1,6 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
+import android.view.inputmethod.InputConnection;
 
 /**
  * 要翻譯的輸入法
@@ -211,6 +213,47 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
 
     public void setInputTempCn(Map<String, String> inputTempCn) {
         this.inputTempCn = inputTempCn;
+    }
+
+    @Override
+    public boolean mainKeyTouchAction(String btnText, String keyPrsd) {
+        if (!StringUtils.hasText(keyPrsd)) {
+            return false;
+        }
+        Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
+        InputConnection inputConnection = ser.getCurrentInputConnection();
+        InputMethodStatus stat = ser.getInputMethodStatus();
+        String value = (String) stat.getKeyValue(keyPrsd);
+        // 取當前輸入編碼
+        String code = ((InputMethodStatusCn) stat).getInputingCnCode();
+        List<Item> items = null;
+        items = ((InputMethodStatusCn) stat).getCandidatesInfo(code + keyPrsd,
+                true);
+
+        // 輸入的編碼帶上新鍵，沒有字對應，直接返回
+        if (null == items || items.isEmpty()) {
+            // 如果再打字也沒有了
+            if (!((InputMethodStatusCn) stat)
+                    .couldContinueInputing(code + keyPrsd)) {
+                return false;
+            } else {
+                // 還可以繼續鍵入，所以生成一個空的，防止以後報錯
+                items = new ArrayList<Item>();
+            }
+        }
+        ((InputMethodStatusCn) stat).inputingCnCode(keyPrsd, value);
+
+        String composingText = ((InputMethodStatusCn) stat)
+                .getComposingTextForInputConn();
+        if (StringUtils.hasText(composingText)) {
+            // 提交正在編輯的內容
+            if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
+                inputConnection.setComposingText(composingText, 1);
+            }
+        }
+        // 取當前輸入編碼的候選項
+        ser.setSuggestions(items);
+        return true;
     }
 
 }
