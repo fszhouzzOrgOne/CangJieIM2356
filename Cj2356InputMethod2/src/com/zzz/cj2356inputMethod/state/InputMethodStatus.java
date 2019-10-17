@@ -195,7 +195,7 @@ public abstract class InputMethodStatus {
      *            按鈕上文字
      * @param keyPrsd
      *            當前是26英文字母的哪個
-     * @return 果有動作，就返回true
+     * @return 如果有動作，就返回true
      */
     public boolean mainKeyTouchAction(String btnText, String keyPrsd) {
         if ((context instanceof InputMethodService)
@@ -204,6 +204,24 @@ public abstract class InputMethodStatus {
             InputMethodService ser = ((InputMethodService) context);
             InputConnection inputConnection = ser.getCurrentInputConnection();
             inputConnection.commitText(btnText, 1);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 主鍵盤的空格鍵動作
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2019年10月17日 下午10:19:38
+     * @return 如果有動作，就返回true
+     */
+    public boolean mainSpaceClickAction() {
+        if (context instanceof InputMethodService) {
+            InputConnection inputConnection = ((InputMethodService) context)
+                    .getCurrentInputConnection();
+            String value = " ";
+            inputConnection.commitText(value, 1);
             return true;
         }
         return false;

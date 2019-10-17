@@ -256,4 +256,27 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
         return true;
     }
 
+    @Override
+    public boolean mainSpaceClickAction() {
+        // 如果原來是中文狀態，而且正在打字，提交候選第一個字，返回
+        Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
+        InputMethodStatus stat = ser.getInputMethodStatus();
+        if (((InputMethodStatusCn) stat).isInputingCn()) {
+            String value = "";
+            List<Item> sugs = ser.getSuggestions();
+            if (null != sugs && !sugs.isEmpty()) {
+                value = sugs.get(0).getCharacter();
+            }
+            if (StringUtils.hasText(value)) {
+                // 获得InputConnection对象
+                InputConnection inputConnection = ser
+                        .getCurrentInputConnection();
+                inputConnection.commitText(value, 1);
+            }
+            ((InputMethodStatusCn) stat).setInputingCn(false);
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -76,4 +76,17 @@ public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
         }
         return false;
     }
+
+    @Override
+    public boolean mainSpaceClickAction() {
+        if (super.mainSpaceClickAction()) {
+            InputConnection inputConnection = ((InputMethodService) context)
+                    .getCurrentInputConnection();
+            if (!isNewCursorPositionRight()) {
+                SendKeyEventUtil.doPerformLeft(inputConnection, context, 1);
+            }
+            return true;
+        }
+        return false;
+    }
 }
