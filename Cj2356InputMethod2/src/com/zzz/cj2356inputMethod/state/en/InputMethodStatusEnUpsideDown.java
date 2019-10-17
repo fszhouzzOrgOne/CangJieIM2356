@@ -48,4 +48,14 @@ public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
     public boolean isNewCursorPositionRight() {
         return false;
     }
+
+    @Override
+    public String getCommaBtnText() {
+        return "‘";
+    }
+
+    @Override
+    public String getPeriodBtnText() {
+        return "˙";
+    }
 }
