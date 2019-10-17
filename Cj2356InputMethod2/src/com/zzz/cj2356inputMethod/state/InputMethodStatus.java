@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
@@ -222,6 +223,21 @@ public abstract class InputMethodStatus {
                     .getCurrentInputConnection();
             String value = " ";
             inputConnection.commitText(value, 1);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 主鍵盤的刪除鍵動作
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2019年10月17日 下午10:19:38
+     * @return 如果有動作，就返回true
+     */
+    public boolean mainDeleteClickAction() {
+        if (context instanceof InputMethodService) {
+            SendKeyEventUtil.doPerformDelete(context);
             return true;
         }
         return false;
