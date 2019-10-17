@@ -9,8 +9,10 @@ import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
+import com.zzz.cj2356inputMethod.view.KeyboardBodyIniter;
 
 import android.content.Context;
+import android.view.View;
 import android.view.inputmethod.InputConnection;
 
 /**
@@ -222,29 +224,25 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
         }
         Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
         InputConnection inputConnection = ser.getCurrentInputConnection();
-        InputMethodStatus stat = ser.getInputMethodStatus();
-        String value = (String) stat.getKeyValue(keyPrsd);
+        String value = (String) getKeyValue(keyPrsd);
         // 取當前輸入編碼
-        String code = ((InputMethodStatusCn) stat).getInputingCnCode();
+        String code = getInputingCnCode();
         List<Item> items = null;
-        items = ((InputMethodStatusCn) stat).getCandidatesInfo(code + keyPrsd,
-                true);
+        items = getCandidatesInfo(code + keyPrsd, true);
 
         // 輸入的編碼帶上新鍵，沒有字對應，直接返回
         if (null == items || items.isEmpty()) {
             // 如果再打字也沒有了
-            if (!((InputMethodStatusCn) stat)
-                    .couldContinueInputing(code + keyPrsd)) {
+            if (!couldContinueInputing(code + keyPrsd)) {
                 return false;
             } else {
                 // 還可以繼續鍵入，所以生成一個空的，防止以後報錯
                 items = new ArrayList<Item>();
             }
         }
-        ((InputMethodStatusCn) stat).inputingCnCode(keyPrsd, value);
+        inputingCnCode(keyPrsd, value);
 
-        String composingText = ((InputMethodStatusCn) stat)
-                .getComposingTextForInputConn();
+        String composingText = getComposingTextForInputConn();
         if (StringUtils.hasText(composingText)) {
             // 提交正在編輯的內容
             if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
@@ -259,9 +257,8 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
     @Override
     public boolean mainSpaceClickAction() {
         // 如果原來是中文狀態，而且正在打字，提交候選第一個字，返回
-        Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
-        InputMethodStatus stat = ser.getInputMethodStatus();
-        if (((InputMethodStatusCn) stat).isInputingCn()) {
+        if (isInputingCn()) {
+            Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
             String value = "";
             List<Item> sugs = ser.getSuggestions();
             if (null != sugs && !sugs.isEmpty()) {
@@ -273,7 +270,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
                         .getCurrentInputConnection();
                 inputConnection.commitText(value, 1);
             }
-            ((InputMethodStatusCn) stat).setInputingCn(false);
+            setInputingCn(false);
             return true;
         }
         return super.mainSpaceClickAction();
@@ -282,16 +279,14 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
     @Override
     public boolean mainDeleteClickAction() {
         // 如果原來是中文狀態，而且正在打字
-        Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
-        InputMethodStatus stat = ser.getInputMethodStatus();
-        if (((InputMethodStatusCn) stat).isInputingCn()) {
+        if (isInputingCn()) {
+            Cj2356InputMethodService ser = ((Cj2356InputMethodService) context);
             InputConnection inputConnection = ser.getCurrentInputConnection();
-            String getInputingCnCode = ((InputMethodStatusCn) stat)
-                    .getInputingCnCode();
+            String getInputingCnCode = getInputingCnCode();
             // 如果當前只打了一個鍵
             if (getInputingCnCode.length() <= 1) {
                 inputConnection.commitText("", 1);
-                ((InputMethodStatusCn) stat).setInputingCn(false);
+                setInputingCn(false);
             } else {
                 // 如果當前只打了两個以上的鍵
                 // 將臨時輸入置成第一至倒數第二個鍵
@@ -301,16 +296,14 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
                         - 1; index++) {
                     Character thecode = getInputingCnCode.charAt(index);
                     code += thecode.toString();
-                    value += ((InputMethodStatusCn) stat)
-                            .getKeyValue(thecode.toString());
+                    value += getKeyValue(thecode.toString());
                 }
 
                 // 先置空，再放進去
-                ((InputMethodStatusCn) stat).inputingCnCode(null, null);
-                ((InputMethodStatusCn) stat).inputingCnCode(code, value);
+                inputingCnCode(null, null);
+                inputingCnCode(code, value);
 
-                String composingText = ((InputMethodStatusCn) stat)
-                        .getComposingTextForInputConn();
+                String composingText = getComposingTextForInputConn();
                 if (StringUtils.hasText(composingText)) {
                     // 提交正在編輯的內容
                     if (Cj2356InputMethodService.SHOW_COMPOSING_TEXT_FOR_INPUT_CONN) {
@@ -319,8 +312,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
                 }
 
                 // 取當前輸入編碼的候選項
-                List<Item> items = ((InputMethodStatusCn) stat)
-                        .getCandidatesInfo(code, true);
+                List<Item> items = getCandidatesInfo(code, true);
                 if (items == null) {
                     // 還可以繼續鍵入，所以生成一個空的，防止以後報錯
                     items = new ArrayList<Item>();
@@ -330,6 +322,16 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
             return true;
         }
         return super.mainDeleteClickAction();
+    }
+
+    @Override
+    public boolean mainDeleteLongClickAction(View v) {
+        // 如果原來是中文狀態，而且正在打字，先提交鍵名串
+        if (isInputingCn()) {
+            // 先模擬點擊一下打字鍵盤上的回車
+            KeyboardBodyIniter.performClickEnter();
+        }
+        return super.mainDeleteLongClickAction(v);
     }
 
 }

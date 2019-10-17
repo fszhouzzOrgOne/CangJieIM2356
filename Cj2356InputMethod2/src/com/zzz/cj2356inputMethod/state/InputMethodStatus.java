@@ -3,14 +3,18 @@ package com.zzz.cj2356inputMethod.state;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
 
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
+import com.zzz.cj2356inputMethod.task.LongDeleteTask;
 import com.zzz.cj2356inputMethod.utils.StringUtils;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputConnection;
 
 /**
@@ -238,6 +242,35 @@ public abstract class InputMethodStatus {
     public boolean mainDeleteClickAction() {
         if (context instanceof InputMethodService) {
             SendKeyEventUtil.doPerformDelete(context);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 主鍵盤的長刪除鍵動作
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2019年10月17日 下午10:19:38
+     * @return 如果有動作，就返回true
+     */
+    public boolean mainDeleteLongClickAction(View v) {
+        if (context instanceof InputMethodService) {
+            // 定時刪除
+            final Timer timer = new Timer();
+            timer.schedule(new LongDeleteTask(context), 500, 50);
+            // 擡手就不再刪除
+            v.setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // 抬起操作
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        timer.cancel();
+                    }
+                    return false;
+                }
+
+            });
             return true;
         }
         return false;

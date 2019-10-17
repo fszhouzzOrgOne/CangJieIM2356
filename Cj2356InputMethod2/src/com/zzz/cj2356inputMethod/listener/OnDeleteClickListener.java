@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 /**
- * 刪除左邊
+ * 主鍵盤刪除左邊
  * 
  * 
  * @author fszhouzz@qq.com
