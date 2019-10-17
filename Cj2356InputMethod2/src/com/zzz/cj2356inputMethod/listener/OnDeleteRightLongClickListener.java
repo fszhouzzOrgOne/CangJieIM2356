@@ -1,9 +1,8 @@
 package com.zzz.cj2356inputMethod.listener;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
-import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
+import com.zzz.cj2356inputMethod.task.LongDeleteRightTask;
 
 import android.content.Context;
 import android.view.MotionEvent;
@@ -46,19 +45,4 @@ public class OnDeleteRightLongClickListener implements OnLongClickListener {
         });
         return false;
     }
-}
-
-class LongDeleteRightTask extends TimerTask {
-    private Context context;
-
-    public LongDeleteRightTask(Context con) {
-        super();
-        this.context = con;
-    }
-
-    @Override
-    public void run() {
-        SendKeyEventUtil.doPerformDeleteRight(context);
-    }
-
 }

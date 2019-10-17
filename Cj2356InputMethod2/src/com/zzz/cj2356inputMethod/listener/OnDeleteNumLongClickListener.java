@@ -1,9 +1,8 @@
 package com.zzz.cj2356inputMethod.listener;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
-import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
+import com.zzz.cj2356inputMethod.task.LongDeleteTask;
 
 import android.content.Context;
 import android.view.MotionEvent;
@@ -24,7 +23,7 @@ public class OnDeleteNumLongClickListener implements OnLongClickListener {
     public boolean onLongClick(View v) {
         // 定時刪除
         final Timer timer = new Timer();
-        timer.schedule(new LongDeleteTaskNum(context), 500, 50);
+        timer.schedule(new LongDeleteTask(context), 500, 50);
         // 擡手就不再刪除
         v.setOnTouchListener(new OnTouchListener() {
             @Override
@@ -39,19 +38,4 @@ public class OnDeleteNumLongClickListener implements OnLongClickListener {
         });
         return false;
     }
-}
-
-class LongDeleteTaskNum extends TimerTask {
-    private Context context;
-
-    public LongDeleteTaskNum(Context con) {
-        super();
-        this.context = con;
-    }
-
-    @Override
-    public void run() {
-        SendKeyEventUtil.doPerformDelete(context);
-    }
-
 }
