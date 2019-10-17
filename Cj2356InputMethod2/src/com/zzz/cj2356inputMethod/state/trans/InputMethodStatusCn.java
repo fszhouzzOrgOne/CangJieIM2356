@@ -276,7 +276,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
             ((InputMethodStatusCn) stat).setInputingCn(false);
             return true;
         }
-        return false;
+        return super.mainSpaceClickAction();
     }
 
 }
