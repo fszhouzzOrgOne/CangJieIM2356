@@ -329,7 +329,7 @@ public abstract class InputMethodStatusCn extends InputMethodStatus {
             }
             return true;
         }
-        return false;
+        return super.mainDeleteClickAction();
     }
 
 }
