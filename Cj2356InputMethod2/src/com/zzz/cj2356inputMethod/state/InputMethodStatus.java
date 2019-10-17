@@ -201,10 +201,10 @@ public abstract class InputMethodStatus {
      */
     public void setMainDeleteBackground(View deleteBtn) {
         // 默認已有，不必再設
-        // deleteBtn.setBackgroundResource(R.drawable.keyboard_button_selector);
         if (deleteBtn instanceof ImageButton) {
             ImageButton ib = (ImageButton) deleteBtn;
-            ib.setBackgroundDrawable(
+            // ib.setBackgroundResource(R.drawable.keyboard_button_selector);
+            ib.setImageDrawable(
                     context.getResources().getDrawable(R.drawable.icon_delete));
         }
     }

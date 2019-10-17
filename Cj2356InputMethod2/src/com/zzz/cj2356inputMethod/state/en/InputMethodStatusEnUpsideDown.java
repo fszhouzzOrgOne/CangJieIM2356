@@ -100,7 +100,8 @@ public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
     public void setMainDeleteBackground(View deleteBtn) {
         if (deleteBtn instanceof ImageButton) {
             ImageButton ib = (ImageButton) deleteBtn;
-            ib.setBackgroundDrawable(context.getResources()
+            // ib.setBackgroundResource(R.drawable.keyboard_button_selector);
+            ib.setImageDrawable(context.getResources()
                     .getDrawable(R.drawable.icon_delete_right));
         }
     }
