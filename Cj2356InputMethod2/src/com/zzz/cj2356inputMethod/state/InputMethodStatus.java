@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputConnection;
+import android.widget.ImageButton;
 
 /**
  * 當前輸入狀態
@@ -188,6 +189,23 @@ public abstract class InputMethodStatus {
             List<Integer> letterViewsBgIds) {
         for (View v : letterViews) {
             v.setBackgroundResource(R.drawable.keyboard_button_selector);
+        }
+    }
+
+    /**
+     * 設置主鍵盤上刪除鍵的背景
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2019年10月17日 下午11:24:44
+     * @param findViewById
+     */
+    public void setMainDeleteBackground(View deleteBtn) {
+        // 默認已有，不必再設
+        // deleteBtn.setBackgroundResource(R.drawable.keyboard_button_selector);
+        if (deleteBtn instanceof ImageButton) {
+            ImageButton ib = (ImageButton) deleteBtn;
+            ib.setBackgroundDrawable(
+                    context.getResources().getDrawable(R.drawable.icon_delete));
         }
     }
 

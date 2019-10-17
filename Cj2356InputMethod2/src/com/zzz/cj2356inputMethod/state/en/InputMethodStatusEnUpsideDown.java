@@ -2,13 +2,19 @@ package com.zzz.cj2356inputMethod.state.en;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
 
+import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
+import com.zzz.cj2356inputMethod.task.LongDeleteRightTask;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputConnection;
+import android.widget.ImageButton;
 
 public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
 
@@ -85,6 +91,47 @@ public class InputMethodStatusEnUpsideDown extends InputMethodStatusEn {
             if (!isNewCursorPositionRight()) {
                 SendKeyEventUtil.doPerformLeft(inputConnection, context, 1);
             }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void setMainDeleteBackground(View deleteBtn) {
+        if (deleteBtn instanceof ImageButton) {
+            ImageButton ib = (ImageButton) deleteBtn;
+            ib.setBackgroundDrawable(context.getResources()
+                    .getDrawable(R.drawable.icon_delete_right));
+        }
+    }
+
+    @Override
+    public boolean mainDeleteClickAction() {
+        if (context instanceof InputMethodService) {
+            SendKeyEventUtil.doPerformDeleteRight(context);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mainDeleteLongClickAction(View v) {
+        if (context instanceof InputMethodService) {
+            // 定時刪除
+            final Timer timer = new Timer();
+            timer.schedule(new LongDeleteRightTask(context), 500, 50);
+            // 擡手就不再刪除
+            v.setOnTouchListener(new OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // 抬起操作
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        timer.cancel();
+                    }
+                    return false;
+                }
+
+            });
             return true;
         }
         return false;

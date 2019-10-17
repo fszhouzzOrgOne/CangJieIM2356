@@ -255,6 +255,9 @@ public class KeyboardBodyIniter {
 
         // 26個按鍵背景修改
         inputStat.setKeysBackground(letterViews, letterViewsBgIds);
+        // 刪除鍵背景修改
+        inputStat.setMainDeleteBackground(
+                keyboardView.findViewById(R.id.keybtnDelete));
 
         // 空格上顯示輸入法名字
         String spaceName = "空格";
