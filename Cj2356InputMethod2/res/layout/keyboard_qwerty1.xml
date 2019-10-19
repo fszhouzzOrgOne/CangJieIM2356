@@ -13,6 +13,7 @@
 		        android:orientation="horizontal" >
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnQ"
+		            android:layout_marginLeft="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1"
@@ -94,6 +95,7 @@
 		            />
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
 		            android:id="@+id/keybtnP"
+		            android:layout_marginRight="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1"
@@ -203,6 +205,8 @@
 		        
                 <Button android:textAllCaps="false" android:textSize="14dp" 
 		            android:id="@+id/keybtnNum"
+		            android:layout_marginLeft="2dp"
+		            android:layout_marginRight="3dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.1"
@@ -275,9 +279,11 @@
 		            />
 		        <ImageButton android:textAllCaps="false"
 		            android:id="@+id/keybtnDelete"
+		            android:layout_marginLeft="3dp"
+		            android:layout_marginRight="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.5"
+		            android:layout_weight="1.1"
 		            android:src="@drawable/icon_delete"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -292,6 +298,7 @@
                 
 		        <Button android:textAllCaps="false" android:textSize="12dp" 
 		            android:id="@+id/keybtnShift"
+		            android:layout_marginLeft="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.1"
@@ -337,6 +344,7 @@
 		
 		        <ImageButton android:textAllCaps="false"
 		            android:id="@+id/keybtnEnter"
+		            android:layout_marginRight="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.5"
