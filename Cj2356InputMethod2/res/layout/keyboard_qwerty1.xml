@@ -296,7 +296,7 @@
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.1"
 		            android:text="↑" 
-		            android:background="@drawable/keyboard_button_selector"
+		            android:background="@drawable/keyboard_button_selector_shift"
 		            />
 		
 		        <Button android:textAllCaps="false"
