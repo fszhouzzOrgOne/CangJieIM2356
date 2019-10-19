@@ -23,7 +23,7 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     /**
      * 用什麼代替聲調
      */
-    private static final String TONE_REPLACE_CHAR = "m";
+    private static final String TONE_REPLACE_CHAR = "q";
 
     public InputMethodStatusCnElsePy(Context con) {
         super(con);
@@ -35,8 +35,8 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     public void setKeysBackground(List<View> letterViews,
             List<Integer> letterViewsBgIds) {
         super.setKeysBackground(letterViews, letterViewsBgIds);
-        // 官話拼音、注音符號：m加聲調背景
-        View vm = letterViews.get(7 + 6 - 1);
+        // 官話拼音：q加聲調背景
+        View vm = letterViews.get(7 + 7 + 2);
         vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
     }
 
@@ -117,15 +117,9 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     public String translateCode2Name(String str) {
         String result = super.translateCode2Name(str);
         String code = result;
-        if (null != code && code.length() > 1
-                && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
-            int start = 0;
-            // 有以之開頭的音
-            if (code.toLowerCase().startsWith(TONE_REPLACE_CHAR)) {
-                start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR, 1);
-            } else {
-                start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
-            }
+        if (null != code && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)
+                && !(code.toLowerCase().equalsIgnoreCase(TONE_REPLACE_CHAR))) {
+            int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
             String ms = code.substring(start);
             result = code.substring(0, start) + ms.length();
         }
