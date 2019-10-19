@@ -117,8 +117,7 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     public String translateCode2Name(String str) {
         String result = super.translateCode2Name(str);
         String code = result;
-        if (null != code && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)
-                && !(code.toLowerCase().equalsIgnoreCase(TONE_REPLACE_CHAR))) {
+        if (null != code && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
             int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
             String ms = code.substring(start);
             result = code.substring(0, start) + ms.length();
