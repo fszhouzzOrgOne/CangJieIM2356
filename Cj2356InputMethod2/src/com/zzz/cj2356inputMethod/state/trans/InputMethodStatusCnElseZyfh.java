@@ -28,7 +28,7 @@ public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
             List<Integer> letterViewsBgIds) {
         super.setKeysBackground(letterViews, letterViewsBgIds);
         // 注音符號：q加聲調背景
-        View vm = letterViews.get(7 + 7 + 1);
+        View vm = letterViews.get(7 + 7 + 2);
         vm.setBackgroundResource(R.drawable.keyboard_button_tone_selector);
     }
 
