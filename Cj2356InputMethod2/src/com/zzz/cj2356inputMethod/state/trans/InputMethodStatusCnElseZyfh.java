@@ -17,6 +17,11 @@ import android.view.View;
  */
 public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
 
+    /**
+     * 用什麼代替聲調
+     */
+    private static final String TONE_REPLACE_CHAR = "q";
+
     public InputMethodStatusCnElseZyfh(Context con) {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_ZYFH);
@@ -51,6 +56,28 @@ public class InputMethodStatusCnElseZyfh extends InputMethodStatusCnElse {
     @Override
     public boolean couldContinueInputing(String code) {
         return MbUtils.existsDBLikeCode(MbUtils.TYPE_CODE_ZYFH, code);
+    }
+
+    @Override
+    public String getInputingCnValueForEnter() {
+        String code = getInputingCnCode();
+        return translateCode2Name(code);
+    }
+
+    @Override
+    public String translateCode2Name(String str) {
+        String result = super.translateCode2Name(str);
+        String code = result;
+        if (null != code && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
+            int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
+            // 排除以之開頭的音
+            if (start == 0) {
+                start = 1;
+            }
+            String ms = code.substring(start);
+            result = code.substring(0, start) + ms.length();
+        }
+        return result;
     }
 
 }

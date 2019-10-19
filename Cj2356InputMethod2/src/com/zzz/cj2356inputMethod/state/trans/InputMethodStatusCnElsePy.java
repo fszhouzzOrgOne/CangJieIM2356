@@ -120,7 +120,7 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
         if (null != code && code.length() > 1
                 && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
             int start = 0;
-            // 有m開頭的音
+            // 有以之開頭的音
             if (code.toLowerCase().startsWith(TONE_REPLACE_CHAR)) {
                 start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR, 1);
             } else {

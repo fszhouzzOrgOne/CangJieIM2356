@@ -119,7 +119,7 @@ public class InputMethodStatusCnElseJyutp extends InputMethodStatusCnElse {
         String code = result;
         if (null != code && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
             int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
-            // 和官話拼音不同，沒有v開頭的音
+            // 和官話拼音不同，沒有以之開頭的音
             // if (start == 0) {
             // start = 1;
             // }
