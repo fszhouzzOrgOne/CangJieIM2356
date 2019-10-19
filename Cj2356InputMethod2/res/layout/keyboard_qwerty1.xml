@@ -203,15 +203,15 @@
 		        android:layout_marginTop="@dimen/keyboard_row_interval_height"
 		        android:orientation="horizontal" >
 		        
-                <Button android:textAllCaps="false" android:textSize="14dp" 
-		            android:id="@+id/keybtnNum"
+		        <Button android:textAllCaps="false" android:textSize="12dp" 
+		            android:id="@+id/keybtnShift"
 		            android:layout_marginLeft="2dp"
 		            android:layout_marginRight="3dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.1"
-		            android:text="12" 
-		            android:background="@drawable/keyboard_button_selector"
+		            android:text="↑" 
+		            android:background="@drawable/keyboard_button_selector_shift"
 		            />
                 
 		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
@@ -296,14 +296,14 @@
 		        android:layout_marginTop="@dimen/keyboard_row_interval_height"
 		        android:orientation="horizontal" >
                 
-		        <Button android:textAllCaps="false" android:textSize="12dp" 
-		            android:id="@+id/keybtnShift"
+                <Button android:textAllCaps="false" android:textSize="14dp" 
+		            android:id="@+id/keybtnNum"
 		            android:layout_marginLeft="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
 		            android:layout_weight="1.1"
-		            android:text="↑" 
-		            android:background="@drawable/keyboard_button_selector_shift"
+		            android:text="12" 
+		            android:background="@drawable/keyboard_button_selector"
 		            />
 		
 		        <Button android:textAllCaps="false"
