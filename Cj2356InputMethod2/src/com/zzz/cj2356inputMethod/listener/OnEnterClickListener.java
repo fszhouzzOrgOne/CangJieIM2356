@@ -54,7 +54,7 @@ public class OnEnterClickListener implements OnClickListener {
             }
 
             doEnterKey(context);
-        } else if (v.getId() == R.id.keybtnNumEnter) {
+        } else if (v.getId() == R.id.keybtnNum40Enter) {
             doEnterKey(context);
         }
     }

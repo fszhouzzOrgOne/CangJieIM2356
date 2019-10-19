@@ -1,82 +1,79 @@
 package com.zzz.cj2356inputMethod.view;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.zzz.cj2356inputMethod.R;
-import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteRightClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteRightLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
+import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.inputmethodservice.InputMethodService;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 
+/**
+ * 數字鍵盤初始化
+ * 
+ * 
+ * @author fszhouzz@qq.com
+ * @time 2019年10月19日 下午10:54:42
+ */
 public class KeyboardNumIniter {
-
-    public static final int keyboardNumPageSize = 4; // 数字鍵一頁行数
-    public static int currentKeyboardNumPage = 0;
-    // 數字鍵的鍵，把普通鍵盤上的東西都丢進去，製表符用個t代替，需要特殊處理
-    // 一行幾個，按這個數組的元素長度定，設置到@+id/keyboardBodyNumGrid上。
-    public static String[] keyboardBodyNums = { "789/", "456*", "123-",
-            ",0.+" };
-    public static List<String> keyboardBodyNumSims = Arrays.asList("#", "@",
-            "=", "_", "'", "?", "¿?", "!", "¡!", ":", ";", "' '", "\" \"", "$",
-            "%", "℅", "‰", "‱", "^", "&", "<", ">", "Tab", "~", "̃", "`", "‒",
-            "–", "|", "\\", "( )", "[ ]", "{ }", "·", "•", "¥", "￥", "Ұ", "ұ");
 
     private static Context context;
     private static View keyboardView;
-    private static GridView keyboardBodyNumGrid; // 數字鍵盤
+    // 40個鍵列表
+    private static List<View> letterViews = null;
+    private static String[] letterViewsText = { "1", "2", "3", "4", "5", "6",
+            "7", "8", "9", "0", "!", "@", "#", "$", "%", "^", "&", "*", "()",
+            "[]", "~", "`", "'", "\"", "–", "_", "+", "-", "=", "{}", ",", ".",
+            "<", ">", ":", ";", "?", "/", "\\", "|" };
 
     public static void initKeyboardSim(Context con, View kbView) {
         context = con;
         keyboardView = kbView;
 
-        // 符號滑動，ScrollView中只能有一個控件
-        LinearLayout numSimsScrollContent = (LinearLayout) keyboardView
-                .findViewById(R.id.keyboardBodyNumSimScrollContent);
-        for (String sim : keyboardBodyNumSims) {
-            numSimsScrollContent
-                    .addView(new KeyboardNumSimItemTextView(context, sim));
-        }
+        // 裝入鍵盤
+        View keyboardNum40 = ((InputMethodService) context).getLayoutInflater()
+                .inflate(R.layout.keyboard_num40, null);
+        LinearLayout keyboardBodyNum = (LinearLayout) keyboardView
+                .findViewById(R.id.keyboardBodyNumContent);
+        keyboardBodyNum.removeAllViews();
+        keyboardBodyNum.addView(keyboardNum40);
 
-        keyboardBodyNumGrid = (GridView) keyboardView
-                .findViewById(R.id.keyboardBodyNumGrid);
-        initKeyboardBodyNumGridPage(currentKeyboardNumPage);
+        init40LetterViews();
 
         // 回車鍵
-        keyboardView.findViewById(R.id.keybtnNumEnter)
+        keyboardView.findViewById(R.id.keybtnNum40Enter)
                 .setOnClickListener(new OnEnterClickListener(context));
         // 數字鍵盤的空格鍵
-        keyboardView.findViewById(R.id.keybtnNumSpace)
+        keyboardView.findViewById(R.id.keybtnNum40Space)
                 .setOnClickListener(new OnSpaceNumClickListener(context));
         // 數字鍵盤的刪除鍵
-        keyboardView.findViewById(R.id.keybtnNumDelete)
+        keyboardView.findViewById(R.id.keybtnNum40DeleteLeft)
                 .setOnClickListener(new OnDeleteNumClickListener(context));
-        keyboardView.findViewById(R.id.keybtnNumDelete).setOnLongClickListener(
-                new OnDeleteNumLongClickListener(context));
+        keyboardView.findViewById(R.id.keybtnNum40DeleteLeft)
+                .setOnLongClickListener(
+                        new OnDeleteNumLongClickListener(context));
         // 刪除右邊
-        keyboardView.findViewById(R.id.keybtnNumDeleteRight)
+        keyboardView.findViewById(R.id.keybtnNum40DeleteRight)
                 .setOnClickListener(new OnDeleteRightClickListener(context));
-        keyboardView.findViewById(R.id.keybtnNumDeleteRight)
+        keyboardView.findViewById(R.id.keybtnNum40DeleteRight)
                 .setOnLongClickListener(
                         new OnDeleteRightLongClickListener(context));
         // 數字鍵盤返回
         Button btnNumBack = (Button) keyboardView
-                .findViewById(R.id.keybtnNumBack);
+                .findViewById(R.id.keybtnNum40Back);
         btnNumBack.setTextColor(Color.DKGRAY);
         btnNumBack.setOnClickListener(new OnClickListener() {
             @Override
@@ -90,41 +87,64 @@ public class KeyboardNumIniter {
         });
     }
 
-    public static void resetKeyboardNumPage() {
-        initKeyboardBodyNumGridPage(0);
+    /**
+     * 初始化40個鍵
+     */
+    private static void init40LetterViews() {
+        letterViews = new ArrayList<View>();
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4011));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4012));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4013));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4014));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4015));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4016));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4017));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4018));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4019));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4010));
+
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4021));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4022));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4023));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4024));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4025));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4026));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4027));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4028));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4029));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4020));
+
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4031));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4032));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4033));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4034));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4035));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4036));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4037));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4038));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4039));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4030));
+
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4041));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4042));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4043));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4044));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4045));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4046));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4047));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4048));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4049));
+        letterViews.add(keyboardView.findViewById(R.id.keybtnNum4040));
+
+        for (int i = 0; i < letterViews.size(); i++) {
+            Button v = (Button) letterViews.get(i);
+            v.setText(letterViewsText[i]);
+            v.setTextColor(Color.BLACK);
+            v.setOnTouchListener(new OnKeyNumTouchListener(context));
+        }
     }
 
-    private static void initKeyboardBodyNumGridPage(int page) {
-        int tatalPage = keyboardBodyNums.length / keyboardNumPageSize;
-        if (0 != keyboardBodyNums.length % keyboardNumPageSize) {
-            tatalPage++;
-        }
-        int index = (page <= 0) ? 0
-                : (page >= tatalPage ? tatalPage - 1 : page);
-        int start = index * keyboardNumPageSize;
-        int end = (start + keyboardNumPageSize >= keyboardBodyNums.length)
-                ? keyboardBodyNums.length : start + keyboardNumPageSize;
-        // 如果不是首頁
-        if (index > 0) {
-            start = end - keyboardNumPageSize;
-        }
-        String content = "";
-        for (int i = start; i < end; i++) {
-            content += keyboardBodyNums[i];
-        }
+    public static void resetKeyboardNumPage() {
 
-        ArrayList<Map<String, String>> valueList = new ArrayList<Map<String, String>>();
-        for (int i = 0; i < content.length(); i++) {
-            Map<String, String> map = new HashMap<String, String>();
-            Character cha = content.charAt(i);
-            map.put(KeyBoardNumAdapter.ITEM_KEY_NAME, cha.toString());
-            valueList.add(map);
-        }
-        KeyBoardNumAdapter kKeyBoardNumAdapter = new KeyBoardNumAdapter(context,
-                valueList, R.layout.keyboardnumitem, false);
-        keyboardBodyNumGrid.setNumColumns(keyboardBodyNums[0].length());
-        keyboardBodyNumGrid.setAdapter(kKeyBoardNumAdapter);
-
-        currentKeyboardNumPage = index;
     }
 }

@@ -147,7 +147,17 @@
 		    android:background="@color/whiteccc"
 		    android:orientation="horizontal" 
 		    >
-		    
+	        
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	            android:id="@+id/keyboardBodyNumContent"
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/keyboard_body_height"
+		        android:background="@color/whiteccc"
+		        android:orientation="vertical" 
+		        >
+		    </LinearLayout>
+
+		    <!--  
 	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		        android:layout_width="0dp"
 		        android:layout_height="wrap_content"
@@ -254,6 +264,8 @@
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 	        </LinearLayout>
+	    -->
+
 		</LinearLayout>
 		
 	    <!-- 符號鍵盤 -->
