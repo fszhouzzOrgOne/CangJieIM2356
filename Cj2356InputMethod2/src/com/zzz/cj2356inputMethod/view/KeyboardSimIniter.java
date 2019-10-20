@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.adapter.KeyBoardNumAdapter;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
@@ -215,11 +216,15 @@ public class KeyboardSimIniter {
         btnSimBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean mainEnter = ((Cj2356InputMethodService) context)
+                        .getMainBoardEnterSims();
                 // 界面切換
                 ViewFlipper viewFlipper = (ViewFlipper) keyboardView
                         .findViewById(R.id.keyboardBodyFlipper);
                 viewFlipper.showPrevious();
-                viewFlipper.showPrevious();
+                if (mainEnter) {
+                    viewFlipper.showPrevious();
+                }
             }
         });
 

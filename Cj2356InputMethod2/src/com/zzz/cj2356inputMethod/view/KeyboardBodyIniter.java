@@ -3,6 +3,7 @@ package com.zzz.cj2356inputMethod.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnCnEnSubsClickListener;
 import com.zzz.cj2356inputMethod.listener.OnCommaPeriodTouchListener;
@@ -127,6 +128,8 @@ public class KeyboardBodyIniter {
                         }
                     }
 
+                    ((Cj2356InputMethodService) context)
+                            .setMainBoardEnterSims(true);
                     // 界面切換
                     ViewFlipper viewFlipper = (ViewFlipper) keyboardView
                             .findViewById(R.id.keyboardBodyFlipper);

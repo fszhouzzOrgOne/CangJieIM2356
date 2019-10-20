@@ -377,8 +377,17 @@
 		            android:layout_marginLeft="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.5"
-		            android:text="返回" 
+		            android:layout_weight="1.2"
+		            android:text="返" 
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		
+		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
+		            android:id="@+id/keybtnNum40Sim"
+		            android:layout_width="0dp"
+		            android:layout_height="@dimen/keyboard_key_height"
+		            android:layout_weight="1.1"
+		            android:text="符" 
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		        
@@ -395,7 +404,7 @@
 		            android:id="@+id/keybtnNum40Space"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="3"
+		            android:layout_weight="2.5"
 		            android:src="@drawable/icon_space"
 		            android:background="@drawable/keyboard_button_selector"
 		            />
@@ -414,7 +423,7 @@
 		            android:layout_marginRight="2dp"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
-		            android:layout_weight="1.5"
+		            android:layout_weight="1.2"
 		            android:src="@drawable/icon_enter"
 		            android:background="@drawable/keyboard_button_selector"
 		            />

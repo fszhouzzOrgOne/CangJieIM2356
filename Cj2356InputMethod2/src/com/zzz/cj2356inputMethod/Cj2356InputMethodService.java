@@ -26,6 +26,9 @@ public class Cj2356InputMethodService extends InputMethodService {
     // 提交正在編輯的內容
     public static boolean SHOW_COMPOSING_TEXT_FOR_INPUT_CONN = false;
 
+    // 是從主鍵盤進入符號鍵盤
+    private boolean mainBoardEnterSims;
+
     private View keyboardView; // 鍵盤
 
     private ComposingTextView composingTextView;
@@ -228,6 +231,16 @@ public class Cj2356InputMethodService extends InputMethodService {
     /** 顯示換鍵盤控件 */
     public void showKeyboardChooser() {
         ChooseKeyboardLayoutTabIniter.showKeyboardChooser();
+    }
+
+    // 是從主鍵盤進入符號鍵盤
+    public boolean getMainBoardEnterSims() {
+        return mainBoardEnterSims;
+    }
+
+    // 是從主鍵盤進入符號鍵盤
+    public void setMainBoardEnterSims(boolean mainBoardEnterSims) {
+        this.mainBoardEnterSims = mainBoardEnterSims;
     }
 
 }

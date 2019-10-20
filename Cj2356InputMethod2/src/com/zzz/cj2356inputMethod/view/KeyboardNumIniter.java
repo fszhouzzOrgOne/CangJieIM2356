@@ -3,6 +3,7 @@ package com.zzz.cj2356inputMethod.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
 import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumClickListener;
 import com.zzz.cj2356inputMethod.listener.OnDeleteNumLongClickListener;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 /**
@@ -71,6 +73,26 @@ public class KeyboardNumIniter {
         keyboardView.findViewById(R.id.keybtnNum40DeleteRight)
                 .setOnLongClickListener(
                         new OnDeleteRightLongClickListener(context));
+        // 數字鍵盤符號
+        Button btnSim = (Button) keyboardView.findViewById(R.id.keybtnNum40Sim);
+        btnSim.setTextColor(Color.DKGRAY);
+        btnSim.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    ((Cj2356InputMethodService) context)
+                            .setMainBoardEnterSims(false);
+                    // 界面切換
+                    ViewFlipper viewFlipper = (ViewFlipper) keyboardView
+                            .findViewById(R.id.keyboardBodyFlipper);
+                    viewFlipper.showNext();
+                } catch (Exception e) {
+                    Toast.makeText(context, "跳转到符號鍵鍵盤失敗" + e.getMessage(),
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         // 數字鍵盤返回
         Button btnNumBack = (Button) keyboardView
                 .findViewById(R.id.keybtnNum40Back);
