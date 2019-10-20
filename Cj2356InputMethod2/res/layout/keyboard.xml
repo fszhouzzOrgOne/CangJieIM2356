@@ -276,11 +276,76 @@
 		    android:background="@color/whiteccc"
 		    android:orientation="horizontal" 
 		    >
+	        
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		        android:id="@+id/keyboardBodySimCtrls"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+		        android:layout_marginLeft="2dp"
+			    android:background="@color/whiteccc"
+			    android:layout_weight="1"
+			    android:orientation="vertical" 
+			    >
+		        <Button
+		            android:id="@+id/keybtnSimPreviousPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="▲"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnSimNextPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="▼"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton 
+		            android:id="@+id/keybtnSimDelete"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_delete"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton
+		            android:id="@+id/keybtnSimDeleteRight"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_delete_right"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnSimBack"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="返"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+	        </LinearLayout>
 		    
 	        <LinearLayout  
 		        android:layout_width="0dp"
 		        android:layout_height="wrap_content"
-		        android:layout_marginLeft="5dp"
+		        android:layout_marginLeft="1dp"
+		        android:layout_marginRight="2dp"
 		        android:layout_marginTop="5dp"
 		        android:layout_weight="7" 
 		        android:orientation="vertical"
@@ -315,71 +380,6 @@
 			        android:verticalSpacing="1dp" 
 			        >
 			    </GridView>
-	        </LinearLayout>
-	        
-	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		        android:id="@+id/keyboardBodySimCtrls"
-	            android:layout_width="0dp"
-	            android:layout_height="wrap_content"
-		        android:layout_marginLeft="1dp"
-		        android:layout_marginRight="1dp"
-			    android:background="@color/whiteccc"
-			    android:layout_weight="1"
-			    android:orientation="vertical" 
-			    >
-		        <Button
-		            android:id="@+id/keybtnSimBack"
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
-		            android:textAllCaps="false"
-		            android:text="返"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
-		        <ImageButton
-		            android:id="@+id/keybtnSimDeleteRight"
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
-		            android:src="@drawable/icon_delete_right"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
-		        <ImageButton 
-		            android:id="@+id/keybtnSimDelete"
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
-		            android:src="@drawable/icon_delete"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
-		        <Button
-		            android:id="@+id/keybtnSimPreviousPage"
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
-		            android:textAllCaps="false"
-		            android:text="▲"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
-		        <Button
-		            android:id="@+id/keybtnSimNextPage"
-		            android:layout_width="match_parent"
-		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
-		            android:layout_marginLeft="1dp"
-		            android:layout_marginRight="1dp"
-		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
-		            android:textAllCaps="false"
-		            android:text="▼"
-		            android:background="@drawable/keyboard_button_selector"
-		            />
 	        </LinearLayout>
 		</LinearLayout>
 	</ViewFlipper>
