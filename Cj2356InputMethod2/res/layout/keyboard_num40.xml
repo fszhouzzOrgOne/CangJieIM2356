@@ -372,7 +372,7 @@
 		        android:layout_marginTop="@dimen/keyboard_row_interval_height"
 		        android:orientation="horizontal" >
                 
-		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
+		        <Button android:textAllCaps="false"
 		            android:id="@+id/keybtnNum40Back"
 		            android:layout_marginLeft="2dp"
 		            android:layout_width="0dp"
@@ -382,7 +382,7 @@
 		            android:background="@drawable/keyboard_button_selector"
 		            />
 		
-		        <Button android:textSize="@dimen/keyboard_qwerty_text_size" android:textAllCaps="false"
+		        <Button android:textAllCaps="false"
 		            android:id="@+id/keybtnNum40Sim"
 		            android:layout_width="0dp"
 		            android:layout_height="@dimen/keyboard_key_height"
