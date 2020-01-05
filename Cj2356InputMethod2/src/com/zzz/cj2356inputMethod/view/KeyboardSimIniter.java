@@ -78,7 +78,7 @@ public class KeyboardSimIniter {
     private static String PAGE_KR_KEY = "keyboardBodySimKr"; // 韓文
     private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
     private static String PAGE_GREEK_KEY = "keyboardBodySimGr"; // 希臘
-    private static String PAGE_RUSSIAN_KEY = "keyboardBodySimGr"; // 俄文
+    private static String PAGE_RUSSIAN_KEY = "keyboardBodySimRuss"; // 俄文
     private static String PAGE_TAB_KEY = "keyboardBodySimTab"; // 製表
 
     static {
