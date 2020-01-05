@@ -12,6 +12,7 @@ import com.zzz.cj2356inputMethod.listener.OnDeleteLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceClickListener;
+import com.zzz.cj2356inputMethod.listener.OnSpaceLongClickListener;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
@@ -77,6 +78,7 @@ public class KeyboardBodyIniter {
         Button btnSpace = (Button) keyboardView.findViewById(R.id.keybtnSpace);
         btnSpace.setTextColor(Color.DKGRAY);
         btnSpace.setOnClickListener(new OnSpaceClickListener(context));
+        btnSpace.setOnLongClickListener(new OnSpaceLongClickListener(context));
 
         // 刪除
         keyboardView.findViewById(R.id.keybtnDelete)

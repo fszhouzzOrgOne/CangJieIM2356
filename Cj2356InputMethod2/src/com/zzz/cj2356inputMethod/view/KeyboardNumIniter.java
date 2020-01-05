@@ -12,6 +12,7 @@ import com.zzz.cj2356inputMethod.listener.OnDeleteRightLongClickListener;
 import com.zzz.cj2356inputMethod.listener.OnEnterClickListener;
 import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.listener.OnSpaceNumClickListener;
+import com.zzz.cj2356inputMethod.listener.OnSpaceNumLongClickListener;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -61,6 +62,8 @@ public class KeyboardNumIniter {
         // 數字鍵盤的空格鍵
         keyboardView.findViewById(R.id.keybtnNum40Space)
                 .setOnClickListener(new OnSpaceNumClickListener(context));
+        keyboardView.findViewById(R.id.keybtnNum40Space).setOnLongClickListener(
+                new OnSpaceNumLongClickListener(context));
         // 數字鍵盤的刪除鍵
         keyboardView.findViewById(R.id.keybtnNum40DeleteLeft)
                 .setOnClickListener(new OnDeleteNumClickListener(context));
