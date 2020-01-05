@@ -117,8 +117,14 @@ public class InputMethodStatusCnElsePy extends InputMethodStatusCnElse {
     public String translateCode2Name(String str) {
         String result = super.translateCode2Name(str);
         String code = result;
+        // q作聲母的模式
+        String pattern = "q[^q]+.*";
         if (null != code && code.toLowerCase().endsWith(TONE_REPLACE_CHAR)) {
             int start = code.toLowerCase().indexOf(TONE_REPLACE_CHAR);
+            // 作聲母，加一
+            if (code.matches(pattern)) {
+                start++;
+            }
             String ms = code.substring(start);
             result = code.substring(0, start) + ms.length();
         }
