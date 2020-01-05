@@ -129,8 +129,10 @@ public class SendKeyEventUtil {
         // 加這句只是爲了，讓光標能成功進入括號中間
         ExtractedText et = inputConnection
                 .getExtractedText(new ExtractedTextRequest(), 0);
-        int s = et.selectionStart;
-        int e = et.selectionEnd;
+        if (null != et) {
+            int s = et.selectionStart;
+            int e = et.selectionEnd;
+        }
         doPerformLeft(context, times);
     }
 
