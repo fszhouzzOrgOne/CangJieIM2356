@@ -27,6 +27,9 @@ public class DateUtils {
         item = new Item(1, null, null, "兄");
         items = resolveTime(item);
         System.out.println(items);
+        item = new Item(1, null, null, "嫂");
+        items = resolveTime(item);
+        System.out.println(items);
         item = new Item(1, null, null, "榕");
         items = resolveTime(item);
         System.out.println(items);
@@ -63,6 +66,16 @@ public class DateUtils {
     public static ArrayList<Item> resolveTime(Item item) {
         ArrayList<Item> items = new ArrayList<Item>();
         Date now = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(now);
+        boolean isBetweenNewYears = false;
+        try {
+            int chineseYear = HialiUtils.getChineseYearByWest(now);
+            int chineseYearMainWest = HialiUtils
+                    .getChineseYearByMainWestYear(cal.get(Calendar.YEAR));
+            isBetweenNewYears = chineseYear < chineseYearMainWest;
+        } catch (Exception e1) {
+        }
         if ("時間".equals(item.getCharacter()) || "時".equals(item.getCharacter())
                 || "曆".equals(item.getCharacter())) {
             items.addAll(addFormatTimeItems(item, false));
@@ -156,6 +169,7 @@ public class DateUtils {
 
         // 另起一判斷
         // 共、民，共和國多少週年、民國多少年
+        // 不用夏曆。
         if ("共和國".equals(item.getCharacter())
                 || "共和国".equals(item.getCharacter())
                 || "共".equals(item.getCharacter())) {
@@ -177,6 +191,9 @@ public class DateUtils {
         else if ("孔子".equals(item.getCharacter())
                 || "孔".equals(item.getCharacter())) {
             int kungYear = (Calendar.getInstance().get(Calendar.YEAR) + 551);
+            if (isBetweenNewYears) {
+                kungYear--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "孔子紀元" + kungYear + "年"));
             items.add(new Item(null, item.getGenCode(), null,
@@ -185,10 +202,16 @@ public class DateUtils {
         // 周秦
         else if ("周".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) + 1046);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(
                     new Item(null, item.getGenCode(), null, "周" + year + "年"));
         } else if ("秦".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) + 221);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(
                     new Item(null, item.getGenCode(), null, "秦" + year + "年"));
         }
@@ -196,31 +219,49 @@ public class DateUtils {
         else if ("漢".equals(item.getCharacter())
                 || "汉".equals(item.getCharacter())) {
             int hanYear = (Calendar.getInstance().get(Calendar.YEAR) + 206);
+            if (isBetweenNewYears) {
+                hanYear--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "漢" + hanYear + "年"));
             items.add(new Item(null, item.getGenCode(), null,
                     "汉" + hanYear + "年"));
         } else if ("隋".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 580);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(
                     new Item(null, item.getGenCode(), null, "隋" + year + "年"));
         }
         // 唐宋明
         else if ("唐".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 617);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(
                     new Item(null, item.getGenCode(), null, "唐" + year + "年"));
         } else if ("宋".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 959);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(
                     new Item(null, item.getGenCode(), null, "宋" + year + "年"));
         } else if ("明".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1367);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(
                     new Item(null, item.getGenCode(), null, "明" + year + "年"));
         } else if ("崇".equals(item.getCharacter())
                 || "思".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1627);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "明思宗崇禎" + year + "年"));
             items.add(new Item(null, item.getGenCode(), null,
@@ -228,15 +269,21 @@ public class DateUtils {
         } else if ("禎".equals(item.getCharacter())
                 || "崇禎".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1627);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "明思宗崇禎" + year + "年"));
         } else if ("祯".equals(item.getCharacter())
                 || "崇祯".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1627);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "明思宗崇祯" + year + "年"));
         }
-        // 日本
+        // 日本，不按夏曆
         else if ("日".equals(item.getCharacter())
                 || "倭".equals(item.getCharacter())
                 || "日本".equals(item.getCharacter())
@@ -254,6 +301,9 @@ public class DateUtils {
                 || "遞㷖".equals(item.getCharacter())
                 || "遞炤".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1990);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "鄙人" + (year + 1) + "年"));
             try {
@@ -269,6 +319,9 @@ public class DateUtils {
         else if ("父".equals(item.getCharacter())
                 || "家父".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1963);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "家父" + (year + 1) + "年"));
             try {
@@ -284,6 +337,9 @@ public class DateUtils {
         else if ("母".equals(item.getCharacter())
                 || "家母".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1969);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "家母" + (year + 1) + "年"));
             try {
@@ -299,6 +355,9 @@ public class DateUtils {
         else if ("兄".equals(item.getCharacter())
                 || "家兄".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1988);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "家兄" + (year + 1) + "年"));
             try {
@@ -310,9 +369,32 @@ public class DateUtils {
             } catch (Exception e) {
             }
         }
+        // 家嫂1987-09-30
+        else if ("嫂".equals(item.getCharacter())
+                || "家嫂".equals(item.getCharacter())) {
+            int year = (Calendar.getInstance().get(Calendar.YEAR) - 1987);
+            if (isBetweenNewYears) {
+                year--;
+            }
+            items.add(new Item(null, item.getGenCode(), null,
+                    "家嫂" + (year + 1) + "年"));
+            try {
+                String beginDate = "19870930";
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                int dates = datesMoreAfterBegin(beginDate, sdf.format(now));
+                items.add(new Item(null, item.getGenCode(), null,
+                        "家嫂" + (dates + 1) + "天"));
+            } catch (Exception e) {
+            }
+        }
+        // 舍侄
+        // 舍姪
         // 1989-02-15
         else if ("榕".equals(item.getCharacter())) {
             int year = (Calendar.getInstance().get(Calendar.YEAR) - 1989);
+            if (isBetweenNewYears) {
+                year--;
+            }
             items.add(new Item(null, item.getGenCode(), null,
                     "榕" + (year + 1) + "年"));
             try {

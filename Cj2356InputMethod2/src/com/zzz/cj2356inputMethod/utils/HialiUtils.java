@@ -17,6 +17,8 @@ import java.util.Map;
  * 西曆到夏曆：西曆年月日必須佔八位數字，且在西元後才能正确
  */
 public class HialiUtils {
+    // 配置
+    private static List<String> conCals = null;
 
     private static final String configFile = "config.cal";
     private static final SimpleDateFormat defaultSdf = new SimpleDateFormat(
@@ -27,12 +29,16 @@ public class HialiUtils {
             "初五", "初六", "初七", "初八", "初九", "初十", "十一", "十二", "十三", "十四", "十五",
             "十六", "十七", "十八", "十九", "二十", "二十一", "二十二", "二十三", "二十四", "二十五",
             "二十六", "二十七", "二十八", "二十九", "三十" };
-    private static final String[] ganzhi = { "甲子", "乙丑", "丙寅", "丁卯", "戊辰",
-            "己巳", "庚午", "辛未", "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯",
-            "庚辰", "辛巳", "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅",
-            "辛卯", "壬辰", "癸巳", "甲午", "乙未", "丙申", "丁酉", "戊戌", "己亥", "庚子", "辛丑",
-            "壬寅", "癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申", "己酉", "庚戌", "辛亥", "壬子",
-            "癸丑", "甲寅", "乙卯", "丙辰", "丁巳", "戊午", "己未", "庚申", "辛酉", "壬戌", "癸亥" };
+    private static final String[] ganzhi = { "甲子", "乙丑", "丙寅", "丁卯", "戊辰", "己巳",
+            "庚午", "辛未", "壬申", "癸酉", "甲戌", "乙亥", "丙子", "丁丑", "戊寅", "己卯", "庚辰",
+            "辛巳", "壬午", "癸未", "甲申", "乙酉", "丙戌", "丁亥", "戊子", "己丑", "庚寅", "辛卯",
+            "壬辰", "癸巳", "甲午", "乙未", "丙申", "丁酉", "戊戌", "己亥", "庚子", "辛丑", "壬寅",
+            "癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申", "己酉", "庚戌", "辛亥", "壬子", "癸丑",
+            "甲寅", "乙卯", "丙辰", "丁巳", "戊午", "己未", "庚申", "辛酉", "壬戌", "癸亥" };
+
+    static {
+        conCals = readConfigFile();
+    }
 
     public static void main(String[] args) throws Exception {
         Map<String, String> mapWestChina = new HashMap<String, String>();
@@ -45,12 +51,14 @@ public class HialiUtils {
         mapWestChina.put("19491001 09:30:00", "八月初十日");
 
         Date now = new Date();
-        System.out.println("夏曆" + getChineseCalByWest(now));
-        System.out.println("西曆"
-                + defaultSdf
-                        .format(getWestCalByChinese(getChineseCalByWest(now))));
         Calendar cal = Calendar.getInstance();
         cal.setTime(now);
+        System.out.println("當前夏曆年： " + getChineseYearByWest(now));
+        System.out.println("當前西曆主體對應的夏曆年： "
+                + getChineseYearByMainWestYear(cal.get(Calendar.YEAR)));
+        System.out.println("夏曆" + getChineseCalByWest(now));
+        System.out.println("西曆" + defaultSdf
+                .format(getWestCalByChinese(getChineseCalByWest(now))));
         System.out.println(getGanZhiByMainWestYear(cal.get(Calendar.YEAR)));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
@@ -58,10 +66,8 @@ public class HialiUtils {
             Date date = sdf.parse(str);
             System.out.println("夏曆正确結果" + mapWestChina.get(str) + "，计算結果："
                     + getChineseCalByWest(date));
-            System.out
-                    .println("西曆"
-                            + defaultSdf
-                                    .format(getWestCalByChinese(getChineseCalByWest(date))));
+            System.out.println("西曆" + defaultSdf
+                    .format(getWestCalByChinese(getChineseCalByWest(date))));
             Calendar cal2 = Calendar.getInstance();
             cal2.setTime(date);
             System.out
@@ -172,12 +178,39 @@ public class HialiUtils {
     }
 
     /**
+     * 按西曆得到當前是夏曆哪年
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2020年1月4日 下午11:22:58
+     * @param mainWestYear
+     * @return
+     */
+    public static Integer getChineseYearByWest(Date date) throws Exception {
+        if (null == conCals || conCals.isEmpty()) {
+            return null;
+        }
+        // 是否不合法
+        long dateLong = Long.parseLong(defaultSdf.format(date));
+        long dateMinLong = Long.parseLong(getConfigCalMin(conCals));
+        long dateMaxLong = Long.parseLong(getConfigCalMax(conCals));
+        if (dateLong < dateMinLong || dateLong > dateMaxLong) {
+            return null;
+        }
+        // 用來運算的配置
+        String targetCal = getConfigCalTarget(date, conCals);
+        if (null == targetCal) {
+            return null;
+        }
+        int mainWestYear = Integer.parseInt(targetCal.substring(0, 4));
+        return getChineseYearByMainWestYear(mainWestYear);
+    }
+
+    /**
      * 按西曆得到夏曆
      * 
      * @throws Exception
      */
     public static String getChineseCalByWest(Date date) throws Exception {
-        List<String> conCals = readConfigFile();
         if (null == conCals || conCals.isEmpty()) {
             return null;
         }
@@ -210,11 +243,10 @@ public class HialiUtils {
         dateStr = dateStr.replaceAll("大|小", "");
 
         String[] yearParts = dateStr.split("年");
-        Integer westyear = getWestYearByMainChineseYear(Integer
-                .parseInt(replaceChinaNumberByArab(yearParts[0])));
+        Integer westyear = getWestYearByMainChineseYear(
+                Integer.parseInt(replaceChinaNumberByArab(yearParts[0])));
         // 用來運算的配置
         String config = null;
-        List<String> conCals = readConfigFile();
         if (null == conCals || conCals.isEmpty()) {
             return null;
         }
@@ -330,9 +362,8 @@ public class HialiUtils {
                 chinaMoon++;
             }
         }
-        return resolveChineseCalFormat(
-                Integer.parseInt(config.substring(0, 4)), chinaMoon, chinaDay,
-                isBigMon, leapMoon);
+        return resolveChineseCalFormat(Integer.parseInt(config.substring(0, 4)),
+                chinaMoon, chinaDay, isBigMon, leapMoon);
     }
 
     /**
@@ -345,12 +376,12 @@ public class HialiUtils {
      */
     private static String resolveChineseCalFormat(int mainWestYear,
             int chinaMoon, int chinaDay, boolean isBigMon, int leapMoon) {
-        StringBuilder result = new StringBuilder(
-                replaceArabByChinaNumber(getChineseYearByMainWestYear(mainWestYear)));
+        StringBuilder result = new StringBuilder(replaceArabByChinaNumber(
+                getChineseYearByMainWestYear(mainWestYear)));
         result.append("年");
         result.append((leapMoon != 0 && chinaMoon - 1 == leapMoon) ? "閏" : "");
-        result.append((leapMoon != 0 && (chinaMoon - 1) >= leapMoon) ? chinaMoons[chinaMoon - 2]
-                : chinaMoons[chinaMoon - 1]);
+        result.append((leapMoon != 0 && (chinaMoon - 1) >= leapMoon)
+                ? chinaMoons[chinaMoon - 2] : chinaMoons[chinaMoon - 1]);
         result.append(isBigMon ? "大" : "小");
         result.append(chinaMoonDays[chinaDay - 1]);
         result.append("日");
@@ -374,8 +405,8 @@ public class HialiUtils {
         }
         long dateLong = Long.parseLong(defaultSdf.format(date));
         long target2dateLong = Long.parseLong(targetCals.get(1).split("_")[0]);
-        return (dateLong >= target2dateLong) ? targetCals.get(1) : targetCals
-                .get(0);
+        return (dateLong >= target2dateLong) ? targetCals.get(1)
+                : targetCals.get(0);
     }
 
     /** 西曆最小可轉換日期 */
