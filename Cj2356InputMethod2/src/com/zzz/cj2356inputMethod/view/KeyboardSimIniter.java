@@ -77,7 +77,8 @@ public class KeyboardSimIniter {
     private static String PAGE_JP_KEY = "keyboardBodySimJp"; // 日文
     private static String PAGE_KR_KEY = "keyboardBodySimKr"; // 韓文
     private static String PAGE_LATIN_KEY = "keyboardBodySimLat"; // 拉丁
-    private static String PAGE_GREERUSSIA_KEY = "keyboardBodySimGr"; // 希臘、俄文
+    private static String PAGE_GREEK_KEY = "keyboardBodySimGr"; // 希臘
+    private static String PAGE_RUSSIAN_KEY = "keyboardBodySimGr"; // 俄文
     private static String PAGE_TAB_KEY = "keyboardBodySimTab"; // 製表
 
     static {
@@ -120,9 +121,10 @@ public class KeyboardSimIniter {
         simMap.put(PAGE_KR_KEY, UnicodeSimUtil.getKoreaListString());
         // 拉丁
         simMap.put(PAGE_LATIN_KEY, UnicodeSimUtil.getLatinListString());
-        // 希俄
-        simMap.put(PAGE_GREERUSSIA_KEY,
-                UnicodeSimUtil.getGreerussiaListString());
+        // 希臘
+        simMap.put(PAGE_GREEK_KEY, UnicodeSimUtil.getGreeKListString());
+        // 俄文
+        simMap.put(PAGE_RUSSIAN_KEY, UnicodeSimUtil.getRussiaListString());
         // 製表
         simMap.put(PAGE_TAB_KEY, UnicodeSimUtil.getTableListString());
 
@@ -145,7 +147,8 @@ public class KeyboardSimIniter {
         typeNameKeyMap.put("日文", PAGE_JP_KEY);
         typeNameKeyMap.put("韓文", PAGE_KR_KEY);
         typeNameKeyMap.put("拉丁", PAGE_LATIN_KEY);
-        typeNameKeyMap.put("希俄", PAGE_GREERUSSIA_KEY);
+        typeNameKeyMap.put("希臘", PAGE_GREEK_KEY);
+        typeNameKeyMap.put("俄文", PAGE_RUSSIAN_KEY);
         typeNameKeyMap.put("製表", PAGE_TAB_KEY);
     }
 

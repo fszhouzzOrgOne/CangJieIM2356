@@ -326,20 +326,38 @@ public class UnicodeSimUtil {
      * @return
      */
     public static List<String> getLatinListString() {
-        return getListByString(
-                "ÄÆÅÀÁÂÃÇĒĚÈÉÊËÐÌÍÎÏÖØÒÓÔÕÑÙÚÛÜÝÞäæåàáâãçēěèéêëðìíîïöøòóôõñùúûüýþ");
+        String str1 = "";
+        str1 += "ÄÆĂÅÀÁÂÃĈÇĒĚÈÉÊËÐÌÍÎÏÑŊÖØÒÓÔÕŜȘȚÙÚÛÜŬÝẐẞÞ";
+        str1 += "äæăåàáâãĉçēěèéêëðìíîïñŋöøòóôõŝșțùúûüŭýẑßþ";
+        return getListByString(str1);
     }
 
     /**
-     * 希俄
+     * 希臘
      * 
      * @author fszhouzz@qq.com
      * @time 2018年10月17日 下午7:34:55
      * @return
      */
-    public static List<String> getGreerussiaListString() {
+    public static List<String> getGreeKListString() {
         return getListByString(
-                "αβγδεζηθικλμνξοπρστυφχψωΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ");
+                "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω℩ς");
+    }
+
+    /**
+     * 俄文
+     * 
+     * @author fszhouzz@qq.com
+     * @time 2020年1月5日 下午12:57:59
+     * @return
+     */
+    public static List<String> getRussiaListString() {
+        String str1 = "";
+        str1 += "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        str1 += "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        str1 += "ӐӑӘәҐґҒғЃѓҔҕЂђӖӗҼҽҾҿЄєІіЇїӁӂӜӝҖҗӠӡҘҙӞӟЅѕӢӣӤӥЈјҠҡҚқҞҟҜҝЌќЉљЊњҢңӦӧӨөҨҩҦҧҪҫҬҭЋћҰұҮүӮӯӲӳҲҳҴҵҺһӴӵҸҹҶҷЏџӀӏ";
+        str1 += "ꙖѤѦѪѨѬѮѰѲѴѸѠѾѢ";
+        return getListByString(str1);
     }
 
     /**
