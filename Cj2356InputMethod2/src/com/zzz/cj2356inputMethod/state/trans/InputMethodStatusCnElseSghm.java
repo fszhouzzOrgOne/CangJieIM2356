@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
 
     private static final Map<String, String> abcToNumMap = new HashMap<String, String>();
+    private static final Map<String, String> numToAbcMap = new HashMap<String, String>();
 
     static {
         abcToNumMap.put("q", "1");
@@ -29,6 +30,9 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
         abcToNumMap.put("i", "8");
         abcToNumMap.put("o", "9");
         abcToNumMap.put("p", "0");
+        for (String abc : abcToNumMap.keySet()) {
+            numToAbcMap.put(abcToNumMap.get(abc), abc);
+        }
     }
 
     public InputMethodStatusCnElseSghm(Context con) {
@@ -53,11 +57,13 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
 
     @Override
     public List<Item> getCandidatesInfoByChar(String cha) {
-        return MbUtils.selectDbByChar(this.getSubType(), cha);
+        return code2NumItems(MbUtils.selectDbByChar(this.getSubType(), cha));
     }
 
     @Override
     public List<Item> getCandidatesInfo(String code, boolean extraResolve) {
+        String originalCode = code;
+        code = num2Code(code);
         List<Item> items = MbUtils.selectDbByCode(this.getSubType(), code,
                 (null != code && code.length() > 3), code, extraResolve);
         // 排序
@@ -102,28 +108,58 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
 
                 });
             } catch (Exception e) {
-                Toast.makeText(getContext(), "結果排序失敗：" + code2Num(code),
+                Toast.makeText(getContext(), "結果排序失敗：" + originalCode,
                         Toast.LENGTH_LONG).show();
             }
+        }
+        return code2NumItems(items);
+    }
+
+    private List<Item> code2NumItems(List<Item> items) {
+        if (null == items || items.isEmpty()) {
+            return items;
+        }
+        for (Item it : items) {
+            it.setEncode(code2Num(it.getEncode()));
         }
         return items;
     }
 
     private String code2Num(String cod) {
-        if (null == cod) {
+        if (null == cod || cod.length() == 0) {
             return null;
         }
         String num = cod.toLowerCase();
         for (int i = 0; i < num.length(); i++) {
             Character ch = num.charAt(i);
             if (null == abcToNumMap.get(ch.toString())) {
-                return null; // 不是漢字
+                // return null; // 不是漢字
             } else {
                 num = num.replaceFirst(ch.toString(),
                         abcToNumMap.get(ch.toString()));
             }
         }
         return num;
+    }
+
+    private String num2Code(String num) {
+        if (null == num || num.length() == 0) {
+            return null;
+        }
+        if (!num.matches("[0-9]+")) {
+            return num;
+        }
+        String code = num;
+        for (int i = 0; i < code.length(); i++) {
+            Character ch = code.charAt(i);
+            if (null == numToAbcMap.get(ch.toString())) {
+                // return null; // 不是漢字
+            } else {
+                code = code.replaceFirst(ch.toString(),
+                        numToAbcMap.get(ch.toString()));
+            }
+        }
+        return code;
     }
 
     @Override
@@ -163,4 +199,16 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
         return mbTransMap;
     }
 
+    @Override
+    public String getComposingTextForCandidateView() {
+        String code = getInputingCnCode();
+        String composing = translateCode2Name(code);
+        return code2Num(code) + "（" + composing + "）";
+    }
+
+    @Override
+    public String translateCode2Name(String str) {
+        str = num2Code(str);
+        return super.translateCode2Name(str);
+    }
 }

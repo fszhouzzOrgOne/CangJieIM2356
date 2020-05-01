@@ -253,7 +253,7 @@ public class SettingDictIniter {
             if (null != editText && null != editText.getText()) {
                 String query = editText.getText().toString().trim();
                 if (query.length() > 0) {
-                    String pattern = "[a-zA-Z]{1,}";
+                    String pattern = "[a-zA-Z0-9]{1,}";
                     Toast.makeText(context, "查詢“" + query + "”",
                             Toast.LENGTH_SHORT).show();
                     try {
