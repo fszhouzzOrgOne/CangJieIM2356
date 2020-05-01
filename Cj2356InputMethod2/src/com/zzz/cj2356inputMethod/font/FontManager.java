@@ -8,7 +8,7 @@ import android.graphics.Typeface;
  */
 public class FontManager {
 
-    private static final String FONT_NAME = "fonts/KaiXinSong2.1.ttf";
+    private static final String FONT_NAME = "fonts/KaiXinSong3B_B2G.ttf";
 
     private static Typeface typeface = null;
 
