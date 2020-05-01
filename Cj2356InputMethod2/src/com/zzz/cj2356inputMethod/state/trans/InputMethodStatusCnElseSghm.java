@@ -1,11 +1,13 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zzz.cj2356inputMethod.R;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
 
@@ -44,10 +46,36 @@ public class InputMethodStatusCnElseSghm extends InputMethodStatusCnElse {
     @Override
     public void setKeysBackground(List<View> letterViews,
             List<Integer> letterViewsBgIds) {
+        List<Integer> indice = Arrays.asList(16, 22, 4, 17, 19, 24, 20, 8, 14,
+                15);
         for (int i = 0; i < letterViews.size(); i++) {
+            if (indice.contains(i)) {
+                continue;
+            }
             View v = letterViews.get(i);
             v.setBackgroundResource(letterViewsBgIds.get(i));
         }
+        // 四角號碼的背景
+        letterViews.get(16)
+                .setBackgroundResource(R.drawable.keyboard_button_1q_selector);
+        letterViews.get(22)
+                .setBackgroundResource(R.drawable.keyboard_button_2w_selector);
+        letterViews.get(4)
+                .setBackgroundResource(R.drawable.keyboard_button_3e_selector);
+        letterViews.get(17)
+                .setBackgroundResource(R.drawable.keyboard_button_4r_selector);
+        letterViews.get(19)
+                .setBackgroundResource(R.drawable.keyboard_button_5t_selector);
+        letterViews.get(24)
+                .setBackgroundResource(R.drawable.keyboard_button_6y_selector);
+        letterViews.get(20)
+                .setBackgroundResource(R.drawable.keyboard_button_7u_selector);
+        letterViews.get(8)
+                .setBackgroundResource(R.drawable.keyboard_button_8i_selector);
+        letterViews.get(14)
+                .setBackgroundResource(R.drawable.keyboard_button_9o_selector);
+        letterViews.get(15)
+                .setBackgroundResource(R.drawable.keyboard_button_0p_selector);
     }
 
     @Override
