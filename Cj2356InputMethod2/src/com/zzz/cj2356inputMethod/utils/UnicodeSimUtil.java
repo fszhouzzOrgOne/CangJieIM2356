@@ -267,7 +267,7 @@ public class UnicodeSimUtil {
      * @return
      */
     public static List<String> getIpaListString() {
-        String faceStr = "a ɐ ɑ ɒ æ ɑ̃ ʌ b ɓ ʙ β c ç ɕ ɔ ɔ̃ d ɗ ɖ ð d͡z d͡ʒ d̠͡ʑ ɖ͡ʐ e ə ɘ ɛ ɛ̃ ɜ ɚ ɝ f ɸ g ɡ ɠ ɢ ʛ ɣ ɤ h ħ ɦ ɧ ʜ ɥ i ĩ ɨ ɪ j ʝ ɟ ʄ k l ɫ ɬ ɭ ʟ ɮ ʎ m ɱ ɯ ɰ n ɲ ŋ ɳ ȵ ɴ o õ ɵ ø ɞ œ œ̃ ɶ ɔ ɔ̃ ʊ ʘ p ɸ p͡f q r ɾ ɼ ɺ ɽ ɹ ɻ ʀ ʁ ɿ ˞ s ʂ ʃ ʄ ʅ t ʈ θ t͡ɕ ʈ͡ʂ t͡s t͡ʃ u ũ ʉ ʊ v ʋ ѵ ⱱ ʌ w w̃ ʍ ɰ x χ y ʏ ɥ ʎ z ʑ ʐ ʒ ʔ ʡ ʕ ʢ ʘ ǀ ǂ ǁ ǃ ˈ ˌ ː ˑ ̆ || ‖ ‿ x͡y x͡ ͡ . ̋ ˥ ́ ˦ ̄ ˧ ̀ ˨ ̏ ˩ ̌ ̂ ꜜ ꜛ ↗ ↘ ̥ ̬ ʰ ʱ ʲ ʷ ˠ ˁ ̹ ̜ ̟ ̠ ̈ ̽ ̩ ̯ ˞ ̃ ̰ ̝ ̞ ̘ ̙ ̪ ̺ ̻ ⁿ ˡ ̚";
+        String faceStr = "a ɐ ɑ ɒ æ ɑ̃ ʌ b ɓ ʙ β c ç ɕ ɔ ɔ̃ d ɗ ɖ ð d͡z d͡ʒ d̠͡ʑ ɖ͡ʐ e ə ɘ ɛ ɛ̃ ɜ ɚ ɝ f ɸ g ɡ ɠ ɢ ʛ ɣ ɤ h ħ ɦ ɧ ʜ ɥ i ĩ ɨ ɪ j ʝ ɟ ʄ k l ɫ ɬ ɭ ʟ ɮ ʎ m ɱ ɯ ɰ n ɲ ŋ ɳ ȵ ɴ o õ ɵ ø ɞ œ œ̃ ɶ ɔ ɔ̃ ʊ ʘ p ɸ p͡f q r ɾ ɼ ɺ ɽ ɹ ɻ ʀ ʁ ɿ ˞ s ʂ ʃ ʄ ʅ t ʈ θ t͡ɕ ʈ͡ʂ t͡ʂ t͡s t͡ʃ u ũ ʉ ʊ v ʋ ѵ ⱱ ʌ w w̃ ʍ ɰ x χ y ʏ ɥ ʎ z ʑ ʐ ʒ ʔ ʡ ʕ ʢ ʘ ǀ ǂ ǁ ǃ ˈ ˌ ː ˑ ̆ || ‖ ‿ x͡y x͡ ͡ . ̋ ˥ ́ ˦ ̄ ˧ ̀ ˨ ̏ ˩ ̌ ̂ ꜜ ꜛ ↗ ↘ ̥ ̬ ʰ ʱ ʲ ʷ ˠ ˁ ̹ ̜ ̟ ̠ ̈ ̽ ̩ ̯ ˞ ̃ ̰ ̝ ̞ ̘ ̙ ̪ ̺ ̻ ⁿ ˡ ̚";
         String[] facesArr = faceStr.split(" ");
         List<String> list = new ArrayList<String>();
         for (String str : facesArr) {
