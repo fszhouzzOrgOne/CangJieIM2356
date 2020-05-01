@@ -1,6 +1,7 @@
 package com.zzz.cj2356inputMethod.state.trans;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.mb.MbUtils;
@@ -13,6 +14,14 @@ public class InputMethodStatusCnCj5 extends InputMethodStatusCnCj {
         super(con);
         this.setSubType(MbUtils.TYPE_CODE_CJGEN5);
         this.setSubTypeName("倉5");
+    }
+    
+    @Override
+    public Map<String, Object> getKeysNameMap() {
+        Map<String, Object> mbTransMap = super.getKeysNameMap();
+        // 三代依Arthurmcarthur建議，z鍵中文字母改爲片字，今五代也改爲片。
+        mbTransMap.put("z", "片");
+        return mbTransMap;
     }
 
     @Override
