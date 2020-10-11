@@ -14,6 +14,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj3;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj35;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj5;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCj6;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjMacOsX105;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjMs;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnCjYhqm;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
@@ -55,6 +56,8 @@ public class SettingDictMbUtils {
                 InputMethodStatus im = new InputMethodStatusCnCj6(context);
                 allCjIMsMap.put(im.getSubType(), im);
                 im = new InputMethodStatusCnCj5(context);
+                allCjIMsMap.put(im.getSubType(), im);
+                im = new InputMethodStatusCnCjMacOsX105(context);
                 allCjIMsMap.put(im.getSubType(), im);
                 im = new InputMethodStatusCnCj35(context);
                 allCjIMsMap.put(im.getSubType(), im);
