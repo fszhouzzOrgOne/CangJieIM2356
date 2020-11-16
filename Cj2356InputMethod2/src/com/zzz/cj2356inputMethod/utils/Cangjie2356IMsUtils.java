@@ -37,6 +37,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElsePy;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSionTanTseng;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseUnicode;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseWugniuL;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseZyfh;
 
 import android.content.Context;
@@ -255,6 +256,8 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusCnElseBraille(context);
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseSionTanTseng(context);
+        allElseIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseWugniuL(context);
         allElseIMsMap.put(im.getSubType(), im);
 
         allEnIMsMap.put(ORDER_KEY_KEY, ORDER_EN_KEY);
