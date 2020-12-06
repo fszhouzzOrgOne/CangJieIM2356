@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/whiteddd"
+    >
+    <com.zzz.cj2356inputMethod.view.KeyBoardNumItemButton 
+        android:id="@+id/keyboardgridbtn"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/keyboard_sim_griditem_height"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:textSize="@dimen/keyboard_text_size"
+        android:background="@drawable/num_button_selector"
+        />
+</RelativeLayout>

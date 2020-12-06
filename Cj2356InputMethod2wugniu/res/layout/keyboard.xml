@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whiteccc"
+    android:orientation="vertical" 
+    >
+    
+    <ViewFlipper android:id="@+id/keyboardBodyFlipper" 
+		android:layout_width="match_parent" 
+		android:layout_height="wrap_content" 
+		android:persistentDrawingCache="animation" 
+		android:inAnimation="@anim/push_left_in" 
+		android:outAnimation="@anim/push_left_out" 
+		> 
+		
+        <!-- 打字鍵盤 -->
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	        android:id="@+id/keyboardBodyAll"
+		    android:layout_width="match_parent"
+		    android:layout_height="@dimen/keyboard_body_height"
+		    android:orientation="vertical" 
+		    >
+		    <!-- 候選欄放最上面 -->
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/keyboardCandidate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whiteddd"
+                android:orientation="horizontal" >
+                <LinearLayout 
+                    android:id="@+id/keyboardCandidateBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    
+                    <TextView
+		                android:id="@+id/candiLeftBtn"
+		                android:layout_width="0dp"
+		                android:layout_height="@dimen/keyboard_key_height"
+		                android:layout_marginLeft="1dp"
+		                android:layout_marginRight="1dp"
+		                android:layout_weight="1"
+		                android:gravity="center|center_vertical"
+		                android:text="&lt;"
+		                android:textSize="@dimen/keyboard_text_size" />
+        		
+		            <HorizontalScrollView
+		                android:id="@+id/candiScroll"
+		                android:layout_width="0dp"
+		                android:layout_height="@dimen/keyboard_key_height"
+		                android:layout_marginLeft="1dp"
+		                android:layout_marginRight="1dp"
+		                android:layout_weight="8"
+		                android:layout_gravity="center_vertical"
+		                android:orientation="horizontal"
+		                android:scrollbars="none" >
+        		
+		                <LinearLayout
+		                    android:id="@+id/candiScrollContent"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="match_parent"
+		                    android:orientation="horizontal" >
+		                </LinearLayout>
+		            </HorizontalScrollView>
+        		
+		            <TextView
+		                android:id="@+id/candiRightBtn"
+		                android:layout_width="0dp"
+		                android:layout_height="@dimen/keyboard_key_height"
+		                android:layout_marginLeft="1dp"
+		                android:layout_marginRight="1dp"
+		                android:layout_weight="1"
+		                android:gravity="center|center_vertical"
+		                android:text="&gt;"
+		                android:textSize="@dimen/keyboard_text_size" />
+                </LinearLayout>
+        		    
+        	    <LinearLayout 
+                    android:id="@+id/keyboardCandidateCtrls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+        		    
+                    <LinearLayout
+        				android:layout_width="0dp"
+	                    android:layout_height="@dimen/keyboard_key_height"
+	                    android:orientation="horizontal"
+	                    android:layout_weight="6"
+	                    android:layout_marginLeft="5dp"
+				        >
+		        	        <HorizontalScrollView
+		        	            android:id="@+id/chooseKeyboardLayoutScroll"
+		                        android:layout_width="match_parent"
+				                android:layout_height="match_parent"
+				                android:layout_gravity="center_vertical"
+				                android:orientation="horizontal"
+				                android:scrollbars="none"
+				                >
+				                <LinearLayout
+		                            android:id="@+id/chooseKeyboardLayoutScrollContent"
+		                            android:layout_width="fill_parent"
+		                            android:layout_height="match_parent"
+		                            android:orientation="horizontal" >
+		                        </LinearLayout>
+			    	        </HorizontalScrollView>
+			        </LinearLayout>
+        			
+		            <LinearLayout 
+	                    android:layout_width="0dp"
+	                    android:layout_height="@dimen/keyboard_key_height"
+	                    android:orientation="horizontal"
+	                    android:layout_weight="1"
+	                    />
+        	        
+		            <TextView
+		                android:id="@+id/keybtnHide"
+		                android:layout_width="0dp"
+		                android:layout_height="@dimen/keyboard_key_height"
+		                android:layout_marginLeft="1dp"
+		                android:layout_marginRight="1dp"
+		                android:layout_weight="1"
+		                android:gravity="center|center_vertical"
+		                android:text="▼"
+		                android:textSize="@dimen/keyboard_text_size" />
+		        </LinearLayout>
+	        </LinearLayout>
+	        
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	            android:id="@+id/keyboardBodyContent"
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/keyboard_body_height"
+		        android:background="@color/whiteccc"
+		        android:orientation="vertical" 
+		        >
+		    </LinearLayout>
+		</LinearLayout>
+	
+	    <!-- 數字鍵盤 -->
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	        android:id="@+id/keyboardBodyNum"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@color/whiteccc"
+		    android:orientation="horizontal" 
+		    >
+	        
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	            android:id="@+id/keyboardBodyNumContent"
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/keyboard_body_height"
+		        android:background="@color/whiteccc"
+		        android:orientation="vertical" 
+		        >
+		    </LinearLayout>
+
+		    <!--  
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		        android:layout_width="0dp"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="5dp"
+		        android:layout_marginTop="5dp"
+		        android:layout_marginBottom="5dp"
+		        android:layout_weight="7"
+		        android:orientation="vertical" 
+			    >
+		        
+		        <LinearLayout
+			            android:layout_width="match_parent"
+				        android:layout_height="@dimen/keyboard_num_grid_height"
+                        android:orientation="horizontal" 
+                        >
+			        <ScrollView
+				        android:id="@+id/keyboardBodyNumSimScroll"
+				        android:layout_height="wrap_content"
+			            android:layout_width="0dp"
+		                android:layout_weight="1"
+		                android:scrollbars="vertical"
+				        >
+				    	<LinearLayout
+				            android:id="@+id/keyboardBodyNumSimScrollContent"
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        android:orientation="vertical" 
+	                        >
+	                    
+	                    </LinearLayout>
+				    </ScrollView>
+		        
+		            <GridView
+			            android:id="@+id/keyboardBodyNumGrid"
+				        android:layout_height="match_parent"
+			            android:layout_width="0dp"
+		                android:layout_weight="4"
+		                android:layout_marginLeft="2dp"
+				        android:horizontalSpacing="1dp"
+				        android:verticalSpacing="1dp"
+				        android:numColumns="4" 
+			            />
+				</LinearLayout>
+	        </LinearLayout>
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		        android:id="@+id/keyboardBodyNumCtrls"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+		        android:layout_marginLeft="1dp"
+		        android:layout_marginRight="1dp"
+			    android:background="@color/whiteccc"
+			    android:layout_weight="1"
+			    android:orientation="vertical" 
+			    >
+		        <Button
+		            android:id="@+id/keybtnNumBack"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="返"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton
+		            android:id="@+id/keybtnNumDeleteRight"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_delete_right"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton
+		            android:id="@+id/keybtnNumDelete"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_delete"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton
+		            android:id="@+id/keybtnNumSpace"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_space"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton
+		            android:id="@+id/keybtnNumEnter"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_enter"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+	        </LinearLayout>
+	    -->
+
+		</LinearLayout>
+		
+	    <!-- 符號鍵盤 -->
+	     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	        android:id="@+id/keyboardBodySim"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@color/whiteccc"
+		    android:orientation="horizontal" 
+		    >
+	        
+	        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		        android:id="@+id/keyboardBodySimCtrls"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content"
+		        android:layout_marginLeft="2dp"
+			    android:background="@color/whiteccc"
+			    android:layout_weight="1"
+			    android:orientation="vertical" 
+			    >
+		        <Button
+		            android:id="@+id/keybtnSimPreviousPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="▲"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnSimNextPage"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="▼"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton 
+		            android:id="@+id/keybtnSimDelete"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_delete"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <ImageButton
+		            android:id="@+id/keybtnSimDeleteRight"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:src="@drawable/icon_delete_right"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+		        <Button
+		            android:id="@+id/keybtnSimBack"
+		            android:layout_width="match_parent"
+		            android:layout_height="@dimen/keyboard_numsim_ctlkey_height"
+		            android:layout_marginLeft="1dp"
+		            android:layout_marginRight="1dp"
+		            android:layout_marginTop="@dimen/keyboard_row_interval_height_numsim"
+		            android:textAllCaps="false"
+		            android:text="返"
+		            android:background="@drawable/keyboard_button_selector"
+		            />
+	        </LinearLayout>
+		    
+	        <LinearLayout  
+		        android:layout_width="0dp"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="1dp"
+		        android:layout_marginRight="2dp"
+		        android:layout_marginTop="5dp"
+		        android:layout_weight="7" 
+		        android:orientation="vertical"
+		        >
+		        <LinearLayout
+				    android:layout_width="match_parent"
+				    android:layout_height="@dimen/keyboard_key_height"
+				    >
+				    <!-- android:scrollbars="none" -->
+		        	<HorizontalScrollView
+		        	    android:id="@+id/keyboardBodySimScroll"
+		                android:layout_width="match_parent"
+				        android:layout_height="match_parent"
+				        android:layout_gravity="center_vertical"
+				        android:orientation="horizontal"
+				        >
+				        <LinearLayout
+		                    android:id="@+id/keyboardBodySimScrollContent"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="match_parent"
+		                    android:orientation="horizontal" >
+		                </LinearLayout>
+			    	</HorizontalScrollView>
+			    </LinearLayout>
+			            
+			    <GridView
+			        android:id="@+id/keyboardBodySimGrid"
+			        android:layout_width="match_parent"
+			        android:layout_height="@dimen/keyboard_sim_grid_height"
+			        android:horizontalSpacing="1dp"
+			        android:numColumns="6"
+			        android:verticalSpacing="1dp" 
+			        >
+			    </GridView>
+	        </LinearLayout>
+		</LinearLayout>
+	</ViewFlipper>
+</LinearLayout>
