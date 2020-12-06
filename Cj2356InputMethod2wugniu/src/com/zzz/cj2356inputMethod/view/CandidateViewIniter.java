@@ -2,7 +2,7 @@ package com.zzz.cj2356inputMethod.view;
 
 import java.util.List;
 
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.dto.Item;
 import com.zzz.cj2356inputMethod.listener.OnHideClickListener;
 

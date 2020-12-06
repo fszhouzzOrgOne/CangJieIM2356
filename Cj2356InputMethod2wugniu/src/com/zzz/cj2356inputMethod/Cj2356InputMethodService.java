@@ -16,6 +16,7 @@ import com.zzz.cj2356inputMethod.view.ComposingTextView;
 import com.zzz.cj2356inputMethod.view.KeyboardBodyIniter;
 import com.zzz.cj2356inputMethod.view.KeyboardNumIniter;
 import com.zzz.cj2356inputMethod.view.KeyboardSimIniter;
+import com.zzz.cj2356inputMethodWugniu.R;
 
 import android.inputmethodservice.InputMethodService;
 import android.view.View;

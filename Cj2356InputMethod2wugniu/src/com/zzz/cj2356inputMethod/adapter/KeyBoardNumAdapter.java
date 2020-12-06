@@ -3,7 +3,7 @@
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.listener.OnKeyNumTouchListener;
 import com.zzz.cj2356inputMethod.view.KeyBoardNumItemButton;
 

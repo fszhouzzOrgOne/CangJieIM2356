@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.mb.IOUtils;
 
 import android.app.Activity;

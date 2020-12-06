@@ -1,7 +1,7 @@
 package com.zzz.cj2356inputMethod.listener;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 
 import android.content.Context;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCn;
 import com.zzz.cj2356inputMethod.utils.Cangjie2356IMsUtils;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 /**
  * 選擇鍵盤佈局的選項卡的初始化<br/>
- * 倉頡、英文、其它輸入法的切換放到候選欄，去除用切換選擇鍵盤佈局功能
+ * 吳語、英文、其它輸入法的切換放到候選欄，去除用切換選擇鍵盤佈局功能
  * 
  * @author t
  * @time 2017-2-21下午8:44:00
@@ -54,7 +54,7 @@ public class ChooseKeyboardLayoutTabIniter {
         String imOrderTypeCfg = Cangjie2356IMsUtils.getImOrderTypeCfg();
         String orderTypes[] = imOrderTypeCfg.split(",");
         for (String type : orderTypes) {
-            String tabIndi = (ORDER_TYPE_CJ.equals(type)) ? "倉頡" : ((ORDER_TYPE_EN.equals(type)) ? "En" : "其它");
+            String tabIndi = (ORDER_TYPE_CJ.equals(type)) ? "吳語" : ((ORDER_TYPE_EN.equals(type)) ? "En" : "其它");
 
             TextView textView = new TextView(context);
             textView.setText(tabIndi);

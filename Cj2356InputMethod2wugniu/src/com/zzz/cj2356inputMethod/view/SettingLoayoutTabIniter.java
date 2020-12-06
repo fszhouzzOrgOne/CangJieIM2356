@@ -3,7 +3,7 @@ package com.zzz.cj2356inputMethod.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.utils.DipPxUtil;
 
 import android.app.Activity;
@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class SettingLoayoutTabIniter {
 
     public static final String SETTING_TAB_LOG = "版本說明";
-    public static final String SETTING_TAB_DICT = "倉頡字典";
+    public static final String SETTING_TAB_DICT = "字典";
 
     private static Context context;
 

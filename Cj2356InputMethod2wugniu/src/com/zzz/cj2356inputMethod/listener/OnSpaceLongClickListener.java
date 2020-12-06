@@ -3,7 +3,7 @@ package com.zzz.cj2356inputMethod.listener;
 import java.util.Timer;
 
 import com.zzz.cj2356inputMethod.Cj2356InputMethodService;
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.state.InputMethodStatus;
 import com.zzz.cj2356inputMethod.task.LongSpaceTask;
 

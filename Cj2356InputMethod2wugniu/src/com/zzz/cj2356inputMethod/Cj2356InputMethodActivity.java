@@ -2,6 +2,7 @@ package com.zzz.cj2356inputMethod;
 
 import com.zzz.cj2356inputMethod.exception.CrashHandler;
 import com.zzz.cj2356inputMethod.view.SettingLoayoutTabIniter;
+import com.zzz.cj2356inputMethodWugniu.R;
 
 import android.app.Activity;
 import android.content.Context;

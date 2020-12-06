@@ -22,7 +22,7 @@
             android:paddingLeft="10dp" 
             android:paddingRight="10dp" 
             android:textSize="15dp" 
-            android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我。\n（當心了！由倉頡改用其他輸入法，我將自盡。）"
+            android:text="點擊如下按鈕切換輸入法，先啟用，然後選用我。\n（當心了！改用其他輸入法，我將自盡。）"
             />
         
         <LinearLayout

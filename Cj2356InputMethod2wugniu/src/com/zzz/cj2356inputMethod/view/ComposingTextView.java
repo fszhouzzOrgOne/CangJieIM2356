@@ -1,6 +1,6 @@
 package com.zzz.cj2356inputMethod.view;
 
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 
 import android.content.Context;
 import android.graphics.Color;

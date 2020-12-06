@@ -232,6 +232,9 @@ public class Cangjie2356IMsUtils {
         allCjIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnCj2(context);
         allCjIMsMap.put(im.getSubType(), im);
+        // 吳語
+        im = new InputMethodStatusCnElseWugniuL(context);
+        allCjIMsMap.put(im.getSubType(), im);
 
         im = new InputMethodStatusCnElseSghm(context);
         allElseIMsMap.put(im.getSubType(), im);

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
-import com.zzz.cj2356inputMethod.R;
+import com.zzz.cj2356inputMethodWugniu.R;
 import com.zzz.cj2356inputMethod.listener.util.SendKeyEventUtil;
 import com.zzz.cj2356inputMethod.task.LongDeleteRightTask;
 
