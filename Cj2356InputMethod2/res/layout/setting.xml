@@ -110,7 +110,7 @@
 	                android:layout_width="0dp" 
 	                android:layout_weight="6"
                     android:layout_height="@dimen/keyboard_key_height"
-	                android:maxLength="20"
+	                android:maxLength="10"
 	                android:singleLine="true"
 	                android:maxLines="1"
 	                android:hint="請輸入漢字或編碼..."

@@ -39,6 +39,8 @@ import android.widget.Toast;
  * @time 2017年9月26日下午5:38:10
  */
 public class SettingDictIniter {
+    private static final int SEARCH_INPUT_LIMIT = 10;
+
     private static Context context;
 
     private static LinearLayout setDictLayout;
@@ -253,6 +255,11 @@ public class SettingDictIniter {
             if (null != editText && null != editText.getText()) {
                 String query = editText.getText().toString().trim();
                 if (query.length() > 0) {
+                    if (query.length() > SEARCH_INPUT_LIMIT) {
+                        Toast.makeText(context,
+                                "請最多輸入" + SEARCH_INPUT_LIMIT + "個字符",
+                                Toast.LENGTH_SHORT).show();
+                    }
                     String pattern = "[a-zA-Z0-9]{1,}";
                     Toast.makeText(context, "查詢“" + query + "”",
                             Toast.LENGTH_SHORT).show();
