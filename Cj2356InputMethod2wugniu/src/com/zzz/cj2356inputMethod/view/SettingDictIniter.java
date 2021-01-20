@@ -255,7 +255,12 @@ public class SettingDictIniter {
             if (null != editText && null != editText.getText()) {
                 String query = editText.getText().toString().trim();
                 if (query.length() > 0) {
-                    if (query.length() > SEARCH_INPUT_LIMIT) {
+                    List<Integer> unicodes = UnicodeConvertUtil.getUnicodeListFromStr(query);
+                    String[] chas = new String[unicodes.size()];
+                    for (int i = 0; i < chas.length; i++) {
+                        chas[i] = UnicodeConvertUtil.getStringByUnicode(unicodes.get(i));
+                    }
+                    if (chas.length > SEARCH_INPUT_LIMIT) {
                         Toast.makeText(context,
                                 "請最多輸入" + SEARCH_INPUT_LIMIT + "個字符",
                                 Toast.LENGTH_SHORT).show();
@@ -268,7 +273,7 @@ public class SettingDictIniter {
                             query = query.toLowerCase();
                             gData = SettingDictMbUtils.selectDbByCode(query);
                         } else {
-                            gData = SettingDictMbUtils.selectDbByChar(query);
+                            gData = SettingDictMbUtils.selectDbByChar(chas);
                         }
                     } catch (Exception e) {
                         Toast.makeText(context, "查詢失敗：" + e.getMessage(),

@@ -141,8 +141,7 @@ public class SettingDictMbUtils {
      * @param query
      * @return
      */
-    public static List<Group> selectDbByChar(String query) {
-        String[] chas = query.split("");
+    public static List<Group> selectDbByChar(String[] chas) {
         List<Group> gData = new ArrayList<Group>();
         for (int i = 0; i < dictIms.size(); i++) {
             // 去重
