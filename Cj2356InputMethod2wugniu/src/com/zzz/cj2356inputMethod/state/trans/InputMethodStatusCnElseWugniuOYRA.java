@@ -8,14 +8,14 @@ import com.zzz.cj2356inputMethod.mb.MbUtils;
 import android.content.Context;
 
 /**
- * 上海吳語（老派）
+ * 吳語甌越瑞安
  */
-public class InputMethodStatusCnElseWugniuL extends InputMethodStatusCnElse {
+public class InputMethodStatusCnElseWugniuOYRA extends InputMethodStatusCnElse {
 
-    public InputMethodStatusCnElseWugniuL(Context con) {
+    public InputMethodStatusCnElseWugniuOYRA(Context con) {
         super(con);
-        this.setSubType(MbUtils.TYPE_CODE_CJGEN_WUGNIULOPHA);
-        this.setSubTypeName("SH");
+        this.setSubType(MbUtils.TYPE_CODE_CJGEN_WUGNIUOYRUIAN);
+        this.setSubTypeName("RA");
     }
 
     @Override

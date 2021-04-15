@@ -40,6 +40,7 @@ public class MbUtils {
     public static final String TYPE_CODE_CJGENBRAILLE = "mangw"; // 盲文
     public static final String TYPE_CODE_CJGEN_SIONTANTSENG = "siontts"; // 曾版湘潭話
     public static final String TYPE_CODE_CJGEN_WUGNIULOPHA = "wugnl"; // 上海吳語（老派）
+    public static final String TYPE_CODE_CJGEN_WUGNIUOYRUIAN = "wnoyra"; // 吳語甌越瑞安
     // 倉頡碼表的交集
     public static final String TYPE_CODE_CJINTERSECT = "cjcommon";
 

@@ -38,6 +38,7 @@ import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSghm;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseSionTanTseng;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseUnicode;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseWugniuL;
+import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseWugniuOYRA;
 import com.zzz.cj2356inputMethod.state.trans.InputMethodStatusCnElseZyfh;
 
 import android.content.Context;
@@ -235,6 +236,8 @@ public class Cangjie2356IMsUtils {
         // 吳語
         im = new InputMethodStatusCnElseWugniuL(context);
         allCjIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseWugniuOYRA(context);
+        allCjIMsMap.put(im.getSubType(), im);
 
         im = new InputMethodStatusCnElseSghm(context);
         allElseIMsMap.put(im.getSubType(), im);
@@ -262,6 +265,8 @@ public class Cangjie2356IMsUtils {
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseWugniuL(context);
         allElseIMsMap.put(im.getSubType(), im);
+        im = new InputMethodStatusCnElseWugniuOYRA(context);
+        allCjIMsMap.put(im.getSubType(), im);
 
         allEnIMsMap.put(ORDER_KEY_KEY, ORDER_EN_KEY);
         allCjIMsMap.put(ORDER_KEY_KEY, ORDER_CJ_KEY);
