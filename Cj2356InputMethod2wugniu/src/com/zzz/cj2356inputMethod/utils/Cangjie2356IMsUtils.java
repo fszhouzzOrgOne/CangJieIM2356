@@ -266,7 +266,7 @@ public class Cangjie2356IMsUtils {
         im = new InputMethodStatusCnElseWugniuL(context);
         allElseIMsMap.put(im.getSubType(), im);
         im = new InputMethodStatusCnElseWugniuOYRA(context);
-        allCjIMsMap.put(im.getSubType(), im);
+        allElseIMsMap.put(im.getSubType(), im);
 
         allEnIMsMap.put(ORDER_KEY_KEY, ORDER_EN_KEY);
         allCjIMsMap.put(ORDER_KEY_KEY, ORDER_CJ_KEY);
